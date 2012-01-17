@@ -53,6 +53,7 @@
     <Compile Include="Configuration\ConfigurationSettings.cs" />
     <Compile Include="Configuration\IAppConfigManager.cs" />
     <Compile Include="Configuration\IConfigurationSettings.cs" />
+    <Compile Include="CoreRegistry.cs" />
     <Compile Include="DomainObjects\IEntity.cs" />
     <Compile Include="DomainObjects\IShow.cs" />
     <Compile Include="Exceptions\AlreadyExistsException.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Infrastructure\IoC\IDependencyResolver.cs" />
     <Compile Include="Infrastructure\IoC\IDependencyResolverFactory.cs" />
     <Compile Include="Infrastructure\IoC\Ioc.cs" />
+    <Compile Include="Infrastructure\Logging\LoggedActionFactory.cs" />
     <Compile Include="Infrastructure\Logging\LogWriter.cs" />
     <Compile Include="Infrastructure\UoW\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UoW\UnitOfWork.cs" />
@@ -94,10 +96,9 @@
     <Compile Include="Infrastructure\Logging\DebuggerWriter.cs" />
     <Compile Include="Configuration\IConnectionString.cs" />
     <Compile Include="Infrastructure\Logging\ILogWriter.cs" />
+    <Compile Include="Repository\IRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
