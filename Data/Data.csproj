@@ -67,6 +67,7 @@
     <Compile Include="Repository\DatabaseFactory.cs" />
     <Compile Include="Repository\IDatabase.cs" />
     <Compile Include="Repository\IDatabaseFactory.cs" />
+    <Compile Include="Repository\ShowRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -97,6 +97,8 @@
     <Compile Include="Configuration\IConnectionString.cs" />
     <Compile Include="Infrastructure\Logging\ILogWriter.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IShowRepository.cs" />
+    <Compile Include="Services\ShowService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

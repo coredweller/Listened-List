@@ -1,6 +1,7 @@
 ﻿using StructureMap.Configuration.DSL;
 using Data.Repository;
 using Core.Configuration;
+using Core.Repository;
 
 namespace Data
 {
@@ -8,6 +9,15 @@ namespace Data
     {
 
         public DataRegistry() {
+
+
+            For<IShowRepository>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ShowRepository>()
+                .Ctor<IDatabaseFactory>("factory").IsTheDefault();
+
+            SelectConstructor<ShowRepository>(() => new ShowRepository((IDatabaseFactory)null));
+
 
             For<Core.Infrastructure.IUnitOfWork>()
                         .HybridHttpOrThreadLocalScoped()

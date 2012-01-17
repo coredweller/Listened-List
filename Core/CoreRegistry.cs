@@ -15,7 +15,7 @@ namespace Core
             For<IConnectionString>()
                 .Singleton()
                 .Use<ConnectionString>()
-                .WithCtorArg("connectionStringKey").EqualTo("PhishPond");
+                .WithCtorArg("connectionStringKey").EqualTo("Listened");
 
             For<ILogWriter>()
                 .HybridHttpOrThreadLocalScoped()

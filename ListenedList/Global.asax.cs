@@ -4,15 +4,46 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using Core.Infrastructure.Logging;
+using StructureMap;
+using Core.Infrastructure;
 
 namespace ListenedList
 {
     public class Global : System.Web.HttpApplication
     {
+        LogWriter writer = new LogWriter();
 
         void Application_Start( object sender, EventArgs e ) {
-            // Code that runs on application startup
+            
+             log4net.Config.XmlConfigurator.Configure();
 
+            OnStart();
+
+
+        }
+
+        protected virtual void OnStart()
+        {
+            //Setup Ioc container and related services
+            Bootstrap();
+
+            // uncomment the following line if you wish to have StructureMap verify its configuration.  ASP.NET error page will be generated if configuration is incorrect.
+            ObjectFactory.AssertConfigurationIsValid();
+            System.Diagnostics.Debug.Write(ObjectFactory.WhatDoIHave());
+        }
+
+        private void Bootstrap()
+        {
+            //setup IoC container
+            ObjectFactory.Initialize(x =>
+            {
+                x.AddRegistry(new Core.CoreRegistry());
+                x.AddRegistry(new Data.DataRegistry());
+                //x.AddRegistry(new PhishMarket.PhishMarketRegistry());
+            });
+
+            Ioc.InitializeWith(new DependencyResolverFactory(new DependencyResolver()));
         }
 
         void Application_End( object sender, EventArgs e ) {
