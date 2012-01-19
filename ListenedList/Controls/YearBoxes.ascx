@@ -7,7 +7,7 @@
         <ItemTemplate>
             
                 <td>
-                    <asp:TextBox runat="server" Width="65px" BackColor="White" Text='<%# (((Data.DomainObjects.Show)Container.DataItem).ShowDate).Value.ToShortDateString() %>'></asp:TextBox>
+                    <asp:Button runat="server" Width="65px" BackColor="White" Text='<%# (((Data.DomainObjects.Show)Container.DataItem).ShowDate).Value.ToShortDateString() %>'></asp:Button>
                 </td>
         
             

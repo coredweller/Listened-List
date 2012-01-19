@@ -133,6 +133,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\ShowHandler.ashx.cs">
+      <DependentUpon>ShowHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +169,9 @@
       <Project>{4BF5F0F6-09B7-48F7-9CC5-D5D7E8C9555C}</Project>
       <Name>Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\ShowHandler.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -14,7 +14,7 @@ namespace ListenedList
     public partial class _Default : System.Web.UI.Page
     {
         protected void Page_Load( object sender, EventArgs e ) {
-            LoadShows();
+            //LoadShows();
         }
 
         protected override void OnInit( EventArgs e ) {
