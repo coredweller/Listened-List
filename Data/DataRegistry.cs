@@ -19,6 +19,17 @@ namespace Data
             SelectConstructor<ShowRepository>(() => new ShowRepository((IDatabaseFactory)null));
 
 
+            For<IListenedShowRepository>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ListenedShowRepository>()
+                .Ctor<IDatabaseFactory>( "factory" ).IsTheDefault();
+
+
+
+
+            ///INFRASTRUCTURE IOC SETUP BELOW.  DO NOT ALTER ANYTHING BELOW THIS LINE
+            ///-----------------------------------------------------------------------
+
             For<Core.Infrastructure.IUnitOfWork>()
                         .HybridHttpOrThreadLocalScoped()
                         .Use<Data.Repository.UnitOfWork>();

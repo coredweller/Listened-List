@@ -28,7 +28,7 @@ namespace Data.Repository
 
         public IShow FindByShowId(Guid id)
         {
-            return GetAll().SingleOrDefault(show => show.ShowId == id);
+            return GetAll().SingleOrDefault(show => show.Id == id);
         }
 
         public IShow FindByShowDate(DateTime date)
@@ -42,10 +42,10 @@ namespace Data.Repository
 
             entity.CreatedDate = DateTime.Now;
 
-            if (GetAll().Any(show => show.ShowId == entity.ShowId))
+            if (GetAll().Any(show => show.Id == entity.Id))
             {
-                writer.WriteLine("A Show with an id={0}".FormatWith(entity.ShowId));
-                throw new AlreadyExistsException("A Show with an id={0}".FormatWith(entity.ShowId));
+                writer.WriteLine("A Show with an id={0}".FormatWith(entity.Id));
+                throw new AlreadyExistsException("A Show with an id={0}".FormatWith(entity.Id));
             }
             else
             {

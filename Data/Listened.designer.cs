@@ -70,6 +70,14 @@ namespace Data.Repository
 				return this.GetTable<Data.DomainObjects.Show>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Data.DomainObjects.ListenedShow> ListenedShows
+		{
+			get
+			{
+				return this.GetTable<Data.DomainObjects.ListenedShow>();
+			}
+		}
 	}
 }
 namespace Data.DomainObjects
@@ -116,8 +124,8 @@ namespace Data.DomainObjects
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnShowIdChanging(System.Guid value);
-    partial void OnShowIdChanged();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
     partial void OnVenueNameChanging(string value);
     partial void OnVenueNameChanged();
     partial void OnCityChanging(string value);
@@ -149,8 +157,8 @@ namespace Data.DomainObjects
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShowId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ShowId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ShowId", Storage="_ShowId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
 		{
 			get
 			{
@@ -160,11 +168,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._ShowId != value))
 				{
-					this.OnShowIdChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._ShowId = value;
-					this.SendPropertyChanged("ShowId");
-					this.OnShowIdChanged();
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -426,6 +434,195 @@ namespace Data.DomainObjects
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ListenedShow")]
+	public partial class ListenedShow
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Guid _UserId;
+		
+		private System.Guid _ShowId;
+		
+		private string _Notes;
+		
+		private System.Nullable<double> _Stars;
+		
+		private int _Status;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private bool _Deleted;
+		
+		public ListenedShow()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ListenedShowId", Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShowId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ShowId
+		{
+			get
+			{
+				return this._ShowId;
+			}
+			set
+			{
+				if ((this._ShowId != value))
+				{
+					this._ShowId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="VarChar(2000)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this._Notes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stars", DbType="Float")]
+		public System.Nullable<double> Stars
+		{
+			get
+			{
+				return this._Stars;
+			}
+			set
+			{
+				if ((this._Stars != value))
+				{
+					this._Stars = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
+		public int Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit NOT NULL")]
+		public bool Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
 			}
 		}
 	}

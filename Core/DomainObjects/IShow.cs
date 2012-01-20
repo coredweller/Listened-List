@@ -4,7 +4,7 @@ namespace Core.DomainObjects
 {
     public interface IShow : IEntity
     {
-        Guid ShowId { get; }
+        Guid Id { get; }
         string VenueName { get; }
         string City { get; }
         string State { get; }

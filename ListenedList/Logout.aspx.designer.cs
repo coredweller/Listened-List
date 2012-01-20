@@ -11,7 +11,7 @@ namespace ListenedList
 {
 
 
-    public partial class List
+    public partial class Logout
     {
 
         /// <summary>

@@ -73,7 +73,7 @@ namespace Core.Services
 
             success = false;
 
-            if (null == _repo.FindByShowId(show.ShowId))
+            if (null == _repo.FindByShowId(show.Id))
             {
                 try
                 {

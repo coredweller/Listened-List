@@ -28,11 +28,7 @@
             var input = $(":input").click(function () {
                 alert(showDate);
                 showDate = $(this).val();
-
-                alert("showDate: " + showDate);
-                alert("input: " + input.val());
-
-
+                
                 $.getJSON("Handlers/ShowHandler.ashx", { s: showDate }, function (data) {
 
                     var items = data.records

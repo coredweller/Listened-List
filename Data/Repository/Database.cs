@@ -16,7 +16,7 @@ namespace Data.Repository
         //Data Sources
 
         public IQueryable<IShow> ShowDataSource { get { return GetQueryable<Show>().Cast<IShow>(); } }
-
+        public IQueryable<IListenedShow> ListenedShowDataSource { get { return GetQueryable<ListenedShow>().Cast<IListenedShow>(); } }
 
 
 
