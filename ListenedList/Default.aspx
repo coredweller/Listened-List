@@ -10,20 +10,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            // Add the page method call as an onclick handler for the div.
-            //            $("#lnkClick").click(function () {
-            //                $.ajax({
-            //                    type: "POST",
-            //                    url: "Default.aspx/GetName",
-            //                    data: "{}",
-            //                    contentType: "application/json; charset=utf-8",
-            //                    dataType: "json",
-            //                    success: function (msg) {
-            //                        $("#txtItem").val(msg.d.firstName + " " + msg.d.lastName);
-            //                    }
-            //                });
-            //            });
-
             var showDate = 0;
             var input = $(":input").click(function () {
                 alert(showDate);
@@ -32,29 +18,13 @@
                 $.getJSON("Handlers/ShowHandler.ashx", { s: showDate }, function (data) {
 
                     var items = data.records
-                    //$("select[id$=ddlFavoriteLiveShow] > option").remove();
-
-                    //$.each(data.records, function () {
-
-                    //                    alert("<option value=\"" + this['ID'] + "\">" + this['Show'] + "</option>");
-                    //$("#ddlFavoriteLiveShow").append("<option value=\"" + this['ID'] + "\">" + this['Show'] + "</option>");
-                    //                    $("#ddlFuckMe").append("<option value=\"" + this['ID'] + "\">" + this['Show'] + "</option>");
-                    //$("#ddlFuckMe").append($("<option></option>").val(this['ID']).html(this['Show']));
-
-                    //$("<option>").attr("value", this['ID'])
-                    //.text(this['Show'])
-                    // .appendTo("#ddlFavoriteLiveShow");
-
-                    //});
-
+                   
 
 
                 });
 
 
             });
-
-
 
 
 
@@ -119,4 +89,6 @@
     <br />
     <uc:YearBox ID="yearBox23" runat="server" Year="2011" />
     <br />
+
+    <asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
 </asp:Content>

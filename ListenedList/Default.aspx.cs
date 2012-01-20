@@ -8,13 +8,20 @@ using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
 using ListenedList.Controls;
+using Core.Membership;
 
 namespace ListenedList
 {
     public partial class _Default : ListenedBasePage
     {
+        IMembershipProvider membershipProvider = new ListenedMembershipProvider();
+
         protected void Page_Load( object sender, EventArgs e ) {
-            //LoadShows();
+
+            if ( string.IsNullOrEmpty( hdnUserId.Value ) ) {
+                var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+                hdnUserId.Value = userId.ToString();
+            }
         }
 
         protected override void OnInit( EventArgs e ) {
