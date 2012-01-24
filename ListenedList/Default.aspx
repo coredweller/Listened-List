@@ -5,38 +5,39 @@
     CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <%--LEFT OFF HERE adding jquery to make the boxes work--%>
+   
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var showDate = 0;
-            var input = $(":input").click(function () {
-                alert(showDate);
-                showDate = $(this).val();
-                
-                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate }, function (data) {
+            
+
+            //If any button on the page is clicked    
+            var input = $(":input").click(function (event) {
+
+                $.prompt('Dan P');
+
+                //grab the user id from the hidden element
+                var userId = $('#<%= hdnUserId.ClientID %>').val();
+                //grab the showdate from the button that was clicked
+                var showDate = $(this).val();
+
+                //Send user id and show date to the handler to process the update
+                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId }, function (data) {
 
                     var items = data.records
-                   
-
 
                 });
 
-
+                event.preventDefault();
             });
 
 
-
-
-            $("form").submit(function () { return false; }); // so it won't submit
         });
-
-
     
     </script>
 </asp:Content>
-
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
     <%--<asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>--%>
     <%--<uc:YearBox ID="yearBox97" runat="server" Year="1992" />--%>
@@ -89,6 +90,5 @@
     <br />
     <uc:YearBox ID="yearBox23" runat="server" Year="2011" />
     <br />
-
-    <asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
+    <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
 </asp:Content>
