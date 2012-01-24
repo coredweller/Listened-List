@@ -16,6 +16,7 @@ namespace ListenedList.Handlers
             HttpRequestBase request = context.Request;
             var showId = request.QueryString["s"];
             var userId = request.QueryString["u"];
+            var status = request.QueryString["st"];
             HttpResponseBase response = context.Response;
         }
 

@@ -5,30 +5,43 @@
     CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
-   
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
-            
+
 
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
 
-                $.prompt('Dan P');
-
-                //grab the user id from the hidden element
-                var userId = $('#<%= hdnUserId.ClientID %>').val();
-                //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
-                //Send user id and show date to the handler to process the update
-                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId }, function (data) {
+                var status = $.prompt('What is the listening status for this show?',
+                                        { buttons: { Finished: 2, InProgress: 1, Cancel: 0 }, 
+                                          focus: 1,
+                                          submit: function(x, y, z)
+                                          {
 
-                    var items = data.records
 
-                });
+                                              //grab the user id from the hidden element
+                                              var userId = $('#<%= hdnUserId.ClientID %>').val();
+                                              //grab the showdate from the button that was clicked
+                                              
+
+                                              //Send user id and show date to the handler to process the update
+                                              $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
+
+                                                  var items = data.records
+
+                                              });
+
+                                           
+                                          }
+                                        });
+                
+
+                
 
                 event.preventDefault();
             });
