@@ -7,11 +7,11 @@ namespace Core.DomainObjects
 {
     public interface IListenedShow : IEntity
     {
-        Guid Id { get; }
-        Guid UserId { get; }
-        Guid ShowId { get; }
-        string Notes { get; }
-        double? Stars { get; }
-        int Status { get; }
+        Guid Id { get; set; }
+        Guid UserId { get; set; }
+        Guid ShowId { get; set; }
+        string Notes { get; set; }
+        double? Stars { get; set; }
+        int Status { get; set; }
     }
 }

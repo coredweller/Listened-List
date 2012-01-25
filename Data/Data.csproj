@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataRegistry.cs" />
+    <Compile Include="DomainObjects\DomainObjectFactory.cs" />
     <Compile Include="DomainObjects\ListenedShow.cs" />
     <Compile Include="DomainObjects\Show.cs" />
     <Compile Include="Listened.designer.cs">
@@ -68,7 +69,7 @@
     <Compile Include="Repository\DatabaseFactory.cs" />
     <Compile Include="Repository\IDatabase.cs" />
     <Compile Include="Repository\IDatabaseFactory.cs" />
-    <Compile Include="Repository\ListenedListRepository.cs" />
+    <Compile Include="Repository\ListenedShowRepository.cs" />
     <Compile Include="Repository\ShowRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>

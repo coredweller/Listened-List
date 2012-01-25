@@ -20,7 +20,7 @@
   </Table>
   <Table Name="dbo.ListenedShow" Member="ListenedShows">
     <Type Name="ListenedShow">
-      <Column Name="ListenedShowId" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ListenedShowId" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ShowId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Notes" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />

@@ -10,6 +10,7 @@ namespace Core.Repository
     {
         IQueryable<IListenedShow> FindAll();
         IListenedShow FindByShowId( Guid id );
+        IListenedShow FindById( Guid id );
         void Add( IListenedShow entity );
         void Remove( IListenedShow entity );
     }

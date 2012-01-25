@@ -32,6 +32,10 @@ namespace Data.Repository
         {
             return GetAll().SingleOrDefault(show => show.ShowId == id);
         }
+
+        public IListenedShow FindById( Guid id ) {
+            return GetAll().SingleOrDefault( show => show.Id == id );
+        }
         
         public override void Add(IListenedShow entity)
         {

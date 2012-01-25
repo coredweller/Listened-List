@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
 using ListenedList.Controls;
 using Core.Membership;
+using Core.DomainObjects;
+using System.Collections.Generic;
+using Core.Helpers;
 
 namespace ListenedList
 {
@@ -22,6 +22,24 @@ namespace ListenedList
                 var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
                 hdnUserId.Value = userId.ToString();
             }
+
+            if ( !IsPostBack ) {
+                Bind(hdnUserId.Value);
+            }
+        }
+
+        private void Bind(string userIdStr) {
+            var userId = new Guid( userIdStr );
+
+            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var listenedShows = listenedShowService.GetByUser( userId );
+
+            List<ShowStatus> shows = new List<ShowStatus>();
+            foreach ( var show in listenedShows.ToList() ) {
+                shows.Add( new ShowStatus( show.ShowId, show.Status ) );
+            }
+
+            yearBox84.Shows = shows;
         }
 
         protected override void OnInit( EventArgs e ) {

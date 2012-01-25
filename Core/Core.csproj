@@ -75,6 +75,7 @@
     <Compile Include="Helpers\JSONParser.cs" />
     <Compile Include="Helpers\LinkBuilder.cs" />
     <Compile Include="Helpers\ScriptHelper.cs" />
+    <Compile Include="Helpers\ShowStatus.cs" />
     <Compile Include="Helpers\SystemTime.cs" />
     <Compile Include="Infrastructure\Images\FullImageSize.cs" />
     <Compile Include="Infrastructure\Images\IImageFormatSpec.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Repository\IListenedShowRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IShowRepository.cs" />
+    <Compile Include="Services\ListenedShowService.cs" />
     <Compile Include="Services\ShowService.cs" />
   </ItemGroup>
   <ItemGroup />

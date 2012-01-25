@@ -24,7 +24,7 @@ namespace Data
                 .Use<ListenedShowRepository>()
                 .Ctor<IDatabaseFactory>( "factory" ).IsTheDefault();
 
-
+            SelectConstructor<ListenedShowRepository>(() => new ListenedShowRepository((IDatabaseFactory)null));
 
 
             ///INFRASTRUCTURE IOC SETUP BELOW.  DO NOT ALTER ANYTHING BELOW THIS LINE

@@ -31,6 +31,9 @@ namespace Data.Repository
     partial void InsertShow(Data.DomainObjects.Show instance);
     partial void UpdateShow(Data.DomainObjects.Show instance);
     partial void DeleteShow(Data.DomainObjects.Show instance);
+    partial void InsertListenedShow(Data.DomainObjects.ListenedShow instance);
+    partial void UpdateListenedShow(Data.DomainObjects.ListenedShow instance);
+    partial void DeleteListenedShow(Data.DomainObjects.ListenedShow instance);
     #endregion
 		
 		public Database() : 
@@ -120,6 +123,8 @@ namespace Data.DomainObjects
 		
 		private string _PhishNetUrl;
 		
+		private EntitySet<ListenedShow> _ListenedShows;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -154,6 +159,7 @@ namespace Data.DomainObjects
 		
 		public Show()
 		{
+			this._ListenedShows = new EntitySet<ListenedShow>(new Action<ListenedShow>(this.attach_ListenedShows), new Action<ListenedShow>(this.detach_ListenedShows));
 			OnCreated();
 		}
 		
@@ -417,6 +423,19 @@ namespace Data.DomainObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_ListenedShow", Storage="_ListenedShows", ThisKey="Id", OtherKey="ShowId")]
+		public EntitySet<ListenedShow> ListenedShows
+		{
+			get
+			{
+				return this._ListenedShows;
+			}
+			set
+			{
+				this._ListenedShows.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -436,11 +455,25 @@ namespace Data.DomainObjects
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_ListenedShows(ListenedShow entity)
+		{
+			this.SendPropertyChanging();
+			entity.Show = this;
+		}
+		
+		private void detach_ListenedShows(ListenedShow entity)
+		{
+			this.SendPropertyChanging();
+			entity.Show = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ListenedShow")]
-	public partial class ListenedShow
+	public partial class ListenedShow : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private System.Guid _Id;
 		
@@ -462,11 +495,41 @@ namespace Data.DomainObjects
 		
 		private bool _Deleted;
 		
+		private EntityRef<Show> _Show;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
+    partial void OnShowIdChanging(System.Guid value);
+    partial void OnShowIdChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    partial void OnStarsChanging(System.Nullable<double> value);
+    partial void OnStarsChanged();
+    partial void OnStatusChanging(int value);
+    partial void OnStatusChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedChanging(bool value);
+    partial void OnDeletedChanged();
+    #endregion
+		
 		public ListenedShow()
 		{
+			this._Show = default(EntityRef<Show>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ListenedShowId", Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ListenedShowId", Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
 		public System.Guid Id
 		{
 			get
@@ -477,7 +540,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._Id != value))
 				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
 					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -493,7 +560,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._UserId != value))
 				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
 					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
@@ -509,7 +580,15 @@ namespace Data.DomainObjects
 			{
 				if ((this._ShowId != value))
 				{
+					if (this._Show.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnShowIdChanging(value);
+					this.SendPropertyChanging();
 					this._ShowId = value;
+					this.SendPropertyChanged("ShowId");
+					this.OnShowIdChanged();
 				}
 			}
 		}
@@ -525,7 +604,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._Notes != value))
 				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
 					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
 				}
 			}
 		}
@@ -541,7 +624,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._Stars != value))
 				{
+					this.OnStarsChanging(value);
+					this.SendPropertyChanging();
 					this._Stars = value;
+					this.SendPropertyChanged("Stars");
+					this.OnStarsChanged();
 				}
 			}
 		}
@@ -557,7 +644,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._Status != value))
 				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
 					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}
@@ -573,7 +664,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._CreatedDate != value))
 				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
 					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
 				}
 			}
 		}
@@ -589,7 +684,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._UpdatedDate != value))
 				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
 					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
 				}
 			}
 		}
@@ -605,7 +704,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._DeletedDate != value))
 				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
 					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
 				}
 			}
 		}
@@ -621,8 +724,66 @@ namespace Data.DomainObjects
 			{
 				if ((this._Deleted != value))
 				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
 					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_ListenedShow", Storage="_Show", ThisKey="ShowId", OtherKey="Id", IsForeignKey=true)]
+		public Show Show
+		{
+			get
+			{
+				return this._Show.Entity;
+			}
+			set
+			{
+				Show previousValue = this._Show.Entity;
+				if (((previousValue != value) 
+							|| (this._Show.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Show.Entity = null;
+						previousValue.ListenedShows.Remove(this);
+					}
+					this._Show.Entity = value;
+					if ((value != null))
+					{
+						value.ListenedShows.Add(this);
+						this._ShowId = value.Id;
+					}
+					else
+					{
+						this._ShowId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Show");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
