@@ -10,43 +10,31 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-
-
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
 
+                //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
                 var status = $.prompt('What is the listening status for this show?',
-                                        { buttons: { Finished: 2, InProgress: 1, Cancel: 0 }, 
-                                          focus: 1,
-                                          submit: function(x, y, z)
-                                          {
+                                        { buttons: { Finished: 2, InProgress: 1, Cancel: 0 },
+                                            focus: 1,
+                                            submit: function (x, y, z) {
 
+                                                //grab the user id from the hidden element
+                                                var userId = $('#<%= hdnUserId.ClientID %>').val();
 
-                                              //grab the user id from the hidden element
-                                              var userId = $('#<%= hdnUserId.ClientID %>').val();
-                                              //grab the showdate from the button that was clicked
-                                              
+                                                //Send user id and show date to the handler to process the update
+                                                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
 
-                                              //Send user id and show date to the handler to process the update
-                                              $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
+                                                    var items = data.records
 
-                                                  var items = data.records
-
-                                              });
-
-                                           
-                                          }
+                                                });
+                                            }
                                         });
-                
-
-                
 
                 event.preventDefault();
             });
-
-
         });
     
     </script>

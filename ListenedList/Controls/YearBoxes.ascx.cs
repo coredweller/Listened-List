@@ -38,8 +38,16 @@ namespace ListenedList.Controls
             var shows = showService.GetShowStatusByYear( Year );
 
             if ( Shows != null && Shows.Count > 0) {
-                foreach ( var s in shows ) {
-                    //LEFT OFF HERE
+                foreach ( var s in Shows ) {
+                    var match = shows.Find( x => x.ShowId == s.ShowId );
+                    if ( match == null ) continue;
+
+                    var copy = new ShowStatus(match.ShowId, s.Status, match.ShowDate);
+
+                    var index = shows.IndexOf(match);
+                    shows.Remove( match );
+                    shows.Insert( index, copy );
+                    
                 }
             }
 
@@ -49,9 +57,9 @@ namespace ListenedList.Controls
 
         public Color GetStatus( int status ) {
             switch ( status ) {
-                case 0:
+                case (int)ListenedStatus.InProgress:
                     return Color.Yellow;
-                case 1:
+                case (int)ListenedStatus.Finished:
                     return Color.Blue;
             }
 

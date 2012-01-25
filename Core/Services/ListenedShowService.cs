@@ -85,4 +85,11 @@ namespace Core.Services
         }
 
     }
+
+    public enum ListenedStatus
+    {
+        None = 0,
+        InProgress = 1,
+        Finished = 2
+    }
 }

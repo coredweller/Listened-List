@@ -39,7 +39,30 @@ namespace ListenedList
                 shows.Add( new ShowStatus( show.ShowId, show.Status ) );
             }
 
+            yearBox00.Shows = shows;
+            yearBox02.Shows = shows;
+            yearBox03.Shows = shows;
+            yearBox04.Shows = shows;
+            yearBox09.Shows = shows;
+            yearBox10.Shows = shows;
+            yearBox11.Shows = shows;
+            yearBox83.Shows = shows;
             yearBox84.Shows = shows;
+            yearBox85.Shows = shows;
+            yearBox86.Shows = shows;
+            yearBox87.Shows = shows;
+            yearBox88.Shows = shows;
+            yearBox89.Shows = shows;
+            yearBox90.Shows = shows;
+            yearBox91.Shows = shows;
+            yearBox92.Shows = shows;
+            yearBox93.Shows = shows;
+            yearBox94.Shows = shows;
+            yearBox95.Shows = shows;
+            yearBox96.Shows = shows;
+            yearBox97.Shows = shows;
+            yearBox98.Shows = shows;
+            yearBox99.Shows = shows;
         }
 
         protected override void OnInit( EventArgs e ) {

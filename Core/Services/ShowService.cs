@@ -57,9 +57,9 @@ namespace Core.Services
             return GetAllShows().Where(x => x.ShowDate.Value.Year == 2003 || x.ShowDate.Value.Year == 2002).OrderBy(y => y.ShowDate);
         }
 
-        public IList<ShowStatus> GetShowStatusByYear( int year ) {
+        public List<ShowStatus> GetShowStatusByYear( int year ) {
             return (from s in GetShowsByYear( year )
-                   select new ShowStatus( s.Id, -1, s.ShowDate.Value )).ToList();
+                   select new ShowStatus( s.Id, (int)ListenedStatus.None, s.ShowDate.Value )).ToList();
         }
 
         public void SaveCommit(IShow show, out bool success)
