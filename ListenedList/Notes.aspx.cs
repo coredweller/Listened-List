@@ -54,7 +54,6 @@ namespace ListenedList
                 var listenedShow = listenedShowService.GetById( listenedId );
                 listenedShow.Notes = txtNotes.Text;
 
-                //listenedShowService.Save( listenedShow, out success );
                 uow.Commit();
                 success = true;
             }
@@ -63,7 +62,7 @@ namespace ListenedList
                 Page.RegisterStartupScript( "success", "<script type=\"text/javascript\"> $.prompt('You have saved your notes for this show.'); </script>" );
             }
             else {
-                Page.RegisterStartupScript( "success", "<script type=\"text/javascript\"> $.prompt('There was an error saving your notes for this show.'); </script>" );
+                Page.RegisterStartupScript( "failure", "<script type=\"text/javascript\"> $.prompt('There was an error saving your notes for this show.'); </script>" );
             }
         }
     }

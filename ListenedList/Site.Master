@@ -17,7 +17,7 @@
         <div class="header">
             <div class="title">
                 <h1>
-                    My ASP.NET Application
+                    Listened List
                 </h1>
             </div>
             <div class="loginDisplay">
@@ -34,8 +34,8 @@
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Listened"/>
+                        
                     </Items>
                 </asp:Menu>
             </div>
