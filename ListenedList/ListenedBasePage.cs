@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Core.Infrastructure.Logging;
 using System.Web.UI.WebControls;
+using Core.Membership;
 
 namespace ListenedList
 {
@@ -12,6 +13,8 @@ namespace ListenedList
         protected readonly string BaseRoleType = "Registered";
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "The Listened List";
+
+        protected IMembershipProvider membershipProvider = new ListenedMembershipProvider();
 
         protected readonly Guid EmptyGuid = new Guid("00000000-0000-0000-0000-000000000000");
 

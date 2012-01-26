@@ -7,7 +7,7 @@
         </HeaderTemplate>
         <ItemTemplate>
             <td>
-                <asp:Button style="text-align:left;" runat="server" Width="65px" BackColor='<%# GetStatus((int)Eval("Status")) %>' Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>'>
+                <asp:Button style="text-align:left;" runat="server" Width="75px" BackColor='<%# GetStatus((int)Eval("Status")) %>' Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>'>
                 </asp:Button>
             </td>
         </ItemTemplate>

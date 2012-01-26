@@ -5,8 +5,7 @@
     CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>
+    
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -16,10 +15,15 @@
                 //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
+                //Prompty the user for the change in status that they want
                 var status = $.prompt('What is the listening status for this show?',
-                                        { buttons: { Finished: 2, InProgress: 1, Cancel: 0 },
-                                            focus: 1,
+                                        { buttons: { Finished: 2, InProgress: 1, EditNotes: 5, Cancel: 0 },
                                             submit: function (x, y, z) {
+
+                                                //If the user clicks EditNotes then go to a page to edit the notes
+                                                if (x == 5) {
+                                                    window.location.href = "Notes.aspx?showDate=" + showDate;
+                                                }
 
                                                 //grab the user id from the hidden element
                                                 var userId = $('#<%= hdnUserId.ClientID %>').val();
@@ -27,7 +31,8 @@
                                                 //Send user id and show date to the handler to process the update
                                                 $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
 
-                                                    var items = data.records
+                                                    //update ui with the changes so a post back is not needed
+                                                    //var items = data.records
 
                                                 });
                                             }

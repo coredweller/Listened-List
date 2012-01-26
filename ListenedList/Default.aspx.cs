@@ -5,7 +5,6 @@ using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
 using ListenedList.Controls;
-using Core.Membership;
 using Core.DomainObjects;
 using System.Collections.Generic;
 using Core.Helpers;
@@ -14,7 +13,7 @@ namespace ListenedList
 {
     public partial class _Default : ListenedBasePage
     {
-        IMembershipProvider membershipProvider = new ListenedMembershipProvider();
+        
 
         protected void Page_Load( object sender, EventArgs e ) {
 

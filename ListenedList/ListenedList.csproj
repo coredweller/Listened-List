@@ -67,6 +67,7 @@
     <Content Include="CreateUser.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Notes.aspx" />
     <Content Include="Styles\Listened.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notes.aspx.cs">
+      <DependentUpon>Notes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notes.aspx.designer.cs">
+      <DependentUpon>Notes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
