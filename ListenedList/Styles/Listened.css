@@ -1,8 +1,10 @@
 ﻿/*-------------Misc----------*/
 .textLeft
 {
-    text-align: left;
+    text-align: left; padding-right:10px;
 }
+
+
 
 /*-------------impromptu---------- */
 .jqifade

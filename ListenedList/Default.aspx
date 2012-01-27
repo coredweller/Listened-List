@@ -5,7 +5,6 @@
     CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
-    
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -15,28 +14,37 @@
                 //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
-                //Prompty the user for the change in status that they want
-                var status = $.prompt('What is the listening status for this show?',
-                                        { buttons: { Finished: 2, InProgress: 1, EditNotes: 5, Cancel: 0 },
-                                            submit: function (x, y, z) {
+                //Prompt the user for the change in status that they want
+                $.prompt('What is the listening status for this show?',
 
-                                                //If the user clicks EditNotes then go to a page to edit the notes
-                                                if (x == 5) {
-                                                    window.location.href = "Notes.aspx?showDate=" + showDate;
-                                                }
+                        //Define the 4 buttons to be displayed
+                        {   buttons: [
+                                        { title: 'Finished', value: 2 },
+                                        { title: 'In Progress', value: 1 },
+                                        { title: 'Edit Notes', value: 5 },
+                                        { title: 'Cancel', value: 0 }
+                                     ],
 
-                                                //grab the user id from the hidden element
-                                                var userId = $('#<%= hdnUserId.ClientID %>').val();
+                            //x is the button result
+                            submit: function (x, y, z) {
 
-                                                //Send user id and show date to the handler to process the update
-                                                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
+                                //If the user clicks Cancel then do nothing
+                                if (x == 0) { return; }
 
-                                                    //update ui with the changes so a post back is not needed
-                                                    //var items = data.records
+                                //If the user clicks EditNotes then go to a page to edit the notes
+                                if (x == 5) { window.location.href = "Notes.aspx?showDate=" + showDate; }
 
-                                                });
-                                            }
-                                        });
+                                //grab the user id
+                                var userId = $('#<%= hdnUserId.ClientID %>').val();
+
+                                //Send show date, user id, and status to the handler to process the update
+                                $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
+
+                                    //update ui with the changes so a post back is not needed
+                                    //var items = data.records
+                                });
+                            }
+                        });
 
                 event.preventDefault();
             });
@@ -48,6 +56,17 @@
     <%--<asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>--%>
     <%--<uc:YearBox ID="yearBox97" runat="server" Year="1992" />--%>
     <%--<uc:ShowTextBox runat="server" id="ltxtLabelTextBox" />--%>
+    <div>
+        Legend:
+        <asp:Button ID="Button1" Style="" runat="server" CssClass="textLeft" Width="85px"
+            BackColor='White' Enabled="false" Text="Never Heard"></asp:Button>
+        <asp:Button ID="Button2" Style="text-align: left; padding-right: 10px;" runat="server"
+            Width="85px" Enabled="false" BackColor='Yellow' Text="In Progress"></asp:Button>
+        <asp:Button ID="Button3" Style="text-align: left; padding-right: 10px;" runat="server"
+            Width="75px" Enabled="false" BackColor='Orange' Text="Finished"></asp:Button>
+    </div>
+    <br />
+    <br />
     <uc:YearBox ID="yearBox83" runat="server" Year="1983" />
     <br />
     <uc:YearBox ID="yearBox84" runat="server" Year="1984" />

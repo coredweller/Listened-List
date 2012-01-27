@@ -60,7 +60,7 @@ namespace ListenedList.Controls
                 case (int)ListenedStatus.InProgress:
                     return Color.Yellow;
                 case (int)ListenedStatus.Finished:
-                    return Color.Blue;
+                    return Color.Orange;
             }
 
             return Color.White;
