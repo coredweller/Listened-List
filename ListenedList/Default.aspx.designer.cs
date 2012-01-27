@@ -202,15 +202,6 @@ namespace ListenedList {
         protected global::ListenedList.Controls.YearBoxes yearBox00;
         
         /// <summary>
-        /// yearBox02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox02;
-        
-        /// <summary>
         /// yearBox03 control.
         /// </summary>
         /// <remarks>

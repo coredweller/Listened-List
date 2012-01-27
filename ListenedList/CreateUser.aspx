@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="ListenedList.CreateUser" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="ListenedList.CreateUser" MasterPageFile="~/Masters/Site.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <asp:CreateUserWizard runat="server" OnContinueButtonClick="createControl_ContinueButtonClick" ID="createControl" OnCreatedUser="createControl_CreatedUser">

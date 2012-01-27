@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Notes.aspx.cs" Inherits="ListenedList.Notes"
-    MasterPageFile="~/Site.Master" %>
+    MasterPageFile="~/Masters/Site.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
