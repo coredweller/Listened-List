@@ -5,6 +5,9 @@ using System.Web;
 using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
+using Core.Infrastructure.Logging;
+using Core.Helpers;
+using System.Text;
 
 namespace ListenedList.Handlers
 {
@@ -13,7 +16,7 @@ namespace ListenedList.Handlers
     /// </summary>
     public class ShowHandler : BaseHandler
     {
-
+        LogWriter writer = new LogWriter();
         public override void ProcessRequest( HttpContextBase context ) {
 
             HttpRequestBase request = context.Request;
@@ -26,7 +29,9 @@ namespace ListenedList.Handlers
             DateTime showDate;
             int status = 0;
             bool success = false;
+            string final;
 
+            //Get the show date, user id, and status from the request and parse them into concrete types
             if ( !( DateTime.TryParse( sDate, out showDate ) && Guid.TryParse( uId, out userId ) && int.TryParse( st, out status ) ) ) {
                 return;
             }
@@ -36,23 +41,54 @@ namespace ListenedList.Handlers
 
             var show = showService.GetShow( showDate );
 
+            //see if the user has an entry for this show yet
             var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
+            var jsonifier = new BasicJSONifier( "records", "Question", "Answer" );
 
-            if ( listenedShow != null ) {
-                using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
-                    listenedShow.Status = status;
+            try {
 
-                    listenedShowService.Save( listenedShow, out success );
+                //If the user has one then update it
+                if ( listenedShow != null ) {
+                    using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+                        var prevStatus = listenedShow.Status;
+                        listenedShow.Status = status;
 
-                    uow.Commit();
+                        writer.Write( string.Format( "Updating listenedShow with Id:{0}, from the status: {1}, to the status: {2}", listenedShow.Id, prevStatus, status ) );
+                        uow.Commit();
+                        success = true;
+                        writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
+                    }
                 }
+                else {
+                    //If the user does not have one then create it
+                    var objectFactory = new Data.DomainObjects.DomainObjectFactory();
+                    var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, status, string.Empty );
+
+                    writer.Write( string.Format( "Saving a new listenedShow with Id:{0} with a status of {1}", newListenedShow.Id, status ) );
+
+                    listenedShowService.SaveCommit( newListenedShow, out success );
+
+                    if ( success ) writer.Write( "Successfully saved the new listenedShow with id: " + newListenedShow.Id );
+                }
+
+            }
+            catch ( Exception ex ) {
+                writer.WriteFatal( "There was an error saving a listenedShow. The exception is: " + ex.Message );
+                success = false;
+            }
+
+            if ( success ) {
+                jsonifier.Add( "success", "true" );
             }
             else {
-                var objectFactory = new Data.DomainObjects.DomainObjectFactory();
-                var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, status, string.Empty );
-
-                listenedShowService.SaveCommit( newListenedShow, out success );
+                jsonifier.Add( "success", "false" );
             }
+
+            final = jsonifier.GetFinalizedJSON();
+
+            response.ContentType = "application/json";
+            response.ContentEncoding = Encoding.UTF8;
+            response.Write(final);
         }
 
         public bool IsReusable {

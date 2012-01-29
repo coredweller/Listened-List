@@ -53,6 +53,14 @@ namespace Core.Infrastructure.Logging
             }
         }
 
+        public void WriteFatal(string value)
+        {
+            if (value != null)
+            {
+                log.Fatal(value);
+            }
+        }
+
         public override void Write(char[] buffer, int index, int count)
         {
             if (buffer == null || index < 0 || count < 0 || buffer.Length - index < count)

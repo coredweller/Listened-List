@@ -1,8 +1,8 @@
 ﻿<%--<%@ Register TagPrefix="uc" Namespace="ListenedList.Controls" Assembly="ListenedList.Controls" %>--%>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 
-<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Masters/Genius.Master" AutoEventWireup="true"
-    CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
+<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Masters/Genius.Master"
+    AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
 
 <asp:Content ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
@@ -14,22 +14,25 @@
                 //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
+                var button = $(this);
+
                 //Prompt the user for the change in status that they want
                 $.prompt('What is the listening status for this show?',
 
                 //Define the 4 buttons to be displayed
                         {buttons: [
-                                        { title: 'Finished', value: 2 },
-                                        { title: 'In Progress', value: 1 },
-                                        { title: 'Edit Notes', value: 5 },
-                                        { title: 'Cancel', value: 0 }
-                                     ],
+                                    { title: 'Finished', value: 2 },
+                                    { title: 'In Progress', value: 1 },
+                                    { title: 'Reset', value: 0 },
+                                    { title: 'Edit Notes', value: 5 },
+                                    { title: 'Cancel', value: 11 }
+                                  ],
 
                         //x is the button result
                         submit: function (x, y, z) {
 
                             //If the user clicks Cancel then do nothing
-                            if (x == 0) { return; }
+                            if (x == 11) { return; }
 
                             //If the user clicks EditNotes then go to a page to edit the notes
                             if (x == 5) { window.location.href = "Notes.aspx?showDate=" + showDate; }
@@ -40,8 +43,27 @@
                             //Send show date, user id, and status to the handler to process the update
                             $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
 
-                                //update ui with the changes so a post back is not needed
-                                //var items = data.records
+                                //If nothing is returned from the Handler then get out of here
+                                if (data == null) return;
+
+                                //There should only be one row of data
+                                var item = data.records[0];
+
+                                //If there is no data in the json then get out of here
+                                if (item == null) return;
+
+                                //Make sure that the Question part of the JSON is success, if it isn't then get out of here
+                                if (item['Question'] != "success") return;
+
+                                //If the success was true then set the color
+                                if (item['Answer'] == "true") {
+
+                                    var color = 0;
+                                    color = GetColor(x);
+
+                                    $(button).css("background-color", color);
+                                }
+
                             });
                         }
                     });
@@ -49,6 +71,18 @@
                 event.preventDefault();
             });
         });
+
+        function GetColor(status)
+        {
+            switch (status) {
+                case 1:
+                    return "Yellow";
+                case 2:
+                    return "Orange";
+                default:
+                    return "White";
+            }
+        }
     
     </script>
 </asp:Content>
@@ -59,8 +93,8 @@
     <div style="font-size: 3em; font-weight: 700;">
         Phish Shows
     </div>
-    <br /><br />
-   
+    <br />
+    <br />
     <fieldset>
         <div style="font-size: 1.5em; font-weight: 600;">
             Legend:&nbsp;&nbsp;&nbsp;&nbsp;

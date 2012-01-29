@@ -6,6 +6,9 @@
     <title>Listened List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../Styles/geniusStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Listened.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
