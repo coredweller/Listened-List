@@ -44,7 +44,6 @@ namespace ListenedList
             yearBox09.Shows = shows;
             yearBox10.Shows = shows;
             yearBox11.Shows = shows;
-            yearBox83.Shows = shows;
             yearBox84.Shows = shows;
             yearBox85.Shows = shows;
             yearBox86.Shows = shows;

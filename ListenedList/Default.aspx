@@ -93,6 +93,7 @@
     <%--<asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>--%>
     <%--<uc:YearBox ID="yearBox97" runat="server" Year="1992" />--%>
     <%--<uc:ShowTextBox runat="server" id="ltxtLabelTextBox" />--%>
+    <br /><br />
     <div style="font-size: 3em; font-weight: 700;">
         Phish Shows
     </div>
@@ -112,8 +113,6 @@
                 Text="Need to Listen" />
         </div>
     </fieldset>
-    <br />
-    <uc:YearBox ID="yearBox83" runat="server" Year="1983" />
     <br />
     <uc:YearBox ID="yearBox84" runat="server" Year="1984" />
     <br />

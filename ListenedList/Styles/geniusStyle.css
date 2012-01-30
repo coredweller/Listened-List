@@ -27,16 +27,20 @@ ul{list-style-type:none;}
 
 
 #bodytopmainPan{ color:#8D8D8D; float:left; padding:42px 0 0; clear:both;}
-#bodytopPan{width:747px; position:relative; color:#707070; margin:0 auto; padding:0px;}
-#bodytopPan h2{color:#6E6C00; font-size:24px; height:70px; line-height:70px;}
+
 /*
     Original lines.  Changed on 1/26/2012
     
     #bodytopmainPan{width:100%; background:#F4F4F4; color:#8D8D8D; float:left; padding:42px 0 0; clear:both;} 
     #bodytopPan{width:747px; position:relative; background:#F4F4F4; color:#707070; margin:0 auto; padding:0px;}
     #bodytopPan h2{background:#F4F4F4; color:#6E6C00; font-size:24px; height:70px; line-height:70px;}
+
+    Original lines. Changed on 1/29/2012
+    #bodytopPan{width:747px; position:relative; color:#707070; margin:0 auto; padding:0px;}
      */
 
+#bodytopPan{position:relative; color:#292421; margin:0 auto; padding:0px; background-color:#D2B48C;}
+#bodytopPan h2{color:#6E6C00; font-size:24px; height:70px; line-height:70px;}
 #bodytopPan p{padding:0 38px 11px 0;}
 #bodytopPan p span{font-weight:bold;}
 #bodytopPan p.more{margin:0 0 15px 618px; padding:0px;}

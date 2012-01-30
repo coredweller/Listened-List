@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ListenedList.Login"
-    MasterPageFile="~/Masters/Site.Master" %>
+    MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="uc" TagName="Login" Src="~/Controls/Login.ascx" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">

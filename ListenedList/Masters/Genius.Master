@@ -1,7 +1,7 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Genius.master.cs" Inherits="ListenedList.Masters.Genius" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="background-color:#D2B48C;">
 <head runat="server">
     <title>Listened List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -39,7 +39,7 @@
         </div>
         <ul>
             <%--    <li class="home">Home</li>--%>
-            <li><a href="../Default.aspx">Home</a></li>
+            <li><a href="../Default.aspx">Show List</a></li>
             <%--<li><a href="../Logout.aspx">Log Out</a></li>--%>
             <%--<li><a href="http://www.free-css.com/">Clients</a></li>
     <li><a href="http://www.free-css.com/">ideas</a></li>
@@ -52,12 +52,12 @@
     <li class="verticallinenone"><a href="http://www.free-css.com/">purchase</a></li>
   </ul>--%>
     </div>
-    <div id="bodytopmainPan">
+    <%--<div id="bodytopmainPan">--%>
         <div id="bodytopPan">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </div>
+    <%--</div>--%>
     </form>
     <%--<div id="footermainPan">
         <div id="footerPan">
