@@ -13,5 +13,6 @@ namespace Core.DomainObjects
         string Notes { get; set; }
         double? Stars { get; set; }
         int Status { get; set; }
+        DateTime ShowDate { get; set; }
     }
 }

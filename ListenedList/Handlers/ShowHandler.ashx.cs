@@ -62,7 +62,7 @@ namespace ListenedList.Handlers
                 else {
                     //If the user does not have one then create it
                     var objectFactory = new Data.DomainObjects.DomainObjectFactory();
-                    var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, status, string.Empty );
+                    var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, status, string.Empty );
 
                     writer.Write( string.Format( "Saving a new listenedShow with Id:{0} with a status of {1}", newListenedShow.Id, status ) );
 

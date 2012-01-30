@@ -61,4 +61,11 @@ namespace Data.Repository
             base.Remove(entity);
         }
     }
+
+    public static class ListenedShowExtensions
+    { //LEFT OFF HERE MAKING EXTENSIONS WORK
+        public static IQueryable<ListenedShow> FilterById( this IQueryable<ListenedShow> query, Guid id ) {
+            return query.Where( x => x.Id == id );
+        }
+    }
 }

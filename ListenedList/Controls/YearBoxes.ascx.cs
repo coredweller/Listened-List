@@ -61,6 +61,8 @@ namespace ListenedList.Controls
                     return Color.Yellow;
                 case (int)ListenedStatus.Finished:
                     return Color.Orange;
+                case (int)ListenedStatus.NeedToListen:
+                    return Color.GreenYellow;
             }
 
             return Color.White;

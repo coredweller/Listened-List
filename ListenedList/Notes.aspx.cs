@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
+using Core.DomainObjects;
 
 namespace ListenedList
 {
@@ -21,23 +22,30 @@ namespace ListenedList
         private void Bind() {
 
             DateTime showDate;
+            Guid showId;
+            
+            var showService = new ShowService( Ioc.GetInstance<IShowRepository>() );
+
+            IShow show = null;
+
             if ( DateTime.TryParse( Request.QueryString["showDate"], out showDate ) ) {
-                var showService = new ShowService( Ioc.GetInstance<IShowRepository>() );
-
-                var show = showService.GetShow( showDate );
-
-                if ( show == null ) return;
-
-                var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
-
-                var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
-                var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
-
-                if ( listenedShow == null ) return;
-
-                hdnListenedId.Value = listenedShow.Id.ToString();
-                txtNotes.Text = listenedShow.Notes;
+                show = showService.GetShow( showDate );
             }
+            else if ( Guid.TryParse( Request.QueryString["showId"], out showId ) ) {
+                show = showService.GetShow( showId );
+            }
+
+            if ( show == null ) return;
+
+            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+
+            var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+            var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
+
+            if ( listenedShow == null ) return;
+
+            hdnListenedId.Value = listenedShow.Id.ToString();
+            txtNotes.Text = listenedShow.Notes;
         }
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
@@ -64,6 +72,26 @@ namespace ListenedList
             else {
                 Page.RegisterStartupScript( "failure", "<script type=\"text/javascript\"> $.prompt('There was an error saving your notes for this show.'); </script>" );
             }
+        }
+
+        public void btnSearch_Click( object sender, EventArgs e ) {
+            if ( string.IsNullOrEmpty( txtSearch.Text ) ) return;
+
+            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+
+            var listenedShows = listenedShowService.GetByUser( userId ).ToList();
+
+            if ( listenedShows == null || listenedShows.Count <= 0 ) return;
+
+            var filtered = listenedShows.Where( x => x.Notes.Contains( txtSearch.Text ) );
+
+            rptNotes.DataSource = filtered;
+            rptNotes.DataBind();
+        }
+
+        public string GetUrl( Guid id ) {
+            return "Notes.aspx?showId=" + id.ToString();
         }
     }
 }

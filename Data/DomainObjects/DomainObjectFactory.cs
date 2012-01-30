@@ -8,14 +8,15 @@ namespace Data.DomainObjects
 {
     public class DomainObjectFactory
     {
-        public IListenedShow CreateListenedShow(Guid showId, Guid userId, int status, string notes) {
+        public IListenedShow CreateListenedShow(Guid showId, Guid userId, DateTime showDate, int status, string notes) {
             ListenedShow show = new ListenedShow {
                 CreatedDate = DateTime.UtcNow,
                 Id = Guid.NewGuid(),
                 Notes = notes,
                 ShowId = showId,
                 Status = status,
-                UserId = userId
+                UserId = userId,
+                ShowDate = showDate
             };
 
             return show;

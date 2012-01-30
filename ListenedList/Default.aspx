@@ -14,6 +14,7 @@
                 //grab the showdate from the button that was clicked
                 var showDate = $(this).val();
 
+                //Save the button that was clicked for later to set the new status
                 var button = $(this);
 
                 //Prompt the user for the change in status that they want
@@ -23,25 +24,26 @@
                         {buttons: [
                                     { title: 'Finished', value: 2 },
                                     { title: 'In Progress', value: 1 },
+                                    { title: 'Need To Listen', value: 3 },
                                     { title: 'Reset', value: 0 },
                                     { title: 'Edit Notes', value: 5 },
                                     { title: 'Cancel', value: 11 }
                                   ],
 
                         //x is the button result
-                        submit: function (x, y, z) {
+                        submit: function (status, y, z) {
 
                             //If the user clicks Cancel then do nothing
-                            if (x == 11) { return; }
+                            if (status == 11) { return; }
 
                             //If the user clicks EditNotes then go to a page to edit the notes
-                            if (x == 5) { window.location.href = "Notes.aspx?showDate=" + showDate; }
+                            if (status == 5) { window.location.href = "Notes.aspx?showDate=" + showDate; }
 
                             //grab the user id
                             var userId = $('#<%= hdnUserId.ClientID %>').val();
 
                             //Send show date, user id, and status to the handler to process the update
-                            $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: x }, function (data) {
+                            $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
 
                                 //If nothing is returned from the Handler then get out of here
                                 if (data == null) return;
@@ -59,7 +61,7 @@
                                 if (item['Answer'] == "true") {
 
                                     var color = 0;
-                                    color = GetColor(x);
+                                    color = GetColor(status);
 
                                     $(button).css("background-color", color);
                                 }
@@ -72,16 +74,17 @@
             });
         });
 
-        function GetColor(status)
-        {
+        function GetColor(status) {
             switch (status) {
                 case 1:
                     return "Yellow";
                 case 2:
                     return "Orange";
-                default:
-                    return "White";
+                case 3:
+                    return "GreenYellow";
             }
+
+            return "White";
         }
     
     </script>
@@ -104,7 +107,9 @@
             <asp:Button ID="Button2" runat="server" Width="85px" Enabled="false" BackColor='Yellow'
                 Text="In Progress"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button3" runat="server" Width="75px" Enabled="false" BackColor='Orange'
-                Text="Finished"></asp:Button>
+                Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button4" runat="server" Width="95px" Enabled="false" BackColor="GreenYellow"
+                Text="Need to Listen" />
         </div>
     </fieldset>
     <br />

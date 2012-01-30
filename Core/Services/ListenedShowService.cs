@@ -90,6 +90,7 @@ namespace Core.Services
     {
         None = 0,
         InProgress = 1,
-        Finished = 2
+        Finished = 2,
+        NeedToListen = 3
     }
 }
