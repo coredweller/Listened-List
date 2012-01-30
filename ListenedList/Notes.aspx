@@ -1,24 +1,32 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Notes.aspx.cs" Inherits="ListenedList.Notes"
     MasterPageFile="~/Masters/Genius.Master" %>
 
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left:25px;">
+    <div style="padding-left: 25px;">
         <asp:HyperLink ID="lnkBack" runat="server" Text="Back to Show Page" NavigateUrl="/Default.aspx"></asp:HyperLink>
     </div>
     <br />
     <br />
     <br />
-    <div style="padding-left:100px;">
+    <div style="padding-left: 100px;">
+        <div style="font-size: 2em; font-weight: 700;">
+            <%= ShowTitle %></div>
         <div style="font-size: 1.5em; font-weight: 600;">
+            <br />
+            <br />
             Notes:
             <br />
-            <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="7" Columns="50"></asp:TextBox>
-            <br />
+            <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
+                Width="425px" />
+            <%--            <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="7" Columns="50"></asp:TextBox>--%>
             <br />
             <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save Notes" />
         </div>
         <br />
         <br />
+        <hr />
+        <hr />
         <br />
         <br />
         <div>
@@ -40,7 +48,8 @@
                     <tr>
                         <td>
                             <asp:HyperLink runat="server" Text='<%# ShortDescription( (string)Eval( "Notes" ), 30 ) %>'
-                                NavigateUrl='<%# GetUrl((Guid)Eval("ShowId")) %>'></asp:HyperLink> <%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>
+                                NavigateUrl='<%# GetUrl((Guid)Eval("ShowId")) %>'></asp:HyperLink>
+                            <%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>
                         </td>
                     </tr>
                 </ItemTemplate>

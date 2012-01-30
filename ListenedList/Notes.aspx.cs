@@ -8,11 +8,14 @@ using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
 using Core.DomainObjects;
+using Data.DomainObjects;
 
 namespace ListenedList
 {
     public partial class Notes : ListenedBasePage
     {
+        public string ShowTitle { get; set; }
+
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
                 Bind();
@@ -37,6 +40,7 @@ namespace ListenedList
 
             if ( show == null ) return;
 
+            ShowTitle = ( (Show)show ).GetShowName();
             var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
 
             var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
