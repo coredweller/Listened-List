@@ -43,25 +43,36 @@ namespace ListenedList.Handlers
 
             //see if the user has an entry for this show yet
             var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
+            //Setup the JSON Builder
             var jsonifier = new BasicJSONifier( "records", "Question", "Answer" );
 
             try {
 
                 //If the user has one then update it
                 if ( listenedShow != null ) {
-                    using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
-                        var prevStatus = listenedShow.Status;
-                        listenedShow.Status = status;
 
-                        writer.Write( string.Format( "Updating listenedShow with Id:{0}, from the status: {1}, to the status: {2}", listenedShow.Id, prevStatus, status ) );
-                        uow.Commit();
-                        success = true;
-                        writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
+                    if ( status != (int)ListenedStatus.EditNotes ) {
+                        using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+                            var prevStatus = listenedShow.Status;
+
+                            if ( status == (int)ListenedStatus.EditNotes ) status = prevStatus;
+
+                            listenedShow.Status = status;
+
+                            writer.Write( string.Format( "Updating listenedShow with Id:{0}, from the status: {1}, to the status: {2}", listenedShow.Id, prevStatus, status ) );
+                            uow.Commit();
+                            success = true;
+                            writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
+                        }
                     }
                 }
                 else {
                     //If the user does not have one then create it
                     var objectFactory = new Data.DomainObjects.DomainObjectFactory();
+
+                    //If status is EditNotes then set it to 0 because that is the base.
+                    if ( status == (int)ListenedStatus.EditNotes ) status = 0;
+
                     var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, status, string.Empty );
 
                     writer.Write( string.Format( "Saving a new listenedShow with Id:{0} with a status of {1}", newListenedShow.Id, status ) );

@@ -91,6 +91,8 @@ namespace Core.Services
         None = 0,
         InProgress = 1,
         Finished = 2,
-        NeedToListen = 3
+        NeedToListen = 3,
+        EditNotes = 5,
+        Cancel = 11
     }
 }

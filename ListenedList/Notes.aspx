@@ -58,5 +58,6 @@
             </asp:Repeater>
         </div>
     </div>
+    <asp:HiddenField ID="hdnShowTitle" runat="server" Visible="false" />
     <asp:HiddenField ID="hdnListenedId" runat="server" Visible="false" />
 </asp:Content>

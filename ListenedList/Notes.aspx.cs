@@ -20,6 +20,10 @@ namespace ListenedList
             if ( !IsPostBack ) {
                 Bind();
             }
+
+            //Has to be after bind so the first time the user comes to the page
+            // The show title will be set in Bind()
+            ShowTitle = hdnShowTitle.Value;
         }
 
         private void Bind() {
@@ -40,7 +44,8 @@ namespace ListenedList
 
             if ( show == null ) return;
 
-            ShowTitle = ( (Show)show ).GetShowName();
+            hdnShowTitle.Value = ( (Show)show ).GetShowName();
+
             var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
 
             var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );

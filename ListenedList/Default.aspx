@@ -6,6 +6,16 @@
 
 <asp:Content ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
+        //Consider moving this to an external JS file
+        var ListenedStatus = {
+            None: 0,
+            InProgress: 1,
+            Finished: 2,
+            NeedToListen: 3,
+            EditNotes: 5,
+            Cancel: 11
+        }
+
         $(document).ready(function () {
 
             //If any button on the page is clicked    
@@ -22,22 +32,22 @@
 
                 //Define the 4 buttons to be displayed
                         {buttons: [
-                                    { title: 'Finished', value: 2 },
-                                    { title: 'In Progress', value: 1 },
-                                    { title: 'Need To Listen', value: 3 },
-                                    { title: 'Reset', value: 0 },
-                                    { title: 'Edit Notes', value: 5 },
-                                    { title: 'Cancel', value: 11 }
+                                    { title: 'Finished', value: ListenedStatus.Finished },
+                                    { title: 'In Progress', value: ListenedStatus.InProgress },
+                                    { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
+                                    { title: 'Reset', value: ListenedStatus.None },
+                                    { title: 'Edit Notes', value: ListenedStatus.EditNotes },
+                                    { title: 'Cancel', value: ListenedStatus.Cancel }
                                   ],
 
                         //x is the button result
                         submit: function (status, y, z) {
 
                             //If the user clicks Cancel then do nothing
-                            if (status == 11) { return; }
+                            if (status == ListenedStatus.Cancel) { return; }
 
                             //If the user clicks EditNotes then go to a page to edit the notes
-                            if (status == 5) { window.location.href = "Notes.aspx?showDate=" + showDate; }
+                            if (status == ListenedStatus.EditNotes) { window.location.href = "Notes.aspx?showDate=" + showDate; }
 
                             //grab the user id
                             var userId = $('#<%= hdnUserId.ClientID %>').val();
@@ -76,14 +86,15 @@
 
         function GetColor(status) {
             switch (status) {
-                case 1:
+                case ListenedStatus.InProgress:
                     return "Yellow";
-                case 2:
+                case ListenedStatus.Finished:
                     return "Orange";
-                case 3:
+                case ListenedStatus.NeedToListen:
                     return "GreenYellow";
             }
 
+            //Everything else default to white
             return "White";
         }
     
@@ -93,7 +104,8 @@
     <%--<asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>--%>
     <%--<uc:YearBox ID="yearBox97" runat="server" Year="1992" />--%>
     <%--<uc:ShowTextBox runat="server" id="ltxtLabelTextBox" />--%>
-    <br /><br />
+    <br />
+    <br />
     <div style="font-size: 3em; font-weight: 700;">
         Phish Shows
     </div>
