@@ -9,6 +9,7 @@ using Core.Infrastructure;
 using Core.Repository;
 using Core.DomainObjects;
 using Data.DomainObjects;
+using Core.Services.Interfaces;
 
 namespace ListenedList
 {
@@ -44,14 +45,25 @@ namespace ListenedList
 
             if ( show == null ) return;
 
-            hdnShowTitle.Value = ( (Show)show ).GetShowName();
+            hdnShowTitle.Value = show.GetShowName();
 
-            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
 
-            var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+            var userId = new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
             var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
 
-            if ( listenedShow == null ) return;
+            if ( listenedShow == null ) {
+
+                bool success = false;
+
+                listenedShow = _DomainObjectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, (int)ListenedStatus.None, string.Empty );
+                listenedShowService.SaveCommit( listenedShow, out success );
+
+                if ( !success ) {
+                    _Log.Write( "Saving a listened show for user: {0} and show: {1} failed", userId, show.ShowDate.Value );
+                    return;
+                }
+            }
 
             hdnListenedId.Value = listenedShow.Id.ToString();
             txtNotes.Text = listenedShow.Notes;
@@ -64,7 +76,7 @@ namespace ListenedList
 
             var listenedId = new Guid( hdnListenedId.Value );
 
-            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
 
             using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
@@ -86,8 +98,8 @@ namespace ListenedList
         public void btnSearch_Click( object sender, EventArgs e ) {
             if ( string.IsNullOrEmpty( txtSearch.Text ) ) return;
 
-            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
-            var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
+            var userId = new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
 
             var listenedShows = listenedShowService.GetByUser( userId ).ToList();
 

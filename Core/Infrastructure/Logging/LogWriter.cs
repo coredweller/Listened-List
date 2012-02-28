@@ -53,6 +53,12 @@ namespace Core.Infrastructure.Logging
             }
         }
 
+        public void WriteInfo( string value ) {
+            if ( value != null ) {
+                log.Info( value );
+            }
+        }
+
         public void WriteFatal(string value)
         {
             if (value != null)

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using Core.Infrastructure.Logging;
 using System.Web.UI.WebControls;
 using Core.Membership;
+using Core.DomainObjects;
+using Data.DomainObjects;
 
 namespace ListenedList
 {
@@ -14,11 +14,11 @@ namespace ListenedList
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "The Listened List";
 
-        protected IMembershipProvider membershipProvider = new ListenedMembershipProvider();
+        protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        protected IDomainObjectFactory _DomainObjectFactory = new DomainObjectFactory();
+        protected LogWriter _Log = new LogWriter();
 
         protected readonly Guid EmptyGuid = new Guid("00000000-0000-0000-0000-000000000000");
-
-        protected LogWriter log = new LogWriter();
 
         //var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 

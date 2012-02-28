@@ -1,6 +1,8 @@
 ﻿using StructureMap.Configuration.DSL;
 using Core.Configuration;
 using Core.Infrastructure.Logging;
+using Core.Services.Interfaces;
+using Core.Services;
 
 namespace Core
 {
@@ -21,6 +23,18 @@ namespace Core
                 .HybridHttpOrThreadLocalScoped()
                 .Use<DebuggerWriter>();
             SelectConstructor<DebuggerWriter>(() => new DebuggerWriter());
+
+            
+
+
+            //Services
+            For<IListenedShowService>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ListenedShowService>();
+
+            For<IShowService>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ShowService>();
         }
     }
 }

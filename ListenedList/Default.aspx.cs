@@ -8,6 +8,7 @@ using ListenedList.Controls;
 using Core.DomainObjects;
 using System.Collections.Generic;
 using Core.Helpers;
+using Core.Services.Interfaces;
 
 namespace ListenedList
 {
@@ -18,7 +19,7 @@ namespace ListenedList
         protected void Page_Load( object sender, EventArgs e ) {
 
             if ( string.IsNullOrEmpty( hdnUserId.Value ) ) {
-                var userId = new Guid( membershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+                var userId = new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
                 hdnUserId.Value = userId.ToString();
             }
 
@@ -30,7 +31,7 @@ namespace ListenedList
         private void Bind(string userIdStr) {
             var userId = new Guid( userIdStr );
 
-            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
             var listenedShows = listenedShowService.GetByUser( userId );
 
             List<ShowStatus> shows = new List<ShowStatus>();

@@ -35,7 +35,7 @@
                                     { title: 'Finished', value: ListenedStatus.Finished },
                                     { title: 'In Progress', value: ListenedStatus.InProgress },
                                     { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
-                                    { title: 'Reset', value: ListenedStatus.None },
+                                    { title: 'Never Heard', value: ListenedStatus.None },
                                     { title: 'Edit Notes', value: ListenedStatus.EditNotes },
                                     { title: 'Cancel', value: ListenedStatus.Cancel }
                                   ],
@@ -109,6 +109,8 @@
     <div style="font-size: 3em; font-weight: 700;">
         Phish Shows
     </div>
+    <br />
+    <asp:HyperLink ID="lnkAddMultiple" runat="server" Text="Add Multiple" NavigateUrl="~/AddShows.aspx"></asp:HyperLink>
     <br />
     <br />
     <fieldset>

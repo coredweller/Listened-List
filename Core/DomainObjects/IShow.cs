@@ -13,5 +13,7 @@ namespace Core.DomainObjects
         DateTime? ShowDate { get; }
         string VenueNotes { get; }
         string PhishNetUrl { get; }
+
+        string GetShowName();
     }
 }

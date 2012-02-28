@@ -8,6 +8,7 @@ using Core.Repository;
 using Core.Infrastructure.Logging;
 using Core.Helpers;
 using System.Text;
+using Core.Services.Interfaces;
 
 namespace ListenedList.Handlers
 {
@@ -36,7 +37,7 @@ namespace ListenedList.Handlers
                 return;
             }
 
-            var listenedShowService = new ListenedShowService( Ioc.GetInstance<IListenedShowRepository>() );
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();;
             var showService = new ShowService( Ioc.GetInstance<IShowRepository>() );
 
             var show = showService.GetShow( showDate );
@@ -46,12 +47,15 @@ namespace ListenedList.Handlers
             //Setup the JSON Builder
             var jsonifier = new BasicJSONifier( "records", "Question", "Answer" );
 
-            try {
+            //If status is EditNotes don't do anything and just get out of here
+            if ( status == (int)ListenedStatus.EditNotes ) return;
 
+            try {
+                
                 //If the user has one then update it
                 if ( listenedShow != null ) {
 
-                    if ( status != (int)ListenedStatus.EditNotes ) {
+                    //if ( status != (int)ListenedStatus.EditNotes ) {
                         using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
                             var prevStatus = listenedShow.Status;
 
@@ -64,14 +68,14 @@ namespace ListenedList.Handlers
                             success = true;
                             writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
                         }
-                    }
+                    //}
                 }
                 else {
                     //If the user does not have one then create it
                     var objectFactory = new Data.DomainObjects.DomainObjectFactory();
 
                     //If status is EditNotes then set it to 0 because that is the base.
-                    if ( status == (int)ListenedStatus.EditNotes ) status = 0;
+                    //if ( status == (int)ListenedStatus.EditNotes ) status = 0;
 
                     var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, status, string.Empty );
 

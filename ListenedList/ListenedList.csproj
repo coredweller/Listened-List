@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\libs\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="FreeTextBox">
       <HintPath>..\libs\FreeTextBox.dll</HintPath>
     </Reference>
@@ -61,6 +64,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddShows.aspx" />
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
@@ -85,6 +89,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddShows.aspx.cs">
+      <DependentUpon>AddShows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddShows.aspx.designer.cs">
+      <DependentUpon>AddShows.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

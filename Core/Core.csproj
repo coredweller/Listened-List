@@ -55,6 +55,7 @@
     <Compile Include="Configuration\IAppConfigManager.cs" />
     <Compile Include="Configuration\IConfigurationSettings.cs" />
     <Compile Include="CoreRegistry.cs" />
+    <Compile Include="DomainObjects\IDomainObjectFactory.cs" />
     <Compile Include="DomainObjects\IEntity.cs" />
     <Compile Include="DomainObjects\IListenedShow.cs" />
     <Compile Include="DomainObjects\IShow.cs" />
@@ -107,6 +108,9 @@
     <Compile Include="Repository\IListenedShowRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IShowRepository.cs" />
+    <Compile Include="Services\Interfaces\IBase.cs" />
+    <Compile Include="Services\Interfaces\IListenedShowService.cs" />
+    <Compile Include="Services\Interfaces\IShowService.cs" />
     <Compile Include="Services\ListenedShowService.cs" />
     <Compile Include="Services\ShowService.cs" />
   </ItemGroup>

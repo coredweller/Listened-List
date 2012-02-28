@@ -6,18 +6,23 @@ using Core.Repository;
 using Core.Helpers;
 using Core.DomainObjects;
 using Core.Infrastructure;
+using Core.Services.Interfaces;
 
 namespace Core.Services
 {
-    public class ListenedShowService
+    public class ListenedShowService : IListenedShowService
     {
+        IShowRepository _showRepo;
         IListenedShowRepository _repo;
 
-        public ListenedShowService(IListenedShowRepository repo)
+        public ListenedShowService(IListenedShowRepository repo,
+                                    IShowRepository showRepo)
         {
             Checks.Argument.IsNotNull(repo, "repo");
+            Checks.Argument.IsNotNull( showRepo, "showRepo" );
 
             _repo = repo;
+            _showRepo = showRepo;
         }
 
         public IQueryable<IListenedShow> GetAllShows()
@@ -41,6 +46,24 @@ namespace Core.Services
 
         public IQueryable<IListenedShow> GetByUser( Guid userId ) {
             return GetAllShows().Where( x => x.UserId == userId );
+        }
+
+        public IDictionary<IShow, IListenedShow> GetShowsByYear(int year, Guid userId) {
+            var shows = _showRepo.FindAll().Where( x => x.ShowDate.Value.Year == year );
+            var listened = GetAllShows().Where( x => x.UserId == userId && x.ShowDate.Year == year);
+
+            var result = ( from show in shows
+                           join listen in listened on show.Id equals listen.ShowId into temp
+                           from t in temp.DefaultIfEmpty()
+                           select new { Show = show, ListenedShow = t } );
+
+            var dict = new Dictionary<IShow, IListenedShow>();
+
+            foreach ( var r in result ) {
+                dict.Add( r.Show, r.ListenedShow );
+            }
+
+            return dict;
         }
 
         public void SaveCommit(IListenedShow show, out bool success)

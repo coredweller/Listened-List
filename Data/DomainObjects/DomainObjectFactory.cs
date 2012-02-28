@@ -6,7 +6,7 @@ using Core.DomainObjects;
 
 namespace Data.DomainObjects
 {
-    public class DomainObjectFactory
+    public class DomainObjectFactory : IDomainObjectFactory
     {
         public IListenedShow CreateListenedShow(Guid showId, Guid userId, DateTime showDate, int status, string notes) {
             ListenedShow show = new ListenedShow {
