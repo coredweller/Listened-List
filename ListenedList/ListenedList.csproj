@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddShows.aspx" />
+    <Content Include="Admin\CreateShow.aspx" />
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
@@ -80,7 +81,9 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Test.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -95,6 +98,13 @@
     </Compile>
     <Compile Include="AddShows.aspx.designer.cs">
       <DependentUpon>AddShows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateShow.aspx.cs">
+      <DependentUpon>CreateShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateShow.aspx.designer.cs">
+      <DependentUpon>CreateShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>

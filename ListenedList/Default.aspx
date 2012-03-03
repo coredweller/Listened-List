@@ -101,16 +101,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
-    <%--<asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>--%>
-    <%--<uc:YearBox ID="yearBox97" runat="server" Year="1992" />--%>
-    <%--<uc:ShowTextBox runat="server" id="ltxtLabelTextBox" />--%>
     <br />
     <br />
     <div style="font-size: 3em; font-weight: 700;">
         Phish Shows
     </div>
-    <br />
-    <asp:HyperLink ID="lnkAddMultiple" runat="server" Text="Add Multiple" NavigateUrl="~/AddShows.aspx"></asp:HyperLink>
     <br />
     <br />
     <fieldset>

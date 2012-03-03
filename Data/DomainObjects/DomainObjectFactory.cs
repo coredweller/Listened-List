@@ -21,5 +21,20 @@ namespace Data.DomainObjects
 
             return show;
         }
+
+        public IShow CreateShow( string venue, string city, string state, string country, string notes, DateTime showDate ) {
+            Show show = new Show {
+                CreatedDate = DateTime.UtcNow,
+                Id = Guid.NewGuid(),
+                Notes = notes,
+                City = city,
+                Country = country,
+                ShowDate = showDate,
+                State = state,
+                VenueName = venue
+            };
+
+            return show;
+        }
     }
 }
