@@ -2,6 +2,8 @@
 using Core.Helpers;
 using Core.Repository;
 using Core.Infrastructure.Logging;
+using System;
+using System.Linq;
 
 namespace Data.Repository
 {
@@ -32,6 +34,9 @@ namespace Data.Repository
                 return _database;
             }
         }
+
+        public abstract IQueryable<TInterface> FindAll();
+        public abstract TInterface FindById( Guid id );
 
 
         public virtual void Remove(TInterface entity)

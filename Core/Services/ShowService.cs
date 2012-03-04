@@ -24,7 +24,7 @@ namespace Core.Services
         }
 
         public IShow GetShow( Guid id ) {
-            return _repo.FindByShowId( id );
+            return _repo.FindById( id );
         }
 
         public IShow GetShow( DateTime date ) {
@@ -72,7 +72,7 @@ namespace Core.Services
 
             success = false;
 
-            if ( null == _repo.FindByShowId( show.Id ) ) {
+            if ( null == _repo.FindById( show.Id ) ) {
                 try {
                     _repo.Add( show );
                     success = true;

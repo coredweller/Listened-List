@@ -10,7 +10,7 @@ namespace Core.Repository
         void Remove(IShow entity);
 
         IShow FindByShowDate(DateTime date);
-        IShow FindByShowId(Guid id);
+        IShow FindById(Guid id);
         IQueryable<IShow> FindAll();
     }
 }

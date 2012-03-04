@@ -23,7 +23,7 @@ namespace Data.Repository
             return Database.ListenedShowDataSource.Where(x => x.Deleted == false);
         }
 
-        public IQueryable<IListenedShow> FindAll()
+        public override IQueryable<IListenedShow> FindAll()
         {
             return GetAll();
         }
@@ -33,7 +33,7 @@ namespace Data.Repository
             return GetAll().SingleOrDefault(show => show.ShowId == id);
         }
 
-        public IListenedShow FindById( Guid id ) {
+        public override IListenedShow FindById( Guid id ) {
             return GetAll().SingleOrDefault( show => show.Id == id );
         }
         

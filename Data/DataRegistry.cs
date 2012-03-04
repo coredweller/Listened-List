@@ -27,6 +27,15 @@ namespace Data
             SelectConstructor<ListenedShowRepository>(() => new ListenedShowRepository((IDatabaseFactory)null));
 
 
+            For<ITagRepository>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<TagRepository>()
+                .Ctor<IDatabaseFactory>("factory").IsTheDefault();
+
+            SelectConstructor<TagRepository>(() => new TagRepository((IDatabaseFactory)null));
+
+
+
             ///INFRASTRUCTURE IOC SETUP BELOW.  DO NOT ALTER ANYTHING BELOW THIS LINE
             ///-----------------------------------------------------------------------
 

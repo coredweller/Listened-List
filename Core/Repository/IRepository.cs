@@ -1,10 +1,14 @@
 ﻿
+using System;
+using System.Linq;
 namespace Core.Repository
 {
     public interface IRepository<TEntity>
     {
-        void Add(TEntity entity);
+        IQueryable<TEntity> FindAll();
+        TEntity FindById( Guid id );
 
+        void Add(TEntity entity);
         void Remove(TEntity entity);
     }
 }

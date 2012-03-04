@@ -35,6 +35,8 @@ namespace Core
             For<IShowService>()
                 .HybridHttpOrThreadLocalScoped()
                 .Use<ShowService>();
+
+            
         }
     }
 }

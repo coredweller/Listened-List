@@ -10,6 +10,7 @@ namespace Data.Repository
         //Data Sources
         IQueryable<IShow> ShowDataSource { get; }
         IQueryable<IListenedShow> ListenedShowDataSource { get; }
+        IQueryable<ITag> TagDataSource { get; }
 
         //Heavy Lifting
         void Delete<TEntity>(TEntity instance) where TEntity : class;

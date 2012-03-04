@@ -21,12 +21,12 @@ namespace Data.Repository
             return Database.ShowDataSource.Where(x => x.Deleted == false);
         }
 
-        public IQueryable<IShow> FindAll()
+        public override IQueryable<IShow> FindAll()
         {
             return GetAll().OrderBy(s => s.ShowDate);
         }
 
-        public IShow FindByShowId(Guid id)
+        public override IShow FindById(Guid id)
         {
             return GetAll().SingleOrDefault(show => show.Id == id);
         }
