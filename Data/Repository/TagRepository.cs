@@ -11,7 +11,7 @@ using Core.Repository;
 
 namespace Data.Repository
 {
-    public class TagRepository: BaseRepository<ITag, Tag>,  ITagRepository
+    public class TagRepository : BaseRepository<ITag, Tag>,  ITagRepository
     {
         LogWriter writer = new LogWriter();
         public TagRepository(IDatabase database) : base(database) { }

@@ -42,21 +42,21 @@
                     Tags:
                 </p>
                 <p>
-                    Create Tag (30 letters max):
+                    Create New Tag (30 letters max):
                     <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
                     <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
                 </p>
                 <p>
-                    Apply Tag: <asp:DropDownList ID="ddlTags" runat="server"></asp:DropDownList>
-                    <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" />
+                    Apply Existing Tag: <asp:DropDownList ID="ddlTags" runat="server"></asp:DropDownList>
+                    <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" Text="Apply Tag" />
                 </p>
                 <div>
                     <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
                         <ItemTemplate>
                             <p>
-                                <asp:LinkButton CssClass="tag" runat="server" ID="lnkTag" Text='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Name %>'>
+                                <asp:LinkButton CssClass="tag" runat="server" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
                                 </asp:LinkButton>
-                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'></asp:LinkButton>
+                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE" CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
                             </p>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -107,4 +107,5 @@
     </div>
     <asp:HiddenField ID="hdnShowTitle" runat="server" Visible="false" />
     <asp:HiddenField ID="hdnListenedId" runat="server" Visible="false" />
+    <asp:HiddenField ID="hdnShowId" runat="server" Visible="false" />
 </asp:Content>

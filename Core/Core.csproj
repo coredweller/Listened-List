@@ -59,6 +59,7 @@
     <Compile Include="DomainObjects\IEntity.cs" />
     <Compile Include="DomainObjects\IListenedShow.cs" />
     <Compile Include="DomainObjects\IShow.cs" />
+    <Compile Include="DomainObjects\IShowTag.cs" />
     <Compile Include="DomainObjects\ITag.cs" />
     <Compile Include="Exceptions\AlreadyExistsException.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
@@ -110,13 +111,16 @@
     <Compile Include="Repository\IListenedShowRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IShowRepository.cs" />
+    <Compile Include="Repository\IShowTagRepository.cs" />
     <Compile Include="Repository\ITagRepository.cs" />
     <Compile Include="Services\Interfaces\IBase.cs" />
     <Compile Include="Services\Interfaces\IListenedShowService.cs" />
     <Compile Include="Services\Interfaces\IShowService.cs" />
+    <Compile Include="Services\Interfaces\IShowTagService.cs" />
     <Compile Include="Services\Interfaces\ITagService.cs" />
     <Compile Include="Services\ListenedShowService.cs" />
     <Compile Include="Services\ShowService.cs" />
+    <Compile Include="Services\ShowTagService.cs" />
     <Compile Include="Services\TagService.cs" />
   </ItemGroup>
   <ItemGroup>

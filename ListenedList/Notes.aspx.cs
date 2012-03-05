@@ -7,6 +7,7 @@ using Core.Repository;
 using Core.DomainObjects;
 using Core.Services.Interfaces;
 using Core.Helpers.Script;
+using System.Web.UI.WebControls;
 
 namespace ListenedList
 {
@@ -46,9 +47,11 @@ namespace ListenedList
             //If it is not a valid show then get out of here
             if ( show == null ) return;
 
+            hdnShowId.Value = show.Id.ToString();
+
             //Get the user Id and Bind the notes and tags
             BindNotes( show );
-            BindTags( show );
+            BindTags( show.Id );
         }
 
         private void BindNotes( IShow show ) {
@@ -78,22 +81,34 @@ namespace ListenedList
 
         }
 
-        private void BindTags( IShow show ) {
-            ITagService tagService = Ioc.GetInstance<ITagService>();
-
-            var tags = tagService.GetTags( show.Id, GetUserId() );
-
-            rptTags.DataSource = tags;
-            rptTags.DataBind();
-        }
-
         private void BindTags( Guid showId ) {
 
-            var showService = Ioc.GetInstance<IShowService>();
+            ITagService tagService = Ioc.GetInstance<ITagService>();
+            IShowTagService showTagService = Ioc.GetInstance<IShowTagService>();
 
-            var show = showService.GetShow( showId );
+            var userId = GetUserId();
 
-            BindTags( show );
+            //Bind the tag drop down list
+            var allTags = tagService.GetTags( userId );
+            var showTags = showTagService.GetTagsByShow( showId );
+
+            var tags = ( from aT in allTags
+                         join sT in showTags on aT.Id equals sT.TagId into temp
+                         from t in temp.DefaultIfEmpty()
+                         select new { Tag = aT, ShowTag = t } );
+
+            var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).ToList();
+
+            foreach ( var r in results ) {
+                ddlTags.Items.Add( new ListItem( r.Name, r.Id.ToString() ) );
+            }
+
+            var item = new ListItem( "Please select a tag", "-1" );
+            ddlTags.Items.Insert( 0, item );
+
+            //Bind the tags repeater
+            rptTags.DataSource = showTags;
+            rptTags.DataBind();
         }
 
         #endregion
@@ -126,8 +141,8 @@ namespace ListenedList
                 success = false;
             }
 
-            ValidateSuccess(success, "You have saved your notes for this show.", "There was an error saving your notes for this show." );
-                
+            ValidateSuccess( success, "You have saved your notes for this show.", "There was an error saving your notes for this show." );
+
         }
 
         public void btnSearch_Click( object sender, EventArgs e ) {
@@ -146,10 +161,10 @@ namespace ListenedList
         }
 
         public void btnCreateTag_Click( object sender, EventArgs e ) {
-            if ( string.IsNullOrEmpty( txtTagName.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
-            
+            if ( string.IsNullOrEmpty( txtTagName.Text ) || string.IsNullOrEmpty( hdnShowId.Value ) ) return;
+
             var userId = GetUserId();
-            Guid showId = Guid.Empty;
+            Guid showId = new Guid(hdnShowId.Value);
 
             ITagService tagService = Ioc.GetInstance<ITagService>();
             var tag = tagService.GetTag( txtTagName.Text.Trim(), userId );
@@ -162,17 +177,24 @@ namespace ListenedList
             }
 
             var success = false;
-            
+
             try {
-                var listenedShowService = Ioc.GetInstance<IListenedShowService>();
+                
+                var newTag = _DomainObjectFactory.CreateTag( txtTagName.Text, userId );
+                var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id );
 
-                var listenedId = new Guid( hdnListenedId.Value );
-                var listenedShow = listenedShowService.GetById( listenedId );
-                showId = listenedShow.ShowId;
+                using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
-                var newTag = _DomainObjectFactory.CreateTag( txtTagName.Text, listenedShow.ShowId, userId );
+                    tagService.Save( newTag, out success );
 
-                tagService.SaveCommit( newTag, out success );
+                    bool showTagSuccess = false;
+                    IShowTagService showTagService = Ioc.GetInstance<IShowTagService>();
+                    showTagService.Save( showTag, out showTagSuccess );
+
+                    success = success && showTagSuccess;
+
+                    if ( success ) uow.Commit();
+                }
             }
             catch ( Exception ex ) {
                 _Log.WriteFatal( "THERE WAS AN EXCEPTION SAVING A NEW TAG ON NOTES.ASPX with message: " + ex.Message );
@@ -182,10 +204,35 @@ namespace ListenedList
             ValidateTags( success, "You have saved your tag successfully.", "There was an error saving your tag.", showId );
         }
 
-        
-
         public void btnApplyTag_Click( object sender, EventArgs e ) {
-            throw new NotImplementedException();
+            PromptHelper prompt;
+
+            if(string.IsNullOrEmpty(hdnShowId.Value)) return;
+
+            if ( ddlTags.SelectedValue == "-1" ) {
+                prompt = new PromptHelper( "Please choose a valid tag." );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
+            }
+
+            var showId = new Guid(hdnShowId.Value);
+
+            var success = false;
+
+            try {
+                var showTagService = Ioc.GetInstance<IShowTagService>();
+
+                var tagId = new Guid(ddlTags.SelectedValue);
+                
+                var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId);
+
+                showTagService.SaveCommit( showTag, out success );
+            }
+            catch ( Exception ex ) {
+                _Log.WriteFatal( "THERE WAS AN ERROR APPLYING A TAG ON NOTES.ASPX with message: " + ex.Message );
+                success = false;
+            }
+
+            ValidateTags( success, "You have successfully applied the tag.", "There was an error applying the tag.", showId );
         }
 
         public void rptTags_ItemCommand( object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e ) {
@@ -198,7 +245,7 @@ namespace ListenedList
         }
 
         private void DeleteTag( Guid tagId ) {
-            ITagService tagService = Ioc.GetInstance<ITagService>();
+            IShowTagService tagService = Ioc.GetInstance<IShowTagService>();
 
             var tag = tagService.GetTag( tagId );
 
@@ -206,6 +253,7 @@ namespace ListenedList
 
             tagService.Delete( tag );
             BindTags( tag.ShowId );
+
         }
 
         #endregion

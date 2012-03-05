@@ -16,7 +16,7 @@
       <Column Name="VenueNotes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="PhishNetUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Association Name="Show_ListenedShow" Member="ListenedShows" ThisKey="Id" OtherKey="ShowId" Type="ListenedShow" />
-      <Association Name="Show_Tag" Member="Tags" ThisKey="Id" OtherKey="ShowId" Type="Tag" />
+      <Association Name="Show_ShowTag" Member="ShowTags" ThisKey="Id" OtherKey="ShowId" Type="ShowTag" />
     </Type>
   </Table>
   <Table Name="dbo.ListenedShow" Member="ListenedShows">
@@ -38,14 +38,22 @@
   <Table Name="dbo.Tag" Member="Tags">
     <Type Name="Tag">
       <Column Name="TagId" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ShowId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Show_Tag" Member="Show" ThisKey="ShowId" OtherKey="Id" Type="Show" IsForeignKey="true" />
+      <Association Name="Tag_ShowTag" Member="ShowTags" ThisKey="Id" OtherKey="TagId" Type="ShowTag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShowTag" Member="ShowTags">
+    <Type Name="ShowTag">
+      <Column Name="ShowTagId" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShowId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TagId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Tag_ShowTag" Member="Tag" ThisKey="TagId" OtherKey="Id" Type="Tag" IsForeignKey="true" />
+      <Association Name="Show_ShowTag" Member="Show" ThisKey="ShowId" OtherKey="Id" Type="Show" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

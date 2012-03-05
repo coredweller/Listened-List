@@ -35,13 +35,22 @@ namespace Data.DomainObjects
             return show;
         }
 
-        public ITag CreateTag( string name, Guid showId, Guid userId ) {
+        public ITag CreateTag( string name, Guid userId ) {
             Tag tag = new Tag {
                 CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
                 Name = name,
-                ShowId = showId,
                 UserId = userId
+            };
+
+            return tag;
+        }
+
+        public IShowTag CreateShowTag( Guid showId, Guid tagId ) {
+            ShowTag tag = new ShowTag() {
+                Id = Guid.NewGuid(),
+                ShowId = showId,
+                TagId = tagId
             };
 
             return tag;

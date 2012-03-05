@@ -5,12 +5,10 @@ using System.Text;
 
 namespace Core.DomainObjects
 {
-    public interface ITag : IEntity
+    public interface IShowTag
     {
         Guid Id { get; }
-        Guid UserId { get; }
-
-        string Name { get; }
-
+        Guid ShowId { get; }
+        Guid TagId { get; }
     }
 }

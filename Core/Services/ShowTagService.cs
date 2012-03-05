@@ -1,41 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Core.Repository;
 using Core.Helpers;
 using Core.DomainObjects;
 using Core.Infrastructure;
 using Core.Services.Interfaces;
-using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public class TagService : ITagService
+    public class ShowTagService : IShowTagService
     {
-        private ITagRepository _repo;
+        private IShowTagRepository _repo;
 
-        public TagService( ITagRepository repo ) {
+        public ShowTagService( IShowTagRepository repo ) {
             Checks.Argument.IsNotNull( repo, "repo" );
 
             _repo = repo;
         }
 
-        public IQueryable<ITag> GetAllTags() {
+        public IQueryable<IShowTag> GetAllTags() {
             return _repo.FindAll();
         }
 
-        public ITag GetTag( Guid id ) {
+        public IShowTag GetTag( Guid id ) {
             return _repo.FindById( id );
         }
-        
-        public ITag GetTag( string name, Guid userId ) {
-            return GetAllTags().SingleOrDefault( x => x.UserId == userId && x.Name.ToLower() == name.ToLower() );
-        }
-        
-        public IList<ITag> GetTags( Guid userId ) {
-            return GetAllTags().Where( x => x.UserId == userId ).ToList();
-        }
 
-        public void SaveCommit( ITag tag, out bool success ) {
+        public IList<IShowTag> GetTagsByShow( Guid showId ) {
+            return GetAllTags().Where( x => x.ShowId == showId ).ToList();
+        }
+        
+        public void SaveCommit( IShowTag tag, out bool success ) {
             using ( IUnitOfWork u = UnitOfWork.Begin() ) {
                 Save( tag, out success );
                 if ( success )
@@ -43,7 +40,7 @@ namespace Core.Services
             }
         }
 
-        public void Save( ITag tag, out bool success ) {
+        public void Save( IShowTag tag, out bool success ) {
             Checks.Argument.IsNotNull( tag, "tag" );
 
             success = false;
@@ -59,7 +56,7 @@ namespace Core.Services
             }
         }
 
-        public void Delete( ITag tag ) {
+        public void Delete( IShowTag tag ) {
             Checks.Argument.IsNotNull( tag, "tag" );
 
             using ( IUnitOfWork u = UnitOfWork.Begin() ) {

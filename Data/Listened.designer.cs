@@ -37,6 +37,9 @@ namespace Data.Repository
     partial void InsertTag(Data.DomainObjects.Tag instance);
     partial void UpdateTag(Data.DomainObjects.Tag instance);
     partial void DeleteTag(Data.DomainObjects.Tag instance);
+    partial void InsertShowTag(Data.DomainObjects.ShowTag instance);
+    partial void UpdateShowTag(Data.DomainObjects.ShowTag instance);
+    partial void DeleteShowTag(Data.DomainObjects.ShowTag instance);
     #endregion
 		
 		public Database() : 
@@ -92,6 +95,14 @@ namespace Data.Repository
 				return this.GetTable<Data.DomainObjects.Tag>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Data.DomainObjects.ShowTag> ShowTags
+		{
+			get
+			{
+				return this.GetTable<Data.DomainObjects.ShowTag>();
+			}
+		}
 	}
 }
 namespace Data.DomainObjects
@@ -136,7 +147,7 @@ namespace Data.DomainObjects
 		
 		private EntitySet<ListenedShow> _ListenedShows;
 		
-		private EntitySet<Tag> _Tags;
+		private EntitySet<ShowTag> _ShowTags;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -173,7 +184,7 @@ namespace Data.DomainObjects
 		public Show()
 		{
 			this._ListenedShows = new EntitySet<ListenedShow>(new Action<ListenedShow>(this.attach_ListenedShows), new Action<ListenedShow>(this.detach_ListenedShows));
-			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
+			this._ShowTags = new EntitySet<ShowTag>(new Action<ShowTag>(this.attach_ShowTags), new Action<ShowTag>(this.detach_ShowTags));
 			OnCreated();
 		}
 		
@@ -450,16 +461,16 @@ namespace Data.DomainObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_Tag", Storage="_Tags", ThisKey="Id", OtherKey="ShowId")]
-		public EntitySet<Tag> Tags
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_ShowTag", Storage="_ShowTags", ThisKey="Id", OtherKey="ShowId")]
+		public EntitySet<ShowTag> ShowTags
 		{
 			get
 			{
-				return this._Tags;
+				return this._ShowTags;
 			}
 			set
 			{
-				this._Tags.Assign(value);
+				this._ShowTags.Assign(value);
 			}
 		}
 		
@@ -495,13 +506,13 @@ namespace Data.DomainObjects
 			entity.Show = null;
 		}
 		
-		private void attach_Tags(Tag entity)
+		private void attach_ShowTags(ShowTag entity)
 		{
 			this.SendPropertyChanging();
 			entity.Show = this;
 		}
 		
-		private void detach_Tags(Tag entity)
+		private void detach_ShowTags(ShowTag entity)
 		{
 			this.SendPropertyChanging();
 			entity.Show = null;
@@ -859,8 +870,6 @@ namespace Data.DomainObjects
 		
 		private System.Guid _Id;
 		
-		private System.Guid _ShowId;
-		
 		private System.Guid _UserId;
 		
 		private string _Name;
@@ -873,7 +882,7 @@ namespace Data.DomainObjects
 		
 		private bool _Deleted;
 		
-		private EntityRef<Show> _Show;
+		private EntitySet<ShowTag> _ShowTags;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -881,8 +890,6 @@ namespace Data.DomainObjects
     partial void OnCreated();
     partial void OnIdChanging(System.Guid value);
     partial void OnIdChanged();
-    partial void OnShowIdChanging(System.Guid value);
-    partial void OnShowIdChanged();
     partial void OnUserIdChanging(System.Guid value);
     partial void OnUserIdChanged();
     partial void OnNameChanging(string value);
@@ -899,7 +906,7 @@ namespace Data.DomainObjects
 		
 		public Tag()
 		{
-			this._Show = default(EntityRef<Show>);
+			this._ShowTags = new EntitySet<ShowTag>(new Action<ShowTag>(this.attach_ShowTags), new Action<ShowTag>(this.detach_ShowTags));
 			OnCreated();
 		}
 		
@@ -919,30 +926,6 @@ namespace Data.DomainObjects
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShowId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ShowId
-		{
-			get
-			{
-				return this._ShowId;
-			}
-			set
-			{
-				if ((this._ShowId != value))
-				{
-					if (this._Show.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShowIdChanging(value);
-					this.SendPropertyChanging();
-					this._ShowId = value;
-					this.SendPropertyChanged("ShowId");
-					this.OnShowIdChanged();
 				}
 			}
 		}
@@ -1067,7 +1050,190 @@ namespace Data.DomainObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_Tag", Storage="_Show", ThisKey="ShowId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tag_ShowTag", Storage="_ShowTags", ThisKey="Id", OtherKey="TagId")]
+		public EntitySet<ShowTag> ShowTags
+		{
+			get
+			{
+				return this._ShowTags;
+			}
+			set
+			{
+				this._ShowTags.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ShowTags(ShowTag entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tag = this;
+		}
+		
+		private void detach_ShowTags(ShowTag entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tag = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ShowTag")]
+	public partial class ShowTag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _ShowId;
+		
+		private System.Guid _TagId;
+		
+		private EntityRef<Tag> _Tag;
+		
+		private EntityRef<Show> _Show;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnShowIdChanging(System.Guid value);
+    partial void OnShowIdChanged();
+    partial void OnTagIdChanging(System.Guid value);
+    partial void OnTagIdChanged();
+    #endregion
+		
+		public ShowTag()
+		{
+			this._Tag = default(EntityRef<Tag>);
+			this._Show = default(EntityRef<Show>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ShowTagId", Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShowId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ShowId
+		{
+			get
+			{
+				return this._ShowId;
+			}
+			set
+			{
+				if ((this._ShowId != value))
+				{
+					if (this._Show.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnShowIdChanging(value);
+					this.SendPropertyChanging();
+					this._ShowId = value;
+					this.SendPropertyChanged("ShowId");
+					this.OnShowIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TagId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TagId
+		{
+			get
+			{
+				return this._TagId;
+			}
+			set
+			{
+				if ((this._TagId != value))
+				{
+					if (this._Tag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTagIdChanging(value);
+					this.SendPropertyChanging();
+					this._TagId = value;
+					this.SendPropertyChanged("TagId");
+					this.OnTagIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tag_ShowTag", Storage="_Tag", ThisKey="TagId", OtherKey="Id", IsForeignKey=true)]
+		public Tag Tag
+		{
+			get
+			{
+				return this._Tag.Entity;
+			}
+			set
+			{
+				Tag previousValue = this._Tag.Entity;
+				if (((previousValue != value) 
+							|| (this._Tag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tag.Entity = null;
+						previousValue.ShowTags.Remove(this);
+					}
+					this._Tag.Entity = value;
+					if ((value != null))
+					{
+						value.ShowTags.Add(this);
+						this._TagId = value.Id;
+					}
+					else
+					{
+						this._TagId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Tag");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Show_ShowTag", Storage="_Show", ThisKey="ShowId", OtherKey="Id", IsForeignKey=true)]
 		public Show Show
 		{
 			get
@@ -1084,12 +1250,12 @@ namespace Data.DomainObjects
 					if ((previousValue != null))
 					{
 						this._Show.Entity = null;
-						previousValue.Tags.Remove(this);
+						previousValue.ShowTags.Remove(this);
 					}
 					this._Show.Entity = value;
 					if ((value != null))
 					{
-						value.Tags.Add(this);
+						value.ShowTags.Add(this);
 						this._ShowId = value.Id;
 					}
 					else
