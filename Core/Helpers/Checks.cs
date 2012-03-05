@@ -138,7 +138,7 @@ namespace Core.Helpers
             [DebuggerStepThrough]
             public static void IsNotInPast(DateTime argument, string argumentName)
             {
-                if (argument < SystemTime.Now())
+                if (argument < Constants.Now())
                 {
                     throw new ArgumentOutOfRangeException(argumentName);
                 }
@@ -147,7 +147,7 @@ namespace Core.Helpers
             [DebuggerStepThrough]
             public static void IsNotInFuture(DateTime argument, string argumentName)
             {
-                if (argument > SystemTime.Now())
+                if (argument > Constants.Now())
                 {
                     throw new ArgumentOutOfRangeException(argumentName);
                 }

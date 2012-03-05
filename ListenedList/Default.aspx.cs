@@ -14,22 +14,19 @@ namespace ListenedList
 {
     public partial class _Default : ListenedBasePage
     {
-        
-
         protected void Page_Load( object sender, EventArgs e ) {
 
             if ( string.IsNullOrEmpty( hdnUserId.Value ) ) {
-                var userId = new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
-                hdnUserId.Value = userId.ToString();
+                hdnUserId.Value = GetUserId().ToString();
             }
 
             if ( !IsPostBack ) {
-                Bind(hdnUserId.Value);
+                Bind();
             }
         }
 
-        private void Bind(string userIdStr) {
-            var userId = new Guid( userIdStr );
+        private void Bind() {
+            var userId = GetUserId();
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
             var listenedShows = listenedShowService.GetByUser( userId );
@@ -64,21 +61,8 @@ namespace ListenedList
         }
 
         protected override void OnInit( EventArgs e ) {
-            
             base.OnInit( e );
-            
-
         }
 
-        private void LoadShows() {
-            YearBoxes yearBox = new YearBoxes( );
-            yearBox.Year = 1997;
-
-            TextBox tb = new TextBox();
-            tb.BackColor = System.Drawing.Color.White;
-            tb.Width = new Unit( 65, UnitType.Pixel );
-
-            //phMain.Controls.Add( yearBox );
-        }
     }
 }

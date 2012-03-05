@@ -66,19 +66,20 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="Helpers\BasicJSONifier.cs" />
+    <Compile Include="Helpers\JSON\BasicJSONifier.cs" />
     <Compile Include="Helpers\Checks.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\DisposableResource.cs" />
-    <Compile Include="Helpers\IJSONifier.cs" />
+    <Compile Include="Helpers\JSON\IJSONifier.cs" />
     <Compile Include="Helpers\ImageItem.cs" />
-    <Compile Include="Helpers\ImageJSONifier.cs" />
-    <Compile Include="Helpers\JSON.cs" />
-    <Compile Include="Helpers\JSONParser.cs" />
+    <Compile Include="Helpers\JSON\ImageJSONifier.cs" />
+    <Compile Include="Helpers\JSON\JSON.cs" />
+    <Compile Include="Helpers\JSON\JSONParser.cs" />
     <Compile Include="Helpers\LinkBuilder.cs" />
-    <Compile Include="Helpers\ScriptHelper.cs" />
+    <Compile Include="Helpers\Script\IScriptHelper.cs" />
+    <Compile Include="Helpers\Script\JAlertHelper.cs" />
+    <Compile Include="Helpers\Script\PromptHelper.cs" />
     <Compile Include="Helpers\ShowStatus.cs" />
-    <Compile Include="Helpers\SystemTime.cs" />
     <Compile Include="Infrastructure\Images\FullImageSize.cs" />
     <Compile Include="Infrastructure\Images\IImageFormatSpec.cs" />
     <Compile Include="Infrastructure\Images\IImageMediaFormats.cs" />
@@ -113,10 +114,14 @@
     <Compile Include="Services\Interfaces\IBase.cs" />
     <Compile Include="Services\Interfaces\IListenedShowService.cs" />
     <Compile Include="Services\Interfaces\IShowService.cs" />
+    <Compile Include="Services\Interfaces\ITagService.cs" />
     <Compile Include="Services\ListenedShowService.cs" />
     <Compile Include="Services\ShowService.cs" />
+    <Compile Include="Services\TagService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helpers\Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

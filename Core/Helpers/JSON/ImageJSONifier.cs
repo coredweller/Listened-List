@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Helpers
+namespace Core.Helpers.JSON
 {
     public class ImageJSONifier : IJSONifier
     {

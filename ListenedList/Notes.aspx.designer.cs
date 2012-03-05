@@ -40,6 +40,51 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
+        /// txtTagName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTagName;
+        
+        /// <summary>
+        /// btnCreateTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateTag;
+        
+        /// <summary>
+        /// ddlTags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTags;
+        
+        /// <summary>
+        /// btnApplyTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApplyTag;
+        
+        /// <summary>
+        /// rptTags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptTags;
+        
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>

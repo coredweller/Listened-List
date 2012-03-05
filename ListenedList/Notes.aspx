@@ -2,6 +2,17 @@
     MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
+<asp:Content ContentPlaceHolderID="Head" runat="server">
+    <script type="text/javascript">
+       
+        $(document).ready(function () {
+
+       //     var input = $("#btnCreateTag").click(function (event) {
+
+            });
+        });
+    </script>
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px;">
         <asp:HyperLink ID="lnkBack" runat="server" Text="Back to Show Page" NavigateUrl="/Default.aspx"></asp:HyperLink>
@@ -23,6 +34,42 @@
             <br />
             <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save Notes" />
         </div>
+        <br />
+        <br />
+       <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>--%>
+                <p style="font-size: 1.5em; font-weight: 600;">
+                    Tags:
+                </p>
+                <p>
+                    Create Tag (30 letters max):
+                    <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
+                    <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
+                </p>
+                <p>
+                    Apply Tag: <asp:DropDownList ID="ddlTags" runat="server"></asp:DropDownList>
+                    <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" />
+                </p>
+                <div>
+                    <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
+                        <ItemTemplate>
+                            <p>
+                                <asp:LinkButton CssClass="tag" runat="server" ID="lnkTag" Text='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Name %>'>
+                                </asp:LinkButton>
+                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'></asp:LinkButton>
+                            </p>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            <%--</ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnCreateTag" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="rptTags" EventName="ItemCommand" />
+            </Triggers>
+        </asp:UpdatePanel>--%>
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <hr />

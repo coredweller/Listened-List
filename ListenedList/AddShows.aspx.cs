@@ -43,9 +43,8 @@ namespace ListenedList
             if ( ddlYears.SelectedValue == "0" ) return;
 
             var year = int.Parse( ddlYears.SelectedValue );
-            var userId = new Guid( Membership.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
 
-            var listenedShows = listenedShowService.GetShowsByYear( year, userId );
+            var listenedShows = listenedShowService.GetShowsByYear( year, GetUserId() );
 
             rptAdder.DataSource = listenedShows;
             rptAdder.DataBind();
@@ -85,7 +84,7 @@ namespace ListenedList
             if ( cb.Checked ) {
                 var show = showService.GetShow( showDate );
 
-                var userId = new Guid( Membership.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+                var userId = GetUserId();
                 var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
 
                 if ( listenedShow == null ) {

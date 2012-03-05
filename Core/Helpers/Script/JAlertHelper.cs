@@ -1,16 +1,19 @@
 ﻿
-namespace Core.Helpers
+namespace Core.Helpers.Script
 {
-    public class ScriptHelper
+    /// <summary>
+    /// This 
+    /// </summary>
+    public class JAlertHelper : IScriptHelper
     {
         //Used when Registering a Startup Script
-        public string ScriptName { get; set; }
+        public string ScriptName { get; private set; }
         //Used to determine which Div the alert appears in
         public string DivName { get; set; }
         //The message the you want the user to see
         public string Message { get; set; }
 
-        public ScriptHelper(string scriptName, string divName, string message)
+        public JAlertHelper(string scriptName, string divName, string message)
         {
             ScriptName = scriptName;
             DivName = divName;
@@ -27,7 +30,7 @@ namespace Core.Helpers
             return GenerateScript("warning");
         }
 
-        public string GetFatalScript()
+        public string GetErrorScript()
         {
             return GenerateScript("fatal");
         }

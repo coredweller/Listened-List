@@ -6,7 +6,7 @@ using Core.Services;
 using Core.Infrastructure;
 using Core.Repository;
 using Core.Infrastructure.Logging;
-using Core.Helpers;
+using Core.Helpers.JSON;
 using System.Text;
 using Core.Services.Interfaces;
 

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Core.Helpers
+namespace Core.Helpers.JSON
 {
     public class BasicJSONifier : IJSONifier
     {

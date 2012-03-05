@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Procurios.Public;
 
-namespace Core.Helpers
+namespace Core.Helpers.JSON
 {
     public static class JSONParser
     {
@@ -11,7 +11,7 @@ namespace Core.Helpers
         {
             var success = false;
 
-            var jsonHash = (ArrayList)JSON.JsonDecode(response, ref success);
+            var jsonHash = (ArrayList)Procurios.Public.JSON.JsonDecode(response, ref success);
 
             if (!success || jsonHash == null)
                 return null;

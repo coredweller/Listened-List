@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Infrastructure;
 using Core.Services.Interfaces;
+using Core.Helpers.Script;
 
 namespace ListenedList.Admin
 {
@@ -15,32 +16,39 @@ namespace ListenedList.Admin
         }
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
+            PromptHelper prompt;
+
             if ( string.IsNullOrEmpty( ddlState.SelectedValue ) || string.IsNullOrEmpty( ddlCountry.SelectedValue ) ) {
-                Page.RegisterStartupScript( "failure", "<script type=\"text/javascript\"> $.prompt('Please choose a valid state and country.'); </script>" );
+                prompt = new PromptHelper( "Please choose a valid state and country." );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
                 return;
             }
-
-            DateTime showDate;
-            var parsed = DateTime.TryParse( txtShowDate.Text, out showDate );
-
-            if ( !parsed ) {
-                Page.RegisterStartupScript( "failure", "<script type=\"text/javascript\"> $.prompt('Please enter a valid date for the show.'); </script>" );
-                return;
-            }
-
-            var show = _DomainObjectFactory.CreateShow( txtVenue.Text, txtCity.Text, ddlState.SelectedValue, ddlCountry.SelectedValue, txtNotes.Text, showDate );
-
-            var showService = Ioc.GetInstance<IShowService>();
 
             bool success = false;
-            showService.SaveCommit( show, out success );
 
-            if ( success ) {
-                Page.RegisterStartupScript( "success", "<script type=\"text/javascript\"> $.prompt('You have successfully saved the show.'); </script>" );
+            try {
+                
+                DateTime showDate;
+                var parsed = DateTime.TryParse( txtShowDate.Text, out showDate );
+
+                if ( !parsed ) {
+                    prompt = new PromptHelper( "Please enter a valid date for the show." );
+                    Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
+                    return;
+                }
+
+                var show = _DomainObjectFactory.CreateShow( txtVenue.Text, txtCity.Text, ddlState.SelectedValue, ddlCountry.SelectedValue, txtNotes.Text, showDate );
+
+                var showService = Ioc.GetInstance<IShowService>();
+                
+                showService.SaveCommit( show, out success );
             }
-            else {
-                Page.RegisterStartupScript( "failure", "<script type=\"text/javascript\"> $.prompt('There was an error saving the show.'); </script>" );
+            catch ( Exception ex) {
+                _Log.WriteFatal( "THERE WAS AN ERROR CREATING A SHOW IN CREATESHOW with message: " + ex.Message );
+                success = false;
             }
+
+            ValidateSuccess(success, "You have successfully saved the show.", "There was an error saving the show." );
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Diagnostics;
+using System;
 
 namespace Core.Helpers
 {
@@ -14,5 +15,7 @@ namespace Core.Helpers
                 return CultureInfo.CurrentCulture;
             }
         }
+
+        public static Func<DateTime> Now = () => DateTime.UtcNow;
     }
 }

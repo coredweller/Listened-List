@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Core.DomainObjects;
+using Core.Helpers;
 
 namespace Data.DomainObjects
 {
@@ -10,7 +8,7 @@ namespace Data.DomainObjects
     {
         public IListenedShow CreateListenedShow(Guid showId, Guid userId, DateTime showDate, int status, string notes) {
             ListenedShow show = new ListenedShow {
-                CreatedDate = DateTime.UtcNow,
+                CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
                 Notes = notes,
                 ShowId = showId,
@@ -24,7 +22,7 @@ namespace Data.DomainObjects
 
         public IShow CreateShow( string venue, string city, string state, string country, string notes, DateTime showDate ) {
             Show show = new Show {
-                CreatedDate = DateTime.UtcNow,
+                CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
                 Notes = notes,
                 City = city,
@@ -35,6 +33,18 @@ namespace Data.DomainObjects
             };
 
             return show;
+        }
+
+        public ITag CreateTag( string name, Guid showId, Guid userId ) {
+            Tag tag = new Tag {
+                CreatedDate = Constants.Now(),
+                Id = Guid.NewGuid(),
+                Name = name,
+                ShowId = showId,
+                UserId = userId
+            };
+
+            return tag;
         }
     }
 }

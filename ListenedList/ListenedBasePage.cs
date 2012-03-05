@@ -5,6 +5,7 @@ using System.Web.UI.WebControls;
 using Core.Membership;
 using Core.DomainObjects;
 using Data.DomainObjects;
+using Core.Helpers.Script;
 
 namespace ListenedList
 {
@@ -19,8 +20,6 @@ namespace ListenedList
         protected LogWriter _Log = new LogWriter();
 
         protected readonly Guid EmptyGuid = new Guid("00000000-0000-0000-0000-000000000000");
-
-        //var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
         public ListItem[] GetDropDownFromEnum(Type type, int startingEnumIndex, string firstItemMessage)
         {
@@ -63,6 +62,10 @@ namespace ListenedList
             return notes.Substring(0, lastIndex);
         }
 
+        public Guid GetUserId() {
+            return new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             //Set it to the Default initially but any 
@@ -70,6 +73,19 @@ namespace ListenedList
             SetPageTitle(DefaultTitle);
 
             base.OnLoad(e);
+        }
+
+         protected void ValidateSuccess( bool success, string successMessage, string error ) {
+            PromptHelper prompt;
+
+            if ( success ) {
+                prompt = new PromptHelper( successMessage );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetSuccessScript() );
+            }
+            else {
+                prompt = new PromptHelper( error );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
+            }
         }
 
         protected virtual void SetPageTitle(string title)
