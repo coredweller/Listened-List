@@ -10,7 +10,7 @@ namespace Core.DomainObjects
         Guid Id { get; }
         Guid UserId { get; }
 
-        string Name { get; }
-
+        string Name { get; set; }
+        string Color { get; set; }
     }
 }

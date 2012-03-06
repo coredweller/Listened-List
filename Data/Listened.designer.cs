@@ -882,6 +882,8 @@ namespace Data.DomainObjects
 		
 		private bool _Deleted;
 		
+		private string _Color;
+		
 		private EntitySet<ShowTag> _ShowTags;
 		
     #region Extensibility Method Definitions
@@ -902,6 +904,8 @@ namespace Data.DomainObjects
     partial void OnDeletedDateChanged();
     partial void OnDeletedChanging(bool value);
     partial void OnDeletedChanged();
+    partial void OnColorChanging(string value);
+    partial void OnColorChanged();
     #endregion
 		
 		public Tag()
@@ -1046,6 +1050,26 @@ namespace Data.DomainObjects
 					this._Deleted = value;
 					this.SendPropertyChanged("Deleted");
 					this.OnDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", DbType="VarChar(50)", CanBeNull=false)]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this.OnColorChanging(value);
+					this.SendPropertyChanging();
+					this._Color = value;
+					this.SendPropertyChanged("Color");
+					this.OnColorChanged();
 				}
 			}
 		}

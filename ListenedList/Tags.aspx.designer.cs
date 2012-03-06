@@ -13,6 +13,33 @@ namespace ListenedList {
     public partial class Tags {
         
         /// <summary>
+        /// txtNewTagName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewTagName;
+        
+        /// <summary>
+        /// btnCreateTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateTag;
+        
+        /// <summary>
+        /// phEditTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phEditTag;
+        
+        /// <summary>
         /// txtTagName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +47,15 @@ namespace ListenedList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTagName;
+        
+        /// <summary>
+        /// ddlColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlColor;
         
         /// <summary>
         /// btnSaveTagName control.

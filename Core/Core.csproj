@@ -67,6 +67,7 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Helpers\TagColor.cs" />
     <Compile Include="Helpers\JSON\BasicJSONifier.cs" />
     <Compile Include="Helpers\Checks.cs" />
     <Compile Include="Helpers\Constants.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Helpers\Script\JAlertHelper.cs" />
     <Compile Include="Helpers\Script\PromptHelper.cs" />
     <Compile Include="Helpers\ShowStatus.cs" />
+    <Compile Include="Helpers\TagColors.cs" />
     <Compile Include="Infrastructure\Images\FullImageSize.cs" />
     <Compile Include="Infrastructure\Images\IImageFormatSpec.cs" />
     <Compile Include="Infrastructure\Images\IImageMediaFormats.cs" />
