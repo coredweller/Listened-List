@@ -99,6 +99,7 @@ namespace ListenedList
 
             var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).ToList();
 
+            ddlTags.Items.Clear();
             foreach ( var r in results ) {
                 ddlTags.Items.Add( new ListItem( r.Name, r.Id.ToString() ) );
             }

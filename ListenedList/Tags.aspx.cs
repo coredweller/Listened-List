@@ -36,6 +36,7 @@ namespace ListenedList
         private void Bind() {
             //Bind the colors drop down
             var colors = TagColors.GetAllColors();
+            ddlColor.Items.Clear();
 
             var colorList = new List<ListItem>();
             foreach ( var color in colors ) {
@@ -64,6 +65,7 @@ namespace ListenedList
                 using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
                     var tag = _tagService.GetTag( tagId );
                     tag.Name = txtTagName.Text;
+                    tag.Color = TagColors.GetColorByHex( ddlColor.SelectedValue ).CssClass;
 
                     uow.Commit();
                     success = true;
@@ -75,6 +77,7 @@ namespace ListenedList
                 success = false;
             }
 
+            Bind();
             ValidateSuccess( success, "You have successfully saved the new tag name.", "There was an error saving the new tag name." );
         }
 
@@ -99,7 +102,7 @@ namespace ListenedList
             var userId = GetUserId();
 
             ITagService tagService = Ioc.GetInstance<ITagService>();
-            var tag = tagService.GetTag( txtTagName.Text.Trim(), userId );
+            var tag = tagService.GetTag( txtNewTagName.Text.Trim(), userId );
 
             PromptHelper prompt;
             if ( tag != null ) {
@@ -121,8 +124,8 @@ namespace ListenedList
                 success = false;
             }
 
-            ValidateSuccess( success, "You have saved your tag successfully.", "There was an error saving your tag." );
             Bind();
+            ValidateSuccess( success, "You have saved your tag successfully.", "There was an error saving your tag." );
         }
 
         private void DeleteTag( Guid tagId ) {
@@ -157,6 +160,13 @@ namespace ListenedList
             phEditTag.Visible = true;
 
             txtTagName.Text = tag.Name;
+            var color = TagColors.GetColorByCssClass( tag.Color );
+
+            ddlColor.SelectedIndex = -1;
+
+            var item = ddlColor.Items.FindByValue( color.Hex );
+            item.Selected = true;
+
             ViewState["TagId"] = tag.Id;
         }
     }

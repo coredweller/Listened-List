@@ -9,10 +9,12 @@ namespace Core.Helpers
     {
         public string ColorName { get; private set; }
         public string Hex { get; private set; }
+        public string CssClass { get; private set; }
 
-        public TagColor( string colorName, string hex ) {
+        public TagColor( string colorName, string hex, string cssClass ) {
             ColorName = colorName;
             Hex = hex;
+            CssClass = cssClass;
         }
     }
 }

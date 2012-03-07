@@ -40,7 +40,8 @@ namespace Data.DomainObjects
                 CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
                 Name = name,
-                UserId = userId
+                UserId = userId,
+                Color = TagColors.Blue.CssClass
             };
 
             return tag;

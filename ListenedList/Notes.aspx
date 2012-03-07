@@ -54,7 +54,7 @@
                     <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
                         <ItemTemplate>
                             <p>
-                                <asp:LinkButton CssClass="tag" runat="server" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
+                                <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>' runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
                                 </asp:LinkButton>
                                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE" CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
                             </p>
