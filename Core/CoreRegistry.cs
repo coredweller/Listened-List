@@ -24,8 +24,6 @@ namespace Core
                 .Use<DebuggerWriter>();
             SelectConstructor<DebuggerWriter>(() => new DebuggerWriter());
 
-            
-
 
             //Services
             For<IListenedShowService>()
