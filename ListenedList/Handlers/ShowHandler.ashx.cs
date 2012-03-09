@@ -104,6 +104,7 @@ namespace ListenedList.Handlers
             response.ContentType = "application/json";
             response.ContentEncoding = Encoding.UTF8;
             response.Write(final);
+            response.End();
         }
 
         public bool IsReusable {

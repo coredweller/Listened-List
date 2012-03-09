@@ -40,8 +40,11 @@
                                     { title: 'Cancel', value: ListenedStatus.Cancel }
                                   ],
 
-                        //x is the button result
-                        submit: function (status, y, z) {
+                        //This is for Impromptu version 3.2
+                        //submit: function (status, y, z) {
+
+                        //This is for Impromptu version 4.0
+                        submit: function(x, status, z) {
 
                             //If the user clicks Cancel then do nothing
                             if (status == ListenedStatus.Cancel) { return; }
