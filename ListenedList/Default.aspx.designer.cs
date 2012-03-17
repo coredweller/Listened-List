@@ -49,184 +49,13 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
-        /// yearBox84 control.
+        /// yearBox11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox84;
-        
-        /// <summary>
-        /// yearBox85 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox85;
-        
-        /// <summary>
-        /// yearBox86 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox86;
-        
-        /// <summary>
-        /// yearBox87 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox87;
-        
-        /// <summary>
-        /// yearBox88 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox88;
-        
-        /// <summary>
-        /// yearBox89 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox89;
-        
-        /// <summary>
-        /// yearBox90 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox90;
-        
-        /// <summary>
-        /// yearBox91 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox91;
-        
-        /// <summary>
-        /// yearBox92 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox92;
-        
-        /// <summary>
-        /// yearBox93 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox93;
-        
-        /// <summary>
-        /// yearBox94 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox94;
-        
-        /// <summary>
-        /// yearBox95 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox95;
-        
-        /// <summary>
-        /// yearBox96 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox96;
-        
-        /// <summary>
-        /// yearBox97 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox97;
-        
-        /// <summary>
-        /// yearBox98 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox98;
-        
-        /// <summary>
-        /// yearBox99 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox99;
-        
-        /// <summary>
-        /// yearBox00 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox00;
-        
-        /// <summary>
-        /// yearBox03 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox03;
-        
-        /// <summary>
-        /// yearBox04 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox04;
-        
-        /// <summary>
-        /// yearBox09 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox09;
+        protected global::ListenedList.Controls.YearBoxes yearBox11;
         
         /// <summary>
         /// yearBox10 control.
@@ -238,13 +67,175 @@ namespace ListenedList {
         protected global::ListenedList.Controls.YearBoxes yearBox10;
         
         /// <summary>
-        /// yearBox11 control.
+        /// yearBox09 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ListenedList.Controls.YearBoxes yearBox11;
+        protected global::ListenedList.Controls.YearBoxes yearBox09;
+        
+        /// <summary>
+        /// yearBox04 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox04;
+        
+        /// <summary>
+        /// yearBox03 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox03;
+        
+        /// <summary>
+        /// yearBox00 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox00;
+        
+        /// <summary>
+        /// yearBox99 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox99;
+        
+        /// <summary>
+        /// yearBox98 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox98;
+        
+        /// <summary>
+        /// yearBox97 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox97;
+        
+        /// <summary>
+        /// yearBox96 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox96;
+        
+        /// <summary>
+        /// yearBox95 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox95;
+        
+        /// <summary>
+        /// yearBox94 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox94;
+        
+        /// <summary>
+        /// yearBox93 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox93;
+        
+        /// <summary>
+        /// yearBox92 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox92;
+        
+        /// <summary>
+        /// yearBox91 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox91;
+        
+        /// <summary>
+        /// yearBox90 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox90;
+        
+        /// <summary>
+        /// yearBox89 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox89;
+        
+        /// <summary>
+        /// yearBox88 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox88;
+        
+        /// <summary>
+        /// yearBox87 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox87;
+        
+        /// <summary>
+        /// yearBox86 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox86;
+        
+        /// <summary>
+        /// yearBox85 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox85;
         
         /// <summary>
         /// hdnUserId control.
