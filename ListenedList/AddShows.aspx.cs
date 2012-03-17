@@ -15,9 +15,9 @@ namespace ListenedList
     {
         IShowService showService = Ioc.GetInstance<IShowService>();
         IListenedShowService listenedShowService = Ioc.GetInstance<IListenedShowService>();
-        private const string finished = "chkFinished";
-        private const string inProgress = "chkInProgress";
-        private const string needToListen = "chkNeedToListen";
+        private const string finished = "rdoFinished";
+        private const string inProgress = "rdoInProgress";
+        private const string needToListen = "rdoNeedToListen";
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -54,9 +54,9 @@ namespace ListenedList
             RepeaterItem item = (RepeaterItem)e.Item;
 
             if ( item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem ) {
-                CheckBox finishedChk = item.FindControl( finished ) as CheckBox;
-                CheckBox inProgressChk = item.FindControl( inProgress ) as CheckBox;
-                CheckBox needToListenChk = item.FindControl( needToListen ) as CheckBox;
+                RadioButton finishedChk = item.FindControl( finished ) as RadioButton;
+                RadioButton inProgressChk = item.FindControl( inProgress ) as RadioButton;
+                RadioButton needToListenChk = item.FindControl( needToListen ) as RadioButton;
 
                 finishedChk.CheckedChanged += new EventHandler( CheckedChanged );
                 inProgressChk.CheckedChanged += new EventHandler( CheckedChanged );
@@ -65,11 +65,11 @@ namespace ListenedList
         }
 
         private void CheckedChanged( object sender, EventArgs e ) {
-            CheckBox cb = (CheckBox)sender;
-            var showDate = DateTime.Parse( cb.ToolTip );
+            RadioButton rb = (RadioButton)sender;
+            var showDate = DateTime.Parse( rb.ToolTip );
             int status = 0;
 
-            switch ( cb.ID ) {
+            switch ( rb.ID ) {
                 case finished:
                     status = (int)ListenedStatus.Finished;
                     break;
@@ -81,7 +81,7 @@ namespace ListenedList
                     break;
             }
 
-            if ( cb.Checked ) {
+            if ( rb.Checked ) {
                 var show = showService.GetShow( showDate );
 
                 var userId = GetUserId();

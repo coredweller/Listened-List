@@ -38,16 +38,18 @@
                         <ItemTemplate>
                             <tr>
                                 <td style="padding-left: 12px;">
-                                    <asp:CheckBox ID="chkFinished" runat="server" AutoPostBack="true" Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.Finished ? true : false : false %>'
+                                    <asp:RadioButton ID="rdoFinished" runat="server" AutoPostBack="true" GroupName="Status"
+                                        Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.Finished ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
-                                    <%--<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() + (int)Core.Services.ListenedStatus.Finished %>--%>
                                 </td>
                                 <td style="padding-left: 20px;">
-                                    <asp:CheckBox ID="chkInProgress" runat="server" AutoPostBack="true" Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.InProgress ? true : false : false %>'
+                                    <asp:RadioButton ID="rdoInProgress" runat="server" AutoPostBack="true" GroupName="Status"
+                                        Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.InProgress ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
                                 </td>
                                 <td style="padding-left: 25px;">
-                                    <asp:CheckBox ID="chkNeedToListen" runat="server" AutoPostBack="true" Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.NeedToListen ? true : false : false %>'
+                                    <asp:RadioButton ID="rdoNeedToListen" runat="server" AutoPostBack="true" GroupName="Status"
+                                        Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.NeedToListen ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
                                 </td>
                                 <td>

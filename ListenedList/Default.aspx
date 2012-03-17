@@ -44,7 +44,7 @@
                         //submit: function (status, y, z) {
 
                         //This is for Impromptu version 4.0
-                        submit: function(x, status, z) {
+                        submit: function (x, status, z) {
 
                             //If the user clicks Cancel then do nothing
                             if (status == ListenedStatus.Cancel) { return; }
@@ -79,11 +79,14 @@
                                     $(button).css("background-color", color);
                                 }
 
+                                button.focus();
                             });
                         }
                     });
 
                 event.preventDefault();
+
+                
             });
         });
 
