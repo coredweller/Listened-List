@@ -6,6 +6,7 @@ using Core.Infrastructure;
 using Core.Services.Interfaces;
 using Core.Helpers.Script;
 using Core.Helpers;
+using Core.DomainObjects;
 
 namespace ListenedList
 {
@@ -17,8 +18,12 @@ namespace ListenedList
             if ( !IsPostBack ) {
                 Bind();
             }
-
+            
             LoadComplete += new EventHandler( Tags_LoadComplete );
+        }
+
+        public void lnkSeeAll_Click( object sender, EventArgs e ) {
+            BindTags(Guid.Empty);
         }
 
         //This is used to set the color of each individual list item in ddlColor
@@ -41,9 +46,20 @@ namespace ListenedList
                 colorList.Add( item );
                 ddlColor.Items.Add( item );
             }
-            
-            //Bind the tags
-            var tags = _tagService.GetTags( GetUserId() );
+
+            BindTags(Guid.Empty);
+        }
+
+        private void BindTags(Guid tagId) {
+
+            IList<ITag> tags = new List<ITag>();
+            if ( tagId == Guid.Empty ) {
+
+                tags = _tagService.GetTags( GetUserId() );
+            }
+            else {
+                tags = new List<ITag>{_tagService.GetTag( tagId ) };
+            }
 
             rptTags.DataSource = tags;
             rptTags.DataBind();
@@ -83,6 +99,9 @@ namespace ListenedList
             var tagId = new Guid( e.CommandArgument.ToString() );
 
             switch ( e.CommandName.ToLower() ) {
+                case "click":
+                    ClickTag( tagId );
+                    break;
                 case "delete":
                     DeleteTag( tagId );
                     break;
@@ -93,13 +112,30 @@ namespace ListenedList
 
         }
 
+        private void ClickTag( Guid tagId ) {
+
+            var tag = _tagService.GetTag( tagId );
+
+            if(tag == null) return;
+
+            BindTags( tag.Id );
+
+            var showTagService = Ioc.GetInstance<IShowTagService>();
+            var showTags = showTagService.GetTagsByTagAndUser( tag.Id, tag.UserId );   
+            
+            ///LEFT OFF Turning the showtags into actual shows and showtags to display information for both AND
+            ///    DOING THE REPEATER ON THE FRONT END AND THEN THE CLICK EVENTS IN REPEATERS ITEMCOMMAND METHOD
+
+            rptShows.DataSource = showTags;
+            rptShows.DataBind();
+        }
+
         public void btnCreateTag_Click( object sender, EventArgs e ) {
             if ( string.IsNullOrEmpty( txtNewTagName.Text ) ) return;
 
             var userId = GetUserId();
 
-            ITagService tagService = Ioc.GetInstance<ITagService>();
-            var tag = tagService.GetTag( txtNewTagName.Text.Trim(), userId );
+            var tag = _tagService.GetTag( txtNewTagName.Text.Trim(), userId );
 
             PromptHelper prompt;
             if ( tag != null ) {
@@ -113,7 +149,7 @@ namespace ListenedList
             try {
 
                 var newTag = _DomainObjectFactory.CreateTag( txtNewTagName.Text, userId );
-                tagService.SaveCommit( newTag, out success );
+                _tagService.SaveCommit( newTag, out success );
 
             }
             catch ( Exception ex ) {

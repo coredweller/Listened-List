@@ -10,5 +10,6 @@ namespace Core.DomainObjects
         Guid Id { get; }
         Guid ShowId { get; }
         Guid TagId { get; }
+        Guid UserId { get; }
     }
 }

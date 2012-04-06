@@ -67,6 +67,15 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Button btnSaveTagName;
         
         /// <summary>
+        /// lnkSeeAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSeeAll;
+        
+        /// <summary>
         /// rptTags control.
         /// </summary>
         /// <remarks>
@@ -74,5 +83,23 @@ namespace ListenedList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptTags;
+        
+        /// <summary>
+        /// phShowList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phShowList;
+        
+        /// <summary>
+        /// rptShows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptShows;
     }
 }

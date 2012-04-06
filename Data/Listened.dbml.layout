@@ -27,13 +27,13 @@
         <elementListCompartment Id="1014a8fe-6e10-41ec-92d0-ac14ada08841" absoluteBounds="5.89, 7.46, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4bb5f068-236a-4a8a-afd4-bdd47e086f9e" absoluteBounds="3.625, 5.125, 2, 1.3862939453125">
+    <classShape Id="4bb5f068-236a-4a8a-afd4-bdd47e086f9e" absoluteBounds="3.625, 5.125, 2, 1.5785953776041666">
       <DataClassMoniker Name="/Database/ShowTag" />
       <nestedChildShapes>
-        <elementListCompartment Id="76abfa51-1815-4b4e-b97c-84b262f1945f" absoluteBounds="3.6399999999999997, 5.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="76abfa51-1815-4b4e-b97c-84b262f1945f" absoluteBounds="3.6399999999999997, 5.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.875 : 7); (5.625 : 6.5112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.875 : 7); (5.625 : 6.70359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Database/Tag/Tag_ShowTag" />
       <nodes>
         <classShapeMoniker Id="b6c6013b-054a-44ec-b345-ea87cde5d9da" />

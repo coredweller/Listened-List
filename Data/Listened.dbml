@@ -53,6 +53,7 @@
       <Column Name="ShowTagId" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ShowId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="TagId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Member="UserId" Type="System.Guid" CanBeNull="false" />
       <Association Name="Tag_ShowTag" Member="Tag" ThisKey="TagId" OtherKey="Id" Type="Tag" IsForeignKey="true" />
       <Association Name="Show_ShowTag" Member="Show" ThisKey="ShowId" OtherKey="Id" Type="Show" IsForeignKey="true" />
     </Type>

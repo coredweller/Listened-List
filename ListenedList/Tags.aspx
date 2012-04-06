@@ -23,20 +23,25 @@
                 Edit Tag Name:
                 <asp:TextBox ID="txtTagName" runat="server"></asp:TextBox>
                 <br />
-                Color: <asp:DropDownList ID="ddlColor" runat="server" Width="200px" ></asp:DropDownList>
+                Color:
+                <asp:DropDownList ID="ddlColor" runat="server" Width="200px">
+                </asp:DropDownList>
                 <asp:Button ID="btnSaveTagName" runat="server" OnClick="btnSaveTagName_Click" Text="Save" />
-
             </div>
         </asp:PlaceHolder>
         <br />
+        <br />
+        <asp:LinkButton ID="lnkSeeAll" runat="server" Text="See All Tags" OnClick="lnkSeeAll_Click"></asp:LinkButton>
         <br />
         <div>
             <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
                 <ItemTemplate>
                     <p>
-                        <asp:LinkButton CssClass='<%# ((Core.DomainObjects.ITag)Container.DataItem).Color %>' runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Name %>'>
+                        <asp:LinkButton CssClass='<%# ((Core.DomainObjects.ITag)Container.DataItem).Color %>'
+                            runat="server" CommandName="CLICK" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.Datatem)).Id %>'
+                            Enabled="false" ID="lnkTag" Text='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Name %>'>
                         </asp:LinkButton>&nbsp;&nbsp;
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.Datatem)).Id %>'>
                         </asp:LinkButton>&nbsp;&nbsp;
                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
                             CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
@@ -45,5 +50,23 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
+        <asp:PlaceHolder ID="phShowList" runat="server" Visible="false">
+            <div>
+                <asp:Repeater ID="rptShows" runat="server">
+                    <HeaderTemplate>
+                        <table>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <asp:LinkButton ID="lnkShow" runat="server" CommandName="CLICK" CommandArgument='' Text=""></asp:LinkButton>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table></FooterTemplate>
+                </asp:Repeater>
+            </div>
+        </asp:PlaceHolder>
     </div>
 </asp:Content>

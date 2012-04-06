@@ -1132,6 +1132,8 @@ namespace Data.DomainObjects
 		
 		private System.Guid _TagId;
 		
+		private System.Guid _UserId;
+		
 		private EntityRef<Tag> _Tag;
 		
 		private EntityRef<Show> _Show;
@@ -1146,6 +1148,8 @@ namespace Data.DomainObjects
     partial void OnShowIdChanged();
     partial void OnTagIdChanging(System.Guid value);
     partial void OnTagIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
     #endregion
 		
 		public ShowTag()
@@ -1219,6 +1223,26 @@ namespace Data.DomainObjects
 					this._TagId = value;
 					this.SendPropertyChanged("TagId");
 					this.OnTagIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId")]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}

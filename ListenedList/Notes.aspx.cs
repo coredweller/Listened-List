@@ -182,7 +182,7 @@ namespace ListenedList
             try {
                 
                 var newTag = _DomainObjectFactory.CreateTag( txtTagName.Text, userId );
-                var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id );
+                var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id, GetUserId() );
 
                 using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
@@ -224,7 +224,7 @@ namespace ListenedList
 
                 var tagId = new Guid(ddlTags.SelectedValue);
                 
-                var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId);
+                var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId, GetUserId());
 
                 showTagService.SaveCommit( showTag, out success );
             }

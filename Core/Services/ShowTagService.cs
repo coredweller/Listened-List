@@ -31,7 +31,11 @@ namespace Core.Services
         public IList<IShowTag> GetTagsByShow( Guid showId ) {
             return GetAllTags().Where( x => x.ShowId == showId ).ToList();
         }
-        
+
+        public IList<IShowTag> GetTagsByTagAndUser( Guid tagId, Guid userId ) {
+            return GetAllTags().Where( x => x.TagId == tagId && x.UserId == userId ).ToList();
+        }
+
         public void SaveCommit( IShowTag tag, out bool success ) {
             using ( IUnitOfWork u = UnitOfWork.Begin() ) {
                 Save( tag, out success );

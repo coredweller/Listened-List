@@ -47,11 +47,12 @@ namespace Data.DomainObjects
             return tag;
         }
 
-        public IShowTag CreateShowTag( Guid showId, Guid tagId ) {
+        public IShowTag CreateShowTag( Guid showId, Guid tagId, Guid userId ) {
             ShowTag tag = new ShowTag() {
                 Id = Guid.NewGuid(),
                 ShowId = showId,
-                TagId = tagId
+                TagId = tagId,
+                UserId = userId
             };
 
             return tag;
