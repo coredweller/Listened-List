@@ -32,8 +32,8 @@ namespace Core.Services
             return GetAllTags().Where( x => x.ShowId == showId ).ToList();
         }
 
-        public IList<IShowTag> GetTagsByTagAndUser( Guid tagId, Guid userId ) {
-            return GetAllTags().Where( x => x.TagId == tagId && x.UserId == userId ).ToList();
+        public IQueryable<IShowTag> GetTagsByTagAndUser( Guid tagId, Guid userId ) {
+            return GetAllTags().Where( x => x.TagId == tagId && x.UserId == userId );
         }
 
         public void SaveCommit( IShowTag tag, out bool success ) {

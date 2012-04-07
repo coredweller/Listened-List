@@ -30,18 +30,18 @@
             </div>
         </asp:PlaceHolder>
         <br />
-        <br />
         <asp:LinkButton ID="lnkSeeAll" runat="server" Text="See All Tags" OnClick="lnkSeeAll_Click"></asp:LinkButton>
+        <br />
         <br />
         <div>
             <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
                 <ItemTemplate>
                     <p>
                         <asp:LinkButton CssClass='<%# ((Core.DomainObjects.ITag)Container.DataItem).Color %>'
-                            runat="server" CommandName="CLICK" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.Datatem)).Id %>'
-                            Enabled="false" ID="lnkTag" Text='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Name %>'>
+                            runat="server" CommandName="CLICK" CommandArgument='<%# ((Core.DomainObjects.ITag)Container.DataItem).Id %>'
+                             ID="lnkTag" Text='<%# ((Core.DomainObjects.ITag)Container.DataItem).Name %>'>
                         </asp:LinkButton>&nbsp;&nbsp;
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.Datatem)).Id %>'>
+                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
                         </asp:LinkButton>&nbsp;&nbsp;
                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
                             CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
@@ -59,8 +59,11 @@
                     <ItemTemplate>
                         <tr>
                             <td>
-                                <asp:LinkButton ID="lnkShow" runat="server" CommandName="CLICK" CommandArgument='' Text=""></asp:LinkButton>
+                                <asp:HyperLink ID="lnkShow" runat="server" Text='<%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %>'
+                                    NavigateUrl='<%# "/Notes.aspx?showId=" + ((Core.DomainObjects.IShow)Container.DataItem).Id %>'></asp:HyperLink>
                             </td>
+                            
+                            
                         </tr>
                     </ItemTemplate>
                     <FooterTemplate>

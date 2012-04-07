@@ -7,6 +7,7 @@ using Core.Services.Interfaces;
 using Core.Helpers.Script;
 using Core.Helpers;
 using Core.DomainObjects;
+using System.Linq;
 
 namespace ListenedList
 {
@@ -23,7 +24,12 @@ namespace ListenedList
         }
 
         public void lnkSeeAll_Click( object sender, EventArgs e ) {
+            HideShowList();
             BindTags(Guid.Empty);
+        }
+
+        private void HideShowList() {
+            phShowList.Visible = false;
         }
 
         //This is used to set the color of each individual list item in ddlColor
@@ -121,18 +127,22 @@ namespace ListenedList
             BindTags( tag.Id );
 
             var showTagService = Ioc.GetInstance<IShowTagService>();
-            var showTags = showTagService.GetTagsByTagAndUser( tag.Id, tag.UserId );   
-            
-            ///LEFT OFF Turning the showtags into actual shows and showtags to display information for both AND
-            ///    DOING THE REPEATER ON THE FRONT END AND THEN THE CLICK EVENTS IN REPEATERS ITEMCOMMAND METHOD
+            var showTags = showTagService.GetTagsByTagAndUser( tag.Id, tag.UserId );
+            var showIds = showTags.Select( x => x.ShowId ).ToList();
 
-            rptShows.DataSource = showTags;
+            var showService = Ioc.GetInstance<IShowService>();
+
+            var shows = showService.GetShows( showIds );
+
+            phShowList.Visible = true;
+            rptShows.DataSource = shows;
             rptShows.DataBind();
         }
 
         public void btnCreateTag_Click( object sender, EventArgs e ) {
             if ( string.IsNullOrEmpty( txtNewTagName.Text ) ) return;
 
+            HideShowList();
             var userId = GetUserId();
 
             var tag = _tagService.GetTag( txtNewTagName.Text.Trim(), userId );
