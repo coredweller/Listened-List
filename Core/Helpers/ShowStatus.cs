@@ -7,6 +7,7 @@ namespace Core.Helpers
         public Guid ShowId { get; set; }
         public int Status { get; set; }
         public DateTime ShowDate { get; set; }
+        public string ShowName { get; set; }
 
         public ShowStatus( Guid showId, int status ) {
             ShowId = showId;
@@ -17,6 +18,13 @@ namespace Core.Helpers
             ShowId = showId;
             Status = status;
             ShowDate = showDate;
+        }
+
+        public ShowStatus( Guid showId, int status, DateTime showDate, string showName ) {
+            ShowId = showId;
+            Status = status;
+            ShowDate = showDate;
+            ShowName = showName;
         }
     }
 }

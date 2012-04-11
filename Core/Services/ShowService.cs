@@ -56,7 +56,7 @@ namespace Core.Services
 
         public List<ShowStatus> GetShowStatusByYear( int year ) {
             return ( from s in GetShowsByYear( year )
-                     select new ShowStatus( s.Id, (int)ListenedStatus.None, s.ShowDate.Value ) ).ToList();
+                     select new ShowStatus( s.Id, (int)ListenedStatus.None, s.ShowDate.Value, s.GetShowName() ) ).ToList();
         }
 
         public void SaveCommit( IShow show, out bool success ) {

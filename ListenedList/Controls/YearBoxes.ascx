@@ -12,7 +12,7 @@
         <ItemTemplate>
             <td>
                 <asp:Button Style="text-align: left;" runat="server" Width="77px" BackColor='<%# GetStatus((int)Eval("Status")) %>'
-                    Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>'></asp:Button>
+                    Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>' ToolTip='<%# Eval("ShowName") %>'></asp:Button>
             </td>
         </ItemTemplate>
         <FooterTemplate>

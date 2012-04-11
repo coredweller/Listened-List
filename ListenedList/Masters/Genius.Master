@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" style="background-color:#D2B48C;">
 <head runat="server">
-    <title>Listened List</title>
+    <title>Phisherman's Guide</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../Styles/geniusStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Styles/Listened.css" rel="stylesheet" type="text/css" />
@@ -41,7 +41,7 @@
             </asp:LoginView>
         </div>
         <div style="font-size: 3em; font-weight: 700; padding-top:40px; color:Black;">
-            Listened List
+            Phisherman's Guide
         </div>
         <ul>
             <%--    <li class="home">Home</li>--%>

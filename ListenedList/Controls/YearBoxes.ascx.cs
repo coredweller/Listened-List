@@ -42,7 +42,7 @@ namespace ListenedList.Controls
                     var match = shows.Find( x => x.ShowId == s.ShowId );
                     if ( match == null ) continue;
 
-                    var copy = new ShowStatus(match.ShowId, s.Status, match.ShowDate);
+                    var copy = new ShowStatus(match.ShowId, s.Status, match.ShowDate, match.ShowName);
 
                     var index = shows.IndexOf(match);
                     shows.Remove( match );
