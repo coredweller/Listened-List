@@ -122,8 +122,8 @@ namespace Core.Membership
                 status = MembershipCreateStatus.InvalidEmail;
                 return null;
             }
-            string passwordLowerCase = password.ToLowerInvariant();
-            MembershipUser newUser = base.CreateUser( username, passwordLowerCase, email, passwordQuestion, passwordAnswer, isApproved, providerUserKey, out status );
+            
+            MembershipUser newUser = base.CreateUser( username, password, email, passwordQuestion, passwordAnswer, isApproved, providerUserKey, out status );
             return newUser;
         }
 

@@ -117,14 +117,14 @@
     <fieldset>
         <div style="font-size: 1.5em; font-weight: 600;">
             Legend:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button1" runat="server" CssClass="textLeft" Width="85px" BackColor='White'
+            <asp:Button ID="Button1" runat="server" CssClass="textLeft" Width="88px" BackColor='White'
                 Enabled="false" Text="Never Heard"></asp:Button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button2" runat="server" Width="85px" Enabled="false" BackColor='Yellow'
                 Text="In Progress"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button3" runat="server" Width="75px" Enabled="false" BackColor='Orange'
                 Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button4" runat="server" Width="95px" Enabled="false" BackColor="GreenYellow"
+            <asp:Button ID="Button4" runat="server" Width="99px" Enabled="false" BackColor="GreenYellow"
                 Text="Need to Listen" />
         </div>
     </fieldset>

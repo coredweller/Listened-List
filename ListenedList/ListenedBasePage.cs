@@ -13,7 +13,7 @@ namespace ListenedList
     {
         protected readonly string BaseRoleType = "Registered";
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
-        protected readonly string DefaultTitle = "The Listened List";
+        protected readonly string DefaultTitle = "Phisherman's Guide";
 
         protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
         protected IDomainObjectFactory _DomainObjectFactory = new DomainObjectFactory();
