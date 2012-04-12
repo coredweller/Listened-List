@@ -18,6 +18,7 @@ namespace ListenedList
         private const string finished = "rdoFinished";
         private const string inProgress = "rdoInProgress";
         private const string needToListen = "rdoNeedToListen";
+        private const string neverHeard = "rdoNeverHeard";
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -39,7 +40,6 @@ namespace ListenedList
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
 
-
             if ( ddlYears.SelectedValue == "0" ) return;
 
             var year = int.Parse( ddlYears.SelectedValue );
@@ -57,13 +57,15 @@ namespace ListenedList
                 RadioButton finishedChk = item.FindControl( finished ) as RadioButton;
                 RadioButton inProgressChk = item.FindControl( inProgress ) as RadioButton;
                 RadioButton needToListenChk = item.FindControl( needToListen ) as RadioButton;
+                RadioButton neverHeardChk = item.FindControl( neverHeard ) as RadioButton;
 
                 finishedChk.CheckedChanged += new EventHandler( CheckedChanged );
                 inProgressChk.CheckedChanged += new EventHandler( CheckedChanged );
                 needToListenChk.CheckedChanged += new EventHandler( CheckedChanged );
+                neverHeardChk.CheckedChanged += new EventHandler( CheckedChanged );
             }
         }
-
+        
         private void CheckedChanged( object sender, EventArgs e ) {
             RadioButton rb = (RadioButton)sender;
             var showDate = DateTime.Parse( rb.ToolTip );
@@ -78,6 +80,9 @@ namespace ListenedList
                     break;
                 case needToListen:
                     status = (int)ListenedStatus.NeedToListen;
+                    break;
+                case neverHeard:
+                    status = (int)ListenedStatus.None;
                     break;
             }
 

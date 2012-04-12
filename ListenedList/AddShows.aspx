@@ -8,14 +8,19 @@
         <br />
         <br />
         <p style="font-size: 1.2em; font-weight: 500;">
-            Choose a year to display shows. Then choose the listened status you want for each
-            show.</p>
+            Choose a year to display shows from that year.
+        </p>
         <br />
         <div>
             Year:<asp:DropDownList ID="ddlYears" runat="server">
             </asp:DropDownList>
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Choose Year" OnClick="btnSubmit_Click" />
         </div>
+        <br />
+        <br />
+        <p style="font-size: 1.2em; font-weight: 500;">
+            <b>When you change a status it automatically saves!</b></p>
+        <br />
         <br />
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -24,6 +29,9 @@
                         <HeaderTemplate>
                             <table>
                                 <tr>
+                                    <td>
+                                        Never Heard --
+                                    </td>
                                     <td>
                                         Finished --
                                     </td>
@@ -38,16 +46,21 @@
                         <ItemTemplate>
                             <tr>
                                 <td style="padding-left: 12px;">
+                                    <asp:RadioButton ID="rdoNeverHeard" runat="server" AutoPostBack="true" GroupName="Status"
+                                        Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.None ? true : false : true %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
+                                </td>
+                                <td style="padding-left: 20px;">
                                     <asp:RadioButton ID="rdoFinished" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.Finished ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
                                 </td>
-                                <td style="padding-left: 20px;">
+                                <td style="padding-left: 25px;">
                                     <asp:RadioButton ID="rdoInProgress" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.InProgress ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
                                 </td>
-                                <td style="padding-left: 25px;">
+                                <td style="padding-left: 28px;">
                                     <asp:RadioButton ID="rdoNeedToListen" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.NeedToListen ? true : false : false %>'
                                         ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
@@ -58,12 +71,26 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <hr class="horizontalRule1" />
                                 </td>
                             </tr>
                         </ItemTemplate>
                         <FooterTemplate>
+                            <tr>
+                                <td>
+                                    Never Heard --
+                                </td>
+                                <td>
+                                    Finished --
+                                </td>
+                                <td>
+                                    In Progress --
+                                </td>
+                                <td>
+                                    Need To Listen
+                                </td>
+                            </tr>
                             </table></FooterTemplate>
                     </asp:Repeater>
                 </div>
@@ -72,5 +99,12 @@
                 <asp:AsyncPostBackTrigger ControlID="rptAdder" EventName="ItemCreated" />
             </Triggers>
         </asp:UpdatePanel>
+        <%--<br />
+        <br />
+        <p style="font-size: 1.2em; font-weight: 500;">
+            <b>When you change a status it automatically saves!</b></p>--%>
     </div>
+    <br />
+    <br />
+    <br />
 </asp:Content>
