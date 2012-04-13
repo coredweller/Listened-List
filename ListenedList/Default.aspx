@@ -27,10 +27,32 @@
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
 
-                //Prompt the user for the change in status that they want
-                $.prompt('What is the listening status for this show?',
+                //Do we need to prompt the user?
+                var needToPrompt = true;
 
-                //Define the 4 buttons to be displayed
+                //The URL to the notes page
+                var notesUrl = "Notes.aspx?showDate=";
+
+                //The RGB value of Orange
+                var orangeColor = "rgb(255, 165, 0)";
+
+                //The button's current background color
+                var currentColor = $(button).css("background-color");
+
+                //If the button's current color is orange meaning the show is already finished
+                if (currentColor == orangeColor) {
+                    //Then go to the notes page
+                    window.location.href = notesUrl + showDate;
+                    //Dont prompt the user anymore since we are going to the Notes page anyway
+                    needToPrompt = false;
+                }
+
+                if (needToPrompt) {
+
+                    //Prompt the user for the change in status that they want
+                    $.prompt('What is the listening status for this show?',
+
+                    //Define the 4 buttons to be displayed
                         {buttons: [
                                     { title: 'Finished', value: ListenedStatus.Finished },
                                     { title: 'In Progress', value: ListenedStatus.InProgress },
@@ -50,7 +72,7 @@
                             if (status == ListenedStatus.Cancel) { return; }
 
                             //If the user clicks EditNotes then go to a page to edit the notes
-                            if (status == ListenedStatus.EditNotes) { window.location.href = "Notes.aspx?showDate=" + showDate; }
+                            if (status == ListenedStatus.EditNotes) { window.location.href = notesUrl + showDate; }
 
                             //grab the user id
                             var userId = $('#<%= hdnUserId.ClientID %>').val();
@@ -74,18 +96,23 @@
                                 if (item['Answer'] == "true") {
 
                                     var color = 0;
+                                    //Get the color based on the NEW listened status
                                     color = GetColor(status);
 
+                                    //Set the button's background color to the new color
                                     $(button).css("background-color", color);
                                 }
 
+                                //Set the pages focus back on the clicked button, this is so if the button is all the way
+                                // to the right the page would refocus there after the user made his choice on the prompt.
                                 button.focus();
                             });
                         }
                     });
+                }
 
+                //NEVER remove this
                 event.preventDefault();
-
 
             });
         });
