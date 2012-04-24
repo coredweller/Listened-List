@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Notes.aspx.cs" Inherits="ListenedList.Notes"
+﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs" Inherits="ListenedList.Notes"
     MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>

@@ -27,7 +27,7 @@ namespace ListenedList
         }
 
         private void Bind() {
-            var years = showService.GetYears();
+            var years = showService.GetYears().Where( x => x > 1984 ); ;
 
             foreach ( var year in years ) {
                 var yearStr = year.ToString();
