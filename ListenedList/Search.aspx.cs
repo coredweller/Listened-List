@@ -37,7 +37,9 @@ namespace ListenedList
                                 select new Guid(t.ProviderUserKey.ToString()) ).ToList();
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-            listenedShowService.GetByUserIds( publicUsers );
+            var latestlistened = listenedShowService.GetByUserIds( publicUsers ).Take(15);
+
+            //var latestProfiles = 
             
             rptResults.DataSource = profiles;
             rptResults.DataBind();
