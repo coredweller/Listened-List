@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Membership;
+using Core.Services;
 
 namespace ListenedList
 {
@@ -23,6 +24,9 @@ namespace ListenedList
 
             var provider = new ListenedRoleProvider();
             provider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { base.BaseRoleType } );
+
+            var profileService = new ProfileService( cont.UserName );
+            profileService.SavePublic( false );
         }
     }
 }

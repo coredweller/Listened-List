@@ -67,6 +67,7 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Helpers\LatestProfile.cs" />
     <Compile Include="Helpers\TagColor.cs" />
     <Compile Include="Helpers\JSON\BasicJSONifier.cs" />
     <Compile Include="Helpers\Checks.cs" />

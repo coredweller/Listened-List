@@ -1,7 +1,7 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Genius.master.cs" Inherits="ListenedList.Masters.Genius" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="background-color:#D2B48C;">
+<html xmlns="http://www.w3.org/1999/xhtml" style="background-color: #D2B48C;">
 <head runat="server">
     <title>Phisherman's Guide</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -10,21 +10,23 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>--%>
     <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.4.0.min.js"></script>--%>
-    
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
+
+    <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form runat="server" id="mainForm">
-     <ajaxToolkit:ToolkitScriptManager ID="tksm1" EnablePartialRendering="true" runat="server"
+    <ajaxToolkit:ToolkitScriptManager ID="tksm1" EnablePartialRendering="true" runat="server"
         CombineScripts="false">
     </ajaxToolkit:ToolkitScriptManager>
     <div id="topPan">
         <%--<a href="http://www.free-css.com/">
             <img src="images/genius/logo.gif" alt="Genious Web" width="208" height="58" border="0"
                 title="Genious Web" /></a>--%>
-        <div style="float: right; color:Black;">
+        <div style="float: right; color: Black;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>
                     [ <a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a>
@@ -40,7 +42,7 @@
                 </LoggedInTemplate>
             </asp:LoginView>
         </div>
-        <div style="font-size: 3em; font-weight: 700; padding-top:40px; color:Black;">
+        <div style="font-size: 3em; font-weight: 700; padding-top: 40px; color: Black;">
             Phisherman's Guide
         </div>
         <ul>
@@ -48,6 +50,7 @@
             <li><a href="../Default.aspx">Main</a></li>
             <li><a href="../AddShows.aspx">Multi-Adder</a></li>
             <li><a href="../Tags.aspx">Tags</a></li>
+            <li><a href="../Search.aspx">Search</a></li>
             <li><a href="../Settings.aspx">Settings</a></li>
             <%--<li><a href="../Logout.aspx">Log Out</a></li>--%>
             <%--<li><a href="http://www.free-css.com/">Clients</a></li>
@@ -62,10 +65,10 @@
   </ul>--%>
     </div>
     <%--<div id="bodytopmainPan">--%>
-        <div id="bodytopPan">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+    <div id="bodytopPan">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
     <%--</div>--%>
     </form>
     <%--<div id="footermainPan">
