@@ -28,6 +28,7 @@ namespace ListenedList
         }
 
         private void Bind() {
+            ResetPanels();
 
             //Gets all the public UserProfiles except for the person logged in
             var profiles = ProfileService.GetPublicProfiles( User.Identity.Name );
@@ -57,6 +58,7 @@ namespace ListenedList
 
         public void btnSearchUser_Click( object sender, EventArgs e ) {
             lblResultsType.Text = "User Name Search";
+            phReset.Visible = true;
 
             var list = new List<LatestProfile>();
             var profiles = ProfileService.GetProfilesLikeUserName( txtUserName.Text );
@@ -69,6 +71,10 @@ namespace ListenedList
 
             rptResults.DataSource = profiles;
             rptResults.DataBind();
+        }
+
+        private void ResetPanels() {
+            phReset.Visible = false;
         }
     }
 }

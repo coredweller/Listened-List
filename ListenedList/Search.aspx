@@ -13,14 +13,16 @@
             User Name:
             <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnSearchUser" runat="server" Text="Search" OnClick="btnSearchUser_Click" />
-            <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
         </div>
         <br />
         <br />
         <br />
-        <h3>
+        <p style="font-size: 1.3em; font-weight: 500;">
             <asp:Label ID="lblResultsType" runat="server" Text="15 Most Recently Changed Guides"></asp:Label>
-        </h3>
+            <asp:PlaceHolder ID="phReset" runat="server" Visible="false">
+                &nbsp;---&nbsp;<asp:LinkButton ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
+            </asp:PlaceHolder>
+        </p>
         <br />
         <asp:Repeater ID="rptResults" runat="server">
             <HeaderTemplate>
