@@ -16,7 +16,18 @@
             Cancel: 11
         }
 
+        function getURLParameter(name) {
+            return decodeURIComponent((location.search.match(RegExp("[?|&]" + name + '=(.+?)(&|$)')) || [, null])[1]);
+        }
+
         $(document).ready(function () {
+
+            var readOnly = getURLParameter("userName");
+
+            if (readOnly != "null") {
+                $(":input").attr('disabled', true);
+                return;
+            }
 
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
@@ -141,6 +152,15 @@
     </div>
     <br />
     <br />
+    <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
+        <br />
+        <br />
+        <div style="font-size: 2.8em; font-weight: 500; color:Red;">
+        PROFILE IS PRIVATE
+    </div>
+        <br />
+        <br />
+    </asp:PlaceHolder>
     <fieldset>
         <div style="font-size: 1.5em; font-weight: 600;">
             Legend:&nbsp;&nbsp;&nbsp;&nbsp;

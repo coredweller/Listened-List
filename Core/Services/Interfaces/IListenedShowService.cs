@@ -14,5 +14,6 @@ namespace Core.Services.Interfaces
         IListenedShow GetByUserAndShowId( Guid userId, Guid showId );
         IQueryable<IListenedShow> GetByUser( Guid userId );
         IDictionary<IShow, IListenedShow> GetShowsByYear( int year, Guid userId );
+        IList<IListenedShow> GetByUserIds( IList<Guid> userIds );
     }
 }

@@ -66,6 +66,22 @@ namespace Core.Services
             return dict;
         }
 
+        public IList<IListenedShow> GetByUserIds( IList<Guid> userIds ) {
+            IList<IListenedShow> shows = new List<IListenedShow>();
+
+            foreach( var u in userIds){
+                var latest = GetLatestByUserId( u );
+
+                if ( latest != null ) shows.Add( latest );
+            }
+
+            return shows.OrderByDescending( x => x.UpdatedDate ).ToList();
+        }
+
+        public IListenedShow GetLatestByUserId( Guid userId ) {
+            return GetByUser( userId ).OrderByDescending( x => x.UpdatedDate ).Take( 1 ).SingleOrDefault();
+        }
+
         public void SaveCommit(IListenedShow show, out bool success)
         {
             using (IUnitOfWork u = UnitOfWork.Begin())

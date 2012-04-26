@@ -14,7 +14,8 @@ namespace Data.DomainObjects
                 ShowId = showId,
                 Status = status,
                 UserId = userId,
-                ShowDate = showDate
+                ShowDate = showDate,
+                UpdatedDate = Constants.Now()
             };
 
             return show;

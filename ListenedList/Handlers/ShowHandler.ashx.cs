@@ -9,6 +9,7 @@ using Core.Infrastructure.Logging;
 using Core.Helpers.JSON;
 using System.Text;
 using Core.Services.Interfaces;
+using Core.Helpers;
 
 namespace ListenedList.Handlers
 {
@@ -62,6 +63,7 @@ namespace ListenedList.Handlers
                             if ( status == (int)ListenedStatus.EditNotes ) status = prevStatus;
 
                             listenedShow.Status = status;
+                            listenedShow.UpdatedDate = Constants.Now();
 
                             writer.Write( string.Format( "Updating listenedShow with Id:{0}, from the status: {1}, to the status: {2}", listenedShow.Id, prevStatus, status ) );
                             uow.Commit();

@@ -72,6 +72,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Notes.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="Styles\geniusStyle.css" />
     <Content Include="Styles\Listened.css" />
@@ -182,6 +183,13 @@
     </Compile>
     <Compile Include="Masters\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>

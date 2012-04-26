@@ -1,5 +1,10 @@
 ﻿using Core.Membership;
 using Core.Services.Interfaces;
+using System.Collections.Generic;
+using System.Web.Profile;
+using System;
+using System.Linq;
+using Core.Extensions;
 
 namespace Core.Services
 {
@@ -9,6 +14,54 @@ namespace Core.Services
 
         public ProfileService( string userName ) {
             _Profile = UserProfile.GetUserProfile( userName );
+        }
+
+        /// <summary>
+        /// Gets all profiles
+        /// </summary>
+        /// <returns></returns>
+        private static ProfileInfoCollection GetAllProfiles() {
+            return ProfileManager.GetAllProfiles( ProfileAuthenticationOption.All );
+        }
+
+        /// <summary>
+        /// Gets all public profiles
+        /// </summary>
+        /// <returns></returns>
+        public static IList<UserProfile> GetPublicProfiles() {
+            return GetPublicProfiles(string.Empty);
+        }
+
+        /// <summary>
+        /// Gets public profiles except you
+        /// </summary>
+        /// <returns></returns>
+        public static IList<UserProfile> GetPublicProfiles( string you ) {
+            var publicProfiles = new List<UserProfile>();
+
+            foreach ( ProfileInfo profile in GetAllProfiles() ) {
+                UserProfile p = UserProfile.GetUserProfile( profile.UserName );
+
+                if ( p.Public.HasValue && p.Public.Value && p.UserName != you ) publicProfiles.Add( p );
+            }
+
+            return publicProfiles;
+        }
+
+        public static IList<UserProfile> GetProfilesLikeUserName( string userName ) {
+
+            if ( string.IsNullOrEmpty( userName ) || string.IsNullOrWhiteSpace( userName ) ) return null;
+
+            var profiles = new List<UserProfile>();
+
+            foreach ( ProfileInfo profile in GetAllProfiles() ) {
+                if ( profile.UserName == userName || profile.UserName.Contains( userName ) ) {
+                    UserProfile p = UserProfile.GetUserProfile( profile.UserName );
+                    profiles.Add( p );
+                }
+            }
+
+            return profiles;
         }
 
         /// <summary>

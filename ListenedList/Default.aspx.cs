@@ -26,7 +26,28 @@ namespace ListenedList
         }
 
         private void Bind() {
-            var userId = GetUserId();
+            ResetPanels();
+
+            Guid userId;
+
+            userId = GetUserId();
+
+            if ( !string.IsNullOrEmpty( Request["userName"] ) ) {
+                var user = _MembershipProvider.GetUser( Request["userName"] );
+
+                if ( user == null ) return;
+
+                var profileService = new ProfileService( user.UserName );
+                var userProfile = profileService.GetUserProfile();
+
+                if ( !userProfile.Public.HasValue || ( userProfile.Public.HasValue && userProfile.Public.Value == false ) ) {
+                    phPrivate.Visible = true;
+                    return;
+                }
+
+                userId = new Guid( user.ProviderUserKey.ToString() );
+
+            }
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
             var listenedShows = listenedShowService.GetByUser( userId );
@@ -58,6 +79,10 @@ namespace ListenedList
             yearBox97.Shows = shows;
             yearBox98.Shows = shows;
             yearBox99.Shows = shows;
+        }
+
+        private void ResetPanels() {
+            phPrivate.Visible = false;
         }
 
         protected override void OnInit( EventArgs e ) {

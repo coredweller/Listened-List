@@ -63,7 +63,17 @@ namespace ListenedList
         }
 
         public Guid GetUserId() {
-            return new Guid( _MembershipProvider.GetUser( User.Identity.Name ).ProviderUserKey.ToString() );
+            return GetUserId( User.Identity.Name );
+        }
+
+        public Guid GetUserId( string userName ) {
+
+            var user = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
+            if ( user != null ) {
+                return new Guid(user);
+            }
+
+            return Guid.Empty;
         }
 
         protected override void OnLoad(EventArgs e)
