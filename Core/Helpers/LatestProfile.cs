@@ -9,11 +9,13 @@ namespace Core.Helpers
 {
     public class LatestProfile
     {
-        public IListenedShow LatestShow { get; set; }
+        public IListenedShow LatestListenedShow { get; set; }
+        public IShow LatestShow { get; set; }
         public UserProfile Profile { get; set; }
 
-        public LatestProfile( IListenedShow latestShow, UserProfile profile ) {
-            LatestShow = latestShow;
+        public LatestProfile( IListenedShow latestShow, IShow show, UserProfile profile ) {
+            LatestListenedShow = latestShow;
+            LatestShow = show;
             Profile = profile;
         }
     }

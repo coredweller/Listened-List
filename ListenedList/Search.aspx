@@ -31,15 +31,18 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:LinkButton ID="lnkSubscribe" runat="server" CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Membership.UserProfile)Container.DataItem).UserName %>'
+                        <asp:LinkButton ID="lnkSubscribe" runat="server" CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
                             Text="Subscribe"></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:HyperLink NavigateUrl='<%# ((Core.Membership.UserProfile)Container.DataItem).Public == true ? "Default.aspx?userName=" + ((Core.Membership.UserProfile)Container.DataItem).UserName : "" %>'
-                            runat="server" Text='<%# ((Core.Membership.UserProfile)Container.DataItem).UserName %>'></asp:HyperLink>
+                        <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
+                            runat="server" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink>
                     </td>
                     <td>
-                        <%# ((Core.Membership.UserProfile)Container.DataItem).Public == true ? "Public" : "Private" %>
+                        <%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Public" : "Private" %>
+                    </td>
+                    <td>
+                        Latest Updated Show: <%# ((Core.Helpers.LatestProfile)Container.DataItem).LatestShow.GetShowName() %>
                     </td>
                 </tr>
             </ItemTemplate>

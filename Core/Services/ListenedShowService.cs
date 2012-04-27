@@ -79,7 +79,18 @@ namespace Core.Services
         }
 
         public IListenedShow GetLatestByUserId( Guid userId ) {
-            return GetByUser( userId ).OrderByDescending( x => x.UpdatedDate ).Take( 1 ).SingleOrDefault();
+
+            var x1 = GetByUser( userId );
+                ///LEFT OFF HERE TRYING TO FIGURE OUT WHY THERE IS NOTHING RETURNED
+                var x2 = x1.OrderByDescending( x => x.UpdatedDate );
+            
+            var x3 = x2.Take( 1 );
+            
+            var x4 = x3.SingleOrDefault();
+
+            return null;
+
+            //return GetByUser( userId ).OrderByDescending( x => x.UpdatedDate ).Take( 1 ).SingleOrDefault();
         }
 
         public void SaveCommit(IListenedShow show, out bool success)

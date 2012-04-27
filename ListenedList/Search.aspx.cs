@@ -43,16 +43,20 @@ namespace ListenedList
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
 
+            var userIds = publicUsers.Select( x => new Guid( x.ProviderUserKey.ToString() ) ).ToList();
+
             //Gets the 15 latest updated ListenedShows by a list of user Ids
-            var latestlistened = listenedShowService.GetByUserIds( publicUsers.Select( x => new Guid( x.ProviderUserKey.ToString() ) ).ToList() ).Take( 15 );
+            var latestlistened = listenedShowService.GetByUserIds( userIds ).ToList().Take( 15 ).ToList();
+            var showService = Ioc.GetInstance<IShowService>();
 
             var latestProfiles = ( from l in latestlistened
                                    from u in publicUsers
-                                   from p in profiles
-                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName
-                                   select new LatestProfile( l, p ) ).ToList();
+                                   //from p in profiles
+                                   //from s in showService.GetAllShows()
+                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) //&& u.UserName == p.UserName //&& l.ShowId == s.Id
+                                   select new LatestProfile( l, null, null ) ).ToList();
 
-            rptResults.DataSource = profiles;
+            rptResults.DataSource = latestProfiles;
             rptResults.DataBind();
         }
 
@@ -64,9 +68,15 @@ namespace ListenedList
             var profiles = ProfileService.GetProfilesLikeUserName( txtUserName.Text );
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-            foreach( var profile in profiles){
+            foreach ( var profile in profiles ) {
                 var latest = listenedShowService.GetLatestByUserId( GetUserId( profile.UserName ) );
 
+                if ( latest != null ) {
+                    var showService = Ioc.GetInstance<IShowService>();
+                    var show = showService.GetShow( latest.ShowId );
+
+                    list.Add( new LatestProfile( latest, show, profile ) );
+                }
             }
 
             rptResults.DataSource = profiles;
