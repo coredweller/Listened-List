@@ -6,24 +6,12 @@
 
 <asp:Content ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
-        //Consider moving this to an external JS file
-        var ListenedStatus = {
-            None: 0,
-            InProgress: 1,
-            Finished: 2,
-            NeedToListen: 3,
-            EditNotes: 5,
-            Cancel: 11
-        }
-
-        function getURLParameter(name) {
-            return decodeURIComponent((location.search.match(RegExp("[?|&]" + name + '=(.+?)(&|$)')) || [, null])[1]);
-        }
-
         $(document).ready(function () {
 
+            //Looks for userName in the URL
             var readOnly = getURLParameter("userName");
 
+            //If a userName is in the URL then disable the buttons
             if (readOnly != "null") {
                 $(":input").attr('disabled', true);
                 return;
@@ -45,10 +33,10 @@
                 var notesUrl = "Notes.aspx?showDate=";
 
                 //The RGB value of Orange
-                var orangeColor = "rgb(255, 165, 0)";
+                var orangeColor = "defaultButtonOrange";
 
                 //The button's current background color
-                var currentColor = $(button).css("background-color");
+                var currentColor = $(button).attr("class");
 
                 //If the button's current color is orange meaning the show is already finished
                 if (currentColor == orangeColor) {
@@ -110,8 +98,11 @@
                                     //Get the color based on the NEW listened status
                                     color = GetColor(status);
 
-                                    //Set the button's background color to the new color
-                                    $(button).css("background-color", color);
+                                    //Remove all css classes
+                                    $(button).removeClass();
+
+                                    //Set the button's css class to the new color
+                                    $(button).addClass(color);
                                 }
 
                                 //Set the pages focus back on the clicked button, this is so if the button is all the way
@@ -127,21 +118,6 @@
 
             });
         });
-
-        function GetColor(status) {
-            switch (status) {
-                case ListenedStatus.InProgress:
-                    return "Yellow";
-                case ListenedStatus.Finished:
-                    return "Orange";
-                case ListenedStatus.NeedToListen:
-                    return "GreenYellow";
-            }
-
-            //Everything else default to white
-            return "White";
-        }
-    
     </script>
 </asp:Content>
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
@@ -155,24 +131,24 @@
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />
         <br />
-        <div style="font-size: 2.8em; font-weight: 500; color:Red;">
-        PROFILE IS PRIVATE
-    </div>
+        <div style="font-size: 2.8em; font-weight: 500; color: Red;">
+            PROFILE IS PRIVATE
+        </div>
         <br />
         <br />
     </asp:PlaceHolder>
     <fieldset>
         <div style="font-size: 1.5em; font-weight: 600;">
             Legend:&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button1" runat="server" CssClass="textLeft" Width="88px" BackColor='White'
+            <asp:Button ID="Button1" runat="server" CssClass="defaultButtonWhite" Width="110px"
                 Enabled="false" Text="Never Heard"></asp:Button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Width="85px" Enabled="false" BackColor='Yellow'
-                Text="In Progress"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button3" runat="server" Width="75px" Enabled="false" BackColor='Orange'
-                Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button4" runat="server" Width="99px" Enabled="false" BackColor="GreenYellow"
-                Text="Need to Listen" />
+            <asp:Button ID="Button2" runat="server" Enabled="false" CssClass="defaultButtonYellow"
+                Width="110px" Text="In Progress"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button3" runat="server" Enabled="false" CssClass="defaultButtonOrange"
+                Width="110px" Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button4" runat="server" Enabled="false" CssClass="defaultButtonGreen"
+                Width="120px" Text="Need to Listen" />
         </div>
     </fieldset>
     <br />

@@ -12,6 +12,8 @@
     <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.4.0.min.js"></script>--%>
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
 
+    <script type="text/javascript" src="/Scripts/extra.js"></script>
+
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <asp:ContentPlaceHolder ID="Head" runat="server">

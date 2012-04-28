@@ -55,6 +55,19 @@ namespace ListenedList.Controls
             rptShows.DataBind();
         }
 
+        public string GetCssClass( int status ) {
+            switch ( status ) {
+                case (int)ListenedStatus.InProgress:
+                    return "defaultButtonYellow";
+                case (int)ListenedStatus.Finished:
+                    return "defaultButtonOrange";
+                case (int)ListenedStatus.NeedToListen:
+                    return "defaultButtonGreen";
+            }
+
+            return "defaultButtonWhite";
+        }
+
         public Color GetStatus( int status ) {
             switch ( status ) {
                 case (int)ListenedStatus.InProgress:

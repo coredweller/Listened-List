@@ -49,12 +49,15 @@ namespace ListenedList
             var latestlistened = listenedShowService.GetByUserIds( userIds ).ToList().Take( 15 ).ToList();
             var showService = Ioc.GetInstance<IShowService>();
 
+            //Matches membershipUsers by user id to listened show user ids, 
+            // user profile user names to membershipUsers user names, 
+            //  and listened show show ids to all show ids 
             var latestProfiles = ( from l in latestlistened
                                    from u in publicUsers
-                                   //from p in profiles
-                                   //from s in showService.GetAllShows()
-                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) //&& u.UserName == p.UserName //&& l.ShowId == s.Id
-                                   select new LatestProfile( l, null, null ) ).ToList();
+                                   from p in profiles
+                                   from s in showService.GetAllShows()
+                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName && l.ShowId == s.Id
+                                   select new LatestProfile( l, s, p ) ).ToList();
 
             rptResults.DataSource = latestProfiles;
             rptResults.DataBind();
@@ -79,7 +82,7 @@ namespace ListenedList
                 }
             }
 
-            rptResults.DataSource = profiles;
+            rptResults.DataSource = list;
             rptResults.DataBind();
         }
 

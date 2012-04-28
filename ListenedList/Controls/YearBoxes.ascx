@@ -11,7 +11,8 @@
         </HeaderTemplate>
         <ItemTemplate>
             <td>
-                <asp:Button Style="padding-left:0px;" runat="server" Width="77px" BackColor='<%# GetStatus((int)Eval("Status")) %>'
+             <%--Width="77px"  BackColor='<%# GetStatus((int)Eval("Status")) %>' Style="padding-left:0px;"  --%>
+                <asp:Button CssClass='<%# GetCssClass((int)Eval("Status")) %>' runat="server" Width="100px"
                     Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>' ToolTip='<%# Eval("ShowName") %>'></asp:Button>
             </td>
         </ItemTemplate>
