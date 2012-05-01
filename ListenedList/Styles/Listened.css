@@ -321,6 +321,73 @@
 
 
 
+
+/*------------Search Page Buttons----------*/
+
+.subscribeButton {
+	-moz-box-shadow:inset 0px 0px 0px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #dcecfb;
+	box-shadow:inset 0px 0px 0px 0px #dcecfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2a65a1), color-stop(1, #0080ff) );
+	background:-moz-linear-gradient( center top, #2a65a1 5%, #0080ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a65a1', endColorstr='#0080ff');
+	background-color:#2a65a1;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Comic Sans MS;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 23px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #528ecc;
+}.subscribeButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0080ff), color-stop(1, #2a65a1) );
+	background:-moz-linear-gradient( center top, #0080ff 5%, #2a65a1 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0080ff', endColorstr='#2a65a1');
+	background-color:#0080ff;
+}.subscribeButton:active {
+	position:relative;
+	top:1px;
+}
+
+.subscribedButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc8d83), color-stop(1, #e4685d) );
+	background:-moz-linear-gradient( center top, #fc8d83 5%, #e4685d 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc8d83', endColorstr='#e4685d');
+	background-color:#fc8d83;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:2px 2px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #b23e35;
+}.subscribedButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e4685d), color-stop(1, #fc8d83) );
+	background:-moz-linear-gradient( center top, #e4685d 5%, #fc8d83 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4685d', endColorstr='#fc8d83');
+	background-color:#e4685d;
+}.subscribedButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
 /*-------------Misc----------*/
 .textLeft
 {

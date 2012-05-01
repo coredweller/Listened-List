@@ -103,6 +103,14 @@ namespace Data.Repository
 				return this.GetTable<Data.DomainObjects.ShowTag>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Data.DomainObjects.Subscription> Subscriptions
+		{
+			get
+			{
+				return this.GetTable<Data.DomainObjects.Subscription>();
+			}
+		}
 	}
 }
 namespace Data.DomainObjects
@@ -1332,6 +1340,141 @@ namespace Data.DomainObjects
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Subscription")]
+	public partial class Subscription
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Guid _UserId;
+		
+		private System.Guid _SubscribedUserId;
+		
+		private System.DateTime _CreatedDate;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private bool _Deleted;
+		
+		public Subscription()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SubscriptionId", Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubscribedUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid SubscribedUserId
+		{
+			get
+			{
+				return this._SubscribedUserId;
+			}
+			set
+			{
+				if ((this._SubscribedUserId != value))
+				{
+					this._SubscribedUserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit NOT NULL")]
+		public bool Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this._Deleted = value;
+				}
 			}
 		}
 	}

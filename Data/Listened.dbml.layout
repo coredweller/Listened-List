@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.625" name="Listened">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 9.625" name="Listened">
   <DataContextMoniker Name="/Database" />
   <nestedChildShapes>
     <classShape Id="d0b66aff-6056-4f4b-9dd3-2ff9df39142b" absoluteBounds="6.125, 1.375, 2, 3.3093082682291666">
@@ -47,5 +47,11 @@
         <classShapeMoniker Id="4bb5f068-236a-4a8a-afd4-bdd47e086f9e" />
       </nodes>
     </associationConnector>
+    <classShape Id="98bd2300-59db-4c65-9219-94d7f6dab7fa" absoluteBounds="9.375, 1.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/Database/Subscription" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6c60f50a-8367-4cab-ac66-c92c9423d7f9" absoluteBounds="9.39, 2.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

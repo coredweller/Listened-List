@@ -6,7 +6,7 @@ namespace Data.DomainObjects
 {
     public class DomainObjectFactory : IDomainObjectFactory
     {
-        public IListenedShow CreateListenedShow(Guid showId, Guid userId, DateTime showDate, int status, string notes) {
+        public IListenedShow CreateListenedShow( Guid showId, Guid userId, DateTime showDate, int status, string notes ) {
             ListenedShow show = new ListenedShow {
                 CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
@@ -57,6 +57,17 @@ namespace Data.DomainObjects
             };
 
             return tag;
+        }
+
+        public ISubscription CreateSubscription( Guid userId, Guid subscribedUserId ) {
+            Subscription subscription = new Subscription() {
+                CreatedDate = Constants.Now(),
+                Id = Guid.NewGuid(),
+                SubscribedUserId = subscribedUserId,
+                UserId = userId
+            };
+
+            return subscription;
         }
     }
 }

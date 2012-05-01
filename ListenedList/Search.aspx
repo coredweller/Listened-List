@@ -24,25 +24,25 @@
             </asp:PlaceHolder>
         </p>
         <br />
-        <asp:Repeater ID="rptResults" runat="server">
+        <asp:Repeater ID="rptResults" runat="server" OnItemCommand="rptResults_ItemCommand">
             <HeaderTemplate>
                 <table>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
-                        <asp:LinkButton ID="lnkSubscribe" runat="server" CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
+                    <td><%# %>
+                        <asp:LinkButton ID="lnkSubscribe" runat="server" CssClass="subscribeButton" CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
                             Text="Subscribe"></asp:LinkButton>
                     </td>
                     <td>
                         <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
-                            runat="server" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink>
+                            runat="server" style="font-size:larger;" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink>----
                     </td>
                     <td>
-                        <%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Public" : "Private" %>
+                        <%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Public" : "Private" %>----
                     </td>
                     <td>
-                        Latest Updated Show: <%# ((Core.Helpers.LatestProfile)Container.DataItem).LatestShow.GetShowName() %>
+                        Last Updated Show: <%# ((Core.Helpers.LatestProfile)Container.DataItem).LatestShow.GetShowName() %>
                     </td>
                 </tr>
             </ItemTemplate>

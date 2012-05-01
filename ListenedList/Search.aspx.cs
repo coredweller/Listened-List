@@ -48,6 +48,7 @@ namespace ListenedList
             //Gets the 15 latest updated ListenedShows by a list of user Ids
             var latestlistened = listenedShowService.GetByUserIds( userIds ).ToList().Take( 15 ).ToList();
             var showService = Ioc.GetInstance<IShowService>();
+            var subscriptionService = Ioc.GetInstance<ISubscriptionService>();
 
             //Matches membershipUsers by user id to listened show user ids, 
             // user profile user names to membershipUsers user names, 
@@ -56,11 +57,43 @@ namespace ListenedList
                                    from u in publicUsers
                                    from p in profiles
                                    from s in showService.GetAllShows()
-                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName && l.ShowId == s.Id
-                                   select new LatestProfile( l, s, p ) ).ToList();
+                                   from sub in subscriptionService.GetSubscriptionsByUser( GetUserId() )
+                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName && l.ShowId == s.Id && l.UserId == sub.SubscribedUserId
+                                   select new LatestProfile( l, s, p, sub ) ).ToList();
 
             rptResults.DataSource = latestProfiles;
             rptResults.DataBind();
+        }
+
+        public void rptResults_ItemCommand( object source, RepeaterCommandEventArgs e ) {
+            switch ( e.CommandName.ToLower() ) {
+                case "subscribe":
+                    Subscribe( e.CommandArgument.ToString() );
+                    break;
+            }
+        }
+
+        private void Subscribe( string userName ) {
+            var user = _MembershipProvider.GetUser( userName );
+
+            if ( user == null ) return;
+
+            var subscribedUserId = new Guid( user.ProviderUserKey.ToString() );
+            var userId = GetUserId();
+
+            var subscription = _DomainObjectFactory.CreateSubscription( userId, subscribedUserId );
+
+            var subscriptionService = Ioc.GetInstance<ISubscriptionService>();
+
+            var success = false;
+            subscriptionService.SaveCommit( subscription, out success );
+
+            if ( success ) {
+                //FINISH THIS
+            }
+            else {
+                //FINISH THIS
+            }
         }
 
         public void btnSearchUser_Click( object sender, EventArgs e ) {
@@ -71,14 +104,19 @@ namespace ListenedList
             var profiles = ProfileService.GetProfilesLikeUserName( txtUserName.Text );
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
+            var subscriptionService = Ioc.GetInstance<ISubscriptionService>();
+
+            var subscriptions = subscriptionService.GetSubscriptionsByUser( GetUserId() );
             foreach ( var profile in profiles ) {
-                var latest = listenedShowService.GetLatestByUserId( GetUserId( profile.UserName ) );
+                var userId = GetUserId( profile.UserName );
+                var latest = listenedShowService.GetLatestByUserId( userId );
 
                 if ( latest != null ) {
                     var showService = Ioc.GetInstance<IShowService>();
                     var show = showService.GetShow( latest.ShowId );
+                    var sub = subscriptions.SingleOrDefault( x => x.SubscribedUserId == latest.UserId );
 
-                    list.Add( new LatestProfile( latest, show, profile ) );
+                    list.Add( new LatestProfile( latest, show, profile, sub ) );
                 }
             }
 

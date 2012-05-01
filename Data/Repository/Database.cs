@@ -19,7 +19,7 @@ namespace Data.Repository
         public IQueryable<IListenedShow> ListenedShowDataSource { get { return GetQueryable<ListenedShow>().Cast<IListenedShow>(); } }
         public IQueryable<ITag> TagDataSource { get { return GetQueryable<Tag>().Cast<ITag>(); } }
         public IQueryable<IShowTag> ShowTagDataSource { get { return GetQueryable<ShowTag>().Cast<IShowTag>(); } }
-
+        public IQueryable<ISubscription> SubscriptionDataSource { get { return GetQueryable<Subscription>().Cast<ISubscription>(); } }
 
 
 
@@ -28,32 +28,31 @@ namespace Data.Repository
 
 
         //Heavy Lifting Below
-        
-        public virtual IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class
-        {
+
+        public virtual IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class {
             return GetTable<TEntity>();
         }
 
-         [DebuggerStepThrough]
+        [DebuggerStepThrough]
         public virtual ITable GetEditable<TEntity>() where TEntity : class {
             return GetTable<TEntity>();
         }
-        
+
         [DebuggerStepThrough]
         public virtual IList<TEntity> InsertChangeSet<TEntity>() where TEntity : class {
-            var items = GetChangeSet().Inserts.Where( x => x.GetType() == typeof(TEntity) );
+            var items = GetChangeSet().Inserts.Where( x => x.GetType() == typeof( TEntity ) );
             return items.Cast<TEntity>().ToList();
         }
-        
+
         [DebuggerStepThrough]
         public virtual IList<TEntity> UpdateChangeSet<TEntity>() where TEntity : class {
-            var items = GetChangeSet().Updates.Where( x => x.GetType() == typeof(TEntity) );
+            var items = GetChangeSet().Updates.Where( x => x.GetType() == typeof( TEntity ) );
             return items.Cast<TEntity>().ToList();
         }
-        
+
         [DebuggerStepThrough]
         public virtual IList<TEntity> DeleteChangeSet<TEntity>() where TEntity : class {
-            var items = GetChangeSet().Deletes.Where( x => x.GetType() == typeof(TEntity) );
+            var items = GetChangeSet().Deletes.Where( x => x.GetType() == typeof( TEntity ) );
             return items.Cast<TEntity>().ToList();
         }
 
@@ -79,14 +78,13 @@ namespace Data.Repository
 
         protected new void Dispose( bool disposing ) {
 
-            if (base.Connection != null)
-                if (base.Connection.State != System.Data.ConnectionState.Closed)
-                {
+            if ( base.Connection != null )
+                if ( base.Connection.State != System.Data.ConnectionState.Closed ) {
                     base.Connection.Close();
                     base.Connection.Dispose();
                 }
 
-            base.Dispose();            
+            base.Dispose();
 
         }
     }

@@ -7,8 +7,8 @@ namespace Core.Services.Interfaces
 {
     public interface IBase<T>
     {
-        void SaveCommit( T show, out bool success );
-        void Save( T show, out bool success );
-        void Delete( T show );
+        void SaveCommit( T item, out bool success );
+        void Save( T item, out bool success );
+        void Delete( T item );
     }
 }

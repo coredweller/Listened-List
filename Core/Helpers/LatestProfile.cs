@@ -12,11 +12,21 @@ namespace Core.Helpers
         public IListenedShow LatestListenedShow { get; set; }
         public IShow LatestShow { get; set; }
         public UserProfile Profile { get; set; }
+        public ISubscription Subscription { get; set; }
+        public bool Subscribed {
+            get {
+                return false;///LEFT OFF HERE
+            }
+            set {
+                Subscribed = value;
+            }
+        }
 
-        public LatestProfile( IListenedShow latestShow, IShow show, UserProfile profile ) {
+        public LatestProfile( IListenedShow latestShow, IShow show, UserProfile profile, ISubscription subscription ) {
             LatestListenedShow = latestShow;
             LatestShow = show;
             Profile = profile;
+            Subscription = subscription;
         }
     }
 }

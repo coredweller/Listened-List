@@ -41,6 +41,10 @@ namespace Core
             For<IShowTagService>()
                 .HybridHttpOrThreadLocalScoped()
                 .Use<ShowTagService>();
+
+            For<ISubscriptionService>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<SubscriptionService>();
         }
     }
 }
