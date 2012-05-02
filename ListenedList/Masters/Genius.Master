@@ -11,9 +11,7 @@
     <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>--%>
     <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.4.0.min.js"></script>--%>
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
-
     <script type="text/javascript" src="/Scripts/extra.js"></script>
-
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <asp:ContentPlaceHolder ID="Head" runat="server">
@@ -31,8 +29,7 @@
         <div style="float: right; color: Black;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>
-                    [ <a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a>
-                    ]
+                    [ <a href="../Login.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
                 </AnonymousTemplate>
                 <LoggedInTemplate>
                     Welcome <span class="bold">
