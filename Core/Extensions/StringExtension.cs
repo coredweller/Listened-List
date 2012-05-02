@@ -29,6 +29,14 @@ namespace Core
             return !string.IsNullOrEmpty(target) && EmailExpression.IsMatch(target);
         }
 
+        public static bool IsNullEmptyOrWhitespace( this string target ) {
+            target = target.Trim();
+
+            if ( target == null || target == string.Empty || target == " " ) return true;
+
+            return false;
+        }
+
         public static string NullSafe(this string target)
         {
             try
