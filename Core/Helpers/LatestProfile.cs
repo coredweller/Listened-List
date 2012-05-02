@@ -15,7 +15,8 @@ namespace Core.Helpers
         public ISubscription Subscription { get; set; }
         public bool Subscribed {
             get {
-                return false;///LEFT OFF HERE
+                return LatestListenedShow != null && Subscription != null ? LatestListenedShow.UserId == Subscription.SubscribedUserId : false;
+                ///LEFT OFF HERE
             }
             set {
                 Subscribed = value;

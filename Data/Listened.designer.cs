@@ -40,6 +40,9 @@ namespace Data.Repository
     partial void InsertShowTag(Data.DomainObjects.ShowTag instance);
     partial void UpdateShowTag(Data.DomainObjects.ShowTag instance);
     partial void DeleteShowTag(Data.DomainObjects.ShowTag instance);
+    partial void InsertSubscription(Data.DomainObjects.Subscription instance);
+    partial void UpdateSubscription(Data.DomainObjects.Subscription instance);
+    partial void DeleteSubscription(Data.DomainObjects.Subscription instance);
     #endregion
 		
 		public Database() : 
@@ -1345,8 +1348,10 @@ namespace Data.DomainObjects
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Subscription")]
-	public partial class Subscription
+	public partial class Subscription : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private System.Guid _Id;
 		
@@ -1362,11 +1367,32 @@ namespace Data.DomainObjects
 		
 		private bool _Deleted;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
+    partial void OnSubscribedUserIdChanging(System.Guid value);
+    partial void OnSubscribedUserIdChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedChanging(bool value);
+    partial void OnDeletedChanged();
+    #endregion
+		
 		public Subscription()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SubscriptionId", Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SubscriptionId", Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
 		public System.Guid Id
 		{
 			get
@@ -1377,7 +1403,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._Id != value))
 				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
 					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -1393,7 +1423,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._UserId != value))
 				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
 					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
@@ -1409,7 +1443,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._SubscribedUserId != value))
 				{
+					this.OnSubscribedUserIdChanging(value);
+					this.SendPropertyChanging();
 					this._SubscribedUserId = value;
+					this.SendPropertyChanged("SubscribedUserId");
+					this.OnSubscribedUserIdChanged();
 				}
 			}
 		}
@@ -1425,7 +1463,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._CreatedDate != value))
 				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
 					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
 				}
 			}
 		}
@@ -1441,7 +1483,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._UpdatedDate != value))
 				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
 					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
 				}
 			}
 		}
@@ -1457,7 +1503,11 @@ namespace Data.DomainObjects
 			{
 				if ((this._DeletedDate != value))
 				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
 					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
 				}
 			}
 		}
@@ -1473,8 +1523,32 @@ namespace Data.DomainObjects
 			{
 				if ((this._Deleted != value))
 				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
 					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

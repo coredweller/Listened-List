@@ -11,6 +11,7 @@ using Core.Infrastructure;
 using Core.Services.Interfaces;
 using System.Web.Security;
 using Core.Helpers;
+using Core.Helpers.Script;
 
 namespace ListenedList
 {
@@ -29,6 +30,9 @@ namespace ListenedList
 
         private void Bind() {
             ResetPanels();
+
+            //Set search mode off if they are looking at the default or reset to default
+            hdnSearchMode.Value = "false";
 
             //Gets all the public UserProfiles except for the person logged in
             var profiles = ProfileService.GetPublicProfiles( User.Identity.Name );
@@ -57,9 +61,10 @@ namespace ListenedList
                                    from u in publicUsers
                                    from p in profiles
                                    from s in showService.GetAllShows()
-                                   from sub in subscriptionService.GetSubscriptionsByUser( GetUserId() )
-                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName && l.ShowId == s.Id && l.UserId == sub.SubscribedUserId
-                                   select new LatestProfile( l, s, p, sub ) ).ToList();
+                                   join sub in subscriptionService.GetSubscriptionsByUser( GetUserId() ) on l.UserId equals sub.SubscribedUserId into temp
+                                   from t in temp.DefaultIfEmpty()
+                                   where l.UserId == new Guid( u.ProviderUserKey.ToString() ) && u.UserName == p.UserName && l.ShowId == s.Id
+                                   select new LatestProfile( l, s, p, t ) ).ToList();
 
             rptResults.DataSource = latestProfiles;
             rptResults.DataBind();
@@ -88,19 +93,53 @@ namespace ListenedList
             var success = false;
             subscriptionService.SaveCommit( subscription, out success );
 
+            PromptHelper prompt;
             if ( success ) {
-                //FINISH THIS
+                if ( hdnSearchMode.Value == "true" ) {
+                    SearchUser( true );
+                }
+                else {
+                    Bind();
+                }
+
+                prompt = new PromptHelper( "You have successfully subscribed to that user's guide" );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetSuccessScript() );
             }
             else {
-                //FINISH THIS
+                prompt = new PromptHelper( "There was an error subscribing to that user.  Please try again later." );
+                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
             }
         }
 
         public void btnSearchUser_Click( object sender, EventArgs e ) {
+            SearchUser( false );
+        }
+
+        private void SearchUser( bool fromSubscribe ) {
+            var list = new List<LatestProfile>();
+
+            //If there is no text then do not continue
+            if ( string.IsNullOrEmpty( txtUserName.Text ) ) {
+
+                //If it came from Subscribe then just reset to the default
+                if ( fromSubscribe ) {
+                    Bind();
+                }
+                //If it did NOT come from Subscribe then tell them to enter text to search on.
+                else {
+                    var prompt = new PromptHelper( "Please enter the user name or part of the user name in order to search." );
+                    Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
+                }
+
+                return;
+            }
+
             lblResultsType.Text = "User Name Search";
             phReset.Visible = true;
 
-            var list = new List<LatestProfile>();
+            //Set search mode to true so that you know the user was searching on their last view
+            hdnSearchMode.Value = "true";
+
             var profiles = ProfileService.GetProfilesLikeUserName( txtUserName.Text );
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();

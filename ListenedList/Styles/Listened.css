@@ -368,10 +368,10 @@
 	border:1px solid #d83526;
 	display:inline-block;
 	color:#ffffff;
-	font-family:arial;
+	font-family:Comic Sans MS;
 	font-size:15px;
 	font-weight:bold;
-	padding:2px 2px;
+	padding:10px 13px;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #b23e35;
 }.subscribedButton:hover {

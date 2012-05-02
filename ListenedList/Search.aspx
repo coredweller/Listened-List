@@ -19,8 +19,8 @@
         <br />
         <p style="font-size: 1.3em; font-weight: 500;">
             <asp:Label ID="lblResultsType" runat="server" Text="15 Most Recently Changed Guides"></asp:Label>
-            <asp:PlaceHolder ID="phReset" runat="server" Visible="false">
-                &nbsp;---&nbsp;<asp:LinkButton ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
+            <asp:PlaceHolder ID="phReset" runat="server" Visible="false">&nbsp;---&nbsp;<asp:LinkButton
+                ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
             </asp:PlaceHolder>
         </p>
         <br />
@@ -29,20 +29,24 @@
                 <table>
             </HeaderTemplate>
             <ItemTemplate>
-                <tr>
-                    <td><%# %>
-                        <asp:LinkButton ID="lnkSubscribe" runat="server" CssClass="subscribeButton" CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
-                            Text="Subscribe"></asp:LinkButton>
+                <tr style="height: 40px">
+                    <td style="float: right; vertical-align: bottom;">
+                        <asp:LinkButton ID="lnkSubscribe" runat="server" CssClass='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? "subscribedButton" : "subscribeButton" %>'
+                            CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
+                            Enabled='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? false : true %>'
+                            Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? "SUBSCRIBED" : "SUBSCRIBE" %>'></asp:LinkButton>
                     </td>
                     <td>
-                        <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
-                            runat="server" style="font-size:larger;" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink>----
+                        <strong>
+                            <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
+                                runat="server" Style="font-size: larger;" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink></strong>----
                     </td>
                     <td>
                         <%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Public" : "Private" %>----
                     </td>
                     <td>
-                        Last Updated Show: <%# ((Core.Helpers.LatestProfile)Container.DataItem).LatestShow.GetShowName() %>
+                        Last Updated Show:
+                        <%# ((Core.Helpers.LatestProfile)Container.DataItem).LatestShow.GetShowName() %>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -50,4 +54,5 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
+    <asp:HiddenField ID="hdnSearchMode" runat="server" Visible="false" />
 </asp:Content>
