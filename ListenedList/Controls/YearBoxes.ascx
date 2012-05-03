@@ -11,9 +11,10 @@
         </HeaderTemplate>
         <ItemTemplate>
             <td>
-             <%--Width="77px"  BackColor='<%# GetStatus((int)Eval("Status")) %>' Style="padding-left:0px;"  --%>
-                <asp:Button CssClass='<%# GetCssClass((int)Eval("Status")) %>' runat="server" Width="100px"
-                    Text='<%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>' ToolTip='<%# Eval("ShowName") %>'></asp:Button>
+            
+             <%--  BorderStyle="Outset" BorderWidth="5px" BorderColor="Purple" --%>
+                <asp:Button CssClass='<%# GetCssClass(((Core.Helpers.ShowStatus)Container.DataItem).Status, (((Core.Helpers.ShowStatus)Container.DataItem).Attended)) %>' runat="server" Width="100px"
+                    Text='<%# ((Core.Helpers.ShowStatus)Container.DataItem).ShowDate.ToShortDateString() %>' ToolTip='<%# Eval("ShowName") %>'></asp:Button>
             </td>
         </ItemTemplate>
         <FooterTemplate>

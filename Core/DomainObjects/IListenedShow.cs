@@ -14,5 +14,6 @@ namespace Core.DomainObjects
         double? Stars { get; set; }
         int Status { get; set; }
         DateTime ShowDate { get; set; }
+        bool Attended { get; set; }
     }
 }

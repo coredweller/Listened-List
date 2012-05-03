@@ -6,6 +6,7 @@ using Core.DomainObjects;
 using Core.Infrastructure;
 using Core.Repository;
 using Core.Services.Interfaces;
+using System.Web;
 
 namespace Core.Services
 {
@@ -19,8 +20,15 @@ namespace Core.Services
             _repo = repo;
         }
 
-        public IQueryable<IShow> GetAllShows() {
-            return _repo.FindAll();
+        public IList<IShow> GetAllShows() {
+            return _repo.FindAll().ToList();
+            //List<IShow> results = HttpContext.Current.Cache["Show"] as List<IShow>;
+
+            //if ( results == null ) {
+            //    results = _repo.FindAll().ToList();
+            //}
+
+            //return results;
         }
 
         public IShow GetShow( Guid id ) {
@@ -45,13 +53,13 @@ namespace Core.Services
                      select GetShow( showId ) ).ToList();
         }
 
-        public IQueryable<IShow> GetShowsByYear( int year ) {
+        public IList<IShow> GetShowsByYear( int year ) {
             if ( year != 2003 ) {
-                return GetAllShows().Where( x => x.ShowDate.Value.Year == year ).OrderBy( y => y.ShowDate );
+                return GetAllShows().Where( x => x.ShowDate.Value.Year == year ).OrderBy( y => y.ShowDate ).ToList();
             }
 
             //Hack to get 2002 New Years Eve into 2003 shows
-            return GetAllShows().Where( x => x.ShowDate.Value.Year == 2003 || x.ShowDate.Value.Year == 2002 ).OrderBy( y => y.ShowDate );
+            return GetAllShows().Where( x => x.ShowDate.Value.Year == 2003 || x.ShowDate.Value.Year == 2002 ).OrderBy( y => y.ShowDate ).ToList();
         }
 
         public List<ShowStatus> GetShowStatusByYear( int year ) {

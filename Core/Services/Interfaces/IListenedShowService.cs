@@ -16,5 +16,6 @@ namespace Core.Services.Interfaces
         IDictionary<IShow, IListenedShow> GetShowsByYear( int year, Guid userId );
         IList<IListenedShow> GetByUserIds( IList<Guid> userIds );
         IListenedShow GetLatestByUserId( Guid userId );
+        IList<IListenedShow> GetByAttendedForUser( Guid userId );
     }
 }

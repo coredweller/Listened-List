@@ -558,6 +558,8 @@ namespace Data.DomainObjects
 		
 		private System.DateTime _ShowDate;
 		
+		private bool _Attended;
+		
 		private EntityRef<Show> _Show;
 		
     #region Extensibility Method Definitions
@@ -586,6 +588,8 @@ namespace Data.DomainObjects
     partial void OnDeletedChanged();
     partial void OnShowDateChanging(System.DateTime value);
     partial void OnShowDateChanged();
+    partial void OnAttendedChanging(bool value);
+    partial void OnAttendedChanged();
     #endregion
 		
 		public ListenedShow()
@@ -814,6 +818,26 @@ namespace Data.DomainObjects
 					this._ShowDate = value;
 					this.SendPropertyChanged("ShowDate");
 					this.OnShowDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Attended", DbType="Bit NOT NULL")]
+		public bool Attended
+		{
+			get
+			{
+				return this._Attended;
+			}
+			set
+			{
+				if ((this._Attended != value))
+				{
+					this.OnAttendedChanging(value);
+					this.SendPropertyChanging();
+					this._Attended = value;
+					this.SendPropertyChanged("Attended");
+					this.OnAttendedChanged();
 				}
 			}
 		}

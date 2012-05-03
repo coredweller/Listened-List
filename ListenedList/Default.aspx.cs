@@ -54,7 +54,7 @@ namespace ListenedList
 
             List<ShowStatus> shows = new List<ShowStatus>();
             foreach ( var show in listenedShows.ToList() ) {
-                shows.Add( new ShowStatus( show.ShowId, show.Status ) );
+                shows.Add( new ShowStatus( show.ShowId, show.Status, show.Attended ) );
             }
 
             yearBox00.Shows = shows;

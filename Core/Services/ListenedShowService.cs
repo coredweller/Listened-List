@@ -40,6 +40,10 @@ namespace Core.Services
             return _repo.FindByShowId( id );
         }
 
+        public IList<IListenedShow> GetByAttendedForUser( Guid userId ) {
+            return GetAllShows().Where( x => x.UserId == userId && x.Attended ).ToList();
+        }
+
         public IListenedShow GetByUserAndShowId( Guid userId, Guid showId ) {
             return GetAllShows().SingleOrDefault( x => x.UserId == userId && x.ShowId == showId );
         }
