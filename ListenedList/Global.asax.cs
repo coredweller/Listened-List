@@ -7,6 +7,8 @@ using System.Web.SessionState;
 using Core.Infrastructure.Logging;
 using StructureMap;
 using Core.Infrastructure;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ListenedList
 {
@@ -20,7 +22,7 @@ namespace ListenedList
 
             OnStart();
 
-
+            SqlDependency.Start(ConfigurationManager.ConnectionStrings["Listened"].ConnectionString);
         }
 
         protected virtual void OnStart()
@@ -48,7 +50,7 @@ namespace ListenedList
 
         void Application_End( object sender, EventArgs e ) {
             //  Code that runs on application shutdown
-
+            SqlDependency.Stop(ConfigurationManager.ConnectionStrings["Listened"].ConnectionString);
         }
 
         void Application_Error( object sender, EventArgs e ) {

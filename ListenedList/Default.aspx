@@ -55,8 +55,9 @@
                         {buttons: [
                                     { title: 'Finished', value: ListenedStatus.Finished },
                                     { title: 'In Progress', value: ListenedStatus.InProgress },
-                                    { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
                                     { title: 'Never Heard', value: ListenedStatus.None },
+                                    { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
+                                    { title: 'Attended', value: 100 },
                                     { title: 'Edit Notes', value: ListenedStatus.EditNotes },
                                     { title: 'Cancel', value: ListenedStatus.Cancel }
                                   ],

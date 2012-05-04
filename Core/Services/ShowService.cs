@@ -7,6 +7,8 @@ using Core.Infrastructure;
 using Core.Repository;
 using Core.Services.Interfaces;
 using System.Web;
+using LinqToCache;
+using System.Data.SqlClient;
 
 namespace Core.Services
 {
@@ -21,14 +23,21 @@ namespace Core.Services
         }
 
         public IList<IShow> GetAllShows() {
-            return _repo.FindAll().ToList();
-            //List<IShow> results = HttpContext.Current.Cache["Show"] as List<IShow>;
 
-            //if ( results == null ) {
-            //    results = _repo.FindAll().ToList();
-            //}
 
-            //return results;
+            var shows = _repo.FindAll().AsCached( "Shows" );
+                
+            //    , new QueryCachedOptions () {
+            //    OnInvalidate = ( sender, args ) => {
+            //        // This code here is invoked when the query result is invalidated
+            //        // Always check the args parameter to understand the type of invalidation that occured
+            //        if ( SqlNotificationSource.Data == args.NotificationEventArgs.Source
+            //           && SqlNotificationType.Change == args.NotificationEventargs.Type ) {
+            //            // This is a data change notificaiton, the result set has changed
+            //        }
+            //    }
+            //} );
+            return shows.ToList();
         }
 
         public IShow GetShow( Guid id ) {
@@ -45,7 +54,7 @@ namespace Core.Services
         }
 
         public IList<int> GetYears() {
-            return GetAllShows().Select( x => x.ShowDate.Value.Year ).Distinct().OrderByDescending(y => y).ToList();
+            return GetAllShows().Select( x => x.ShowDate.Value.Year ).Distinct().OrderByDescending( y => y ).ToList();
         }
 
         public IList<IShow> GetShows( IList<Guid> showIds ) {

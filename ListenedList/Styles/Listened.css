@@ -521,7 +521,12 @@ div.jqi .jqibuttons
 div.jqi button
 {
     padding: 3px 10px 4px;
-    margin: 0 10px;
+    
+    /* This was changed on 5/4/12
+    
+     margin: 0 10px;   TO */
+     margin: 8px 10px;
+
     /*background-color: #2F6073;*/
     border: solid 1px #f4f4f4;
     /*color: #ffffff;*/
@@ -535,6 +540,7 @@ div.jqi button:hover
 .jqiwarning .jqi .jqibuttons
 {
     background-color: #BF5E26;
+     
 }
 
 
@@ -550,7 +556,7 @@ div.jqi button.jqidefaultbutton
 /* Added on 5/2/12   */
 button#jqi_state0_buttonCancel
 {
-    background-color: Red;
+    background-color: White;
 }
 
 button#jqi_state0_buttonFinished
@@ -575,6 +581,12 @@ button#jqi_state0_buttonNeverHeard
 
 button#jqi_state0_buttonEditNotes
 {
+background-color:Olive;
+}
+
+button#jqi_state0_buttonAttended
+{
+    background-color: Red;
 }
 
 /*-------------------------------- */
