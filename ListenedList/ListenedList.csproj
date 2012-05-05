@@ -72,6 +72,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Notes.aspx" />
+    <Content Include="Scripts\extra.js" />
+    <Content Include="Scripts\jquery-impromptu.4.0.min.js" />
     <Content Include="Search.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="Styles\geniusStyle.css" />

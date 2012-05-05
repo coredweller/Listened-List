@@ -57,7 +57,7 @@
                                     { title: 'In Progress', value: ListenedStatus.InProgress },
                                     { title: 'Never Heard', value: ListenedStatus.None },
                                     { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
-                                    { title: 'Attended', value: 100 },
+                                    { title: 'Attended', value: ListenedStatus.Attended },
                                     { title: 'Edit Notes', value: ListenedStatus.EditNotes },
                                     { title: 'Cancel', value: ListenedStatus.Cancel }
                                   ],
@@ -83,27 +83,33 @@
                                 //If nothing is returned from the Handler then get out of here
                                 if (data == null) return;
 
-                                //There should only be one row of data
-                                var item = data.records[0];
+                                //First Row is whether or not the operation succeeded
+                                var success = data.records[0];
 
                                 //If there is no data in the json then get out of here
-                                if (item == null) return;
+                                if (success == null) return;
 
                                 //Make sure that the Question part of the JSON is success, if it isn't then get out of here
-                                if (item['Question'] != "success") return;
+                                if (success['Question'] != "success") return;
 
                                 //If the success was true then set the color
-                                if (item['Answer'] == "true") {
+                                if (success['Answer'] == "true") {
 
-                                    var color = 0;
+                                    //Second Row is whether the user attended the show
+                                    var attended = data.records[1]['Answer'];
+
+                                    //Third Row is the new status to display to the user
+                                    var displayStatus = data.records[2]['Answer'];
+
+                                    var cssClass = 0;
                                     //Get the color based on the NEW listened status
-                                    color = GetColor(status);
+                                    cssClass = GetCssClass(displayStatus, attended);
 
                                     //Remove all css classes
                                     $(button).removeClass();
 
-                                    //Set the button's css class to the new color
-                                    $(button).addClass(color);
+                                    //Set the button's css class to the new status
+                                    $(button).addClass(cssClass);
                                 }
 
                                 //Set the pages focus back on the clicked button, this is so if the button is all the way

@@ -23,20 +23,17 @@ namespace Core.Services
         }
 
         public IList<IShow> GetAllShows() {
+            var shows = _repo.FindAll().AsCached( "Shows", new CachedQueryOptions() {
+                OnInvalidated = ( sender, args ) => {
+                    // This code here is invoked when the query result is invalidated
+                    // Always check the args parameter to understand the type of invalidation that occured
+                    if ( SqlNotificationSource.Data == args.NotificationEventArgs.Source
+                       && SqlNotificationType.Change == args.NotificationEventArgs.Type ) {
+                        // This is a data change notificaiton, the result set has changed
+                    }
+                }
+            } );
 
-
-            var shows = _repo.FindAll().AsCached( "Shows" );
-                
-            //    , new QueryCachedOptions () {
-            //    OnInvalidate = ( sender, args ) => {
-            //        // This code here is invoked when the query result is invalidated
-            //        // Always check the args parameter to understand the type of invalidation that occured
-            //        if ( SqlNotificationSource.Data == args.NotificationEventArgs.Source
-            //           && SqlNotificationType.Change == args.NotificationEventargs.Type ) {
-            //            // This is a data change notificaiton, the result set has changed
-            //        }
-            //    }
-            //} );
             return shows.ToList();
         }
 

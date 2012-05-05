@@ -32,13 +32,15 @@ namespace ListenedList.Handlers
             int status = 0;
             bool success = false;
             string final;
+            bool displayAttended = false;
+            int displayStatus = 0;
 
             //Get the show date, user id, and status from the request and parse them into concrete types
             if ( !( DateTime.TryParse( sDate, out showDate ) && Guid.TryParse( uId, out userId ) && int.TryParse( st, out status ) ) ) {
                 return;
             }
 
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>();;
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>(); ;
             var showService = new ShowService( Ioc.GetInstance<IShowRepository>() );
 
             var show = showService.GetShow( showDate );
@@ -52,12 +54,14 @@ namespace ListenedList.Handlers
             if ( status == (int)ListenedStatus.EditNotes ) return;
 
             try {
-                
+
                 //If the user has one then update it
                 if ( listenedShow != null ) {
 
                     //if ( status != (int)ListenedStatus.EditNotes ) {
-                        using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+                    using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+
+                        if ( status != (int)ListenedStatus.Attended ) {
                             var prevStatus = listenedShow.Status;
 
                             if ( status == (int)ListenedStatus.EditNotes ) status = prevStatus;
@@ -65,23 +69,50 @@ namespace ListenedList.Handlers
                             listenedShow.Status = status;
                             listenedShow.UpdatedDate = Constants.Now();
 
+                            //For display purposes on Default. 
+                            displayAttended = listenedShow.Attended;
+                            //This needs to be here because if edit notes is the status we need to make sure we take the previous status
+                            displayStatus = status;
+
                             writer.Write( string.Format( "Updating listenedShow with Id:{0}, from the status: {1}, to the status: {2}", listenedShow.Id, prevStatus, status ) );
-                            uow.Commit();
-                            success = true;
-                            writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
+
                         }
+                        else {
+                            //What it was before, make it the opposite
+                            listenedShow.Attended = !listenedShow.Attended;
+                            listenedShow.UpdatedDate = Constants.Now();
+
+                            //For display purposes on Default. 
+                            displayAttended = listenedShow.Attended;
+                            //This needs to be here b/c we don't know what old status was otherwise
+                            displayStatus = listenedShow.Status;
+
+                            writer.Write( "Updating listenedShow with Id:" + listenedShow.Id + "with Attended = " + !listenedShow.Attended );
+                        }
+
+                        uow.Commit();
+                        success = true;
+                        writer.Write( "Successfully updated listenedShow id: " + listenedShow.Id );
+                    }
                     //}
                 }
                 else {
                     //If the user does not have one then create it
                     var objectFactory = new Data.DomainObjects.DomainObjectFactory();
 
-                    //If status is EditNotes then set it to 0 because that is the base.
-                    //if ( status == (int)ListenedStatus.EditNotes ) status = 0;
+                    bool attended;
+                    if ( status == (int)ListenedStatus.Attended ) {
+                        attended = true;
+                    }
+                    else {
+                        attended = false;
+                    }
 
-                    var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, status, string.Empty );
+                    var newListenedShow = objectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, status, string.Empty, attended );
+                    displayAttended = attended;
+                    displayStatus = status;
 
-                    writer.Write( string.Format( "Saving a new listenedShow with Id:{0} with a status of {1}", newListenedShow.Id, status ) );
+                    writer.Write( string.Format( "Saving a new listenedShow with Id:{0} with a status of {1}, and attended is {2}", newListenedShow.Id, status, attended ) );
 
                     listenedShowService.SaveCommit( newListenedShow, out success );
 
@@ -96,6 +127,8 @@ namespace ListenedList.Handlers
 
             if ( success ) {
                 jsonifier.Add( "success", "true" );
+                jsonifier.Add( "attended", displayAttended.ToString() );
+                jsonifier.Add( "status", displayStatus.ToString() );
             }
             else {
                 jsonifier.Add( "success", "false" );
@@ -105,7 +138,7 @@ namespace ListenedList.Handlers
 
             response.ContentType = "application/json";
             response.ContentEncoding = Encoding.UTF8;
-            response.Write(final);
+            response.Write( final );
             response.End();
         }
 

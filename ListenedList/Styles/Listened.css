@@ -446,7 +446,7 @@
 
 .attendedButton
 {
-    border-style: ridge;
+    border-style: inset;
     border-width: 3px;
     border-color: Red;
 }
@@ -520,15 +520,16 @@ div.jqi .jqibuttons
 }
 div.jqi button
 {
-    padding: 3px 10px 4px;
+    padding: 3px 10px 4px; 
     
-    /* This was changed on 5/4/12
+    /* This was changed on 5/4/12           margin: 0 10px;   TO */
     
-     margin: 0 10px;   TO */
-     margin: 8px 10px;
-
+    margin: 8px 10px; 
+    
     /*background-color: #2F6073;*/
-    border: solid 1px #f4f4f4;
+    
+    border: solid 1px #f4f4f4; 
+    
     /*color: #ffffff;*/
     font-weight: bold;
     font-size: 13px;
@@ -540,7 +541,6 @@ div.jqi button:hover
 .jqiwarning .jqi .jqibuttons
 {
     background-color: #BF5E26;
-     
 }
 
 
@@ -581,7 +581,7 @@ button#jqi_state0_buttonNeverHeard
 
 button#jqi_state0_buttonEditNotes
 {
-background-color:Olive;
+    background-color: Olive;
 }
 
 button#jqi_state0_buttonAttended
@@ -590,6 +590,10 @@ button#jqi_state0_buttonAttended
 }
 
 /*-------------------------------- */
+
+
+
+
 
 
 /*------------------------------

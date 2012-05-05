@@ -136,6 +136,7 @@ namespace Core.Services
         Finished = 2,
         NeedToListen = 3,
         EditNotes = 5,
+        Attended = 7,
         Cancel = 11
     }
 }

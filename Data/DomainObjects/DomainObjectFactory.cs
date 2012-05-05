@@ -7,6 +7,10 @@ namespace Data.DomainObjects
     public class DomainObjectFactory : IDomainObjectFactory
     {
         public IListenedShow CreateListenedShow( Guid showId, Guid userId, DateTime showDate, int status, string notes ) {
+            return CreateListenedShow( showId, userId, showDate, status, notes, false );
+        }
+
+        public IListenedShow CreateListenedShow( Guid showId, Guid userId, DateTime showDate, int status, string notes, bool attended ) {
             ListenedShow show = new ListenedShow {
                 CreatedDate = Constants.Now(),
                 Id = Guid.NewGuid(),
@@ -15,6 +19,7 @@ namespace Data.DomainObjects
                 Status = status,
                 UserId = userId,
                 ShowDate = showDate,
+                Attended = attended,
                 UpdatedDate = Constants.Now()
             };
 
