@@ -52,7 +52,11 @@ namespace Core.Services
             return GetAllShows().Where( x => x.UserId == userId );
         }
 
-        public IDictionary<IShow, IListenedShow> GetShowsByYear(int year, Guid userId) {
+        public IQueryable<IListenedShow> GetShowsByYear( int year, Guid userId ) {
+            return GetAllShows().Where( x => x.UserId == userId && x.ShowDate.Year == year );
+        }
+
+        public IDictionary<IShow, IListenedShow> GetBothShowsByYear(int year, Guid userId) {
             var shows = _showRepo.FindAll().Where( x => x.ShowDate.Value.Year == year );
             var listened = GetAllShows().Where( x => x.UserId == userId && x.ShowDate.Year == year);
 

@@ -18,14 +18,14 @@
         </div>
         <br />
         <br />
-        <p style="font-size: 1.2em; font-weight: 500;">
-            <b>When you change a status it automatically saves!</b></p>
-        <br />
-        <br />
+        <asp:PlaceHolder ID="phSaveButton1" runat="server" Visible="false">
+            <asp:Button ID="btnSave" runat="server" CssClass="buttonSave" Text="SAVE" OnClick="SaveAll" />
+        </asp:PlaceHolder>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div>
-                    <asp:Repeater ID="rptAdder" runat="server" OnItemCreated="rptAdder_ItemCreated">
+                    <asp:Repeater ID="rptAdder" runat="server">
+                        <%--OnItemCreated="rptAdder_ItemCreated">--%>
                         <HeaderTemplate>
                             <table>
                                 <tr>
@@ -99,6 +99,9 @@
                 <asp:AsyncPostBackTrigger ControlID="rptAdder" EventName="ItemCreated" />
             </Triggers>
         </asp:UpdatePanel>
+        <asp:PlaceHolder ID="phSaveButton2" runat="server" Visible="false">
+            <asp:Button ID="btnSave2" runat="server" CssClass="buttonSave" Text="SAVE" OnClick="SaveAll" />
+        </asp:PlaceHolder>
         <%--<br />
         <br />
         <p style="font-size: 1.2em; font-weight: 500;">
