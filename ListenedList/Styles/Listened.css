@@ -446,7 +446,7 @@
 
 .attendedButton
 {
-    border-style: inset;
+    border-style: double;
     border-width: 3px;
     border-color: Red;
 }

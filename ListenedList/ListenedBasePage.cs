@@ -6,6 +6,7 @@ using Core.Membership;
 using Core.DomainObjects;
 using Data.DomainObjects;
 using Core.Helpers.Script;
+using Core.Services;
 
 namespace ListenedList
 {
@@ -47,6 +48,16 @@ namespace ListenedList
             item.Selected = true;
 
             return items;
+        }
+
+        public ListItem[] GetListenedStatusForDropDown() {
+            return new ListItem[] {
+                new ListItem( "Please choose status", "-1"),
+                new ListItem( "Never Heard", ((int)ListenedStatus.None).ToString() ),
+                new ListItem( "In Progress", ( (int)ListenedStatus.InProgress ).ToString() ),
+                new ListItem( "Finished", ((int)ListenedStatus.Finished).ToString() ),
+                new ListItem( "Need To Listen", ((int)ListenedStatus.NeedToListen).ToString())
+            };
         }
 
         public string FormatDate(DateTime? date)

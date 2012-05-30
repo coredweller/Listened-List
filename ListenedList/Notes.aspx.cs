@@ -8,6 +8,7 @@ using Core.DomainObjects;
 using Core.Services.Interfaces;
 using Core.Helpers.Script;
 using System.Web.UI.WebControls;
+using Core.Extensions;
 
 namespace ListenedList
 {
@@ -23,6 +24,12 @@ namespace ListenedList
             //Has to be after bind so the first time the user comes to the page
             // The show title will be set in Bind()
             ShowTitle = hdnShowTitle.Value;
+        }
+
+        protected override void OnInit( EventArgs e ) {
+            
+
+            base.OnInit( e );
         }
 
         #region Data Binding
@@ -52,6 +59,26 @@ namespace ListenedList
             //Get the user Id and Bind the notes and tags
             BindNotes( show );
             BindTags( show.Id );
+            BindListenedShow( show );
+        }
+
+        private void BindListenedShow( IShow show ) {
+            var list = GetListenedStatusForDropDown();
+
+            ddlStatus.Items.AddRange( list );
+
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>(); ;
+
+            var listened = listenedShowService.GetByUserAndShowId( GetUserId(), show.Id );
+
+            if ( listened == null ) return;
+
+            chkAttended.Checked = listened.Attended;
+
+            if ( listened.Status == (int)ListenedStatus.None ) return;
+
+            var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
+            item.Selected = true;
         }
 
         private void BindNotes( IShow show ) {
@@ -165,7 +192,7 @@ namespace ListenedList
             if ( string.IsNullOrEmpty( txtTagName.Text ) || string.IsNullOrEmpty( hdnShowId.Value ) ) return;
 
             var userId = GetUserId();
-            Guid showId = new Guid(hdnShowId.Value);
+            Guid showId = new Guid( hdnShowId.Value );
 
             ITagService tagService = Ioc.GetInstance<ITagService>();
             var tag = tagService.GetTag( txtTagName.Text.Trim(), userId );
@@ -180,7 +207,7 @@ namespace ListenedList
             var success = false;
 
             try {
-                
+
                 var newTag = _DomainObjectFactory.CreateTag( txtTagName.Text, userId );
                 var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id, GetUserId() );
 
@@ -208,23 +235,23 @@ namespace ListenedList
         public void btnApplyTag_Click( object sender, EventArgs e ) {
             PromptHelper prompt;
 
-            if(string.IsNullOrEmpty(hdnShowId.Value)) return;
+            if ( string.IsNullOrEmpty( hdnShowId.Value ) ) return;
 
             if ( ddlTags.SelectedValue == "-1" ) {
                 prompt = new PromptHelper( "Please choose a valid tag." );
                 Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
             }
 
-            var showId = new Guid(hdnShowId.Value);
+            var showId = new Guid( hdnShowId.Value );
 
             var success = false;
 
             try {
                 var showTagService = Ioc.GetInstance<IShowTagService>();
 
-                var tagId = new Guid(ddlTags.SelectedValue);
-                
-                var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId, GetUserId());
+                var tagId = new Guid( ddlTags.SelectedValue );
+
+                var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId, GetUserId() );
 
                 showTagService.SaveCommit( showTag, out success );
             }

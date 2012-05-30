@@ -22,6 +22,24 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.HyperLink lnkBack;
         
         /// <summary>
+        /// chkAttended control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAttended;
+        
+        /// <summary>
+        /// ddlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        
+        /// <summary>
         /// txtNotes control.
         /// </summary>
         /// <remarks>

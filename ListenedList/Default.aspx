@@ -155,7 +155,9 @@
             <asp:Button ID="Button3" runat="server" Enabled="false" CssClass="defaultButtonOrange"
                 Width="110px" Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button4" runat="server" Enabled="false" CssClass="defaultButtonGreen"
-                Width="120px" Text="Need to Listen" />
+                Width="120px" Text="Need to Listen" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button5" runat="server" Enabled="false" CssClass="defaultButtonWhite attendedButton"
+                Width="120px" Text="Attended" />
         </div>
     </fieldset>
     <br />

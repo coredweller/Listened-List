@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs" Inherits="ListenedList.Notes"
-    MasterPageFile="~/Masters/Genius.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
+    Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="Head" runat="server">
@@ -23,7 +23,12 @@
     <div style="padding-left: 100px;">
         <div style="font-size: 2em; font-weight: 700;">
             <%= ShowTitle %></div>
+            <br />
         <div style="font-size: 1.5em; font-weight: 600;">
+        <asp:CheckBox ID="chkAttended" runat="server" Text="Attended" /><br />
+            Status:&nbsp;<asp:DropDownList ID="ddlStatus" runat="server">
+            </asp:DropDownList>
+            <br />
             <br />
             <br />
             Notes:
@@ -36,32 +41,36 @@
         </div>
         <br />
         <br />
-       <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>--%>
-                <p style="font-size: 1.5em; font-weight: 600;">
-                    Tags:
-                </p>
-                <p>
-                    Create New Tag (30 letters max):
-                    <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
-                    <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
-                </p>
-                <p>
-                    Apply Existing Tag: <asp:DropDownList ID="ddlTags" runat="server"></asp:DropDownList>
-                    <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" Text="Apply Tag" />
-                </p>
-                <div>
-                    <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
-                        <ItemTemplate>
-                            <p>
-                                <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>' runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
-                                </asp:LinkButton>
-                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE" CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
-                            </p>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-            <%--</ContentTemplate>
+        <p style="font-size: 1.5em; font-weight: 600;">
+            Tags:
+        </p>
+        <p>
+            Create New Tag (30 letters max):
+            <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
+            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
+        </p>
+        <p>
+            Apply Existing Tag:
+            <asp:DropDownList ID="ddlTags" runat="server">
+            </asp:DropDownList>
+            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" Text="Apply Tag" />
+        </p>
+        <div>
+            <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
+                <ItemTemplate>
+                    <p>
+                        <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>'
+                            runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
+                            CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
+                    </p>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <%--</ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnCreateTag" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="rptTags" EventName="ItemCommand" />
