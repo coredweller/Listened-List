@@ -27,7 +27,7 @@ namespace ListenedList
         }
 
         protected override void OnInit( EventArgs e ) {
-            
+
 
             base.OnInit( e );
         }
@@ -73,12 +73,57 @@ namespace ListenedList
 
             if ( listened == null ) return;
 
-            chkAttended.Checked = listened.Attended;
+            if ( listened.Attended ) {
+                btnAttended.Text = "Attended";
+                btnAttended.CssClass.Remove( 0 );
+                btnAttended.CssClass = "notesAttended";
+                hdnAttended.Value = "true";
+            }
 
             if ( listened.Status == (int)ListenedStatus.None ) return;
 
             var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
             item.Selected = true;
+        }
+
+        /// LEFT OFF HERE
+        public void btnAttended_Click( object sender, EventArgs e ) {
+            if ( string.IsNullOrWhiteSpace( hdnAttended.Value ) ) return;
+
+            bool attended;
+            var success = bool.TryParse( hdnAttended.Value, out attended );
+
+            if ( !success ) return;
+
+            if ( string.IsNullOrWhiteSpace( hdnListenedId.Value ) ) return;
+
+            Guid listenedId;
+            if ( !Guid.TryParse( hdnListenedId.Value, out listenedId ) ) return;
+
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
+
+            var listened = listenedShowService.GetById( listenedId );
+
+            if ( listened == null ) return;
+
+            using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+                listened.Attended = attended;
+
+                uow.Commit();
+            }
+
+            if ( listened.Attended ) {
+                btnAttended.Text = "Attended";
+                btnAttended.CssClass.Remove( 0 );
+                btnAttended.CssClass = "notesAttended";
+                hdnAttended.Value = "true";
+            }
+            else {
+                btnAttended.Text = "Did Not Attend";
+                btnAttended.CssClass.Remove( 0 );
+                btnAttended.CssClass = "notesDidNotAttend";
+                hdnAttended.Value = "false";
+            }
         }
 
         private void BindNotes( IShow show ) {
@@ -182,7 +227,7 @@ namespace ListenedList
 
             if ( listenedShows == null || listenedShows.Count <= 0 ) return;
 
-            var filtered = listenedShows.Where( x => x.Notes.Contains( txtSearch.Text ) );
+            var filtered = listenedShows.Where( x => x.Notes.ToLower().Contains( txtSearch.Text.ToLower() ) );
 
             rptNotes.DataSource = filtered;
             rptNotes.DataBind();

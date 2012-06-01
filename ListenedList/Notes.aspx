@@ -21,11 +21,14 @@
     <br />
     <br />
     <div style="padding-left: 100px;">
-        <div style="font-size: 2em; font-weight: 700;">
-            <%= ShowTitle %></div>
-            <br />
+        <p style="font-size: 2em; font-weight: 700;">
+            <%= ShowTitle %>&nbsp;<asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend" Text="Did Not Attend" OnClick="btnAttended_Click" />
+            <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
+        </p>
+        <br />
+        <%--<div style="font-size: 1em; font-weight: 400;">
+        <br /></div>--%>
         <div style="font-size: 1.5em; font-weight: 600;">
-        <asp:CheckBox ID="chkAttended" runat="server" Text="Attended" /><br />
             Status:&nbsp;<asp:DropDownList ID="ddlStatus" runat="server">
             </asp:DropDownList>
             <br />
@@ -37,7 +40,7 @@
                 Width="425px" />
             <%--            <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="7" Columns="50"></asp:TextBox>--%>
             <br />
-            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save Notes" />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save" />
         </div>
         <br />
         <br />
