@@ -22,14 +22,15 @@
     <br />
     <div style="padding-left: 100px;">
         <p style="font-size: 2em; font-weight: 700;">
-            <%= ShowTitle %>&nbsp;<asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend" Text="Did Not Attend" OnClick="btnAttended_Click" />
+            <%= ShowTitle %>&nbsp;<asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend"
+                Text="Did Not Attend" OnClick="btnAttended_Click" />
             <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
         </p>
         <br />
         <%--<div style="font-size: 1em; font-weight: 400;">
         <br /></div>--%>
         <div style="font-size: 1.5em; font-weight: 600;">
-            Status:&nbsp;<asp:DropDownList ID="ddlStatus" runat="server">
+            Listening Status:&nbsp;<asp:DropDownList ID="ddlStatus" runat="server">
             </asp:DropDownList>
             <br />
             <br />
@@ -38,7 +39,11 @@
             <br />
             <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
                 Width="425px" />
-            <%--            <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="7" Columns="50"></asp:TextBox>--%>
+            <br />
+            <p style="font-size: 1em; font-weight: 400;">
+                <asp:Label ID="lblCreatedDate" runat="server"></asp:Label><br />
+                <asp:Label ID="lblUpdatedDate" runat="server"></asp:Label>
+            </p>
             <br />
             <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save" />
         </div>

@@ -80,13 +80,13 @@ namespace ListenedList
                 hdnAttended.Value = "true";
             }
 
-            if ( listened.Status == (int)ListenedStatus.None ) return;
+            lblCreatedDate.Text = string.Format( "First Created: {0}", listened.CreatedDate.ToString() );
+            lblUpdatedDate.Text = string.Format( "Last Updated: {0}", listened.UpdatedDate.HasValue ? listened.UpdatedDate.Value.ToString() : "" );
 
             var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
             item.Selected = true;
         }
 
-        /// LEFT OFF HERE
         public void btnAttended_Click( object sender, EventArgs e ) {
             if ( string.IsNullOrWhiteSpace( hdnAttended.Value ) ) return;
 
@@ -107,7 +107,7 @@ namespace ListenedList
             if ( listened == null ) return;
 
             using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
-                listened.Attended = attended;
+                listened.Attended = !attended;
 
                 uow.Commit();
             }
@@ -190,7 +190,7 @@ namespace ListenedList
         #region Events
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
-            if ( string.IsNullOrEmpty( txtNotes.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
+            if ( (string.IsNullOrEmpty( txtNotes.Text ) && ddlStatus.SelectedValue == "-1" ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
 
             var success = false;
 
@@ -204,6 +204,11 @@ namespace ListenedList
 
                     var listenedShow = listenedShowService.GetById( listenedId );
                     listenedShow.Notes = txtNotes.Text;
+                    listenedShow.UpdatedDate = DateTime.UtcNow;
+
+                    if ( ddlStatus.SelectedValue != "1" ) {
+                        listenedShow.Status = int.Parse( ddlStatus.SelectedValue );
+                    }
 
                     uow.Commit();
                     success = true;
