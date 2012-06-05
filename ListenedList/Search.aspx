@@ -12,7 +12,7 @@
         <div>
             User Name:
             <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSearchUser" runat="server" Text="Search" OnClick="btnSearchUser_Click" />
+            <asp:Button ID="btnSearchUser" runat="server" Text="Search" CssClass="normalButton" OnClick="btnSearchUser_Click" />
         </div>
         <br />
         <br />
@@ -30,12 +30,12 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr style="height: 40px">
-                    <td style="float: right; vertical-align: bottom;">
+                    <%--<td style="float: right; vertical-align: bottom;">
                         <asp:LinkButton ID="lnkSubscribe" runat="server" CssClass='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? "subscribedButton" : "subscribeButton" %>'
                             CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
                             Enabled='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? false : true %>'
                             Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? "SUBSCRIBED" : "SUBSCRIBE" %>'></asp:LinkButton>
-                    </td>
+                    </td>--%>
                     <td>
                         <strong>
                             <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'

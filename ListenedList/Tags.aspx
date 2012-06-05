@@ -14,7 +14,7 @@
         <p>
             Create New Tag (30 letters max):
             <asp:TextBox ID="txtNewTagName" runat="server" Width="150px"></asp:TextBox>
-            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
+            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton" OnClick="btnCreateTag_Click" />
         </p>
         <br />
         <br />

@@ -45,7 +45,7 @@
                 <asp:Label ID="lblUpdatedDate" runat="server"></asp:Label>
             </p>
             <br />
-            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Save" />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton" Text="Save" />
         </div>
         <br />
         <br />
@@ -57,13 +57,13 @@
         <p>
             Create New Tag (30 letters max):
             <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
-            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" OnClick="btnCreateTag_Click" />
+            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton" OnClick="btnCreateTag_Click" />
         </p>
         <p>
             Apply Existing Tag:
             <asp:DropDownList ID="ddlTags" runat="server">
             </asp:DropDownList>
-            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" Text="Apply Tag" />
+            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" CssClass="normalButton" Text="Apply Tag" />
         </p>
         <div>
             <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
@@ -97,7 +97,7 @@
             <p style="font-size: 1.5em; font-weight: 600;">
                 Search Notes:</p>
             <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="normalButton" OnClick="btnSearch_Click" />
             <br />
             <br />
             <br />

@@ -14,7 +14,7 @@
         <div>
             Year:<asp:DropDownList ID="ddlYears" runat="server">
             </asp:DropDownList>
-            <asp:Button ID="btnSubmit" runat="server" Text="Choose Year" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Choose Year" CssClass="normalButton" OnClick="btnSubmit_Click" />
         </div>
         <br />
         <br />

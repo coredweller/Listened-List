@@ -29,7 +29,7 @@
                 only you can see it.)
             </p>
             <p>
-                <asp:Button ID="btnSaveProfile" runat="server" OnClick="btnSaveProfile_Click" Text="Save Profile" />
+                <asp:Button ID="btnSaveProfile" runat="server" OnClick="btnSaveProfile_Click" CssClass="normalButton" Text="Save Profile" />
             </p>
         </div>
     </div>

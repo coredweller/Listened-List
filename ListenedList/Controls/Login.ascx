@@ -10,6 +10,7 @@
     <asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate>
             <asp:Login runat="server" ID="lcont">
+                <LoginButtonStyle CssClass="normalButton" />
             </asp:Login>
         </AnonymousTemplate>
         <RoleGroups>
