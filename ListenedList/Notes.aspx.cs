@@ -206,7 +206,7 @@ namespace ListenedList
                     listenedShow.Notes = txtNotes.Text;
                     listenedShow.UpdatedDate = DateTime.UtcNow;
 
-                    if ( ddlStatus.SelectedValue != "1" ) {
+                    if ( ddlStatus.SelectedValue != "-1" ) {
                         listenedShow.Status = int.Parse( ddlStatus.SelectedValue );
                     }
 

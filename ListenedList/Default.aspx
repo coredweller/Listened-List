@@ -158,6 +158,7 @@
         <asp:Button ID="Button5" runat="server" Enabled="false" CssClass="defaultButtonWhite attendedButton"
             Width="120px" Text="Attended" />
     </div>
+    <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
     <br />
     <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
     <br />

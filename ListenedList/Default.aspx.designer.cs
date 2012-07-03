@@ -67,6 +67,15 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
+        /// yearBox12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ListenedList.Controls.YearBoxes yearBox12;
+        
+        /// <summary>
         /// yearBox11 control.
         /// </summary>
         /// <remarks>
