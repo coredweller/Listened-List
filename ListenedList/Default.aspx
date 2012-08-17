@@ -1,5 +1,6 @@
 ﻿<%--<%@ Register TagPrefix="uc" Namespace="ListenedList.Controls" Assembly="ListenedList.Controls" %>--%>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
+<%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
 
 <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Masters/Genius.Master"
     AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
@@ -144,20 +145,9 @@
         <br />
         <br />
     </asp:PlaceHolder>
-    <div style="font-size: 1.5em; font-weight: 600;">
-        Legend:&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button1" runat="server" CssClass="defaultButtonWhite" Width="110px"
-            Enabled="false" Text="Never Heard"></asp:Button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Enabled="false" CssClass="defaultButtonYellow"
-            Width="110px" Text="In Progress"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button3" runat="server" Enabled="false" CssClass="defaultButtonOrange"
-            Width="110px" Text="Finished"></asp:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button4" runat="server" Enabled="false" CssClass="defaultButtonGreen"
-            Width="120px" Text="Need to Listen" />&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button5" runat="server" Enabled="false" CssClass="defaultButtonWhite attendedButton"
-            Width="120px" Text="Attended" />
-    </div>
+
+    <uc:Legend ID="legend" runat="server" />
+
     <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
     <br />
     <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
@@ -198,10 +188,10 @@
     <br />
     <uc:YearBox ID="yearBox87" runat="server" Year="1987" />
     <br />
-    <uc:YearBox ID="yearBox86" runat="server" Year="1986" />
+    <%--<uc:YearBox ID="yearBox86" runat="server" Year="1986" />
     <br />
     <uc:YearBox ID="yearBox85" runat="server" Year="1985" />
-    <br />
+    <br />--%>
     <%--<uc:YearBox ID="yearBox84" runat="server" Year="1984" />
     <br />--%>
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="AddShows.aspx" />
     <Content Include="Admin\CreateShow.aspx" />
+    <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
@@ -76,6 +77,8 @@
     <Content Include="Scripts\jquery-impromptu.4.0.min.js" />
     <Content Include="Search.aspx" />
     <Content Include="Settings.aspx" />
+    <Content Include="Step1.aspx" />
+    <Content Include="Step2.aspx" />
     <Content Include="Styles\geniusStyle.css" />
     <Content Include="Styles\Listened.css" />
     <Content Include="Styles\Site.css" />
@@ -110,6 +113,13 @@
     </Compile>
     <Compile Include="Admin\CreateShow.aspx.designer.cs">
       <DependentUpon>CreateShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Legend.ascx.cs">
+      <DependentUpon>Legend.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Legend.ascx.designer.cs">
+      <DependentUpon>Legend.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>
@@ -199,6 +209,20 @@
     </Compile>
     <Compile Include="Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Step1.aspx.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Step1.aspx.designer.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Step2.aspx.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Step2.aspx.designer.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tags.aspx.cs">
       <DependentUpon>Tags.aspx</DependentUpon>

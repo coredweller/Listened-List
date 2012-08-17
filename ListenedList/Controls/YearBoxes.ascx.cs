@@ -13,6 +13,7 @@ namespace ListenedList.Controls
     public partial class YearBoxes : System.Web.UI.UserControl
     {
         public int Year { get; set; }
+        public bool Tutorial { get; set; }
         public List<ShowStatus> Shows { get; set; }
 
         protected void Page_Load( object sender, EventArgs e ) {
@@ -49,6 +50,8 @@ namespace ListenedList.Controls
                     shows.Insert( index, copy );
                 }
             }
+
+            if ( Tutorial && ( shows != null && shows.Count >= 0 ) ) shows = shows.GetRange( 0, 5 );
 
             rptShows.DataSource = shows;
             rptShows.DataBind();

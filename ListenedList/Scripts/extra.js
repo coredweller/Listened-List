@@ -35,7 +35,7 @@ function GetCssClass(status, attended) {
             break;
     }
 
-    if (attended == "True") {
+    if (attended == "True" || attended == "true" || attended == true) {
         cssClass = cssClass + " attendedButton";
     }
 

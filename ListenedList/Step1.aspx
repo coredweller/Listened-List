@@ -1,0 +1,183 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step1.aspx.cs" Inherits="ListenedList.Step1"
+    MasterPageFile="~/Masters/Genius.Master" %>
+
+<%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
+<%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
+<asp:Content ContentPlaceHolderID="Head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".lnkFake").click(function (event) {
+                window.location = "Step2.aspx";
+                return false;
+            });
+
+            //If any button on the page is clicked    
+            var input = $(":input").click(function (event) {
+
+                //Save the button that was clicked for later to set the new status
+                var button = $(this);
+
+                //if the Search button is clicked do nothing
+                if (button.attr('id') == $('#<%= btnSearch.ClientID %>').attr('id')) return false;
+
+                //if the Save button is hit then go to Part 3
+                if (button.attr('id') == $('#<%= btnSubmit.ClientID %>').attr('id')) {
+                    $(window).scrollTop($('#part3').position().top);
+                    return false;
+                }
+
+                //Prompt the user for the change in status that they want
+                $.prompt('What is the listening status for this show?',
+
+                //Define the 4 buttons to be displayed
+                        {buttons: [
+                                    { title: 'Finished', value: ListenedStatus.Finished },
+                                    { title: 'In Progress', value: ListenedStatus.InProgress },
+                                    { title: 'Never Heard', value: ListenedStatus.None },
+                                    { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
+                                    { title: 'Attended', value: ListenedStatus.Attended },
+                                    { title: 'Edit Notes', value: ListenedStatus.EditNotes },
+                                    { title: 'Cancel', value: ListenedStatus.Cancel }
+                                  ],
+
+                        //This is for Impromptu version 3.2
+                        //submit: function (status, y, z) {
+
+                        //This is for Impromptu version 4.0
+                        submit: function (x, status, z) {
+                            jQuery.prompt.close()
+
+                            //If the user clicks Cancel then do nothing
+                            if (status == ListenedStatus.Cancel) { return; }
+
+                            //If the user clicks EditNotes then go to a page to edit the notes
+                            if (status == ListenedStatus.EditNotes) { $(window).scrollTop($('#part2').position().top) }
+
+                            var attended = (status == ListenedStatus.Attended);
+
+                            var cssClass = 0;
+                            //Get the color based on the NEW listened status
+                            cssClass = GetCssClass(status, attended);
+
+                            var originalClass = $(button).attr('class');
+
+                            //Remove all css classes
+                            $(button).removeClass();
+
+                            //Set the button's css class to the new status
+                            $(button).addClass(cssClass);
+
+                            //If the latest button clicked was attended then add the old color back to the button
+                            if (status == ListenedStatus.Attended) {
+                                $(button).addClass(originalClass);
+                            }
+
+                        }
+                    });
+
+                //NEVER remove this
+                event.preventDefault();
+
+            });
+        });
+    </script>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <br />
+    <div style="padding-left: 100px; padding-right: 200px;">
+        <h2>
+            Welcome to Phisherman's Guide!
+        </h2>
+        <h3>
+            Where phans come to keep track of listening statuses for Phish shows.
+            <br />
+            <br />
+            Whether you listened to the whole show or haven't finished yet, it helps you keep
+            track with Notes, Tags, and a simple easy to use button format.
+            <br />
+            <br />
+            <br />
+            Step 1 shows how to work the buttons, keeping notes, and searching notes.
+            <br />
+            Step 2 shows how to create tags, alter tags, and how to view your tagged shows.
+        </h3>
+        <br />
+        <br />
+        <h3>
+            Part 1: Button Status</h3>
+        <ul class="localListItems">
+            <li>Click a button and choose your listening status for the show.</li>
+            <li>A show can have a listening status and be attended at the same time.</li>
+            <li>Click "Edit Notes" to go to Part 2.</li>
+        </ul>
+        <br />
+        <uc:Legend ID="legend" runat="server" />
+        <br />
+        <br />
+        <div>
+            <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" />
+        </div>
+        <h3 style="padding-top: 200px;">
+            Part 2: Notes
+        </h3>
+        <ul class="localListItems">
+            <li>Leave notes about where you left off.</li>
+            <li>Or how great the show is and the parts that need to be remembered.</li>
+            <li>Click Save to go to Part 3</li>
+            <%--<li>Everything is 100% searchable, so you can look for any word or phrase easily.</li>--%>
+        </ul>
+        <br />
+        <br />
+        <p id="part2" style="font-size: 2em; font-weight: 700;">
+            04/03/1998 - Nassau Coliseum - Uniondale, NY
+        </p>
+        <br />
+        Notes:
+        <br />
+        <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
+            Width="425px" Text="This show is a must listen! You have to check out the Reba and Roses Jam.  Soaring Antelope with Carini's gonna getcha chants!" />
+        <br />
+        <asp:Button ID="btnSubmit" runat="server" CssClass="normalButton" Text="Save" />
+        <br />
+        <br />
+        <h3 style="padding-top: 200px;">
+            Part 3: Searching Notes</h3>
+        <ul class="localListItems">
+            <li>Enter any amount of letters or words into the text box.</li>
+            <li>If any notes from any shows have your searched words, links will appear to bring
+                you to that show's notes.</li>
+            <li>Click a notes link below to go to Step 2.</li>
+        </ul>
+        <br />
+        <p style="font-size: 1.5em; font-weight: 600;">
+            Search Notes:</p>
+        <asp:TextBox ID="txtSearch" runat="server" Text="must listen" Enabled="false"></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="normalButton" />
+        <br />
+        <br />
+        <br />
+        <p style="font-size: 1.5em; font-weight: 600;" id="part3">
+            Search Results:</p>
+        <br />
+        <table style="padding-bottom: 150px;">
+            <tr>
+                <td>
+                    <a class="lnkFake" href="#">This show is a must listen!</a> 4/3/1998
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="lnkFake" href="#">must listen to this Drowned</a> 12/31/1995
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="lnkFake" href="#">Izabella and Sneakin', must listen to</a> 12/30/97
+                </td>
+            </tr>
+        </table>
+    </div>
+</asp:Content>
