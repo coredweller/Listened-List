@@ -10,6 +10,9 @@
         <br />
         <br />
         <br />
+        <asp:PlaceHolder ID="phPart1" runat="server" Visible='false'>
+            <span style="font-size:larger;font-weight:bolder;font-family:Comic Sans MS;">(Part 1: Create new Tags simply by giving them a name.<br />  Create a tag and then Click Edit for Part 2.)</span>
+        </asp:PlaceHolder>
         <p>
             Create New Tag (30 letters max):
             <asp:TextBox ID="txtNewTagName" runat="server" Width="150px"></asp:TextBox>

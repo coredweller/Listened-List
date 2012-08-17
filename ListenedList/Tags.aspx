@@ -3,5 +3,5 @@
 
 <%@ Register TagPrefix="uc" TagName="TagControl" Src="~/Controls/TagControl.ascx" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-   <uc:TagControl ID="tagControl" runat="server" />
+   <uc:TagControl ID="tagControl" runat="server" Tutorial="false" />
 </asp:Content>

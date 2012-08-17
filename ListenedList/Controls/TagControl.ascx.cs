@@ -21,8 +21,14 @@ namespace ListenedList.Controls
             if ( !IsPostBack ) {
                 Bind();
             }
-            
+
             Page.LoadComplete += new EventHandler( Tags_LoadComplete );
+        }
+
+        protected void Page_PreRender( object sender, EventArgs e ) {
+            if ( Tutorial ) {
+                phPart1.Visible = true;
+            }
         }
 
         public void lnkSeeAll_Click( object sender, EventArgs e ) {
