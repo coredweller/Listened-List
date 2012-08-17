@@ -68,6 +68,7 @@
     <Content Include="Admin\CreateShow.aspx" />
     <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
+    <Content Include="Controls\TagControl.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Login.aspx" />
@@ -114,12 +115,16 @@
     <Compile Include="Admin\CreateShow.aspx.designer.cs">
       <DependentUpon>CreateShow.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Base.cs" />
     <Compile Include="Controls\Legend.ascx.cs">
       <DependentUpon>Legend.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controls\Legend.ascx.designer.cs">
       <DependentUpon>Legend.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListenedBaseControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controls\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>
@@ -129,6 +134,13 @@
       <DependentUpon>Login.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ShowTextBox.cs" />
+    <Compile Include="Controls\TagControl.ascx.cs">
+      <DependentUpon>TagControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TagControl.ascx.designer.cs">
+      <DependentUpon>TagControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\YearBoxes.ascx.cs">
       <DependentUpon>YearBoxes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

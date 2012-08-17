@@ -72,7 +72,7 @@
                         <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>'
                             runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
                         </asp:LinkButton>
-                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
+                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Remove" CommandName="DELETE"
                             CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
                     </p>
                 </ItemTemplate>

@@ -151,7 +151,7 @@
                 you to that show's notes.</li>
             <li>Click a notes link below to go to Step 2.</li>
         </ul>
-        <br />
+        <br /><br /><br />
         <p style="font-size: 1.5em; font-weight: 600;">
             Search Notes:</p>
         <asp:TextBox ID="txtSearch" runat="server" Text="must listen" Enabled="false"></asp:TextBox>
@@ -162,7 +162,7 @@
         <p style="font-size: 1.5em; font-weight: 600;" id="part3">
             Search Results:</p>
         <br />
-        <table style="padding-bottom: 150px;">
+        <table style="padding-bottom: 350px;">
             <tr>
                 <td>
                     <a class="lnkFake" href="#">This show is a must listen!</a> 4/3/1998
