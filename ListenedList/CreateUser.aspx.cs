@@ -20,13 +20,26 @@ namespace ListenedList
         }
 
         public void createControl_CreatedUser( object sender, EventArgs e ) {
-            var cont = (CreateUserWizard)sender;
+            bool success = false;
 
-            var provider = new ListenedRoleProvider();
-            provider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { base.BaseRoleType } );
+            try {
+                var cont = (CreateUserWizard)sender;
 
-            var profileService = new ProfileService( cont.UserName );
-            profileService.SavePublic( false );
+                var provider = new ListenedRoleProvider();
+                provider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { base.BaseRoleType } );
+
+                var profileService = new ProfileService( cont.UserName );
+                profileService.SavePublic( false );
+
+                success = true;
+            }
+            catch ( Exception ex ) {
+                _Log.WriteFatal( "There was a major error creating a new user with a message of: " + ex.Message );
+            }
+
+            if ( success ) {
+                Response.Redirect( "~/Step1.aspx" );
+            }
         }
     }
 }
