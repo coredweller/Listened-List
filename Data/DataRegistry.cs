@@ -2,6 +2,8 @@
 using Data.Repository;
 using Core.Configuration;
 using Core.Repository;
+using Core.DomainObjects;
+using Data.DomainObjects;
 
 namespace Data
 {
@@ -47,6 +49,10 @@ namespace Data
                 .Ctor<IDatabaseFactory>( "factory" ).IsTheDefault();
 
             SelectConstructor<SubscriptionRepository>( () => new SubscriptionRepository( (IDatabaseFactory)null ) );
+
+            For<IDomainObjectFactory>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<DomainObjectFactory>();
 
 
             ///INFRASTRUCTURE IOC SETUP BELOW.  DO NOT ALTER ANYTHING BELOW THIS LINE

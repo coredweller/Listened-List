@@ -28,6 +28,8 @@ namespace ListenedList.Controls
         protected void Page_PreRender( object sender, EventArgs e ) {
             if ( Tutorial ) {
                 phPart1.Visible = true;
+                phPart2.Visible = true;
+                //phPart3.Visible = true;
             }
         }
 
@@ -80,6 +82,10 @@ namespace ListenedList.Controls
         }
 
         public void btnSaveTagName_Click( object sender, EventArgs e ) {
+            if ( Tutorial ) {
+                phPart3.Visible = true;
+            }
+
             if ( string.IsNullOrEmpty( txtTagName.Text ) ) {
                 PromptHelper prompt = new PromptHelper( "Please choose a tag to edit" );
                 Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );

@@ -26,7 +26,7 @@
 
 
 
-
+<%--
 
         <h3>
             Part 1: Creating and Applying Tags
@@ -38,6 +38,6 @@
         </h3>
         <h3 style="padding-top: 200px;">
             Part 3: View Tagged Shows
-        </h3>
+        </h3>--%>
     </div>
 </asp:Content>

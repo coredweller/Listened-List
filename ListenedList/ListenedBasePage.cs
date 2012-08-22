@@ -7,6 +7,7 @@ using Core.DomainObjects;
 using Data.DomainObjects;
 using Core.Helpers.Script;
 using Core.Services;
+using Core.Infrastructure;
 
 namespace ListenedList
 {
@@ -17,7 +18,7 @@ namespace ListenedList
         protected readonly string DefaultTitle = "Phisherman's Guide";
 
         protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
-        protected IDomainObjectFactory _DomainObjectFactory = new DomainObjectFactory();
+        protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         protected LogWriter _Log = new LogWriter();
 
         protected readonly Guid EmptyGuid = new Guid( "00000000-0000-0000-0000-000000000000" );

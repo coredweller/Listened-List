@@ -1,11 +1,18 @@
 ﻿using System;
 using Core.DomainObjects;
 using Core.Helpers;
+using Core.Repository;
 
 namespace Data.DomainObjects
 {
     public class DomainObjectFactory : IDomainObjectFactory
     {
+        //private IShowRepository _ShowRepository { get; set; }
+
+        //public DomainObjectFactory( IShowRepository showRepo ) {
+        //    _ShowRepository = showRepo;
+        //}
+
         public IListenedShow CreateListenedShow( Guid showId, Guid userId, DateTime showDate, int status, string notes ) {
             return CreateListenedShow( showId, userId, showDate, status, notes, false );
         }

@@ -10,6 +10,7 @@ using Core.Helpers.JSON;
 using System.Text;
 using Core.Services.Interfaces;
 using Core.Helpers;
+using Core.DomainObjects;
 
 namespace ListenedList.Handlers
 {
@@ -98,7 +99,7 @@ namespace ListenedList.Handlers
                 }
                 else {
                     //If the user does not have one then create it
-                    var objectFactory = new Data.DomainObjects.DomainObjectFactory();
+                    var objectFactory = Ioc.GetInstance<IDomainObjectFactory>();
 
                     bool attended;
                     if ( status == (int)ListenedStatus.Attended ) {

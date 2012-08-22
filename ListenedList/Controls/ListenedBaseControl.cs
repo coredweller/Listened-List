@@ -7,13 +7,14 @@ using Data.DomainObjects;
 using Core.DomainObjects;
 using Core.Helpers.Script;
 using Core.Membership;
+using Core.Infrastructure;
 
 namespace ListenedList.Controls
 {
     public class ListenedBaseControl : System.Web.UI.UserControl
     {
         protected LogWriter _Log = new LogWriter();
-        protected IDomainObjectFactory _DomainObjectFactory = new DomainObjectFactory();
+        protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         
         public Guid GetUserId() {
             return Base.GetUserId( Page.User.Identity.Name );
