@@ -131,11 +131,9 @@
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
     <br />
     <br />
-    <div style="font-size: 3em; font-weight: 700;">
-        Phish Shows
+    <div style="font-size: 3em; font-weight: 700;padding-bottom:30px;">
+        Phish Shows <span style="font-size: small; font-weight:200;">Need Help? Tutorial <a href="/Step1.aspx" >HERE</a></span>
     </div>
-    <br />
-    <br />
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />
         <br />

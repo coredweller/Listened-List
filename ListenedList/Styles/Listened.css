@@ -639,8 +639,31 @@ hr.horizontalRule1
 {
     list-style-type: disc;
     padding-left: 50px;
+    font-size: 20px;
 }
 
+.tutorialInstructionHeaderTop
+{
+    font-size: 25px;
+    font-weight: bolder;
+    color: Blue;
+}
+
+.tutorialInstructionHeader
+{
+    font-size: 25px;
+    font-weight: bolder;
+    color: Blue;
+    padding-top: 200px;
+}
+
+.tutorialTagHeader
+{
+    font-size: larger;
+    font-weight: bolder; 
+    font-family: Comic Sans MS; 
+    color: Blue;
+}
 
 /*-------------impromptu---------- */
 .jqifade

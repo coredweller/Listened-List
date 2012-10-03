@@ -21,9 +21,10 @@ namespace ListenedList
 
         public void createControl_CreatedUser( object sender, EventArgs e ) {
             bool success = false;
+            CreateUserWizard cont = null;
 
             try {
-                var cont = (CreateUserWizard)sender;
+                cont = (CreateUserWizard)sender;
 
                 var provider = new ListenedRoleProvider();
                 provider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { base.BaseRoleType } );
@@ -37,8 +38,11 @@ namespace ListenedList
                 _Log.WriteFatal( "There was a major error creating a new user with a message of: " + ex.Message );
             }
 
-            if ( success ) {
-                Response.Redirect( "~/Step1.aspx" );
+            //If they successfully log create a new user then take them to the default page
+            //  Otherwise it will show them an error or in a fatal case it will take them to Login.
+            if ( success && cont != null ) {
+                System.Web.Security.FormsAuthentication.RedirectFromLoginPage( cont.UserName, true );
+                Response.Redirect( "~/" );
             }
         }
     }

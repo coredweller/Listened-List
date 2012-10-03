@@ -11,7 +11,7 @@
 
 
 
-        
+
 
 
     });
@@ -25,10 +25,9 @@
     <br />
     <br />
     <br />
-    <asp:PlaceHolder ID="phPart1" runat="server" Visible='false'><span style="font-size: larger;
-        font-weight: bolder; font-family: Comic Sans MS;">(Part 1: Create new Tags simply
-        by giving them a name.<br />
-        Create a tag and then Click Edit for Part 2.)</span> </asp:PlaceHolder>
+    <asp:PlaceHolder ID="phPart1" runat="server" Visible='false'><span class="tutorialTagHeader">
+        Part 1: <span style="font-weight: normal;">Create new Tags simply by giving them a name.<br />
+            --Create a tag and then Click Edit for Part 2.</span></span> </asp:PlaceHolder>
     <p>
         Create New Tag (30 letters max):
         <asp:TextBox ID="txtNewTagName" runat="server" Width="150px"></asp:TextBox>
@@ -38,11 +37,11 @@
     <br />
     <br />
     <asp:PlaceHolder ID="phEditTag" runat="server" Visible="false">
-        <asp:PlaceHolder ID="phPart2" runat="server" Visible="false"><span style="font-size: larger;
-            font-weight: bolder; font-family: Comic Sans MS;">(Part 2: Edit a tag by changing
-            its name and/or color.
-            <br />
-            Change tha name and/or color and click Save for Part 3.)</span> </asp:PlaceHolder>
+        <asp:PlaceHolder ID="phPart2" runat="server" Visible="false"><span class="tutorialTagHeader">
+            Part 2: <span style="font-weight: normal;">Edit a tag by changing its name and/or color.
+                <br />
+                --Change tha name and/or color and click Save for Part 3.</span></span>
+        </asp:PlaceHolder>
         <div>
             Edit Tag Name:
             <asp:TextBox ID="txtTagName" runat="server"></asp:TextBox>
@@ -60,10 +59,14 @@
     <br />
     <asp:PlaceHolder ID="phPart3" runat="server" Visible="false">
         <p>
-            <span style="font-size: larger;
-            font-weight: bolder; font-family: Comic Sans MS;">(Part 3: Viewing Tagged shows by clicking on a Tag. Click the Favorite Show Tag to see the shows Tagged with Favorite Show for this tutorial.
-            <br />
-            Click the links to the shows to go to the desired Notes page. The tutorial is over.  Welcome to Phisherman's Guide!)</span>
+            <span class="tutorialTagHeader">Part 3: <span style="font-weight: normal;">Viewing Tagged
+                shows by clicking on a Tag. 
+                <br />
+                --Click the Favorite Show Tag to see the shows Tagged
+                for this tutorial.
+                <br />
+                --Click the links to the shows to go to the desired Notes page. The tutorial is
+                over. Welcome to Phisherman's Guide!</span></span>
             <br />
             <asp:LinkButton CssClass='blueTag' runat="server" ID="lnkFavoriteShowTutorial" Text='Favorite Show'>
             </asp:LinkButton>&nbsp;&nbsp;(For Tutorial Part 3 only)

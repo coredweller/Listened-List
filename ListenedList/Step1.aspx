@@ -88,9 +88,9 @@
     <br />
     <br />
     <div style="padding-left: 100px; padding-right: 200px;">
-        <h2>
+        <div style="font-size: 35px;font-weight:bolder;padding-bottom:25px;">
             Welcome to Phisherman's Guide!
-        </h2>
+        </div>
         <h3>
             Where phans come to keep track of listening statuses for Phish shows.
             <br />
@@ -99,15 +99,17 @@
             track with Notes, Tags, and a simple easy to use button format.
             <br />
             <br />
-            <br />
             Step 1 shows how to work the buttons, keeping notes, and searching notes.
             <br />
-            Step 2 shows how to create tags, alter tags, and how to view your tagged shows.
+            <a href="/Step2.aspx">Step 2</a> shows how to create tags, alter tags, and how to view your tagged shows.
         </h3>
         <br />
         <br />
-        <h3>
-            Part 1: Button Status</h3>
+        <br />
+        <br />
+        
+        <div class="tutorialInstructionHeaderTop">
+            Part 1: Button Status</div>
         <ul class="localListItems">
             <li>Click a button and choose your listening status for the show.</li>
             <li>A show can have a listening status and be attended at the same time.</li>
@@ -120,9 +122,9 @@
         <div>
             <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" />
         </div>
-        <h3 style="padding-top: 200px;">
+        <div class="tutorialInstructionHeader">
             Part 2: Notes
-        </h3>
+        </div>
         <ul class="localListItems">
             <li>Leave notes about where you left off.</li>
             <li>Or how great the show is and the parts that need to be remembered.</li>
@@ -143,8 +145,8 @@
         <asp:Button ID="btnSubmit" runat="server" CssClass="normalButton" Text="Save" />
         <br />
         <br />
-        <h3 style="padding-top: 200px;">
-            Part 3: Searching Notes</h3>
+        <div class="tutorialInstructionHeader">
+            Part 3: Searching Notes</div>
         <ul class="localListItems">
             <li>Enter any amount of letters or words into the text box.</li>
             <li>If any notes from any shows have your searched words, links will appear to bring
