@@ -1,7 +1,7 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Genius.master.cs" Inherits="ListenedList.Masters.Genius" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="background-color: #D2B48C;">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Phisherman's Guide</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -17,7 +17,7 @@
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body style="background-color: #D2B48C;">
     <form runat="server" id="mainForm">
     <ajaxToolkit:ToolkitScriptManager ID="tksm1" EnablePartialRendering="true" runat="server"
         CombineScripts="false">
@@ -44,7 +44,7 @@
         <div style="font-size: 3em; font-weight: 700; padding-top: 40px; color: Black;">
             Phisherman's Guide
         </div>
-        <ul style="padding-right:100px;">
+        <ul style="padding-right:100px;" >
             <%--    <li class="home">Home</li>--%>
             <li><a href="../Default.aspx">Main</a></li>
             <li><a href="../AddShows.aspx">Multi-Adder</a></li>
