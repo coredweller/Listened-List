@@ -169,7 +169,7 @@ namespace ListenedList
                          from t in temp.DefaultIfEmpty()
                          select new { Tag = aT, ShowTag = t } );
 
-            var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).ToList();
+            var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).OrderBy(z => z.Name).ToList();
 
             ddlTags.Items.Clear();
             foreach ( var r in results ) {

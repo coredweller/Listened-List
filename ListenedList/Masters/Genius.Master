@@ -26,7 +26,7 @@
         <%--<a href="http://www.free-css.com/">
             <img src="images/genius/logo.gif" alt="Genious Web" width="208" height="58" border="0"
                 title="Genious Web" /></a>--%>
-        <div style="float: right; color: Black;">
+        <div style="float: right; color: Black;padding-right:180px;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>
                     [ <a href="../Login.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
@@ -44,7 +44,7 @@
         <div style="font-size: 3em; font-weight: 700; padding-top: 40px; color: Black;">
             Phisherman's Guide
         </div>
-        <ul>
+        <ul style="padding-right:100px;">
             <%--    <li class="home">Home</li>--%>
             <li><a href="../Default.aspx">Main</a></li>
             <li><a href="../AddShows.aspx">Multi-Adder</a></li>

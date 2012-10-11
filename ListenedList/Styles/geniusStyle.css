@@ -3,12 +3,18 @@ body{padding:0px; margin:0px; background:url(../images/genius/mainbg.jpg) 0 0 re
 div, p, ul, h2, h3, img{padding:0px; margin:0px;}
 ul{list-style-type:none;}
 /*----TOP PANEL----*/
-#topPan{width:747px; height:152px; position:relative; margin:0 auto; padding:0px;}
+/*-- 
+    changed on 10/9/12 to move the tabs under the Welcome user area
+ #topPan{width:747px; height:152px; position:relative; margin:0 auto; padding:0px;}   */
+#topPan{width:1000px; height:152px; position:relative; margin:0 auto; padding:0px;}
 #topPan img{width:208px; height:58px; position:absolute; top:35px; left:0px;}
 
 #topPan ul{width:480px; height:32px; position:absolute; top:76px; right:0px;}
 #topPan ul li{float:left; width:79px; height:32px; padding:0 0 0 1px;}
-#topPan ul li a{display:block; width:79px; height:32px; background:url(../images/genius/menubg-normal.gif) 0 0 no-repeat #7E7B00; color:#656565; font-size:11px; font-weight:bold; line-height:32px; text-transform:uppercase; text-align:center; text-decoration:none;}
+/*--
+    changed on 10/10/12 to make the tab names not uppercase
+#topPan ul li a{display:block; width:79px; height:32px; background:url(../images/genius/menubg-normal.gif) 0 0 no-repeat #7E7B00; color:#656565; font-size:11px; font-weight:bold; line-height:32px; text-transform:uppercase; text-align:center; text-decoration:none;}  --*/
+#topPan ul li a{display:block; width:79px; height:32px; background:url(../images/genius/menubg-normal.gif) 0 0 no-repeat #7E7B00; color:#656565; font-size:13px; font-weight:bold; line-height:32px; text-align:center; text-decoration:none;}
 #topPan ul li a:hover{background:url(../images/genius/menubg-hover.gif) 0 0 no-repeat #7E7B00; color:#7C7900; text-decoration:none;}
 
 #topPan ul li.home{display:block; width:79px; height:32px; background:url(../images/genius/menubg-hover.gif) 0 0 no-repeat #7E7B00; font-size:11px; font-weight:bold; line-height:32px; color:#7C7900; text-decoration:none; text-transform:uppercase; text-align:center;}

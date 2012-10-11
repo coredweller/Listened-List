@@ -77,7 +77,7 @@ namespace ListenedList.Controls
                 tags = new List<ITag>{_tagService.GetTag( tagId ) };
             }
 
-            rptTags.DataSource = tags;
+            rptTags.DataSource = tags.OrderBy( x => x.Name );
             rptTags.DataBind();
         }
 
