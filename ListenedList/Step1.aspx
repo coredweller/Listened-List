@@ -57,10 +57,14 @@
 
                             var attended = (status == ListenedStatus.Attended);
 
+                            //If the button already has the attended border
+                            var hasAttended = $(button).hasClass('attendedButton');
+
                             var cssClass = 0;
                             //Get the color based on the NEW listened status
-                            cssClass = GetCssClass(status, attended);
+                            cssClass = GetCssClass(status, attended, hasAttended);
 
+                            //Gets the first half of the class as to get rid of attended
                             var originalClass = $(button).attr('class');
 
                             //Remove all css classes
@@ -69,9 +73,18 @@
                             //Set the button's css class to the new status
                             $(button).addClass(cssClass);
 
-                            //If the latest button clicked was attended then add the old color back to the button
                             if (status == ListenedStatus.Attended) {
+                                //If the latest button clicked was attended then add the old color back to the button
                                 $(button).addClass(originalClass);
+
+                                //If the latest button clicked was attended but attended was already set then remove it
+                                if (hasAttended) {
+                                    $(button).removeClass("attendedButton");
+                                }
+                            }
+                            else {
+                                if (hasAttended)
+                                    $(button).addClass("attendedButton");
                             }
 
                         }

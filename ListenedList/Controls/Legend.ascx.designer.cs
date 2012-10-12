@@ -13,48 +13,48 @@ namespace ListenedList.Controls {
     public partial class Legend {
         
         /// <summary>
-        /// Button1 control.
+        /// btnLegendNeverHeard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnLegendNeverHeard;
         
         /// <summary>
-        /// Button2 control.
+        /// btnLegendInProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnLegendInProgress;
         
         /// <summary>
-        /// Button3 control.
+        /// btnLegendFinished control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnLegendFinished;
         
         /// <summary>
-        /// Button4 control.
+        /// btnLegendNeedToListen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button btnLegendNeedToListen;
         
         /// <summary>
-        /// Button5 control.
+        /// btnLegendAttended control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Button btnLegendAttended;
     }
 }

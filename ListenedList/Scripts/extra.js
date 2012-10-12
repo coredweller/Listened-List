@@ -16,7 +16,7 @@ function getURLParameter(name) {
 
 //Takes in the status of the listenedShow and whether or not they attended the show 
 //Outputs the css classes needed to reflect the user's changed information
-function GetCssClass(status, attended) {
+function GetCssClass(status, attended, hasAttended) {
     var cssClass = "";
 
     switch (parseInt(status)) {
@@ -35,7 +35,7 @@ function GetCssClass(status, attended) {
             break;
     }
 
-    if (attended == "True" || attended == "true" || attended == true) {
+    if ((attended == "True" || attended == "true" || attended == true) && !hasAttended) {
         cssClass = cssClass + " attendedButton";
     }
 
