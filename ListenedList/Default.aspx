@@ -151,11 +151,11 @@
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
     <br />
     <br />
-    <div style="font-size: 3em; font-weight: 700;padding-bottom:30px;">
-        Phish Shows <span style="font-size: small; font-weight:200;">Need Help? Tutorial <a href="/Step1.aspx" >HERE</a></span>
-    </div>
-    <div>
-        <input id="btnPlus" type="button" class="normalButton" value="+" style="width:50px;" />&nbsp;&nbsp;&nbsp;<input id="btnMinus" type="button" class="normalButton" value="-" style="width:50px;" />
+    <div style="font-size: 3em; font-weight: 700; padding-bottom: 30px;">
+        Phish Shows&nbsp;&nbsp;
+        <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
+        <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />&nbsp;&nbsp;
+        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="/Step1.aspx">HERE</a></span>
     </div>
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />
@@ -166,9 +166,9 @@
         <br />
         <br />
     </asp:PlaceHolder>
-
     <uc:Legend ID="legend" runat="server" />
-
+    <br />
+    <%--<br /><br />--%>
     <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
     <br />
     <uc:YearBox ID="yearBox11" runat="server" Year="2011" />

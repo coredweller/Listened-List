@@ -635,6 +635,12 @@ hr.horizontalRule1
     top: 1px;
 }
 
+.plusMinusButton
+{
+    width: 50px;
+    font-size: x-large;
+}
+
 .localListItems
 {
     list-style-type: disc;
