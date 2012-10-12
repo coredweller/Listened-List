@@ -13,7 +13,7 @@
             <td>
             
              <%--  BorderStyle="Outset" BorderWidth="5px" BorderColor="Purple" --%>
-                <asp:Button CssClass='<%# GetCssClass(((Core.Helpers.ShowStatus)Container.DataItem).Status, (((Core.Helpers.ShowStatus)Container.DataItem).Attended)) %>' runat="server" Width="100px"
+                <asp:Button CssClass='<%# GetCssClass(((Core.Helpers.ShowStatus)Container.DataItem).Status, (((Core.Helpers.ShowStatus)Container.DataItem).Attended)) %>' runat="server" Width="100px" ID="btnYearBox"
                     Text='<%# ((Core.Helpers.ShowStatus)Container.DataItem).ShowDate.ToShortDateString() %>' ToolTip='<%# Eval("ShowName") %>'></asp:Button>
             </td>
         </ItemTemplate>

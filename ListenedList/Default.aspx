@@ -18,6 +18,9 @@
                 return;
             }
 
+            var lastWidth = 100;
+            var lastFontSize = 14;
+
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
 
@@ -26,6 +29,23 @@
 
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
+
+                var buttonId = $(button).attr('id');
+
+                if (buttonId == "btnPlus" || buttonId == "btnMinus") {
+                    var modifier = buttonId == "btnPlus" ? 1.1 : .9;
+
+                    var newWidth = lastWidth * modifier;
+                    var newFontSize = lastFontSize * modifier;
+
+                    lastWidth = newWidth;
+                    lastFontSize = newFontSize;
+
+                    $(":input[id$=btnYearBox]").css("width", newWidth + "px");
+                    $(":input[id$=btnYearBox]").css("font-size", newFontSize + "px");
+
+                    return;
+                }
 
                 //Do we need to prompt the user?
                 var needToPrompt = true;
@@ -133,6 +153,9 @@
     <br />
     <div style="font-size: 3em; font-weight: 700;padding-bottom:30px;">
         Phish Shows <span style="font-size: small; font-weight:200;">Need Help? Tutorial <a href="/Step1.aspx" >HERE</a></span>
+    </div>
+    <div>
+        <input id="btnPlus" type="button" class="normalButton" value="+" style="width:50px;" />&nbsp;&nbsp;&nbsp;<input id="btnMinus" type="button" class="normalButton" value="-" style="width:50px;" />
     </div>
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />

@@ -14,7 +14,10 @@ namespace ListenedList.Controls
     {
         public int Year { get; set; }
         public bool Tutorial { get; set; }
+        public int ShowsToDisplay { get; set; }
         public List<ShowStatus> Shows { get; set; }
+
+        private const int _DEFAULT_SHOWS_TO_DISPLAY = 5;
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -51,7 +54,10 @@ namespace ListenedList.Controls
                 }
             }
 
-            if ( Tutorial && ( shows != null && shows.Count >= 0 ) ) shows = shows.GetRange( 0, 5 );
+            if ( Tutorial && ( shows != null && shows.Count >= 0 ) ) {
+                var displayCount = ShowsToDisplay > 0 ? ShowsToDisplay : _DEFAULT_SHOWS_TO_DISPLAY;
+                shows = shows.GetRange( 0, displayCount);
+            }
 
             rptShows.DataSource = shows;
             rptShows.DataBind();

@@ -133,7 +133,7 @@
         <br />
         <br />
         <div>
-            <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" />
+            <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" ShowsToDisplay="4" />
         </div>
         <div class="tutorialInstructionHeader">
             Part 2: Notes
@@ -167,6 +167,9 @@
             <li>Click a notes link below to go to Step 2.</li>
         </ul>
         <br /><br /><br />
+        <div style="color:Blue; font-size: 1.2em;">
+            (Please note: "must listen" is just an example provided for you for the purposes of the tutorial.)
+        </div>
         <p style="font-size: 1.5em; font-weight: 600;">
             Search Notes:</p>
         <asp:TextBox ID="txtSearch" runat="server" Text="must listen" Enabled="false"></asp:TextBox>
