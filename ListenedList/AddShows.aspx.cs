@@ -120,6 +120,14 @@ namespace ListenedList
             phSaveButton2.Visible = display;
         }
 
+        protected string GetClass(string currentClass, ListenedStatus buttonStatus, int userStatus ) {
+            var newClass = currentClass;
+
+            if ( userStatus >= 0 && (int)buttonStatus == userStatus ) newClass += " statusSelected";
+
+            return newClass;
+        }
+
         //public void rptAdder_ItemCreated( object sender, RepeaterItemEventArgs e ) {
         //    RepeaterItem item = (RepeaterItem)e.Item;
 

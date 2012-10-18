@@ -12,7 +12,7 @@ namespace ListenedList
     public partial class CreateUser : ListenedBasePage
     {
         protected void Page_Load( object sender, EventArgs e ) {
-            SetPageTitle( "Create Listened List User" );
+            SetPageTitle( "Create Phisherman's Guide User" );
         }
 
         public void createControl_ContinueButtonClick( object sender, EventArgs e ) {

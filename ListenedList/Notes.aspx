@@ -30,8 +30,12 @@
         <%--<div style="font-size: 1em; font-weight: 400;">
         <br /></div>--%>
         <div style="font-size: 1.5em; font-weight: 600;">
-            Listening Status:&nbsp;<asp:DropDownList ID="ddlStatus" runat="server">
-            </asp:DropDownList>
+            Listening Status:&nbsp;<%--<asp:DropDownList ID="ddlStatus" runat="server">
+            </asp:DropDownList>--%>
+            <asp:Button ID="btnNeverHeard" runat="server" CssClass="defaultButtonWhite" Text="Never Heard" width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnInProgress" runat="server" CssClass="defaultButtonYellow" Text="In Progress" width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnFinished" runat="server" CssClass="defaultButtonOrange" Text="Finished" width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnNeedToListen" runat="server" CssClass="defaultButtonGreen" Text="Need To Listen" width="120px" OnClick="btnListenStatus_Click" />
             <br />
             <br />
             <br />

@@ -63,9 +63,9 @@ namespace ListenedList
         }
 
         private void BindListenedShow( IShow show ) {
-            var list = GetListenedStatusForDropDown();
+            //var list = GetListenedStatusForDropDown();
 
-            ddlStatus.Items.AddRange( list );
+            //ddlStatus.Items.AddRange( list );
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>(); ;
 
@@ -83,8 +83,28 @@ namespace ListenedList
             lblCreatedDate.Text = string.Format( "First Created: {0}", listened.CreatedDate.ToString() );
             lblUpdatedDate.Text = string.Format( "Last Updated: {0}", listened.UpdatedDate.HasValue ? listened.UpdatedDate.Value.ToString() : "" );
 
-            var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
-            item.Selected = true;
+            Button button;
+            switch ( listened.Status ) {
+                case (int)ListenedStatus.InProgress:
+                    button = btnInProgress;
+                    break;
+                case (int)ListenedStatus.Finished:
+                    button = btnFinished;
+                    break;
+                case (int)ListenedStatus.NeedToListen:
+                    button = btnNeedToListen;
+                    break;
+                case (int)ListenedStatus.None:
+                default:
+                    button = btnNeverHeard;
+                    break;
+            }
+
+            SetListenedStatusButton( button );
+
+
+            //var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
+            //item.Selected = true;
         }
 
         public void btnAttended_Click( object sender, EventArgs e ) {
@@ -190,7 +210,8 @@ namespace ListenedList
         #region Events
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
-            if ( (string.IsNullOrEmpty( txtNotes.Text ) && ddlStatus.SelectedValue == "-1" ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
+            //if ( (string.IsNullOrEmpty( txtNotes.Text ) && ddlStatus.SelectedValue == "-1" ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
+            if (string.IsNullOrEmpty( txtNotes.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
 
             var success = false;
 
@@ -206,9 +227,9 @@ namespace ListenedList
                     listenedShow.Notes = txtNotes.Text;
                     listenedShow.UpdatedDate = DateTime.UtcNow;
 
-                    if ( ddlStatus.SelectedValue != "-1" ) {
-                        listenedShow.Status = int.Parse( ddlStatus.SelectedValue );
-                    }
+                    //if ( ddlStatus.SelectedValue != "-1" ) {
+                    //    listenedShow.Status = int.Parse( ddlStatus.SelectedValue );
+                    //}
 
                     uow.Commit();
                     success = true;
@@ -221,6 +242,53 @@ namespace ListenedList
 
             ValidateSuccess( success, "You have saved your notes for this show.", "There was an error saving your notes for this show." );
 
+        }
+
+        public void btnListenStatus_Click( object sender, EventArgs e ) {
+            if ( string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
+
+            var clickedButton = (Button)sender;
+            var listenedId = new Guid( hdnListenedId.Value );
+
+            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
+
+            using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+
+                var listenedShow = listenedShowService.GetById( listenedId );
+                
+                ///LEFT OFF HERE 10.12.12
+
+                switch ( clickedButton.ID ) {
+                    case "btnNeverHeard":
+                        listenedShow.Status = (int)ListenedStatus.None;
+                        break;
+                    case "btnInProgress":
+                        listenedShow.Status = (int)ListenedStatus.InProgress;
+                        break;
+                    case "btnFinished":
+                        listenedShow.Status = (int)ListenedStatus.Finished;
+                        break;
+                    case "btnNeedToListen":
+                        listenedShow.Status = (int)ListenedStatus.NeedToListen;
+                        break;
+                }
+
+                uow.Commit();
+
+                SetListenedStatusButton( clickedButton );
+            }
+        }
+
+        private void SetListenedStatusButton( Button button ) {
+            btnNeverHeard.BorderStyle = BorderStyle.None;
+            btnInProgress.BorderStyle = BorderStyle.None;
+            btnFinished.BorderStyle = BorderStyle.None;
+            btnNeedToListen.BorderStyle = BorderStyle.None;
+
+            button.CssClass = "statusSelected";
+            //button.BorderColor = System.Drawing.Color.Blue;
+            //button.BorderStyle = BorderStyle.Solid;
+            //button.BorderWidth = Unit.Pixel(4);
         }
 
         public void btnSearch_Click( object sender, EventArgs e ) {

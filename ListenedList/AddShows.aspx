@@ -46,24 +46,44 @@
                         <ItemTemplate>
                             <tr>
                                 <td style="padding-left: 12px;">
-                                    <asp:RadioButton ID="rdoNeverHeard" runat="server" AutoPostBack="true" GroupName="Status"
+                                    <asp:Button ID="btnNeverHeard" runat="server" CommandArgument='<%# (int)Core.Services.ListenedStatus.None %>' Text="Never Heard" 
+                                        CssClass='<%# GetClass("defaultButtonWhite", Core.Services.ListenedStatus.None, (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status : -1) %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>'
+                                    />
+                                    
+                                    <%--<asp:RadioButton ID="rdoNeverHeard" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.None ? true : false : true %>'
-                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />--%>
                                 </td>
                                 <td style="padding-left: 20px;">
-                                    <asp:RadioButton ID="rdoFinished" runat="server" AutoPostBack="true" GroupName="Status"
+                                    <asp:Button ID="btnFinished" runat="server" CommandArgument='<%# (int)Core.Services.ListenedStatus.Finished %>' Text="Finished"
+                                        CssClass='<%# GetClass("defaultButtonOrange", Core.Services.ListenedStatus.Finished, (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status : -1) %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>'
+                                    />
+                                    
+                                    <%--<asp:RadioButton ID="rdoFinished" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.Finished ? true : false : false %>'
-                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />--%>
                                 </td>
                                 <td style="padding-left: 25px;">
-                                    <asp:RadioButton ID="rdoInProgress" runat="server" AutoPostBack="true" GroupName="Status"
+                                    <asp:Button ID="btnInProgress" runat="server" CommandArgument='<%# (int)Core.Services.ListenedStatus.InProgress %>' Text="In Progress" 
+                                        CssClass='<%# GetClass("defaultButtonYellow", Core.Services.ListenedStatus.InProgress, (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status : -1) %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>'
+                                    />
+
+                                    <%--<asp:RadioButton ID="rdoInProgress" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.InProgress ? true : false : false %>'
-                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />--%>
                                 </td>
                                 <td style="padding-left: 28px;">
-                                    <asp:RadioButton ID="rdoNeedToListen" runat="server" AutoPostBack="true" GroupName="Status"
+                                    <asp:Button ID="btnNeedToListen" runat="server" CommandArgument='<%# (int)Core.Services.ListenedStatus.NeedToListen %>' Text="Need To Listen"
+                                        CssClass='<%# GetClass("defaultButtonGreen", Core.Services.ListenedStatus.NeedToListen, (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status : -1) %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>'
+                                     />
+                                    
+                                    <%--<asp:RadioButton ID="rdoNeedToListen" runat="server" AutoPostBack="true" GroupName="Status"
                                         Checked='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Status == (int)Core.Services.ListenedStatus.NeedToListen ? true : false : false %>'
-                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />--%>
                                 </td>
                                 <td>
                                     <b>
