@@ -28,7 +28,7 @@ namespace ListenedList
         }
 
         private void Bind() {
-            var years = showService.GetYears().Where( x => x > 1984 ); ;
+            var years = showService.GetYears().Where( x => x > 1986 ); ;
 
             foreach ( var year in years ) {
                 var yearStr = year.ToString();
@@ -37,69 +37,6 @@ namespace ListenedList
 
             var item = new ListItem( "Choose a Year", "0" );
             ddlYears.Items.Insert( 0, item );
-        }
-
-        public void SaveAll( object sender, EventArgs e ) {
-
-            if ( rptAdder.Items == null || rptAdder.Items.Count <= 0 ) return;
-
-            var success = false;
-
-            try {
-
-                var item = rptAdder.Items[0];
-
-                RadioButton btn = item.FindControl( finished ) as RadioButton;
-
-                var showDate = DateTime.Parse( btn.ToolTip );
-                var userId = GetUserId();
-                var listenedShows = listenedShowService.GetShowsByYear( showDate.Year, userId );
-
-                using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
-                    foreach ( RepeaterItem i in rptAdder.Items ) {
-                        if ( item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem ) {
-                            RadioButton finishedChk = i.FindControl( finished ) as RadioButton;
-                            RadioButton inProgressChk = i.FindControl( inProgress ) as RadioButton;
-                            RadioButton needToListenChk = i.FindControl( needToListen ) as RadioButton;
-                            RadioButton neverHeardChk = i.FindControl( neverHeard ) as RadioButton;
-
-                            var date = DateTime.Parse( finishedChk.ToolTip );
-
-                            var newStatus = ListenedStatus.None;
-                            if ( finishedChk.Checked )
-                                newStatus = ListenedStatus.Finished;
-                            else if ( inProgressChk.Checked )
-                                newStatus = ListenedStatus.InProgress;
-                            else if ( needToListenChk.Checked )
-                                newStatus = ListenedStatus.NeedToListen;
-
-                            var listened = listenedShows.SingleOrDefault( x => x.ShowDate == date );
-
-                            if ( listened == null && newStatus == ListenedStatus.None ) continue;
-                            else if ( listened == null ) {
-                                var show = showService.GetShow( date );
-                                var newListened = _DomainObjectFactory.CreateListenedShow( show.Id, userId, date, (int)newStatus, string.Empty );
-                                bool minorSuccess;
-                                listenedShowService.Save( newListened, out minorSuccess );
-
-                                if ( !minorSuccess ) _Log.Write( "There was an error saving a listenedShow status for userId: " + userId + " and showId: " + show.Id + " and listenedShowId: " + newListened != null ? newListened.Id.ToString() : "new listened show was null" );
-                                continue;
-                            }
-
-                            if ( listened.Status == (int)newStatus ) continue;
-
-                            listened.Status = (int)newStatus;
-                        }
-                    }
-                    uow.Commit();
-                    success = true;
-                }
-            }
-            catch ( Exception ex ) {
-                _Log.WriteFatal( "There was an error saving all shows on AddShows.aspx in the SaveAll method with message: " + ex.Message );
-            }
-
-            ValidateSuccess( success, "You have successfully saved your shows!", "There was an error saving your shows!" );
         }
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
@@ -126,9 +63,7 @@ namespace ListenedList
             using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
                 var listened = listenedShowService.GetByUserAndShow( userId, showDate );
 
-                //If a listenedShow doesnt already exist and the status is still none then do nothing
-                if ( listened == null && newStatus == ListenedStatus.None ) return;
-                else if ( listened == null ) {
+                if ( listened == null ) {
                     var newListened = _DomainObjectFactory.CreateListenedShow( showId, userId, showDate, (int)newStatus, string.Empty );
                     bool minorSuccess;
                     listenedShowService.Save( newListened, out minorSuccess );

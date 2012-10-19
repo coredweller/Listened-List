@@ -19,9 +19,6 @@
         </div>
         <br />
         <br />
-        <asp:PlaceHolder ID="phSaveButton1" runat="server" Visible="false">
-            <asp:Button ID="btnSave" runat="server" CssClass="buttonSave" Text="SAVE" OnClick="SaveAll" />
-        </asp:PlaceHolder>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div>

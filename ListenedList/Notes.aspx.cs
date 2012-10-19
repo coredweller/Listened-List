@@ -15,6 +15,7 @@ namespace ListenedList
     public partial class Notes : ListenedBasePage
     {
         public string ShowTitle { get; set; }
+        private const string statusSelected = "statusSelected";
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -256,8 +257,6 @@ namespace ListenedList
 
                 var listenedShow = listenedShowService.GetById( listenedId );
                 
-                ///LEFT OFF HERE 10.12.12
-
                 switch ( clickedButton.ID ) {
                     case "btnNeverHeard":
                         listenedShow.Status = (int)ListenedStatus.None;
@@ -280,12 +279,12 @@ namespace ListenedList
         }
 
         private void SetListenedStatusButton( Button button ) {
-            btnNeverHeard.BorderStyle = BorderStyle.None;
-            btnInProgress.BorderStyle = BorderStyle.None;
-            btnFinished.BorderStyle = BorderStyle.None;
-            btnNeedToListen.BorderStyle = BorderStyle.None;
+            btnNeverHeard.CssClass = btnNeverHeard.CssClass.Replace( statusSelected, "" );
+            btnInProgress.CssClass = btnInProgress.CssClass.Replace( statusSelected, "" );
+            btnFinished.CssClass = btnFinished.CssClass.Replace( statusSelected, "" );
+            btnNeedToListen.CssClass = btnNeedToListen.CssClass.Replace( statusSelected, "" );
 
-            button.CssClass = "statusSelected";
+            button.CssClass += " " + statusSelected;
             //button.BorderColor = System.Drawing.Color.Blue;
             //button.BorderStyle = BorderStyle.Solid;
             //button.BorderWidth = Unit.Pixel(4);
