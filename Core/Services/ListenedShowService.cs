@@ -90,6 +90,10 @@ namespace Core.Services
             return GetByUser( userId ).ToList().OrderByDescending( x => x.UpdatedDate ).FirstOrDefault();
         }
 
+        public IListenedShow GetByUserAndShow( Guid userId, DateTime showDate ) {
+            return GetByUser( userId ).SingleOrDefault( x => x.ShowDate == showDate );
+        }
+
         public void SaveCommit(IListenedShow show, out bool success)
         {
             using (IUnitOfWork u = UnitOfWork.Begin())

@@ -18,5 +18,6 @@ namespace Core.Services.Interfaces
         IList<IListenedShow> GetByUserIds( IList<Guid> userIds );
         IListenedShow GetLatestByUserId( Guid userId );
         IList<IListenedShow> GetByAttendedForUser( Guid userId );
+        IListenedShow GetByUserAndShow( Guid userId, DateTime showDate );
     }
 }

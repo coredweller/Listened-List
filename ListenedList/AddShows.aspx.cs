@@ -19,6 +19,7 @@ namespace ListenedList
         private const string inProgress = "rdoInProgress";
         private const string needToListen = "rdoNeedToListen";
         private const string neverHeard = "rdoNeverHeard";
+        private const string statusSelected = "statusSelected";
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -75,8 +76,8 @@ namespace ListenedList
                             var listened = listenedShows.SingleOrDefault( x => x.ShowDate == date );
 
                             if ( listened == null && newStatus == ListenedStatus.None ) continue;
-                            else if(listened == null) {
-                                var show = showService.GetShow(date);
+                            else if ( listened == null ) {
+                                var show = showService.GetShow( date );
                                 var newListened = _DomainObjectFactory.CreateListenedShow( show.Id, userId, date, (int)newStatus, string.Empty );
                                 bool minorSuccess;
                                 listenedShowService.Save( newListened, out minorSuccess );
@@ -109,81 +110,65 @@ namespace ListenedList
 
             var listenedShows = listenedShowService.GetBothShowsByYear( year, GetUserId() );
 
-            DisplaySaveButtons( true );
-
             rptAdder.DataSource = listenedShows;
             rptAdder.DataBind();
         }
 
-        private void DisplaySaveButtons( bool display ) {
-            phSaveButton1.Visible = display;
-            phSaveButton2.Visible = display;
+        protected void rptAdder_ItemCommand( object source, RepeaterCommandEventArgs e ) {
+            var showId = new Guid( e.CommandName.ToString() );
+            var newStatus = (ListenedStatus)int.Parse( e.CommandArgument.ToString() );
+            var button = (Button)e.CommandSource;
+            var showDate = DateTime.Parse( button.ToolTip );
+            var userId = GetUserId();
+
+            var success = false;
+
+            using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
+                var listened = listenedShowService.GetByUserAndShow( userId, showDate );
+
+                //If a listenedShow doesnt already exist and the status is still none then do nothing
+                if ( listened == null && newStatus == ListenedStatus.None ) return;
+                else if ( listened == null ) {
+                    var newListened = _DomainObjectFactory.CreateListenedShow( showId, userId, showDate, (int)newStatus, string.Empty );
+                    bool minorSuccess;
+                    listenedShowService.Save( newListened, out minorSuccess );
+
+                    if ( !minorSuccess ) _Log.Write( "There was an error saving a listenedShow status for userId: " + userId + " and showId: " + showId + " and listenedShowId: " + newListened != null ? newListened.Id.ToString() : "new listened show was null" );
+                }
+                else {
+                    //If the current status is the same as the new status then do nothing
+                    if ( listened.Status == (int)newStatus ) return;
+
+                    listened.Status = (int)newStatus;
+                }
+
+                uow.Commit();
+                success = true;
+            }
+
+            if ( !success ) return;
+
+            //Remove the statusSelected class from all and then add it to the newly selected button
+            var repeaterItem = (RepeaterItem)button.NamingContainer;
+            RemoveClass( repeaterItem, "btnNeverHeard" );
+            RemoveClass( repeaterItem, "btnInProgress" );
+            RemoveClass( repeaterItem, "btnFinished" );
+            RemoveClass( repeaterItem, "btnNeedToListen" );
+
+            button.CssClass += " " + statusSelected;
         }
 
-        protected string GetClass(string currentClass, ListenedStatus buttonStatus, int userStatus ) {
+        private void RemoveClass( RepeaterItem repeaterItem, string buttonName ) {
+            var button = ( (Button)repeaterItem.FindControl( buttonName ) );
+            button.CssClass = button.CssClass.Replace( statusSelected, "" );
+        }
+
+        protected string GetClass( string currentClass, ListenedStatus buttonStatus, int userStatus ) {
             var newClass = currentClass;
 
-            if ( userStatus >= 0 && (int)buttonStatus == userStatus ) newClass += " statusSelected";
+            if ( userStatus >= 0 && (int)buttonStatus == userStatus ) newClass += " " + statusSelected;
 
             return newClass;
         }
-
-        //public void rptAdder_ItemCreated( object sender, RepeaterItemEventArgs e ) {
-        //    RepeaterItem item = (RepeaterItem)e.Item;
-
-        //    if ( item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem ) {
-        //        RadioButton finishedChk = item.FindControl( finished ) as RadioButton;
-        //        RadioButton inProgressChk = item.FindControl( inProgress ) as RadioButton;
-        //        RadioButton needToListenChk = item.FindControl( needToListen ) as RadioButton;
-        //        RadioButton neverHeardChk = item.FindControl( neverHeard ) as RadioButton;
-
-        //        finishedChk.CheckedChanged += new EventHandler( CheckedChanged );
-        //        inProgressChk.CheckedChanged += new EventHandler( CheckedChanged );
-        //        needToListenChk.CheckedChanged += new EventHandler( CheckedChanged );
-        //        neverHeardChk.CheckedChanged += new EventHandler( CheckedChanged );
-        //    }
-        //}
-
-        //private void CheckedChanged( object sender, EventArgs e ) {
-        //    RadioButton rb = (RadioButton)sender;
-        //    var showDate = DateTime.Parse( rb.ToolTip );
-        //    int status = 0;
-
-        //    switch ( rb.ID ) {
-        //        case finished:
-        //            status = (int)ListenedStatus.Finished;
-        //            break;
-        //        case inProgress:
-        //            status = (int)ListenedStatus.InProgress;
-        //            break;
-        //        case needToListen:
-        //            status = (int)ListenedStatus.NeedToListen;
-        //            break;
-        //        case neverHeard:
-        //            status = (int)ListenedStatus.None;
-        //            break;
-        //    }
-
-        //    if ( rb.Checked ) {
-        //        var show = showService.GetShow( showDate );
-
-        //        var userId = GetUserId();
-        //        var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
-
-        //        if ( listenedShow == null ) {
-        //            var l = _DomainObjectFactory.CreateListenedShow( show.Id, userId, showDate, status, string.Empty );
-
-        //            bool success = false;
-        //            listenedShowService.SaveCommit( l, out success );
-        //        }
-        //        else {
-        //            using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
-
-        //                listenedShow.Status = status;
-        //                uow.Commit();
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
