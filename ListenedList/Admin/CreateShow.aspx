@@ -86,7 +86,6 @@
                     <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                     <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlState" Text="You must choose a state"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>

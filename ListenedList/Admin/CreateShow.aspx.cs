@@ -18,8 +18,8 @@ namespace ListenedList.Admin
         public void btnSubmit_Click( object sender, EventArgs e ) {
             PromptHelper prompt;
 
-            if ( string.IsNullOrEmpty( ddlState.SelectedValue ) || string.IsNullOrEmpty( ddlCountry.SelectedValue ) ) {
-                prompt = new PromptHelper( "Please choose a valid state and country." );
+            if ( string.IsNullOrEmpty( ddlCountry.SelectedValue ) ) {
+                prompt = new PromptHelper( "Please choose a valid country." );
                 Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
                 return;
             }
