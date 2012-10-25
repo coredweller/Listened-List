@@ -55,14 +55,8 @@
                 //The URL to the notes page
                 var notesUrl = "Notes/";
 
-                 //The RGB value of Orange
-                var orangeColor = "defaultButtonOrange";
-
-                //The button's current background color
-                var currentColor = $(button).attr("class");
-
                 //If the button's current color is orange meaning the show is already finished
-                if (currentColor == orangeColor) {
+                if ($(button).hasClass("defaultButtonOrange")) {
                     //Then go to the notes page
                     window.location.href = notesUrl + showDate;
                     //Dont prompt the user anymore since we are going to the Notes page anyway
