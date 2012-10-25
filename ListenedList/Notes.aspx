@@ -1,21 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
     Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
-<asp:Content ContentPlaceHolderID="Head" runat="server">
-    <script type="text/javascript">
-       
-        $(document).ready(function () {
-
-       //     var input = $("#btnCreateTag").click(function (event) {
-
-            });
-        });
-    </script>
-</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px;">
-        <asp:HyperLink ID="lnkBack" runat="server" Text="Back to Show Page" NavigateUrl="/Default.aspx"></asp:HyperLink>
+        <a id="lnkBack" href="<%: FriendlyUrl.Href("/Default") %>">Back to Show Page</a>
     </div>
     <br />
     <br />

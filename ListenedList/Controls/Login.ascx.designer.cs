@@ -13,15 +13,6 @@ namespace ListenedList.Controls {
     public partial class Login {
         
         /// <summary>
-        /// lnkCreateUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkCreateUser;
-        
-        /// <summary>
         /// LoginView1 control.
         /// </summary>
         /// <remarks>

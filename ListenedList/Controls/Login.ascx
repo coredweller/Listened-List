@@ -1,15 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="ListenedList.Controls.Login" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <br />
-<asp:HyperLink runat="server" ID="lnkCreateUser" NavigateUrl="~/CreateUser.aspx"
-    Text="New User?"></asp:HyperLink>
+<a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">New User?</a>
 <%--OR If you are a member have you
-<asp:HyperLink ID="lnkForgotPassword" runat="server" Text="Forgotten your Password?" NavigateUrl="~/ForgotPassword.aspx"></asp:HyperLink>--%>
+<a id="lnkForgotPassword" href="<%: FriendlyUrl.Href("~/ForgotPassword") %>">Forgotten your Password?</a>--%>
 <br />
 <br />
 <div>
     <asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate>
-            <asp:Login runat="server" ID="lcont">
+            <asp:Login runat="server" ID="loginControl" OnLoggedIn="loginControl_LoggedIn">
                 <LoginButtonStyle CssClass="normalButton" />
             </asp:Login>
         </AnonymousTemplate>

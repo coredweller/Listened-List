@@ -38,7 +38,7 @@
                     </td>--%>
                     <td>
                         <strong>
-                            <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default.aspx?userName=" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
+                            <asp:HyperLink NavigateUrl='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.Public == true ? "Default/" + ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName : "" %>'
                                 runat="server" Style="font-size: larger;" Text='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'></asp:HyperLink></strong>----
                     </td>
                     <td>

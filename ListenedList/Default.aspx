@@ -1,6 +1,7 @@
 ﻿<%--<%@ Register TagPrefix="uc" Namespace="ListenedList.Controls" Assembly="ListenedList.Controls" %>--%>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Masters/Genius.Master"
     AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ListenedList._Default" %>
@@ -10,10 +11,11 @@
         $(document).ready(function () {
 
             //Looks for userName in the URL
-            var readOnly = getURLParameter("userName");
+            var pathname = window.location.pathname.split("/");
+            var userName = pathname[pathname.length - 1];
 
             //If a userName is in the URL then disable the buttons
-            if (readOnly != "null") {
+            if (userName.toLowerCase() != "default".toLowerCase()) {
                 $(":input").attr('disabled', true);
                 return;
             }
@@ -24,8 +26,8 @@
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
 
-                //grab the showdate from the button that was clicked
-                var showDate = $(this).val();
+                //grab the showdate from the button that was clicked and replace both slashes with dashes to be more url friendly
+                var showDate = $(this).val().replace('/', '-').replace('/', '-');
 
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
@@ -51,9 +53,9 @@
                 var needToPrompt = true;
 
                 //The URL to the notes page
-                var notesUrl = "Notes.aspx?showDate=";
+                var notesUrl = "Notes/";
 
-                //The RGB value of Orange
+                 //The RGB value of Orange
                 var orangeColor = "defaultButtonOrange";
 
                 //The button's current background color
@@ -155,7 +157,7 @@
         Phish Shows&nbsp;&nbsp;
         <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
         <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />&nbsp;&nbsp;
-        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="/Step1.aspx">HERE</a></span>
+        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
     </div>
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />

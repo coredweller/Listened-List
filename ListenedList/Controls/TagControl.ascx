@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TagControl.ascx.cs"
     Inherits="ListenedList.Controls.TagControl" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -77,20 +78,17 @@
             <table>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="HyperLink2" runat="server" Text='12/31/1995 - Madison Square Garden - New York, NY'
-                            NavigateUrl='/Notes.aspx?showDate=12/31/1995'></asp:HyperLink>
+                        <a id="HyperLink2" href='<%: FriendlyUrl.Href("/../Notes", "12-31-1995") %>'>12/31/1995 - Madison Square Garden - New York, NY</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="HyperLink1" runat="server" Text='05/07/1994 - The Bomb Factory - Dallas, TX'
-                            NavigateUrl='/Notes.aspx?showDate=05/07/1994'></asp:HyperLink>
+                        <a id="A1" href='<%: FriendlyUrl.Href("/../Notes", "05-07-1994") %>'>05/07/1994 - The Bomb Factory - Dallas, TX</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="lnkShow" runat="server" Text='12/30/1997 - Madison Square Garden - New York, NY'
-                            NavigateUrl='/Notes.aspx?showDate=12/30/1997'></asp:HyperLink>
+                        <a id="A2" href='<%: FriendlyUrl.Href("/../Notes", "12-30-1997") %>'>12/30/1997 - Madison Square Garden - New York, NY</a>
                     </td>
                 </tr>
             </table>
@@ -123,8 +121,7 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:HyperLink ID="lnkShow" runat="server" Text='<%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %>'
-                                NavigateUrl='<%# "/Notes.aspx?showId=" + ((Core.DomainObjects.IShow)Container.DataItem).Id %>'></asp:HyperLink>
+                            <a id="lnkShow" href="<%# FriendlyUrl.Href("/../Notes", ((Core.DomainObjects.IShow)Container.DataItem).Id ) %>"><%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %></a>
                         </td>
                     </tr>
                 </ItemTemplate>

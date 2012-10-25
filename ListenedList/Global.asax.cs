@@ -9,6 +9,7 @@ using StructureMap;
 using Core.Infrastructure;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.Routing;
 
 namespace ListenedList
 {
@@ -23,6 +24,8 @@ namespace ListenedList
             OnStart();
 
             SqlDependency.Start(ConfigurationManager.ConnectionStrings["Listened"].ConnectionString);
+
+            RouteConfig.RegisterRoutes( RouteTable.Routes );
         }
 
         protected virtual void OnStart()

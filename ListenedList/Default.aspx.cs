@@ -9,6 +9,7 @@ using Core.DomainObjects;
 using System.Collections.Generic;
 using Core.Helpers;
 using Core.Services.Interfaces;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList
 {
@@ -32,8 +33,10 @@ namespace ListenedList
 
             userId = GetUserId();
 
-            if ( !string.IsNullOrEmpty( Request["userName"] ) ) {
-                var user = _MembershipProvider.GetUser( Request["userName"] );
+            var segment = Request.GetFriendlyUrlSegments().FirstOrDefault();
+
+            if ( segment != null ) {
+                var user = _MembershipProvider.GetUser( segment );
 
                 if ( user == null ) return;
 

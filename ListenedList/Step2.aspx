@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step2.aspx.cs" Inherits="ListenedList.Step2"
     MasterPageFile="~/Masters/Genius.Master" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <%@ Register TagPrefix="uc" TagName="TagControl" Src="~/Controls/TagControl.ascx" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +12,7 @@
             or anything else you can come up with to keep track of it all.
             <br /><br /> Create as many as you want and use different colors as well.
             <br /><br />
-            This is the tutorial Tags page.  Create and do whatever you like. To use this page without the tutorial text go <a href="/Tags.aspx">HERE</a>
+            This is the tutorial Tags page.  Create and do whatever you like. To use this page without the tutorial text go <a href="<%: FriendlyUrl.Href("/Tags") %>">HERE</a>
         </h3>
         <br />
         <br />

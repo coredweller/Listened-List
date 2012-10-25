@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Membership;
 using Core.Services;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList
 {
@@ -16,7 +17,7 @@ namespace ListenedList
         }
 
         public void createControl_ContinueButtonClick( object sender, EventArgs e ) {
-            Response.Redirect( "~/Logout.aspx" );
+            Response.Redirect( FriendlyUrl.Href( "~/Logout" ) );
         }
 
         public void createControl_CreatedUser( object sender, EventArgs e ) {
@@ -42,7 +43,7 @@ namespace ListenedList
             //  Otherwise it will show them an error or in a fatal case it will take them to Login.
             if ( success && cont != null ) {
                 System.Web.Security.FormsAuthentication.RedirectFromLoginPage( cont.UserName, true );
-                Response.Redirect( "~/" );
+                Response.Redirect( FriendlyUrl.Href( "~/Default" ) );
             }
         }
     }

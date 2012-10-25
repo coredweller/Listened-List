@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step1.aspx.cs" Inherits="ListenedList.Step1"
     MasterPageFile="~/Masters/Genius.Master" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
@@ -9,7 +10,7 @@
         $(document).ready(function () {
 
             $(".lnkFake").click(function (event) {
-                window.location = "Step2.aspx";
+                window.location = "/Step2";
                 return false;
             });
 
@@ -114,7 +115,7 @@
             <br />
             Step 1 shows how to work the buttons, keeping notes, and searching notes.
             <br />
-            <a href="/Step2.aspx">Step 2</a> shows how to create tags, alter tags, and how to view your tagged shows.
+            <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags, alter tags, and how to view your tagged shows.
         </h3>
         <br />
         <br />

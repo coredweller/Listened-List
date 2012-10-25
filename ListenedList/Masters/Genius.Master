@@ -1,5 +1,6 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Genius.master.cs" Inherits="ListenedList.Masters.Genius" %>
 
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -14,7 +15,7 @@
     <script type="text/javascript" src="/Scripts/extra.js"></script>
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
-    <link id="favIcon3" runat="server" rel="icon" href="~/favicon.ico" type="image/x-icon"/>
+    <link id="favIcon3" runat="server" rel="icon" href="~/favicon.ico" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -27,10 +28,11 @@
         <%--<a href="http://www.free-css.com/">
             <img src="images/genius/logo.gif" alt="Genious Web" width="208" height="58" border="0"
                 title="Genious Web" /></a>--%>
-        <div style="float: right; color: Black;padding-right:180px;">
+        <div style="float: right; color: Black; padding-right: 180px;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>
-                    [ <a href="../Login.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
+                    [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">
+                        Log In</a> ]
                 </AnonymousTemplate>
                 <LoggedInTemplate>
                     Welcome <span class="bold">
@@ -45,22 +47,16 @@
         <div style="font-size: 3em; font-weight: 700; padding-top: 40px; color: Black;">
             Phisherman's Guide
         </div>
-        <ul style="padding-right:100px;" >
+        <ul style="padding-right: 100px;">
             <%--    <li class="home">Home</li>--%>
-            <li><a href="../Default.aspx">Main</a></li>
-            <li><a href="../AddShows.aspx">Multi-Adder</a></li>
-            <li><a href="../Tags.aspx">Tags</a></li>
-            <li><a href="../Search.aspx">Search</a></li>
-            <li><a href="../Settings.aspx">Settings</a></li>
-            <%--<li><a href="../Logout.aspx">Log Out</a></li>--%>
-            <%--<li><a href="http://www.free-css.com/">Clients</a></li>
-    <li><a href="http://www.free-css.com/">ideas</a></li>
-    <li><a href="http://www.free-css.com/">Contact</a></li>--%>
+            <li><a href="<%: FriendlyUrl.Href("/../") %>">Main</a></li>
+            <li><a href="<%: FriendlyUrl.Href("/../AddShows") %>">Multi-Adder</a></li>
+            <li><a href="<%: FriendlyUrl.Href("/../Tags") %>">Tags</a></li>
+            <li><a href="<%: FriendlyUrl.Href("/../Search") %>">Search</a></li>
+            <li><a href="<%: FriendlyUrl.Href("/../Settings") %>">Settings</a></li>
         </ul>
         <%-- <ul class="dropdown">
     <li><a href="http://www.free-css.com/">internal</a></li>
-    <li><a href="http://www.free-css.com/">more info</a></li>
-    <li><a href="http://www.free-css.com/">tips</a></li>
     <li class="verticallinenone"><a href="http://www.free-css.com/">purchase</a></li>
   </ul>--%>
     </div>

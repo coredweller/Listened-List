@@ -9,6 +9,7 @@ using Core.Services.Interfaces;
 using Core.Helpers.Script;
 using System.Web.UI.WebControls;
 using Core.Extensions;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList
 {
@@ -44,16 +45,18 @@ namespace ListenedList
 
             IShow show = null;
 
+            var segment = Request.GetFriendlyUrlSegments().FirstOrDefault();
+
             //Check to see if the show date or show id is passed in then get the IShow for that show
-            if ( DateTime.TryParse( Request.QueryString["showDate"], out showDate ) ) {
+            if ( DateTime.TryParse( segment, out showDate ) ) {
                 show = showService.GetShow( showDate );
             }
-            else if ( Guid.TryParse( Request.QueryString["showId"], out showId ) ) {
+            else if ( Guid.TryParse( segment, out showId ) ) {
                 show = showService.GetShow( showId );
             }
 
             //If it is not a valid show then get out of here
-            if ( show == null ) return;
+            if ( show == null ) Response.Redirect( FriendlyUrl.Href( "~/Default" ) );
 
             hdnShowId.Value = show.Id.ToString();
 
@@ -190,7 +193,7 @@ namespace ListenedList
                          from t in temp.DefaultIfEmpty()
                          select new { Tag = aT, ShowTag = t } );
 
-            var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).OrderBy(z => z.Name).ToList();
+            var results = tags.Where( x => x.ShowTag == null ).Select( y => y.Tag ).OrderBy( z => z.Name ).ToList();
 
             ddlTags.Items.Clear();
             foreach ( var r in results ) {
@@ -212,7 +215,7 @@ namespace ListenedList
 
         public void btnSubmit_Click( object sender, EventArgs e ) {
             //if ( (string.IsNullOrEmpty( txtNotes.Text ) && ddlStatus.SelectedValue == "-1" ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
-            if (string.IsNullOrEmpty( txtNotes.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
+            if ( string.IsNullOrEmpty( txtNotes.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
 
             var success = false;
 
@@ -256,7 +259,7 @@ namespace ListenedList
             using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
                 var listenedShow = listenedShowService.GetById( listenedId );
-                
+
                 switch ( clickedButton.ID ) {
                     case "btnNeverHeard":
                         listenedShow.Status = (int)ListenedStatus.None;
@@ -406,7 +409,7 @@ namespace ListenedList
         #region Utilities
 
         public string GetUrl( Guid id ) {
-            return "Notes.aspx?showId=" + id.ToString();
+            return FriendlyUrl.Href( "~/Notes", id.ToString() );
         }
 
         private void ValidateTags( bool success, string successMessage, string error, Guid showId ) {
