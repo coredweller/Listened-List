@@ -34,7 +34,7 @@ namespace ListenedList.Controls
             var showService = Ioc.GetInstance<IShowService>();
             var shows = showService.GetShowStatusByYear( Year );
 
-            //Shows is populated in Default.aspx.cs with all the ShowStatus's for the ListenedShows
+            //Shows is populated in Main.aspx with all the ShowStatus's for the ListenedShows
             if ( Shows != null && Shows.Count > 0) {
                 
                 foreach ( var s in Shows ) {

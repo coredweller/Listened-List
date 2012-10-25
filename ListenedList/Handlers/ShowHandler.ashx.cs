@@ -70,7 +70,7 @@ namespace ListenedList.Handlers
                             listenedShow.Status = status;
                             listenedShow.UpdatedDate = Constants.Now();
 
-                            //For display purposes on Default. 
+                            //For display purposes on Main. 
                             displayAttended = listenedShow.Attended;
                             //This needs to be here because if edit notes is the status we need to make sure we take the previous status
                             displayStatus = status;
@@ -83,7 +83,7 @@ namespace ListenedList.Handlers
                             listenedShow.Attended = !listenedShow.Attended;
                             listenedShow.UpdatedDate = Constants.Now();
 
-                            //For display purposes on Default. 
+                            //For display purposes on Main. 
                             displayAttended = listenedShow.Attended;
                             //This needs to be here b/c we don't know what old status was otherwise
                             displayStatus = listenedShow.Status;
