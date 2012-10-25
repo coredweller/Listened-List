@@ -76,6 +76,7 @@
     <Content Include="CreateUser.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Main.aspx" />
     <Content Include="Notes.aspx" />
     <Content Include="Scripts\extra.js" />
     <Content Include="Scripts\jquery-impromptu.4.0.min.js" />
@@ -188,6 +189,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masters\Genius.Master.cs">
       <DependentUpon>Genius.Master</DependentUpon>

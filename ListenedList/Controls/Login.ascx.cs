@@ -15,7 +15,7 @@ namespace ListenedList.Controls
         }
 
         protected void loginControl_LoggedIn( object sender, EventArgs e ) {
-            Response.Redirect( FriendlyUrl.Href( "~/Default" ) );
+            Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
         }
 
     }

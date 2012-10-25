@@ -56,7 +56,7 @@ namespace ListenedList
             }
 
             //If it is not a valid show then get out of here
-            if ( show == null ) Response.Redirect( FriendlyUrl.Href( "~/Default" ) );
+            if ( show == null ) Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
 
             hdnShowId.Value = show.Id.ToString();
 

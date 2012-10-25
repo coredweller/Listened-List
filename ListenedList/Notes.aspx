@@ -5,7 +5,7 @@
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px;">
-        <a id="lnkBack" href="<%: FriendlyUrl.Href("/Default") %>">Back to Show Page</a>
+        <a id="lnkBack" href="<%: FriendlyUrl.Href("~/Main") %>">Back to Show Page</a>
     </div>
     <br />
     <br />

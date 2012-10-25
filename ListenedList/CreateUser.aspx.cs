@@ -43,7 +43,7 @@ namespace ListenedList
             //  Otherwise it will show them an error or in a fatal case it will take them to Login.
             if ( success && cont != null ) {
                 System.Web.Security.FormsAuthentication.RedirectFromLoginPage( cont.UserName, true );
-                Response.Redirect( FriendlyUrl.Href( "~/Default" ) );
+                Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
             }
         }
     }
