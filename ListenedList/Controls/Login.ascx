@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="ListenedList.Controls.Login" %>
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <br />
-<a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">New User?</a>
-<%--OR If you are a member have you
-<a id="lnkForgotPassword" href="<%: FriendlyUrl.Href("~/ForgotPassword") %>">Forgotten your Password?</a>--%>
+<a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">New User?</a>&nbsp;&nbsp;OR&nbsp;&nbsp;<a
+    href="<%: FriendlyUrl.Href("~/Forgot") %>" id="lnkForgot">Forgot Password?</a>
+<br />
 <br />
 <br />
 <div>

@@ -72,8 +72,10 @@
     <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\TagControl.ascx" />
+    <Content Include="Controls\Templates\ForgotEmail.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
+    <Content Include="Forgot.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Main.aspx" />
@@ -145,6 +147,13 @@
     <Compile Include="Controls\TagControl.ascx.designer.cs">
       <DependentUpon>TagControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ForgotEmail.ascx.cs">
+      <DependentUpon>ForgotEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Templates\ForgotEmail.ascx.designer.cs">
+      <DependentUpon>ForgotEmail.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\YearBoxes.ascx.cs">
       <DependentUpon>YearBoxes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +174,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forgot.aspx.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forgot.aspx.designer.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

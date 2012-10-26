@@ -15,6 +15,7 @@ namespace ListenedList.Controls
     {
         protected LogWriter _Log = new LogWriter();
         protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
+        protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
         
         public Guid GetUserId() {
             return Base.GetUserId( Page.User.Identity.Name );
