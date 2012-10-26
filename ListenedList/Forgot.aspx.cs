@@ -42,6 +42,8 @@ namespace ListenedList
             var body = CreateBody( user.UserName, user.GetPassword() );
 
             MailMessage mailObj = new MailMessage( from, to, subject, body );
+            mailObj.BodyEncoding = Encoding.ASCII;
+            mailObj.IsBodyHtml = true;
 
             SmtpClient SMTPServer = new SmtpClient();
 
@@ -65,6 +67,7 @@ namespace ListenedList
 
             ctrl.UserName = userName;
             ctrl.Password = password;
+            ctrl.SetProperties();
 
             // Render the control into the stringbuilder
             StringWriter sw = new StringWriter( sb );

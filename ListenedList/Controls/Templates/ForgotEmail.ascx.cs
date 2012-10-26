@@ -13,6 +13,10 @@ namespace ListenedList.Controls.Templates
         public string Password { get; set; }
 
         protected void Page_Load( object sender, EventArgs e ) {
+            
+        }
+
+        public void SetProperties() {
             if ( string.IsNullOrEmpty( UserName ) || string.IsNullOrEmpty(Password) ) return;
 
             lblUserName.Text = UserName;
