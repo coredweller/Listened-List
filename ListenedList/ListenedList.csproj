@@ -73,6 +73,7 @@
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\TagControl.ascx" />
     <Content Include="Controls\Templates\ForgotEmail.ascx" />
+    <Content Include="Controls\Templates\WelcomeEmail.ascx" />
     <Content Include="Controls\YearBoxes.ascx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Forgot.aspx" />
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="Controls\Templates\ForgotEmail.ascx.designer.cs">
       <DependentUpon>ForgotEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\WelcomeEmail.ascx.cs">
+      <DependentUpon>WelcomeEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Templates\WelcomeEmail.ascx.designer.cs">
+      <DependentUpon>WelcomeEmail.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\YearBoxes.ascx.cs">
       <DependentUpon>YearBoxes.ascx</DependentUpon>

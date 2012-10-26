@@ -39,7 +39,7 @@ namespace ListenedList
             var from = appConfigManager.AppSettings["FromEmail"];
             var to = emailAddress;
             var subject = appConfigManager.AppSettings["ForgotSubject"];
-            var body = CreateBody( user.UserName );
+            var body = CreateBody( user.UserName, user.GetPassword() );
 
             MailMessage mailObj = new MailMessage( from, to, subject, body );
 
@@ -57,13 +57,14 @@ namespace ListenedList
             ValidateSuccess( success, "An email has been sent with your requested information.", "There was an error processing your request. Please try again later." );
         }
 
-        private string CreateBody( string userName ) {
+        private string CreateBody( string userName, string password ) {
             StringBuilder sb = new StringBuilder();
 
             // Load the control
             ForgotEmail ctrl = (ForgotEmail)LoadControl( "~/Controls/Templates/ForgotEmail.ascx" );
 
             ctrl.UserName = userName;
+            ctrl.Password = password;
 
             // Render the control into the stringbuilder
             StringWriter sw = new StringWriter( sb );
