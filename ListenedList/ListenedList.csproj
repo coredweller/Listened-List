@@ -123,6 +123,7 @@
       <DependentUpon>CreateShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Base.cs" />
+    <Compile Include="Code\EmailManager.cs" />
     <Compile Include="Controls\Legend.ascx.cs">
       <DependentUpon>Legend.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -289,7 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masters\Site.Master" />
