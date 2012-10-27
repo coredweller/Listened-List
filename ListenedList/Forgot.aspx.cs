@@ -12,6 +12,7 @@ using System.Text;
 using ListenedList.Controls.Templates;
 using System.IO;
 using Core.Helpers.Script;
+using ListenedList.Code;
 
 namespace ListenedList
 {
@@ -35,26 +36,8 @@ namespace ListenedList
                 return;
             }
 
-            var appConfigManager = Ioc.GetInstance<IAppConfigManager>();
-            var from = appConfigManager.AppSettings["FromEmail"];
-            var to = emailAddress;
-            var subject = appConfigManager.AppSettings["ForgotSubject"];
-            var body = CreateBody( user.UserName, user.GetPassword() );
-
-            MailMessage mailObj = new MailMessage( from, to, subject, body );
-            mailObj.BodyEncoding = Encoding.ASCII;
-            mailObj.IsBodyHtml = true;
-
-            SmtpClient SMTPServer = new SmtpClient();
-
-            bool success = false;
-            try {
-                SMTPServer.Send( mailObj );
-                success = true;
-            }
-            catch ( Exception ex ) {
-                _Log.WriteFatal( "There was an error sending an email on Forgot.aspx. Email that was requested was: " + to );
-            }
+            var emailManager = new EmailManager( this.Page );
+            var success = emailManager.SendForgotEmail( user.UserName, user.GetPassword(), user.Email );
 
             ValidateSuccess( success, "An email has been sent with your requested information.", "There was an error processing your request. Please try again later." );
         }
