@@ -13,22 +13,22 @@ namespace ListenedList {
     public partial class Test {
         
         /// <summary>
-        /// btnTestSmtpLocalhost control.
+        /// btnTestForgot control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTestSmtpLocalhost;
+        protected global::System.Web.UI.WebControls.Button btnTestForgot;
         
         /// <summary>
-        /// btnTestSmtpConfig control.
+        /// btnTestWelcome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTestSmtpConfig;
+        protected global::System.Web.UI.WebControls.Button btnTestWelcome;
         
         /// <summary>
         /// lblOutput control.

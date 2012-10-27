@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
 using Core.Extensions;
+using ListenedList.Code;
 
 namespace ListenedList
 {
@@ -15,13 +16,33 @@ namespace ListenedList
 
         }
 
-        protected void btnTestSmtpConfig_Click( object sender, EventArgs e ) {
-            SendEmail( null );
+        protected void btnTestForgot_Click( object sender, EventArgs e ) {
+            var emailManager = new EmailManager( this.Page );
+
+             try {
+                emailManager.SendForgotEmail( "coredweller", "empires", "daniel.perillo@comcast.net" );
+            }
+            catch ( Exception ex ) {
+                lblOutput.Text = ex.ToString();
+            }
         }
 
-        protected void btnTestSmtpLocalhost_Click( object sender, EventArgs e ) {
-            SendEmail( "localhost" );
+        protected void btnTestWelcome_Click( object sender, EventArgs e ) {
+            var emailManager = new EmailManager( this.Page );
+
+             try {
+                emailManager.SendWelcomeEmail( "coredweller", "empires", "daniel.perillo@comcast.net" );
+            }
+            catch ( Exception ex ) {
+                lblOutput.Text = ex.ToString();
+            }
+            
+            //SendEmail( null );
         }
+
+        //protected void btnTestSmtpLocalhost_Click( object sender, EventArgs e ) {
+        //    SendEmail( "localhost" );
+        //}
 
         protected void SendEmail( string host ) {
             var from = "friend@phishermansguide.com";
