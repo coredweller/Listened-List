@@ -28,7 +28,7 @@ namespace ListenedList.Code
         public void SendWelcomeEmail( string userName, string password, string toEmail ) {
             var subject = _AppConfigManager.AppSettings["WelcomeSubject"];
 
-            WelcomeEmail ctrl = (WelcomeEmail)_Page.LoadControl( "/../Controls/Templates/WelcomeEmail.ascx" );
+            WelcomeEmail ctrl = (WelcomeEmail)_Page.LoadControl( "/Controls/Templates/WelcomeEmail.ascx" );
             ctrl.UserName = userName;
             ctrl.Password = password;
             ctrl.SetProperties();
@@ -43,7 +43,7 @@ namespace ListenedList.Code
         public bool SendForgotEmail( string userName, string password, string toEmail ) {
             var subject = _AppConfigManager.AppSettings["ForgotSubject"];
 
-            ForgotEmail ctrl = (ForgotEmail)_Page.LoadControl( "/../Controls/Templates/ForgotEmail.ascx" );
+            ForgotEmail ctrl = (ForgotEmail)_Page.LoadControl( "/Controls/Templates/ForgotEmail.ascx" );
             ctrl.UserName = userName;
             ctrl.Password = password;
             ctrl.SetProperties();
