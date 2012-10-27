@@ -74,15 +74,6 @@ namespace Core.Services
         }
 
         /// <summary>
-        /// Use this to save just the email
-        /// </summary>
-        /// <param name="email"></param>
-        public void SaveEmail( string email ) {
-            SetEmail( email );
-            _Profile.Save();
-        }
-
-        /// <summary>
         /// Use this to save just Public
         /// </summary>
         /// <param name="isPublic"></param>
@@ -103,7 +94,6 @@ namespace Core.Services
         /// <param name="isPublic"></param>
         public void SaveProfile( string name, string email, bool isPublic ) {
             SetName( name );
-            SetEmail( email );
             SetPublic( isPublic );
             _Profile.Save();
         }
@@ -115,14 +105,6 @@ namespace Core.Services
         /// <param name="name"></param>
         private void SetName( string name ) {
             _Profile.SetPropertyValue( "Name", name );
-        }
-
-        /// <summary>
-        /// Worker method that is the only method to know how to set the email
-        /// </summary>
-        /// <param name="email"></param>
-        private void SetEmail( string email ) {
-            _Profile.SetPropertyValue( "Email", email );
         }
 
         /// <summary>

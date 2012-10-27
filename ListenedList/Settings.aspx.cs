@@ -21,10 +21,11 @@ namespace ListenedList
         private void Bind() {
             IProfileService profileService = new ProfileService( User.Identity.Name );
 
+            var user = _MembershipProvider.GetUser( User.Identity.Name );
             var userProfile = profileService.GetUserProfile();
 
             txtName.Text = userProfile.Name;
-            txtEmail.Text = userProfile.Email;
+            txtEmail.Text = user.Email;
             lblUserName.Text = userProfile.UserName;
 
             chkPublic.Checked = userProfile.Public.HasValue ? userProfile.Public.Value : false;
@@ -38,15 +39,19 @@ namespace ListenedList
 
                 var userProfile = profileService.GetUserProfile();
 
-                if ( txtName.Text != userProfile.Name ) profileService.SaveName( txtName.Text );
+                if ( txtName.Text != userProfile.Name ) profileService.SaveName( txtName.Text.Trim() );
 
-                if ( txtEmail.Text != userProfile.Email ) profileService.SaveEmail( txtEmail.Text );
+                if ( txtEmail.Text != userProfile.Email ) {
+                    var user = _MembershipProvider.GetUser( User.Identity.Name );
+                    user.Email = txtEmail.Text.Trim();
+                    _MembershipProvider.UpdateUser( user );
+                }
 
                 profileService.SavePublic( chkPublic.Checked );
 
                 success = true;
             }
-            catch ( Exception ex) {
+            catch ( Exception ex ) {
                 _Log.WriteFatal( "THERE WAS AN ERROR SAVING PROFILE ON SETTINGS.ASPX with message: " + ex.Message );
                 success = false;
             }

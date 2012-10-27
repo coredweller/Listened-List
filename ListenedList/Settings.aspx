@@ -25,7 +25,7 @@
             <p>
                 Public:
                 <asp:CheckBox ID="chkPublic" runat="server" />
-                (If you check this than other's can see a READONLY version of your Main view, otherwise
+                (If you check this than others can see a READONLY version of your Main view, otherwise
                 only you can see it.)
             </p>
             <p>
