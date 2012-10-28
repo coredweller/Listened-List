@@ -31,6 +31,24 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.HiddenField hdnAttended;
         
         /// <summary>
+        /// phSetlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phSetlist;
+        
+        /// <summary>
+        /// lblSetlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSetlist;
+        
+        /// <summary>
         /// btnNeverHeard control.
         /// </summary>
         /// <remarks>

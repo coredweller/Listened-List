@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
     Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px;">
@@ -17,15 +17,26 @@
             <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
         </p>
         <br />
+        <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
+            <asp:Label ID="lblSetlist" runat="server"></asp:Label>
+            Courtesy of The Mockingbird Foundation.
+            <br />
+            <br />
+            <br />
+        </asp:PlaceHolder>
         <%--<div style="font-size: 1em; font-weight: 400;">
         <br /></div>--%>
         <div style="font-size: 1.5em; font-weight: 600;">
             Listening Status:&nbsp;<%--<asp:DropDownList ID="ddlStatus" runat="server">
             </asp:DropDownList>--%>
-            <asp:Button ID="btnNeverHeard" runat="server" CssClass="defaultButtonWhite" Text="Never Heard" width="120px" OnClick="btnListenStatus_Click" />
-            <asp:Button ID="btnInProgress" runat="server" CssClass="defaultButtonYellow" Text="In Progress" width="120px" OnClick="btnListenStatus_Click" />
-            <asp:Button ID="btnFinished" runat="server" CssClass="defaultButtonOrange" Text="Finished" width="120px" OnClick="btnListenStatus_Click" />
-            <asp:Button ID="btnNeedToListen" runat="server" CssClass="defaultButtonGreen" Text="Need To Listen" width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnNeverHeard" runat="server" CssClass="defaultButtonWhite" Text="Never Heard"
+                Width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnInProgress" runat="server" CssClass="defaultButtonYellow" Text="In Progress"
+                Width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnFinished" runat="server" CssClass="defaultButtonOrange" Text="Finished"
+                Width="120px" OnClick="btnListenStatus_Click" />
+            <asp:Button ID="btnNeedToListen" runat="server" CssClass="defaultButtonGreen" Text="Need To Listen"
+                Width="120px" OnClick="btnListenStatus_Click" />
             <br />
             <br />
             <br />
@@ -39,7 +50,8 @@
                 <asp:Label ID="lblUpdatedDate" runat="server"></asp:Label>
             </p>
             <br />
-            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton" Text="Save" />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton"
+                Text="Save" />
         </div>
         <br />
         <br />
@@ -51,13 +63,15 @@
         <p>
             Create New Tag (30 letters max):
             <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
-            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton" OnClick="btnCreateTag_Click" />
+            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
+                OnClick="btnCreateTag_Click" />
         </p>
         <p>
             Apply Existing Tag:
             <asp:DropDownList ID="ddlTags" runat="server">
             </asp:DropDownList>
-            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" CssClass="normalButton" Text="Apply Tag" />
+            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" CssClass="normalButton"
+                Text="Apply Tag" />
         </p>
         <div>
             <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">

@@ -10,6 +10,11 @@ using Core.Helpers.Script;
 using System.Web.UI.WebControls;
 using Core.Extensions;
 using Microsoft.AspNet.FriendlyUrls;
+using Core.Configuration;
+using System.Net;
+using System.Collections;
+using System.IO;
+using Procurios.Public;
 
 namespace ListenedList
 {
@@ -64,6 +69,53 @@ namespace ListenedList
             BindNotes( show );
             BindTags( show.Id );
             BindListenedShow( show );
+            BindSetlist( show.ShowDate.Value );
+        }
+
+        private void BindSetlist( DateTime showDate ) {
+            var appConfigManager = Ioc.GetInstance<IAppConfigManager>();
+            var apiKey = appConfigManager.AppSettings["PhishNetApiKey"];
+            var url = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey=" + apiKey + "&showdate=";
+
+            var finalUrl = url + showDate.ToString( "yyyy-MM-dd" );
+
+            var request = (HttpWebRequest)WebRequest.Create( finalUrl );
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var reader = new StreamReader( response.GetResponseStream() );
+
+            var resp = reader.ReadToEnd();
+
+            var setlist = ParseJson( resp, showDate );
+
+            if ( string.IsNullOrEmpty( setlist ) ) {
+                phSetlist.Visible = false;
+            }
+            else {
+                lblSetlist.Text = setlist;
+                phSetlist.Visible = true;
+            }
+        }
+        
+        private string ParseJson( string response, DateTime showDate ) {
+            var success = false;
+            ArrayList jsonHash = null;
+            try {
+                jsonHash = (ArrayList)JSON.JsonDecode( response, ref success );
+            }
+            catch ( Exception ) {
+                return string.Empty;
+                _Log.WriteFatal( "There was an error getting a setlist for the show date of: " + showDate.ToShortDateString() );
+            }
+            
+            if (!success || jsonHash == null ) return string.Empty;
+
+            var showData = (Hashtable)jsonHash[0];
+
+            if ( showData["setlistdata"] == null ) return string.Empty;
+
+            return showData["setlistdata"].ToString();
         }
 
         private void BindListenedShow( IShow show ) {
