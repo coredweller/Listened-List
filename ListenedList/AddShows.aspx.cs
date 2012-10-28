@@ -8,6 +8,7 @@ using Core.Infrastructure;
 using Core.Services.Interfaces;
 using System.Web.Security;
 using Core.Services;
+using Core.DomainObjects;
 
 namespace ListenedList
 {
@@ -55,8 +56,12 @@ namespace ListenedList
             var showId = new Guid( e.CommandName.ToString() );
             var newStatus = (ListenedStatus)int.Parse( e.CommandArgument.ToString() );
             var button = (Button)e.CommandSource;
+            var repeaterItem = (RepeaterItem)button.NamingContainer;
             var showDate = DateTime.Parse( button.ToolTip );
             var userId = GetUserId();
+            var currentlyAttended = button.CssClass == "notesAttended" ? true : false;
+            //reset means that the status is the same so we are setting it back to Never Heard
+            bool reset = false;
 
             var success = false;
 
@@ -64,17 +69,31 @@ namespace ListenedList
                 var listened = listenedShowService.GetByUserAndShow( userId, showDate );
 
                 if ( listened == null ) {
-                    var newListened = _DomainObjectFactory.CreateListenedShow( showId, userId, showDate, (int)newStatus, string.Empty );
+
+                    IListenedShow newListened;
+                    if ( button.ID != "btnAttended" )
+                        newListened = _DomainObjectFactory.CreateListenedShow( showId, userId, showDate, (int)newStatus, string.Empty );
+                    else
+                        newListened = _DomainObjectFactory.CreateListenedShow( showId, userId, showDate, (int)ListenedStatus.None, string.Empty, !currentlyAttended );
+
                     bool minorSuccess;
                     listenedShowService.Save( newListened, out minorSuccess );
 
                     if ( !minorSuccess ) _Log.Write( "There was an error saving a listenedShow status for userId: " + userId + " and showId: " + showId + " and listenedShowId: " + newListened != null ? newListened.Id.ToString() : "new listened show was null" );
                 }
                 else {
-                    //If the current status is the same as the new status then do nothing
-                    if ( listened.Status == (int)newStatus ) return;
-
-                    listened.Status = (int)newStatus;
+                    if ( button.ID != "btnAttended" ) {
+                        //If the current status is the same as the new status then unselect it and set it back to Never Heard
+                        if ( listened.Status == (int)newStatus ) {
+                            listened.Status = (int)ListenedStatus.None;
+                            reset = true;
+                        }
+                        else
+                            listened.Status = (int)newStatus;
+                    }
+                    else {
+                        listened.Attended = !currentlyAttended;
+                    }
                 }
 
                 uow.Commit();
@@ -83,14 +102,26 @@ namespace ListenedList
 
             if ( !success ) return;
 
-            //Remove the statusSelected class from all and then add it to the newly selected button
-            var repeaterItem = (RepeaterItem)button.NamingContainer;
-            RemoveClass( repeaterItem, "btnNeverHeard" );
-            RemoveClass( repeaterItem, "btnInProgress" );
-            RemoveClass( repeaterItem, "btnFinished" );
-            RemoveClass( repeaterItem, "btnNeedToListen" );
+            if ( button.ID != "btnAttended" ) {
+                //Remove the statusSelected class from all and then add it to the newly selected button
+                RemoveClass( repeaterItem, "btnNeverHeard" );
+                RemoveClass( repeaterItem, "btnInProgress" );
+                RemoveClass( repeaterItem, "btnFinished" );
+                RemoveClass( repeaterItem, "btnNeedToListen" );
 
-            button.CssClass += " " + statusSelected;
+                if ( !reset ) {
+                    button.CssClass += " " + statusSelected;
+                }
+                else {
+                    var neverHeardButton = ( (Button)repeaterItem.FindControl( "btnNeverHeard" ) );
+                    neverHeardButton.CssClass += " " + statusSelected;
+                }
+            }
+            else {
+                //If the button status was clicked then switch the class to the other one
+                button.CssClass = currentlyAttended ? "notesDidNotAttend" : "notesAttended";
+                button.Text = currentlyAttended ? "Did Not Attend" : "Attended";
+            }
         }
 
         private void RemoveClass( RepeaterItem repeaterItem, string buttonName ) {

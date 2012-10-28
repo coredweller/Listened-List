@@ -17,6 +17,8 @@
                 OnClick="btnSubmit_Click" />
         </div>
         <br />
+        <h3 style="color:Red;">Please Note: There is no need to save. When you click the buttons its saves automatically. Enjoy!</h3>
+        <br />
         <br />
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -53,7 +55,15 @@
                                 </td>
                                 <td>
                                     <b>
-                                        <%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.GetShowName() %></b>
+                                        <%# ( ( (KeyValuePair<Core.DomainObjects.IShow, Core.DomainObjects.IListenedShow>)Container.DataItem ) ).Key.GetShowName() %></b>
+                                </td>
+                                <td>
+                                
+                                    <asp:Button ID="btnAttended" runat="server" Text='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Attended ? "Attended" : "Did Not Attend" : "Did Not Attend" %>' 
+                                        CommandArgument='<%# (int)Core.Services.ListenedStatus.Attended %>'
+                                        CommandName='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.Id %>'
+                                        CssClass='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value != null ? (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Value.Attended ? "notesAttended" : "notesDidNotAttend" : "notesDidNotAttend" %>'
+                                        ToolTip='<%# (((KeyValuePair<Core.DomainObjects.IShow,Core.DomainObjects.IListenedShow>)Container.DataItem)).Key.ShowDate.Value.ToShortDateString() %>' />
                                 </td>
                             </tr>
                             <tr>
