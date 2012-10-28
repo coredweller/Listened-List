@@ -2,7 +2,7 @@
     MasterPageFile="~/Masters/Genius.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <br />
         <br />
         <p style="font-size: 2em; font-weight: 700;">

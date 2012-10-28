@@ -10,7 +10,7 @@
     <br />
     <br />
     <br />
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <p style="font-size: 2em; font-weight: 700;">
             <%= ShowTitle %>&nbsp;<asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend"
                 Text="Did Not Attend" OnClick="btnAttended_Click" ToolTip="Click this to change your attended status" />

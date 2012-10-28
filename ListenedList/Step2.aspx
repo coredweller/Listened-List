@@ -6,7 +6,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
-    <div style="padding-left: 100px; padding-right: 200px;">
+    <div class="mainDiv" style="padding-right: 200px;">
         <h3>
             Attach custom Tags to shows, such as "Best Jams", "Favorite Wolfman's Brothers",
             or anything else you can come up with to keep track of it all.

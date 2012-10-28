@@ -19,7 +19,7 @@
 </script>
 <br />
 <br />
-<div style="padding-left: 100px;">
+<div class="mainDiv">
     <div style="font-size: 2em; font-weight: 700;">
         Tags
     </div>

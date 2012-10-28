@@ -677,6 +677,10 @@ hr.horizontalRule1
     border-width: 4px;
 }
 
+.mainDiv {
+    padding-left: 100px; 
+}
+
 /*-------------impromptu---------- */
 .jqifade
 {

@@ -2,7 +2,7 @@
     MasterPageFile="~/Masters/Genius.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <br />
         <br />
         <asp:CreateUserWizard runat="server" OnContinueButtonClick="createControl_ContinueButtonClick"

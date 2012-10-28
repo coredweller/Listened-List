@@ -3,7 +3,7 @@
 
 <%@ Register TagPrefix="uc" TagName="Login" Src="~/Controls/Login.ascx" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <br />
         <br />
         <uc:Login ID="Login1" runat="Server"></uc:Login>

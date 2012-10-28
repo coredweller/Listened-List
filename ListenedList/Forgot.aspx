@@ -5,7 +5,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">Create User</a>
         <div>
             <h2>

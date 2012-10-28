@@ -120,7 +120,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
-    <div style="padding-left: 100px; padding-right: 200px;">
+    <div class="mainDiv" style="padding-right: 200px;">
         <div style="font-size: 35px; font-weight: bolder; padding-bottom: 25px;">
             Welcome to Phisherman's Guide!
         </div>

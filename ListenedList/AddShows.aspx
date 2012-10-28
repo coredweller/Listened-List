@@ -3,7 +3,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <div style="padding-left: 100px;">
+    <div class="mainDiv">
         <br />
         <br />
         <p style="font-size: 1.2em; font-weight: 500;">
