@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WelcomeEmail.ascx.cs"
     Inherits="ListenedList.Controls.Templates.WelcomeEmail" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
+
 <style type="text/css">
     h2
     {
@@ -34,6 +36,7 @@
         <asp:Label ID="lblPassword" runat="server"></asp:Label>
     </p>
     <br />
+    <a href='<%: FriendlyUrl.Href("~/Login") %>'>Login Here!</a>
     <br />
     <br />
     <p>

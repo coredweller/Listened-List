@@ -30,4 +30,12 @@
         Password:
         <asp:Label ID="lblPassword" runat="server"></asp:Label>
     </p>
+    <br />
+    <a href='<%: FriendlyUrl.Href("~/Login") %>'>Login Here!</a>
+    <br />
+    <br />
+    <p>
+        If you have any questions or problems contact us at
+        <asp:Label ID="lblHelpEmail" runat="server"></asp:Label>
+    </p>
 </div>
