@@ -7,18 +7,22 @@ using System.Web.UI.WebControls;
 using System.Net.Mail;
 using Core.Extensions;
 using ListenedList.Code;
+using ListenedList.Controls.Templates;
+using System.Text;
+using System.IO;
 
 namespace ListenedList
 {
-    public partial class Test : System.Web.UI.Page
+    public partial class Test : ListenedBasePage
     {
         protected void Page_Load( object sender, EventArgs e ) {
-
+            if ( !_RoleProvider.IsUserInRole( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR ) ) 
+                Response.Redirect( Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href( "~/Main" ) );
         }
 
         protected void btnTestForgot_Click( object sender, EventArgs e ) {
             var emailManager = new EmailManager( this.Page );
-
+            
              try {
                 emailManager.SendForgotEmail( "coredweller", "empires", "daniel.perillo@comcast.net" );
             }
@@ -40,30 +44,22 @@ namespace ListenedList
             //SendEmail( null );
         }
 
-        //protected void btnTestSmtpLocalhost_Click( object sender, EventArgs e ) {
-        //    SendEmail( "localhost" );
-        //}
+        protected void btnForgotEmail_Click( object sender, EventArgs e ) {
+            ForgotEmail ctrl = (ForgotEmail)this.Page.LoadControl( "/Controls/Templates/ForgotEmail.ascx" );
+            ctrl.UserName = "coredweller";
+            ctrl.Password = "fakePassword";
+            ctrl.SetProperties();
+            
+            phControl.Controls.Add( ctrl );
+        }
 
-        protected void SendEmail( string host ) {
-            var from = "friend@phishermansguide.com";
-            var to = "dperillo1785@gmail.com";
-            var subject = "Test Phisherman's Guide Email";
-            var body = "Please let this go through";
+        protected void btnWelcomeEmail_Click( object sender, EventArgs e ) {
+            WelcomeEmail ctrl = (WelcomeEmail)this.Page.LoadControl( "/Controls/Templates/WelcomeEmail.ascx" );
+            ctrl.UserName = "coredweller";
+            ctrl.Password = "fakePassword";
+            ctrl.SetProperties();
 
-            MailMessage mailObj = new MailMessage( from, to, subject, body );
-
-            SmtpClient SMTPServer;
-            if(host == null)
-                SMTPServer = new SmtpClient();
-            else
-                SMTPServer = new SmtpClient( "localhost" );
-
-            try {
-                SMTPServer.Send( mailObj );
-            }
-            catch ( Exception ex ) {
-                lblOutput.Text = ex.ToString();
-            }
+            phControl.Controls.Add( ctrl );
         }
     }
 }

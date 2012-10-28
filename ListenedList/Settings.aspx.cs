@@ -38,11 +38,11 @@ namespace ListenedList
             try {
 
                 var userProfile = profileService.GetUserProfile();
+                var user = _MembershipProvider.GetUser( User.Identity.Name );
 
                 if ( txtName.Text != userProfile.Name ) profileService.SaveName( txtName.Text.Trim() );
 
-                if ( txtEmail.Text != userProfile.Email ) {
-                    var user = _MembershipProvider.GetUser( User.Identity.Name );
+                if ( txtEmail.Text != user.Email ) {
                     user.Email = txtEmail.Text.Trim();
                     _MembershipProvider.UpdateUser( user );
                 }

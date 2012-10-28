@@ -13,8 +13,5 @@ namespace Core.Membership
 
         [SettingsAllowAnonymous( false )]
         public string Name { get { return base["Name"] as string; } set { base["Name"] = value; } }
-
-        [SettingsAllowAnonymous( false )]
-        public string Email { get { return base["Email"] as string; } set { base["Email"] = value; } }
     }
 }

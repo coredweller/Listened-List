@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step1.aspx.cs" Inherits="ListenedList.Step1"
     MasterPageFile="~/Masters/Genius.Master" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
@@ -19,6 +19,8 @@
 
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
+
+                var showDate = $(this).val()
 
                 //if the Search button is clicked do nothing
                 if (button.attr('id') == $('#<%= btnSearch.ClientID %>').attr('id')) return false;
@@ -54,7 +56,24 @@
                             if (status == ListenedStatus.Cancel) { return; }
 
                             //If the user clicks EditNotes then go to a page to edit the notes
-                            if (status == ListenedStatus.EditNotes) { $(window).scrollTop($('#part2').position().top) }
+                            if (status == ListenedStatus.EditNotes) {
+                                var showInfo = GetPart2ShowText(showDate);
+
+                                //Set show name
+                                $('#<%= lblShowName.ClientID %>').html(showInfo.showName);
+                                
+                                //Set show notes
+                                if (FTB_API != null) {
+                                    objFTBControl = FTB_API["ctl00_MainContent_txtNotes"];
+                                    if (objFTBControl) {
+                                        objFTBControl.SetHtml(showInfo.notes);
+                                    }
+                                }
+
+                                //Move the screen down to Part 2
+                                $(window).scrollTop($('#part2').position().top)
+                                return;
+                            }
 
                             var attended = (status == ListenedStatus.Attended);
 
@@ -102,7 +121,7 @@
     <br />
     <br />
     <div style="padding-left: 100px; padding-right: 200px;">
-        <div style="font-size: 35px;font-weight:bolder;padding-bottom:25px;">
+        <div style="font-size: 35px; font-weight: bolder; padding-bottom: 25px;">
             Welcome to Phisherman's Guide!
         </div>
         <h3>
@@ -115,13 +134,13 @@
             <br />
             Step 1 shows how to work the buttons, keeping notes, and searching notes.
             <br />
-            <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags, alter tags, and how to view your tagged shows.
+            <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags,
+            alter tags, and how to view your tagged shows.
         </h3>
         <br />
         <br />
         <br />
         <br />
-        
         <div class="tutorialInstructionHeaderTop">
             Part 1: Button Status</div>
         <ul class="localListItems">
@@ -148,7 +167,7 @@
         <br />
         <br />
         <p id="part2" style="font-size: 2em; font-weight: 700;">
-            04/03/1998 - Nassau Coliseum - Uniondale, NY
+            <asp:Label ID="lblShowName" runat="server" Text="4/3/1998 - Nassau Coliseum - Uniondale, NY"></asp:Label>
         </p>
         <br />
         Notes:
@@ -159,18 +178,19 @@
         <asp:Button ID="btnSubmit" runat="server" CssClass="normalButton" Text="Save" />
         <br />
         <br />
-        <div class="tutorialInstructionHeader">
+        <div class="tutorialInstructionHeader" style="padding-bottom:5px;">
             Part 3: Searching Notes</div>
+        <span style="color: Red; font-size: 1.15em;">(Please note: "must listen" is just an
+            example provided for you for the purposes of the tutorial.) </span>
         <ul class="localListItems">
             <li>Enter any amount of letters or words into the text box.</li>
             <li>If any notes from any shows have your searched words, links will appear to bring
                 you to that show's notes.</li>
             <li>Click a notes link below to go to Step 2.</li>
         </ul>
-        <br /><br /><br />
-        <div style="color:Blue; font-size: 1.2em;">
-            (Please note: "must listen" is just an example provided for you for the purposes of the tutorial.)
-        </div>
+        <br />
+        <br />
+        <br />
         <p style="font-size: 1.5em; font-weight: 600;">
             Search Notes:</p>
         <asp:TextBox ID="txtSearch" runat="server" Text="must listen" Enabled="false"></asp:TextBox>

@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using Core.Infrastructure;
 using Core.Services.Interfaces;
 using Core.Helpers.Script;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList.Admin
 {
     public partial class CreateShow : ListenedBasePage
     {
         protected void Page_Load( object sender, EventArgs e ) {
+            if ( !_RoleProvider.IsUserInRole( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR ) ) 
+                Response.Redirect( FriendlyUrl.Href( "/../Main" ) );
         }
 
         public void btnSubmit_Click( object sender, EventArgs e ) {

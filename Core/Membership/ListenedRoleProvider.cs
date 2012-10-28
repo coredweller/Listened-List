@@ -52,4 +52,10 @@ namespace Core.Membership
         void RemoveUsersFromRoles( string[] usernames, string[] roleNames );
         bool DeleteRole( string roleName);
     }
+
+    public static class Roles
+    {
+        public static string ADMINISTRATOR = "administrators";
+        public static string REGISTERED = "registered";
+    }
 }

@@ -41,3 +41,28 @@ function GetCssClass(status, attended, hasAttended) {
 
     return cssClass;
 }
+
+function GetPart2ShowText(showDate) {
+    var showInfo = {};
+
+    switch (showDate) {
+        case "4/2/1998":
+            showInfo.showName = "4/2/1998 - Nassau Coliseum - Uniondale, NY";
+            showInfo.notes = "Wolfman's through Twist was an amazing segment."
+            break;
+        case "4/4/1998":
+            showInfo.showName = "4/4/1998 - Nassau Coliseum - Uniondale, NY";
+            showInfo.notes = "Second set is non-stop.  Birds into 2001 into Brother which is a great trio. Ghost, Lizards, Bowie? Wow"
+            break;
+        case "4/5/1998":
+            showInfo.showName = "4/5/1998 - Nassau Coliseum - Uniondale, NY";
+            showInfo.notes = "All segues all night.  Unfinished DWD and Maze.  A great jam after Possum to make the night feel complete."
+            break;
+        case "4/3/1998":
+        default:
+            showInfo.showName = "4/3/1998 - Nassau Coliseum - Uniondale, NY";
+            showInfo.notes = "This show is a must listen! You have to check out the Reba and Roses Jam.  Soaring Antelope with Carini's gonna getcha chants!"
+    }
+
+    return showInfo;
+}
