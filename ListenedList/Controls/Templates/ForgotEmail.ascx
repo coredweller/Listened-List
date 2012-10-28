@@ -31,7 +31,7 @@
         <asp:Label ID="lblPassword" runat="server"></asp:Label>
     </p>
     <br />
-    <a href='<%: FriendlyUrl.Href("~/Login") %>'>Login Here!</a>
+    <a href="http://phishermansguide.com/Main">Login Here!</a>
     <br />
     <br />
     <p>
