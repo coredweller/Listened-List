@@ -13,7 +13,6 @@ namespace ListenedList
 {
     public class ListenedBasePage : System.Web.UI.Page
     {
-        protected readonly string BaseRoleType = "Registered";
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "Phisherman's Guide";
 
@@ -89,6 +88,12 @@ namespace ListenedList
 
         protected void ValidateSuccess( bool success, string successMessage, string error ) {
             Page.RegisterStartupScript( "validateSuccess", Base.ValidateSuccess( success, successMessage, error ) );
+        }
+
+        protected void ShowError( string errorMessage ) {
+            var prompt = new PromptHelper( errorMessage );
+            var errorScript = prompt.GetErrorScript();
+            Page.RegisterStartupScript( "validateSuccess", errorScript );
         }
 
         protected virtual void SetPageTitle( string title ) {

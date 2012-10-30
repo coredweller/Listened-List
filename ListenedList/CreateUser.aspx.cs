@@ -34,8 +34,7 @@ namespace ListenedList
             try {
                 cont = (CreateUserWizard)sender;
 
-                var provider = new ListenedRoleProvider();
-                provider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { base.BaseRoleType } );
+                _RoleProvider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { Core.Membership.Roles.REGISTERED } );
 
                 var profileService = new ProfileService( cont.UserName );
                 profileService.SavePublic( false );

@@ -60,11 +60,5 @@ namespace ListenedList
             // Get full body text
             return sb.ToString();
         }
-
-        private void ShowError( string errorMessage ) {
-            var prompt = new PromptHelper( errorMessage );
-            var errorScript = prompt.GetErrorScript();
-            Page.RegisterStartupScript( "validateSuccess", errorScript );
-        }
     }
 }

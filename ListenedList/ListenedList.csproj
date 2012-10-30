@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddShows.aspx" />
+    <Content Include="Admin\AssignAdmin.aspx" />
     <Content Include="Admin\CreateShow.aspx" />
     <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
@@ -114,6 +115,13 @@
     </Compile>
     <Compile Include="AddShows.aspx.designer.cs">
       <DependentUpon>AddShows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AssignAdmin.aspx.cs">
+      <DependentUpon>AssignAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssignAdmin.aspx.designer.cs">
+      <DependentUpon>AssignAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CreateShow.aspx.cs">
       <DependentUpon>CreateShow.aspx</DependentUpon>
