@@ -70,6 +70,7 @@
     <Content Include="AddShows.aspx" />
     <Content Include="Admin\AssignAdmin.aspx" />
     <Content Include="Admin\CreateShow.aspx" />
+    <Content Include="Contact.aspx" />
     <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
     <Content Include="Controls\TagControl.ascx" />
@@ -132,6 +133,13 @@
     </Compile>
     <Compile Include="Base.cs" />
     <Compile Include="Code\EmailManager.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Legend.ascx.cs">
       <DependentUpon>Legend.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
