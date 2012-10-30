@@ -119,9 +119,11 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:HyperLink runat="server" Text='<%# ShortDescription( (string)Eval( "Notes" ), 30 ) %>'
-                                NavigateUrl='<%# GetUrl((Guid)Eval("ShowId")) %>'></asp:HyperLink>
                             <%# ((DateTime)Eval("ShowDate")).ToShortDateString() %>
+                        </td>
+                        <td>
+                            <asp:HyperLink runat="server" Text='<%# ShortDescription( (string)Eval( "Notes" ), 30, true ) %>'
+                                NavigateUrl='<%# GetUrl((Guid)Eval("ShowId")) %>'></asp:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>

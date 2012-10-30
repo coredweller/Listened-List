@@ -8,6 +8,7 @@ using Data.DomainObjects;
 using Core.Helpers.Script;
 using Core.Services;
 using Core.Infrastructure;
+using System.Text.RegularExpressions;
 
 namespace ListenedList
 {
@@ -20,6 +21,7 @@ namespace ListenedList
         protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
         protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         protected LogWriter _Log = new LogWriter();
+        protected const string HTML_TAG_PATTERN = "<.*?>";
 
         protected readonly Guid EmptyGuid = new Guid( "00000000-0000-0000-0000-000000000000" );
 
@@ -64,10 +66,22 @@ namespace ListenedList
         }
 
         public string ShortDescription( string notes, int desiredLength ) {
+            return ShortDescription( notes, desiredLength, false );
+        }
+
+        public string ShortDescription( string notes, int desiredLength, bool stripHtml ) {
             if ( string.IsNullOrEmpty( notes ) ) return string.Empty;
 
             int lastIndex = notes.Length <= desiredLength ? notes.Length : desiredLength;
-            return notes.Substring( 0, lastIndex );
+            var segment = notes.Substring( 0, lastIndex );
+
+            if ( stripHtml ) segment = StripHTML( segment );
+
+            return segment;
+        }
+
+        protected string StripHTML( string inputString ) {
+            return Regex.Replace( inputString, "<(.|\\n)*?>", string.Empty );
         }
 
         public Guid GetUserId() {
