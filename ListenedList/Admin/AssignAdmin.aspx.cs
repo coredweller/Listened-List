@@ -29,6 +29,8 @@ namespace ListenedList.Admin
         }
 
         protected void rptAdmins_ItemCommand( object source, RepeaterCommandEventArgs e ) {
+            CheckPermissions();
+
             switch ( e.CommandName.ToLower() ) {
                 case "remove":
                     var user = _MembershipProvider.GetUser( e.CommandArgument.ToString() );
