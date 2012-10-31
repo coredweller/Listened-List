@@ -9,19 +9,29 @@ namespace ListenedList
 {
     public class Base
     {
-        protected static IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        private string _USER_CACHE_KEY = "userId";
 
-        public static Guid GetUserId( string userName ) {
+        public Guid GetUserId( string userName ) {
+            var userObject = HttpRuntime.Cache.Get( _USER_CACHE_KEY );
 
-            var user = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
-            if ( user != null ) {
-                return new Guid( user );
+            if ( userObject != null ) {
+                Guid userId;
+                if ( Guid.TryParse( userObject.ToString(), out userId ) ) return userId;
             }
 
-            return Guid.Empty;
+            return CacheUserId( userName );
         }
 
-        public static string ValidateSuccess( bool success, string successMessage, string error ) {
+        private Guid CacheUserId( string userName ) {
+            var userId = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
+            if ( string.IsNullOrEmpty( userId ) ) return Guid.Empty;
+
+            HttpRuntime.Cache.Insert( _USER_CACHE_KEY, userId, null, DateTime.Now.AddMinutes( 60 ), System.Web.Caching.Cache.NoSlidingExpiration );
+            return new Guid( userId );
+        }
+
+        public string ValidateSuccess( bool success, string successMessage, string error ) {
             PromptHelper prompt;
 
             if ( success ) {

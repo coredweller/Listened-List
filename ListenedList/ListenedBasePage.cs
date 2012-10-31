@@ -22,6 +22,7 @@ namespace ListenedList
         protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         protected LogWriter _Log = new LogWriter();
         protected const string HTML_TAG_PATTERN = "<.*?>";
+        private Base _BASE = new Base();
 
         protected readonly Guid EmptyGuid = new Guid( "00000000-0000-0000-0000-000000000000" );
 
@@ -85,11 +86,11 @@ namespace ListenedList
         }
 
         public Guid GetUserId() {
-            return Base.GetUserId( Page.User.Identity.Name );
+            return _BASE.GetUserId( Page.User.Identity.Name );
         }
 
         public Guid GetUserId( string userName ) {
-            return Base.GetUserId( userName );
+            return _BASE.GetUserId( userName );
         }
 
         protected override void OnLoad( EventArgs e ) {
@@ -101,7 +102,7 @@ namespace ListenedList
         }
 
         protected void ValidateSuccess( bool success, string successMessage, string error ) {
-            Page.RegisterStartupScript( "validateSuccess", Base.ValidateSuccess( success, successMessage, error ) );
+            Page.RegisterStartupScript( "validateSuccess", _BASE.ValidateSuccess( success, successMessage, error ) );
         }
 
         protected void ShowError( string errorMessage ) {

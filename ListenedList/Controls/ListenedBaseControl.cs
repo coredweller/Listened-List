@@ -16,13 +16,14 @@ namespace ListenedList.Controls
         protected LogWriter _Log = new LogWriter();
         protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        private Base _BASE = new Base();
         
         public Guid GetUserId() {
-            return Base.GetUserId( Page.User.Identity.Name );
+            return _BASE.GetUserId( Page.User.Identity.Name );
         }
 
         public void ValidateSuccess( bool success, string successMessage, string error ) {
-            Page.RegisterStartupScript("validateSuccess", Base.ValidateSuccess(success, successMessage, error));
+            Page.RegisterStartupScript("validateSuccess", _BASE.ValidateSuccess(success, successMessage, error));
         }
     }
 }
