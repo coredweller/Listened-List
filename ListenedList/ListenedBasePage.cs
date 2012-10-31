@@ -17,8 +17,8 @@ namespace ListenedList
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "Phisherman's Guide";
 
-        protected IRoleProvider _RoleProvider = new ListenedRoleProvider();
-        protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        protected IRoleProvider _RoleProvider = Ioc.GetInstance<IRoleProvider>();
+        protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
         protected IDomainObjectFactory _DomainObjectFactory = Ioc.GetInstance<IDomainObjectFactory>();
         protected LogWriter _Log = new LogWriter();
         protected const string HTML_TAG_PATTERN = "<.*?>";

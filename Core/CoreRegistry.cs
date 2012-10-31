@@ -3,6 +3,7 @@ using Core.Configuration;
 using Core.Infrastructure.Logging;
 using Core.Services.Interfaces;
 using Core.Services;
+using Core.Membership;
 
 namespace Core
 {
@@ -23,7 +24,16 @@ namespace Core
                 .HybridHttpOrThreadLocalScoped()
                 .Use<DebuggerWriter>();
             SelectConstructor<DebuggerWriter>(() => new DebuggerWriter());
+            
+            For<IMembershipProvider>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ListenedMembershipProvider>();
+            SelectConstructor<ListenedMembershipProvider>(() => new ListenedMembershipProvider());
 
+            For<IRoleProvider>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<ListenedRoleProvider>();
+            SelectConstructor<ListenedRoleProvider>(() => new ListenedRoleProvider());
 
             //Services
             For<IListenedShowService>()

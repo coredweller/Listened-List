@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using Core.Membership;
 using Core.Helpers.Script;
+using Core.Infrastructure;
 
 namespace ListenedList
 {
     public class Base
     {
-        protected IMembershipProvider _MembershipProvider = new ListenedMembershipProvider();
+        protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
         private string _USER_CACHE_KEY = "userId";
 
         public Guid GetUserId( string userName ) {

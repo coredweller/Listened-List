@@ -54,8 +54,7 @@ namespace ListenedList.Admin
 
                 if ( user == null ) ShowError( "Please enter a valid user name" );
 
-                var provider = new ListenedRoleProvider();
-                provider.AddUsersToRoles( new string[1] { txtUserName.Text }, new string[1] { Core.Membership.Roles.ADMINISTRATOR } );
+                _RoleProvider.AddUsersToRoles( new string[1] { txtUserName.Text }, new string[1] { Core.Membership.Roles.ADMINISTRATOR } );
                 success = true;
             }
             catch ( Exception ) {
