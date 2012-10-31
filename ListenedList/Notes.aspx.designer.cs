@@ -193,6 +193,15 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Repeater rptNotes;
         
         /// <summary>
+        /// rptPager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPager;
+        
+        /// <summary>
         /// hdnShowTitle control.
         /// </summary>
         /// <remarks>
@@ -218,5 +227,14 @@ namespace ListenedList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnShowId;
+        
+        /// <summary>
+        /// hdnSearchTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSearchTerm;
     }
 }

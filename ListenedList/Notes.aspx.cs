@@ -15,6 +15,7 @@ using System.Net;
 using System.Collections;
 using System.IO;
 using Procurios.Public;
+using System.Collections.Generic;
 
 namespace ListenedList
 {
@@ -22,6 +23,9 @@ namespace ListenedList
     {
         public string ShowTitle { get; set; }
         private const string statusSelected = "statusSelected";
+        private const int DefaultPageSize = 10;
+        IListenedShowService _ListenedShowService = Ioc.GetInstance<IListenedShowService>();
+        IShowTagService _ShowTagService = Ioc.GetInstance<IShowTagService>();
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -97,7 +101,7 @@ namespace ListenedList
                 phSetlist.Visible = true;
             }
         }
-        
+
         private string ParseJson( string response, DateTime showDate ) {
             var success = false;
             ArrayList jsonHash = null;
@@ -108,8 +112,8 @@ namespace ListenedList
                 return string.Empty;
                 _Log.WriteFatal( "There was an error getting a setlist for the show date of: " + showDate.ToShortDateString() );
             }
-            
-            if (!success || jsonHash == null ) return string.Empty;
+
+            if ( !success || jsonHash == null ) return string.Empty;
 
             var showData = (Hashtable)jsonHash[0];
 
@@ -119,13 +123,7 @@ namespace ListenedList
         }
 
         private void BindListenedShow( IShow show ) {
-            //var list = GetListenedStatusForDropDown();
-
-            //ddlStatus.Items.AddRange( list );
-
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>(); ;
-
-            var listened = listenedShowService.GetByUserAndShowId( GetUserId(), show.Id );
+            var listened = _ListenedShowService.GetByUserAndShowId( GetUserId(), show.Id );
 
             if ( listened == null ) return;
 
@@ -176,9 +174,8 @@ namespace ListenedList
             Guid listenedId;
             if ( !Guid.TryParse( hdnListenedId.Value, out listenedId ) ) return;
 
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
 
-            var listened = listenedShowService.GetById( listenedId );
+            var listened = _ListenedShowService.GetById( listenedId );
 
             if ( listened == null ) return;
 
@@ -206,17 +203,15 @@ namespace ListenedList
 
             hdnShowTitle.Value = show.GetShowName();
 
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-
             var userId = GetUserId();
-            var listenedShow = listenedShowService.GetByUserAndShowId( userId, show.Id );
+            var listenedShow = _ListenedShowService.GetByUserAndShowId( userId, show.Id );
 
             if ( listenedShow == null ) {
 
                 bool success = false;
 
                 listenedShow = _DomainObjectFactory.CreateListenedShow( show.Id, userId, show.ShowDate.Value, (int)ListenedStatus.None, string.Empty );
-                listenedShowService.SaveCommit( listenedShow, out success );
+                _ListenedShowService.SaveCommit( listenedShow, out success );
 
                 if ( !success ) {
                     _Log.Write( "Saving a listened show for user: {0} and show: {1} failed", userId, show.ShowDate.Value );
@@ -232,13 +227,12 @@ namespace ListenedList
         private void BindTags( Guid showId ) {
 
             ITagService tagService = Ioc.GetInstance<ITagService>();
-            IShowTagService showTagService = Ioc.GetInstance<IShowTagService>();
 
             var userId = GetUserId();
 
             //Bind the tag drop down list
             var allTags = tagService.GetTags( userId );
-            var showTags = showTagService.GetTagsByShow( showId );
+            var showTags = _ShowTagService.GetTagsByShow( showId );
 
             var tags = ( from aT in allTags
                          join sT in showTags on aT.Id equals sT.TagId into temp
@@ -275,11 +269,9 @@ namespace ListenedList
 
                 var listenedId = new Guid( hdnListenedId.Value );
 
-                var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-
                 using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
-                    var listenedShow = listenedShowService.GetById( listenedId );
+                    var listenedShow = _ListenedShowService.GetById( listenedId );
                     listenedShow.Notes = txtNotes.Text;
                     listenedShow.UpdatedDate = DateTime.UtcNow;
 
@@ -306,11 +298,9 @@ namespace ListenedList
             var clickedButton = (Button)sender;
             var listenedId = new Guid( hdnListenedId.Value );
 
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-
             using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
 
-                var listenedShow = listenedShowService.GetById( listenedId );
+                var listenedShow = _ListenedShowService.GetById( listenedId );
 
                 switch ( clickedButton.ID ) {
                     case "btnNeverHeard":
@@ -348,16 +338,28 @@ namespace ListenedList
         public void btnSearch_Click( object sender, EventArgs e ) {
             if ( string.IsNullOrEmpty( txtSearch.Text ) ) return;
 
-            var listenedShowService = Ioc.GetInstance<IListenedShowService>();
-
-            var listenedShows = listenedShowService.GetByUser( GetUserId() ).ToList();
+            var listenedShows = _ListenedShowService.GetByUser( GetUserId() ).ToList();
 
             if ( listenedShows == null || listenedShows.Count <= 0 ) return;
 
-            var filtered = listenedShows.Where( x => x.Notes.ToLower().Contains( txtSearch.Text.ToLower() ) );
+            var searchTerm = txtSearch.Text.ToLower();
+            var filtered = listenedShows.Where( x => x.Notes.ToLower().Contains( searchTerm ) );
+            var total = filtered.Count();
+            var paged = filtered.Take( DefaultPageSize ).ToList();
+            hdnSearchTerm.Value = searchTerm;
 
-            rptNotes.DataSource = filtered;
+            rptNotes.DataSource = paged;
             rptNotes.DataBind();
+
+            IList<int> list = new List<int>();
+
+            var pages = total / DefaultPageSize;
+            for ( int i = 1 ; i <= pages ; i++ ) {
+                list.Add( i );
+            }
+
+            rptPager.DataSource = list;
+            rptPager.DataBind();
         }
 
         public void btnCreateTag_Click( object sender, EventArgs e ) {
@@ -388,8 +390,7 @@ namespace ListenedList
                     tagService.Save( newTag, out success );
 
                     bool showTagSuccess = false;
-                    IShowTagService showTagService = Ioc.GetInstance<IShowTagService>();
-                    showTagService.Save( showTag, out showTagSuccess );
+                    _ShowTagService.Save( showTag, out showTagSuccess );
 
                     success = success && showTagSuccess;
 
@@ -419,13 +420,12 @@ namespace ListenedList
             var success = false;
 
             try {
-                var showTagService = Ioc.GetInstance<IShowTagService>();
 
                 var tagId = new Guid( ddlTags.SelectedValue );
 
                 var showTag = _DomainObjectFactory.CreateShowTag( showId, tagId, GetUserId() );
 
-                showTagService.SaveCommit( showTag, out success );
+                _ShowTagService.SaveCommit( showTag, out success );
             }
             catch ( Exception ex ) {
                 _Log.WriteFatal( "THERE WAS AN ERROR APPLYING A TAG ON NOTES.ASPX with message: " + ex.Message );
@@ -444,14 +444,13 @@ namespace ListenedList
             }
         }
 
-        private void DeleteTag( Guid tagId ) {
-            IShowTagService tagService = Ioc.GetInstance<IShowTagService>();
+        private void DeleteTag( Guid tagId ) {            
 
-            var tag = tagService.GetTag( tagId );
+            var tag = _ShowTagService.GetTag( tagId );
 
             if ( tag == null ) return;
 
-            tagService.Delete( tag );
+            _ShowTagService.Delete( tag );
             BindTags( tag.ShowId );
 
         }
@@ -476,6 +475,20 @@ namespace ListenedList
                 prompt = new PromptHelper( error );
                 Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
             }
+        }
+
+        protected void rptPager_ItemCommand( object source, RepeaterCommandEventArgs e ) {
+            int pageNumber = 0;
+            if ( !int.TryParse( e.CommandArgument.ToString(), out pageNumber ) || string.IsNullOrEmpty( hdnSearchTerm.Value ) ) return;
+
+            var skipAmount = (pageNumber - 1) * DefaultPageSize;
+            var notes = _ListenedShowService.GetByUser( GetUserId() )
+                                .Where( x => x.Notes.ToLower().Contains( hdnSearchTerm.Value.ToLower() ) )
+                                .Skip( skipAmount )
+                                .Take( DefaultPageSize );
+
+            rptNotes.DataSource = notes;
+            rptNotes.DataBind();
         }
 
         #endregion

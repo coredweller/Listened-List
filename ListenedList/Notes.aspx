@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
+﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs" MaintainScrollPositionOnPostback="true"
     Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
@@ -130,9 +130,25 @@
                 <FooterTemplate>
                     </table></FooterTemplate>
             </asp:Repeater>
+            <br />
+            <asp:Repeater ID="rptPager" runat="server" OnItemCommand="rptPager_ItemCommand">
+                <HeaderTemplate>
+                    <table>
+                        <tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <td>
+                        <asp:LinkButton ID="lnkPage" runat="server" Text='<%# (int)Container.DataItem %>'
+                            CommandArgument='<%# (int)Container.DataItem %>'></asp:LinkButton>
+                    </td>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tr></table></FooterTemplate>
+            </asp:Repeater>
         </div>
     </div>
     <asp:HiddenField ID="hdnShowTitle" runat="server" Visible="false" />
     <asp:HiddenField ID="hdnListenedId" runat="server" Visible="false" />
     <asp:HiddenField ID="hdnShowId" runat="server" Visible="false" />
+    <asp:HiddenField ID="hdnSearchTerm" runat="server" Visible="false" />
 </asp:Content>
