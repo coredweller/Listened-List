@@ -112,9 +112,5 @@ function SaveStatus(status, showDate, userId, button) {
             //Set the button's css class to the new status
             $(button).addClass(cssClass);
         }
-
-        //Set the pages focus back on the clicked button, this is so if the button is all the way
-        // to the right the page would refocus there after the user made his choice on the prompt.
-        button.focus();
     });
 }
