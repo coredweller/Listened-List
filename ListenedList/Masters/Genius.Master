@@ -8,9 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../Styles/geniusStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Styles/Listened.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.3.2.min.js"></script>--%>
-    <%--<script type="text/javascript" src="/Scripts/jquery-impromptu.4.0.min.js"></script>--%>
+    <link href="~/Styles/jquery-ui-1.9.1.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
     <script type="text/javascript" src="/Scripts/extra.js"></script>
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
@@ -25,9 +25,6 @@
         CombineScripts="false">
     </ajaxToolkit:ToolkitScriptManager>
     <div id="topPan">
-        <%--<a href="http://www.free-css.com/">
-            <img src="images/genius/logo.gif" alt="Genious Web" width="208" height="58" border="0"
-                title="Genious Web" /></a>--%>
         <div style="float: right; color: Black; padding-right: 100px;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>

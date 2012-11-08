@@ -1,3 +1,6 @@
+//The URL to the notes page
+var notesUrl = "Notes/";
+
 //Consider moving this to an external JS file
 var ListenedStatus = {
     None: 0,
@@ -65,4 +68,53 @@ function GetPart2ShowText(showDate) {
     }
 
     return showInfo;
+}
+
+
+function SaveStatus(status, showDate, userId, button) {
+    //If the user clicks Cancel then do nothing
+    if (status == ListenedStatus.Cancel) { return; }
+
+    //If the user clicks EditNotes then go to a page to edit the notes
+    if (status == ListenedStatus.EditNotes) { window.location.href = notesUrl + showDate; }
+    
+    //Send show date, user id, and status to the handler to process the update
+    $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
+
+        //If nothing is returned from the Handler then get out of here
+        if (data == null) return;
+
+        //First Row is whether or not the operation succeeded
+        var success = data.records[0];
+
+        //If there is no data in the json then get out of here
+        if (success == null) return;
+
+        //Make sure that the Question part of the JSON is success, if it isn't then get out of here
+        if (success['Question'] != "success") return;
+
+        //If the success was true then set the color
+        if (success['Answer'] == "true") {
+
+            //Second Row is whether the user attended the show
+            var attended = data.records[1]['Answer'];
+
+            //Third Row is the new status to display to the user
+            var displayStatus = data.records[2]['Answer'];
+
+            var cssClass = 0;
+            //Get the color based on the NEW listened status
+            cssClass = GetCssClass(displayStatus, attended);
+
+            //Remove all css classes
+            $(button).removeClass();
+
+            //Set the button's css class to the new status
+            $(button).addClass(cssClass);
+        }
+
+        //Set the pages focus back on the clicked button, this is so if the button is all the way
+        // to the right the page would refocus there after the user made his choice on the prompt.
+        button.focus();
+    });
 }

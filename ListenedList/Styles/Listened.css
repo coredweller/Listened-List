@@ -369,8 +369,10 @@
     top: 1px;
 }
 
-
-
+/*OLIVE*/
+.defaultButtonOlive {
+    background-color: Olive;
+}
 
 /*------------Search Page Buttons----------*/
 
@@ -680,6 +682,7 @@ hr.horizontalRule1
 .mainDiv {
     padding-left: 100px; 
 }
+
 
 /*-------------impromptu---------- */
 .jqifade

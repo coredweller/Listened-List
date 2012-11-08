@@ -1,11 +1,14 @@
-﻿<%@ Page Title="Home Page" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="ListenedList.Main" MasterPageFile="~/Masters/Genius.Master" %>
+﻿<%@ Page Title="Home Page" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs"
+    Inherits="ListenedList.Main" MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
-
 <asp:Content ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
+        //The URL to the notes page
+        var notesUrl = "Notes/";
+
         $(document).ready(function () {
 
             //Looks for userName in the URL
@@ -47,11 +50,11 @@
                     return;
                 }
 
+                //grab the user id
+                var userId = $('#<%= hdnUserId.ClientID %>').val();
+
                 //Do we need to prompt the user?
                 var needToPrompt = true;
-
-                //The URL to the notes page
-                var notesUrl = "Notes/";
 
                 //If the button's current color is orange meaning the show is already finished
                 if ($(button).hasClass("defaultButtonOrange")) {
@@ -63,74 +66,79 @@
 
                 if (needToPrompt) {
 
-                    //Prompt the user for the change in status that they want
-                    $.prompt('What is the listening status for this show?',
-
-                    //Define the 4 buttons to be displayed
-                        {buttons: [
-                                    { title: 'Finished', value: ListenedStatus.Finished },
-                                    { title: 'In Progress', value: ListenedStatus.InProgress },
-                                    { title: 'Never Heard', value: ListenedStatus.None },
-                                    { title: 'Need To Listen', value: ListenedStatus.NeedToListen },
-                                    { title: 'Attended', value: ListenedStatus.Attended },
-                                    { title: 'Edit Notes', value: ListenedStatus.EditNotes },
-                                    { title: 'Cancel', value: ListenedStatus.Cancel }
-                                  ],
-
-                        //This is for Impromptu version 3.2
-                        //submit: function (status, y, z) {
-
-                        //This is for Impromptu version 4.0
-                        submit: function (x, status, z) {
-
-                            //If the user clicks Cancel then do nothing
-                            if (status == ListenedStatus.Cancel) { return; }
-
-                            //If the user clicks EditNotes then go to a page to edit the notes
-                            if (status == ListenedStatus.EditNotes) { window.location.href = notesUrl + showDate; }
-
-                            //grab the user id
-                            var userId = $('#<%= hdnUserId.ClientID %>').val();
-
-                            //Send show date, user id, and status to the handler to process the update
-                            $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
-
-                                //If nothing is returned from the Handler then get out of here
-                                if (data == null) return;
-
-                                //First Row is whether or not the operation succeeded
-                                var success = data.records[0];
-
-                                //If there is no data in the json then get out of here
-                                if (success == null) return;
-
-                                //Make sure that the Question part of the JSON is success, if it isn't then get out of here
-                                if (success['Question'] != "success") return;
-
-                                //If the success was true then set the color
-                                if (success['Answer'] == "true") {
-
-                                    //Second Row is whether the user attended the show
-                                    var attended = data.records[1]['Answer'];
-
-                                    //Third Row is the new status to display to the user
-                                    var displayStatus = data.records[2]['Answer'];
-
-                                    var cssClass = 0;
-                                    //Get the color based on the NEW listened status
-                                    cssClass = GetCssClass(displayStatus, attended);
-
-                                    //Remove all css classes
-                                    $(button).removeClass();
-
-                                    //Set the button's css class to the new status
-                                    $(button).addClass(cssClass);
-                                }
-
-                                //Set the pages focus back on the clicked button, this is so if the button is all the way
-                                // to the right the page would refocus there after the user made his choice on the prompt.
-                                button.focus();
-                            });
+                    $("#dialog-confirm").dialog({
+                        resizable: true,
+                        height: 250,
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            Finished: {
+                                text: "Finished",
+                                open: function () {
+                                    $(this).addClass('defaultButtonOrange');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.Finished, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            InProgress: {
+                                text: "In Progress",
+                                open: function () {
+                                    $(this).addClass('defaultButtonYellow');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.InProgress, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            NeverHeard: {
+                                text: "Never Heard",
+                                open: function () {
+                                    $(this).addClass('defaultButtonWhite');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.None, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            NeedToListen: {
+                                text: "Need To Listen",
+                                open: function () {
+                                    $(this).addClass('defaultButtonGreen');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.NeedToListen, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            Attended: {
+                                text: "Attended",
+                                open: function () {
+                                    $(this).addClass('attendedButton');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.Attended, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            EditNotes: {
+                                text: "Edit Notes",
+                                open: function () {
+                                    $(this).addClass('defaultButtonOlive');
+                                },
+                                click: function () {
+                                    SaveStatus(ListenedStatus.EditNotes, showDate, userId, button);
+                                    $(this).dialog("close");
+                                },
+                            },
+                            Cancel: {
+                                text: "Cancel",
+                                priority: 'secondary',
+                                click: function () {
+                                    $(this).dialog("close");
+                                },
+                            }
                         }
                     });
                 }
@@ -149,7 +157,8 @@
         Phish Shows&nbsp;&nbsp;
         <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
         <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />&nbsp;&nbsp;
-        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
+        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="<%: FriendlyUrl.Href("~/Step1") %>">
+            HERE</a></span>
     </div>
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />
@@ -210,4 +219,9 @@
     <%--<uc:YearBox ID="yearBox84" runat="server" Year="1984" />
     <br />--%>
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
+    <div id="dialog-confirm" title="Choose Listening Status">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+            What is the listening status for this show?</p>
+    </div>
 </asp:Content>
