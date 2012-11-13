@@ -167,7 +167,7 @@
 <asp:Content ID="cntMain" runat="server" ContentPlaceHolderID="MainContent">
     <br />
     <br />
-    <div style="font-size: 3em; font-weight: 700; padding-bottom: 30px;">
+    <div style="font-size: 3em; font-weight: 700; padding-bottom: 20px;">
         Phish Shows&nbsp;&nbsp;
         <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
         <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />&nbsp;&nbsp;
@@ -183,8 +183,11 @@
         <br />
         <br />
     </asp:PlaceHolder>
-    <br />
-        Search for Show Date: <input id="txtSearch" type="text" /> <input type="button" id="btnSearch" value="Search" />
+    <div style="padding-left:78px;font-size:18px;">
+        Show Date:
+        <input id="txtSearch" type="text" style="width: 100px;height:32px;font-size:18px;" />
+        <input type="button" class="normalButton" id="btnSearch" value="Search" style="height:38px;" />
+    </div>
     <br />
     <uc:Legend ID="legend" runat="server" />
     <br />
