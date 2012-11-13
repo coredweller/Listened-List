@@ -1,4 +1,4 @@
-//The URL to the notes page
+﻿//The URL to the notes page
 var notesUrl = "Notes/";
 
 //Consider moving this to an external JS file
@@ -114,3 +114,13 @@ function SaveStatus(status, showDate, userId, button) {
         }
     });
 }
+
+    var timer;
+    function Blink(elm) {
+        timer = setInterval(blinking, 10);
+        function blinking() {
+            elm.fadeOut(400, function () {
+                elm.fadeIn(400);
+            });
+        }
+    }

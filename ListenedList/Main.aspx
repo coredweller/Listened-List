@@ -49,6 +49,20 @@
 
                     return;
                 }
+                else if(buttonId == "btnSearch"){
+                    var searchedButton = $('input[type="button"][value="' + $('#txtSearch').val() + '"]');
+                    if(searchedButton != null) {
+                         searchedButton.focus();
+                         Blink(searchedButton);
+                    }
+
+                    return;
+                }
+                else if(buttonId == "txtSearch") {
+                    return;
+                }
+
+                clearInterval(timer);
 
                 //grab the user id
                 var userId = $('#<%= hdnUserId.ClientID %>').val();
@@ -169,6 +183,9 @@
         <br />
         <br />
     </asp:PlaceHolder>
+    <br />
+        Search for Show Date: <input id="txtSearch" type="text" /> <input type="button" id="btnSearch" value="Search" />
+    <br />
     <uc:Legend ID="legend" runat="server" />
     <br />
     <%--<br /><br />--%>

@@ -90,6 +90,7 @@
     <Content Include="Step1.aspx" />
     <Content Include="Step2.aspx" />
     <Content Include="Styles\geniusStyle.css" />
+    <Content Include="Styles\jquery-ui-1.9.1.css" />
     <Content Include="Styles\Listened.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -334,7 +335,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>36937</DevelopmentServerPort>
+          <DevelopmentServerPort>2734</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
