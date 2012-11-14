@@ -683,6 +683,10 @@ hr.horizontalRule1
     padding-left: 100px; 
 }
 
+.simpleTopPad {
+    padding-top: 10px;
+}
+
 
 /*-------------impromptu---------- */
 .jqifade

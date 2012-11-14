@@ -94,6 +94,15 @@ namespace ListenedList {
         protected global::FreeTextBoxControls.FreeTextBox txtNotes;
         
         /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
         /// lblCreatedDate control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Label lblUpdatedDate;
         
         /// <summary>
-        /// btnSubmit control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// txtTagName control.

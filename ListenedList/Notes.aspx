@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs" MaintainScrollPositionOnPostback="true"
-    Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
+    MaintainScrollPositionOnPostback="true" Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
@@ -45,53 +45,54 @@
             <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
                 Width="425px" />
             <br />
-            <p style="font-size: 1em; font-weight: 400;">
-                <asp:Label ID="lblCreatedDate" runat="server"></asp:Label><br />
-                <asp:Label ID="lblUpdatedDate" runat="server"></asp:Label>
+            <p style="font-size: .8em; font-weight: 400; width: 425px;">
+                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton"
+                    Text="Save" />
+                <span style="float: right;">First Created:&nbsp;<asp:Label ID="lblCreatedDate" runat="server"></asp:Label><br />
+                    Last Updated:&nbsp;<asp:Label ID="lblUpdatedDate" runat="server"></asp:Label></span>
             </p>
             <br />
-            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton"
-                Text="Save" />
         </div>
         <br />
-        <br />
-        <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>--%>
-        <p style="font-size: 1.5em; font-weight: 600;">
-            Tags:
-        </p>
-        <p>
-            Create New Tag (30 letters max):
-            <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
-            <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
-                OnClick="btnCreateTag_Click" />
-        </p>
-        <p>
-            Apply Existing Tag:
-            <asp:DropDownList ID="ddlTags" runat="server">
-            </asp:DropDownList>
-            <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" CssClass="normalButton"
-                Text="Apply Tag" />
-        </p>
-        <div>
-            <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
-                <ItemTemplate>
-                    <p>
-                        <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>'
-                            runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
-                        </asp:LinkButton>
-                        <asp:LinkButton ID="lnkDelete" runat="server" Text="Remove" CommandName="DELETE"
-                            CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
-                    </p>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
-        <%--</ContentTemplate>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <p style="font-size: 1.5em; font-weight: 600;">
+                    Tags:
+                </p>
+                <p>
+                    Create New Tag (<%= DEFAULT_MAX_TAG_NAME %>
+                    letters max):
+                    <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
+                    <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
+                        OnClick="btnCreateTag_Click" />
+                </p>
+                <p>
+                    Apply Existing Tag:
+                    <asp:DropDownList ID="ddlTags" runat="server">
+                    </asp:DropDownList>
+                    <asp:Button ID="btnApplyTag" runat="server" OnClick="btnApplyTag_Click" CssClass="normalButton"
+                        Text="Apply Tag" />
+                </p>
+                <div>
+                    <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
+                        <ItemTemplate>
+                            <p>
+                                <asp:LinkButton CssClass='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Color %>'
+                                    runat="server" Enabled="false" ID="lnkTag" Text='<%# (((Data.DomainObjects.ShowTag)Container.DataItem)).Tag.Name %>'>
+                                </asp:LinkButton>
+                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Remove" CommandName="DELETE"
+                                    CommandArgument='<%# (((Core.DomainObjects.IShowTag)Container.DataItem)).Id %>'></asp:LinkButton>
+                            </p>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnCreateTag" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="rptTags" EventName="ItemCommand" />
+                <asp:AsyncPostBackTrigger ControlID="btnApplyTag" EventName="Click" />
             </Triggers>
-        </asp:UpdatePanel>--%>
+        </asp:UpdatePanel>
         <br />
         <br />
         <br />

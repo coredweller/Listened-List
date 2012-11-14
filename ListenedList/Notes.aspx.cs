@@ -26,6 +26,8 @@ namespace ListenedList
         private const int DefaultPageSize = 10;
         IListenedShowService _ListenedShowService = Ioc.GetInstance<IListenedShowService>();
         IShowTagService _ShowTagService = Ioc.GetInstance<IShowTagService>();
+        protected const int DEFAULT_MAX_TAG_NAME = 30;
+        private TimeZone _LocalZone = TimeZone.CurrentTimeZone;
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -134,8 +136,9 @@ namespace ListenedList
                 hdnAttended.Value = "true";
             }
 
-            lblCreatedDate.Text = string.Format( "First Created: {0}", listened.CreatedDate.ToString() );
-            lblUpdatedDate.Text = string.Format( "Last Updated: {0}", listened.UpdatedDate.HasValue ? listened.UpdatedDate.Value.ToString() : "" );
+            
+            lblCreatedDate.Text = _LocalZone.ToLocalTime( listened.CreatedDate ).ToString();
+            lblUpdatedDate.Text = listened.UpdatedDate.HasValue ? _LocalZone.ToLocalTime( listened.UpdatedDate.Value ).ToString() : "";
 
             Button button;
             switch ( listened.Status ) {
@@ -155,10 +158,6 @@ namespace ListenedList
             }
 
             SetListenedStatusButton( button );
-
-
-            //var item = ddlStatus.Items.FindByValue( listened.Status.ToString() );
-            //item.Selected = true;
         }
 
         public void btnAttended_Click( object sender, EventArgs e ) {
@@ -264,7 +263,7 @@ namespace ListenedList
             if ( string.IsNullOrEmpty( txtNotes.Text ) || string.IsNullOrEmpty( hdnListenedId.Value ) ) return;
 
             var success = false;
-
+            DateTime newDate = DateTime.MinValue;
             try {
 
                 var listenedId = new Guid( hdnListenedId.Value );
@@ -273,11 +272,9 @@ namespace ListenedList
 
                     var listenedShow = _ListenedShowService.GetById( listenedId );
                     listenedShow.Notes = txtNotes.Text;
-                    listenedShow.UpdatedDate = DateTime.UtcNow;
 
-                    //if ( ddlStatus.SelectedValue != "-1" ) {
-                    //    listenedShow.Status = int.Parse( ddlStatus.SelectedValue );
-                    //}
+                    newDate = DateTime.UtcNow;
+                    listenedShow.UpdatedDate = newDate; 
 
                     uow.Commit();
                     success = true;
@@ -289,6 +286,11 @@ namespace ListenedList
             }
 
             ValidateSuccess( success, "You have saved your notes for this show.", "There was an error saving your notes for this show." );
+
+            if ( success && newDate != DateTime.MinValue ) {
+                var localDate = _LocalZone.ToLocalTime(newDate);
+                lblUpdatedDate.Text = localDate.ToString();
+            }
 
         }
 
@@ -381,8 +383,8 @@ namespace ListenedList
             var success = false;
 
             try {
-
-                var newTag = _DomainObjectFactory.CreateTag( txtTagName.Text, userId );
+                var tagName = txtTagName.Text;
+                var newTag = _DomainObjectFactory.CreateTag( tagName.Length > DEFAULT_MAX_TAG_NAME ? tagName.Substring(0, DEFAULT_MAX_TAG_NAME) : tagName, userId );
                 var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id, GetUserId() );
 
                 using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
@@ -402,7 +404,7 @@ namespace ListenedList
                 success = false;
             }
 
-            ValidateTags( success, "You have saved your tag successfully.", "There was an error saving your tag.", showId );
+            ValidateTags( success, "There was an error saving your tag.", showId );
         }
 
         public void btnApplyTag_Click( object sender, EventArgs e ) {
@@ -432,7 +434,7 @@ namespace ListenedList
                 success = false;
             }
 
-            ValidateTags( success, "You have successfully applied the tag.", "There was an error applying the tag.", showId );
+            ValidateTags( success, "There was an error applying the tag.", showId );
         }
 
         public void rptTags_ItemCommand( object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e ) {
@@ -463,13 +465,11 @@ namespace ListenedList
             return FriendlyUrl.Href( "~/Notes", id.ToString() );
         }
 
-        private void ValidateTags( bool success, string successMessage, string error, Guid showId ) {
+        private void ValidateTags( bool success, string error, Guid showId ) {
             PromptHelper prompt;
 
             if ( success ) {
                 BindTags( showId );
-                prompt = new PromptHelper( successMessage );
-                Page.RegisterStartupScript( prompt.ScriptName, prompt.GetSuccessScript() );
             }
             else {
                 prompt = new PromptHelper( error );
