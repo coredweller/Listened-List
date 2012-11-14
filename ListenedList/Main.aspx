@@ -55,22 +55,29 @@
                     if(error != null) error.remove();
 
                     var searched = $('#txtSearch').val();
+
+                    //If the user did not enter anything show an error
                     if ($.trim(searched) == '')
                     {
                         $("#divUtils").append("<span id='enterDateError' style='color:red;'>Please enter a valid date.</span>");
                         return;
                     }
                     
+                    //using date.js to parse the date better than normal javascript
                     var parsedDate = Date.parse(searched);
 
+                    //If the user entered a bad date show an error
                     if(parsedDate == null){
                         $("#divUtils").append("<span id='enterDateError' style='color:red;'>Please enter a valid date.</span>");
                         return;
                     }
                     
+                    //Format the date into the format the button text is in
                     var finalDate = parsedDate.toString('M/d/yyyy')
 
                     var searchedButton = $('input[type="button"][value="' + finalDate + '"]');
+
+                    //If a button text equals finalDate then focus on it and make it blink
                     if(searchedButton != null) {
                          searchedButton.focus();
                          Blink(searchedButton);
