@@ -13,6 +13,7 @@
     <script type="text/javascript" src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
     <script type="text/javascript" src="/Scripts/extra.js"></script>
+    <script type="text/javascript" src="/Scripts/date.js"></script>
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <link id="favIcon3" runat="server" rel="icon" href="~/favicon.ico" type="image/x-icon" />

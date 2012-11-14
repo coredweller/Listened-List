@@ -50,7 +50,27 @@
                     return;
                 }
                 else if(buttonId == "btnSearch"){
-                    var searchedButton = $('input[type="button"][value="' + $('#txtSearch').val() + '"]');
+                    //clear errors
+                    var error = $("#enterDateError");
+                    if(error != null) error.remove();
+
+                    var searched = $('#txtSearch').val();
+                    if ($.trim(searched) == '')
+                    {
+                        $("#divUtils").append("<span id='enterDateError' style='color:red;'>Please enter a valid date.</span>");
+                        return;
+                    }
+                    
+                    var parsedDate = Date.parse(searched);
+
+                    if(parsedDate == null){
+                        $("#divUtils").append("<span id='enterDateError' style='color:red;'>Please enter a valid date.</span>");
+                        return;
+                    }
+                    
+                    var finalDate = parsedDate.toString('M/d/yyyy')
+
+                    var searchedButton = $('input[type="button"][value="' + finalDate + '"]');
                     if(searchedButton != null) {
                          searchedButton.focus();
                          Blink(searchedButton);
@@ -62,6 +82,7 @@
                     return;
                 }
 
+                //This makes the button stop blinking
                 clearInterval(timer);
 
                 //grab the user id
@@ -181,7 +202,7 @@
         <br />
         <br />
     </asp:PlaceHolder>
-    <div style="font-size: 18px;">
+    <div id="divUtils" style="font-size: 18px;">
         Size:
         <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />
         <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
