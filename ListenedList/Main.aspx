@@ -168,12 +168,10 @@
     <br />
     <br />
     <div style="font-size: 3em; font-weight: 700; padding-bottom: 20px;">
-        Phish Shows&nbsp;&nbsp;
-        <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
-        <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />&nbsp;&nbsp;
-        <span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a href="<%: FriendlyUrl.Href("~/Step1") %>">
-            HERE</a></span>
+        Phish&nbsp;<span style="font-size: small; font-weight: 200;">Need Help? Tutorial
+            <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
     </div>
+    <br />
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
         <br />
         <br />
@@ -183,11 +181,16 @@
         <br />
         <br />
     </asp:PlaceHolder>
-    <div style="padding-left:78px;font-size:18px;">
-        Show Date:
-        <input id="txtSearch" type="text" style="width: 100px;height:32px;font-size:18px;" />
-        <input type="button" class="normalButton" id="btnSearch" value="Search" style="height:38px;" />
+    <div style="font-size: 18px;">
+        Size:
+        <input id="btnMinus" type="button" class="normalButton plusMinusButton" value="-" />
+        <input id="btnPlus" type="button" class="normalButton plusMinusButton" value="+" />
+        &nbsp;&nbsp;&nbsp; Date:
+        <input id="txtSearch" type="text" style="width: 100px; height: 32px; font-size: 18px;
+            padding-top: 1px;" />
+        <input type="button" class="normalButton" id="btnSearch" value="Search" style="height: 38px;" />
     </div>
+    <br />
     <br />
     <uc:Legend ID="legend" runat="server" />
     <br />
