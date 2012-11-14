@@ -91,6 +91,7 @@ namespace ListenedList.Controls
                 Page.RegisterStartupScript( prompt.ScriptName, prompt.GetErrorScript() );
             }
 
+            string previousColor = string.Empty;
             var success = false;
             try {
                 var tagId = (Guid)ViewState["TagId"];
@@ -99,6 +100,7 @@ namespace ListenedList.Controls
                     var tag = _tagService.GetTag( tagId );
                     tag.Name = txtTagName.Text;
                     tag.Color = TagColors.GetColorByHex( ddlColor.SelectedValue ).CssClass;
+                    previousColor = ddlColor.SelectedValue;
 
                     uow.Commit();
                     success = true;
@@ -111,6 +113,8 @@ namespace ListenedList.Controls
             }
 
             Bind();
+            if ( !string.IsNullOrEmpty( previousColor ) ) ddlColor.SelectedValue = previousColor;
+
             ValidateSuccess( success, "You have successfully saved the new tag name.", "There was an error saving the new tag name." );
         }
 
