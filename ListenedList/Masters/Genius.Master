@@ -37,7 +37,7 @@
                         <asp:LoginName ID="HeadLoginName" runat="server" />
                     </span>! [
                     <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
-                        LogoutPageUrl="~/" />
+                        LogoutPageUrl="~/" OnLoggingOut="HeadLoginStatus_LoggingOut" />
                     ]
                 </LoggedInTemplate>
             </asp:LoginView>

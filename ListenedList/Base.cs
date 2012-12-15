@@ -24,6 +24,10 @@ namespace ListenedList
             return CacheUserId( userName );
         }
 
+        public void ClearCachedUserId() {
+            HttpRuntime.Cache.Remove( _USER_CACHE_KEY );
+        }
+
         private Guid CacheUserId( string userName ) {
             var userId = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
             if ( string.IsNullOrEmpty( userId ) ) return Guid.Empty;

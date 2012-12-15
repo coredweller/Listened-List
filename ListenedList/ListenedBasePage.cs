@@ -131,5 +131,9 @@ namespace ListenedList
             Response.Cache.SetLastModified( DateTime.Now );
             Response.Cache.SetAllowResponseInBrowserHistory( false );
         }
+
+        protected void ClearCachedUserId() {
+            _BASE.ClearCachedUserId();
+        }
     }
 }

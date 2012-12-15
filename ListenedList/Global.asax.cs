@@ -18,42 +18,43 @@ namespace ListenedList
         LogWriter writer = new LogWriter();
 
         void Application_Start( object sender, EventArgs e ) {
-            
-             log4net.Config.XmlConfigurator.Configure();
 
+            //Setup log4net
+            log4net.Config.XmlConfigurator.Configure();
+
+            //Setup Structure Map
             OnStart();
 
-            SqlDependency.Start(ConfigurationManager.ConnectionStrings["Listened"].ConnectionString);
+            //Setup Caching
+            SqlDependency.Start( ConfigurationManager.ConnectionStrings["Listened"].ConnectionString );
 
+            //Setup pretty Urls
             RouteConfig.RegisterRoutes( RouteTable.Routes );
         }
 
-        protected virtual void OnStart()
-        {
+        protected virtual void OnStart() {
             //Setup Ioc container and related services
             Bootstrap();
 
             // uncomment the following line if you wish to have StructureMap verify its configuration.  ASP.NET error page will be generated if configuration is incorrect.
             ObjectFactory.AssertConfigurationIsValid();
-            System.Diagnostics.Debug.Write(ObjectFactory.WhatDoIHave());
+            System.Diagnostics.Debug.Write( ObjectFactory.WhatDoIHave() );
         }
 
-        private void Bootstrap()
-        {
+        private void Bootstrap() {
             //setup IoC container
-            ObjectFactory.Initialize(x =>
-            {
-                x.AddRegistry(new Core.CoreRegistry());
-                x.AddRegistry(new Data.DataRegistry());
+            ObjectFactory.Initialize( x => {
+                x.AddRegistry( new Core.CoreRegistry() );
+                x.AddRegistry( new Data.DataRegistry() );
                 //x.AddRegistry(new PhishMarket.PhishMarketRegistry());
-            });
+            } );
 
-            Ioc.InitializeWith(new DependencyResolverFactory(new DependencyResolver()));
+            Ioc.InitializeWith( new DependencyResolverFactory( new DependencyResolver() ) );
         }
 
         void Application_End( object sender, EventArgs e ) {
             //  Code that runs on application shutdown
-            SqlDependency.Stop(ConfigurationManager.ConnectionStrings["Listened"].ConnectionString);
+            SqlDependency.Stop( ConfigurationManager.ConnectionStrings["Listened"].ConnectionString );
         }
 
         void Application_Error( object sender, EventArgs e ) {
