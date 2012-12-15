@@ -222,7 +222,6 @@
     <br />
     <uc:Legend ID="legend" runat="server" />
     <br />
-    <%--<br /><br />--%>
     <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
     <br />
     <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
@@ -263,14 +262,8 @@
     <br />
     <uc:YearBox ID="yearBox87" runat="server" Year="1987" />
     <br />
-    <%--<uc:YearBox ID="yearBox86" runat="server" Year="1986" />
-    <br />
-    <uc:YearBox ID="yearBox85" runat="server" Year="1985" />
-    <br />--%>
-    <%--<uc:YearBox ID="yearBox84" runat="server" Year="1984" />
-    <br />--%>
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
-    <div id="dialog-confirm" title="Choose Listening Status">
+    <div id="dialog-confirm" title="Choose Listening Status" style="display: none;">
         <p>
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
             What is the listening status for this show?</p>
