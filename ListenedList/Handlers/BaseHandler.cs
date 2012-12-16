@@ -9,10 +9,7 @@ namespace ListenedList.Handlers
     public abstract class BaseHandler : IHttpHandler
     {
         public virtual bool IsReusable { get { return false; } }
-
-        protected const string ShowImagesFolder = "/images/Shows/";
-        protected const string TicketStubImagesFolder = "/images/TicketStubs/";
-
+        
         public void ProcessRequest(HttpContext context)
         {
             ProcessRequest(new HttpContextWrapper(context));

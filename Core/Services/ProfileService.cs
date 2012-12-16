@@ -65,6 +65,15 @@ namespace Core.Services
         }
 
         /// <summary>
+        /// Use this to save just the button size
+        /// </summary>
+        /// <param name="buttonSize"></param>
+        public void SaveButtonSize( float buttonSize ) {
+            SetButtonSize( buttonSize );
+            _Profile.Save();
+        }
+
+        /// <summary>
         /// Use this to save just the name
         /// </summary>
         /// <param name="name"></param>
@@ -113,6 +122,14 @@ namespace Core.Services
         /// <param name="isPublic"></param>
         private void SetPublic( bool isPublic ) {
             _Profile.SetPropertyValue( "Public", isPublic );
+        }
+
+        /// <summary>
+        /// Worker method that is the only method to know how to set ButtonSize
+        /// </summary>
+        /// <param name="buttonSize"></param>
+        private void SetButtonSize( float buttonSize ) {
+            _Profile.SetPropertyValue( "ButtonSize", buttonSize );
         }
     }
 }

@@ -10,11 +10,16 @@ using System.Collections.Generic;
 using Core.Helpers;
 using Core.Services.Interfaces;
 using Microsoft.AspNet.FriendlyUrls;
+using System.Web.Services;
 
 namespace ListenedList
 {
     public partial class Main : ListenedBasePage
     {
+        protected float ButtonSize { get; set; }
+        protected float FontSize { get; set; }
+        protected string UserName { get; set; }
+
         protected void Page_Load( object sender, EventArgs e ) {
 
             if ( string.IsNullOrEmpty( hdnUserId.Value ) ) {
@@ -31,6 +36,7 @@ namespace ListenedList
 
             Guid userId;
 
+            UserName = User.Identity.Name;
             userId = GetUserId();
 
             var segment = Request.GetFriendlyUrlSegments().FirstOrDefault();
@@ -40,8 +46,8 @@ namespace ListenedList
 
                 if ( user == null ) return;
 
-                var profileService = new ProfileService( user.UserName );
-                var userProfile = profileService.GetUserProfile();
+                var otherUserProfileService = new ProfileService( user.UserName );
+                var userProfile = otherUserProfileService.GetUserProfile();
 
                 if ( !userProfile.Public.HasValue || ( userProfile.Public.HasValue && userProfile.Public.Value == false ) ) {
                     phPrivate.Visible = true;
@@ -51,6 +57,11 @@ namespace ListenedList
                 userId = new Guid( user.ProviderUserKey.ToString() );
 
             }
+
+            var profileService = new ProfileService( User.Identity.Name );
+            var profile = profileService.GetUserProfile();
+            ButtonSize = profile.ButtonSize.HasValue ? profile.ButtonSize.Value : DefaultButtonSize;
+            FontSize = profile.FontSize.HasValue ? profile.FontSize.Value : DefaultFontSize;
 
             var listenedShowService = Ioc.GetInstance<IListenedShowService>();
             var listenedShows = listenedShowService.GetByUser( userId );
@@ -67,9 +78,6 @@ namespace ListenedList
             yearBox10.Shows = shows;
             yearBox11.Shows = shows;
             yearBox12.Shows = shows;
-            //yearBox84.Shows = shows;
-            //yearBox85.Shows = shows;
-            //yearBox86.Shows = shows;
             yearBox87.Shows = shows;
             yearBox88.Shows = shows;
             yearBox89.Shows = shows;

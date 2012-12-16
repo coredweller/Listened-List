@@ -16,6 +16,8 @@ namespace ListenedList
     {
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "Phisherman's Guide";
+        protected readonly float DefaultButtonSize = 70;
+        protected readonly float DefaultFontSize = 11;
 
         protected IRoleProvider _RoleProvider = Ioc.GetInstance<IRoleProvider>();
         protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();

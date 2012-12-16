@@ -212,6 +212,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\ButtonSizeHandler.ashx.cs">
+      <DependentUpon>ButtonSizeHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\ShowHandler.ashx.cs">
       <DependentUpon>ShowHandler.ashx</DependentUpon>
     </Compile>
@@ -326,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masters\Genius.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\ButtonSizeHandler.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

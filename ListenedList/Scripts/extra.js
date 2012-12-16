@@ -77,7 +77,7 @@ function SaveStatus(status, showDate, userId, button) {
 
     //If the user clicks EditNotes then go to a page to edit the notes
     if (status == ListenedStatus.EditNotes) { window.location.href = notesUrl + showDate; }
-    
+
     //Send show date, user id, and status to the handler to process the update
     $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
 
@@ -115,12 +115,17 @@ function SaveStatus(status, showDate, userId, button) {
     });
 }
 
-    var timer;
-    function Blink(elm) {
-        timer = setInterval(blinking, 10);
-        function blinking() {
-            elm.fadeOut(400, function () {
-                elm.fadeIn(400);
-            });
-        }
+var timer;
+function Blink(elm) {
+    timer = setInterval(blinking, 10);
+    function blinking() {
+        elm.fadeOut(400, function () {
+            elm.fadeIn(400);
+        });
     }
+}
+
+function SetButtonProperties(width, fontSize) {
+    $(":input[id$=btnYearBox]").css("width", width + "px");
+    $(":input[id$=btnYearBox]").css("font-size", fontSize + "px");
+}

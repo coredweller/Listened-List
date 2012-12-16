@@ -21,8 +21,11 @@
                 return;
             }
 
-            var lastWidth = 100;
-            var lastFontSize = 14;
+            var lastWidth = '<%= ButtonSize %>';
+            var lastFontSize = '<%= FontSize %>';
+            var userName = '<%= UserName %>';
+
+            SetButtonProperties(lastWidth, lastFontSize);
 
             //If any button on the page is clicked    
             var input = $(":input").click(function (event) {
@@ -44,8 +47,15 @@
                     lastWidth = newWidth;
                     lastFontSize = newFontSize;
 
-                    $(":input[id$=btnYearBox]").css("width", newWidth + "px");
-                    $(":input[id$=btnYearBox]").css("font-size", newFontSize + "px");
+                    //LEFT OFF HERE
+                    $.ajax({
+                      type: "GET",
+                      url: "Handlers/ButtonSizeHandler.ashx",
+                      data: { width: lastWidth, fontSize: lastFontSize, uName: userName },
+                      success: function(msg) {
+                        SetButtonProperties(lastWidth, lastFontSize);
+                      }
+                    });
 
                     return;
                 }
@@ -196,8 +206,8 @@
     <br />
     <br />
     <div style="font-size: 3em; font-weight: 700; padding-bottom: 20px;">
-        Phish&nbsp;<span style="font-size: small; font-weight: 200;">Need Help? Tutorial
-            <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
+        Phish&nbsp;<span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a
+            href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
     </div>
     <br />
     <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
@@ -223,45 +233,25 @@
     <uc:Legend ID="legend" runat="server" />
     <br />
     <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
-    <br />
     <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
-    <br />
     <uc:YearBox ID="yearBox10" runat="server" Year="2010" />
-    <br />
     <uc:YearBox ID="yearBox09" runat="server" Year="2009" />
-    <br />
     <uc:YearBox ID="yearBox04" runat="server" Year="2004" />
-    <br />
     <uc:YearBox ID="yearBox03" runat="server" Year="2003" />
-    <br />
     <uc:YearBox ID="yearBox00" runat="server" Year="2000" />
-    <br />
     <uc:YearBox ID="yearBox99" runat="server" Year="1999" />
-    <br />
     <uc:YearBox ID="yearBox98" runat="server" Year="1998" />
-    <br />
     <uc:YearBox ID="yearBox97" runat="server" Year="1997" />
-    <br />
     <uc:YearBox ID="yearBox96" runat="server" Year="1996" />
-    <br />
     <uc:YearBox ID="yearBox95" runat="server" Year="1995" />
-    <br />
     <uc:YearBox ID="yearBox94" runat="server" Year="1994" />
-    <br />
     <uc:YearBox ID="yearBox93" runat="server" Year="1993" />
-    <br />
     <uc:YearBox ID="yearBox92" runat="server" Year="1992" />
-    <br />
     <uc:YearBox ID="yearBox91" runat="server" Year="1991" />
-    <br />
     <uc:YearBox ID="yearBox90" runat="server" Year="1990" />
-    <br />
     <uc:YearBox ID="yearBox89" runat="server" Year="1989" />
-    <br />
     <uc:YearBox ID="yearBox88" runat="server" Year="1988" />
-    <br />
     <uc:YearBox ID="yearBox87" runat="server" Year="1987" />
-    <br />
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     <div id="dialog-confirm" title="Choose Listening Status" style="display: none;">
         <p>

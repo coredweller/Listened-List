@@ -37,7 +37,11 @@ namespace ListenedList
                 _RoleProvider.AddUsersToRoles( new string[1] { cont.UserName }, new string[1] { Core.Membership.Roles.REGISTERED } );
 
                 var profileService = new ProfileService( cont.UserName );
-                profileService.SavePublic( false );
+                var profile = profileService.GetUserProfile();
+                profile.Public = false;
+                profile.ButtonSize = DefaultButtonSize;
+                profile.FontSize = DefaultFontSize;
+                profile.Save();
 
                 success = true;
             }
