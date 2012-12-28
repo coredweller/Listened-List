@@ -285,7 +285,11 @@ namespace ListenedList
                 success = false;
             }
 
-            ValidateSuccess( success, "You have saved your notes for this show.", "There was an error saving your notes for this show." );
+            var div = "divFail";
+            if ( success )
+                div = "divSuccess";
+
+            Page.RegisterStartupScript( "SuccessScript", "<script type=\"text/javascript\"> $('#" + div + "').fadeIn().delay(5000).fadeOut(); </script>" );
 
             if ( success && newDate != DateTime.MinValue ) {
                 var localDate = _LocalZone.ToLocalTime(newDate);

@@ -19,7 +19,8 @@
         <br />
         <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
             <asp:Label ID="lblSetlist" runat="server"></asp:Label>
-            Courtesy of The Mockingbird Foundation.
+            <p>
+                Courtesy of The Mockingbird Foundation.</p>
             <br />
             <br />
             <br />
@@ -42,8 +43,19 @@
             <br />
             Notes:
             <br />
-            <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
-                Width="425px" />
+            <span id="divSuccess" style="color: Green; font-size: larger; margin-left: 50px; display:none;
+                width: auto;line-height:200px;">
+                NOTES SAVED!
+            </span>
+            <span id="divFail" style="color: Red; font-size: larger; margin-left: 50px; display:none;
+                width: auto;line-height:200px;">
+                NOTES NOT SAVED! Please try again later.
+            </span>
+            <span style="float:left;">
+                <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
+                    Width="425px" />
+            </span>
+            <br />
             <br />
             <p style="font-size: .8em; font-weight: 400; width: 425px;">
                 <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" CssClass="normalButton"
@@ -60,8 +72,7 @@
                     Tags:
                 </p>
                 <p>
-                    Create New Tag (<%= DEFAULT_MAX_TAG_NAME %>
-                    letters max):
+                    Create New Tag (<%= DEFAULT_MAX_TAG_NAME %>letters max):
                     <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
                     <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
                         OnClick="btnCreateTag_Click" />

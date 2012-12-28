@@ -48,6 +48,8 @@ namespace ListenedList
 
             var listenedShows = listenedShowService.GetBothShowsByYear( year, GetUserId() );
 
+            phNoSaveMessage.Visible = true;
+
             rptAdder.DataSource = listenedShows;
             rptAdder.DataBind();
         }
