@@ -687,6 +687,17 @@ hr.horizontalRule1
     padding-top: 10px;
 }
 
+.sharpTextBox {
+	width: 217px;
+	background: transparent url('../images/textBoxClearImage.jpg') no-repeat;
+	/*  color : #747862;   */
+    color : black;
+	height:20px;
+	border:0;
+	padding:4px 8px;
+	margin-bottom:0px;
+}
+
 
 /*-------------impromptu---------- */
 .jqifade

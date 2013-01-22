@@ -117,10 +117,12 @@
                 }
 
                 if (needToPrompt) {
+                    var modifiedShowName = button.attr("title").replace("-", "<br />").replace("-", "<br />");
+                    $("#dialogText").html(modifiedShowName);
 
                     $("#dialog-confirm").dialog({
                         resizable: true,
-                        height: 250,
+                        height: 285,
                         width: 400,
                         modal: true,
                         buttons: {
@@ -267,9 +269,9 @@
         <br />
     </div>
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
-    <div id="dialog-confirm" title="Choose Listening Status" style="display: none;">
-        <p>
+    <div id="dialog-confirm" title="Choose Listening Status for" style="display: none;">
+        <p id="dialogText" >
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
-            What is the listening status for this show?</p>
+            <%--What is the listening status for this show?--%></p>
     </div>
 </asp:Content>
