@@ -11,29 +11,13 @@ namespace ListenedList
     public class Base
     {
         protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
-        private string _USER_CACHE_KEY = "userId";
 
         public Guid GetUserId( string userName ) {
-            var userObject = HttpRuntime.Cache.Get( _USER_CACHE_KEY );
+            var user = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
 
-            if ( userObject != null ) {
-                Guid userId;
-                if ( Guid.TryParse( userObject.ToString(), out userId ) ) return userId;
-            }
+            if ( user == null ) return Guid.Empty;
 
-            return CacheUserId( userName );
-        }
-
-        public void ClearCachedUserId() {
-            HttpRuntime.Cache.Remove( _USER_CACHE_KEY );
-        }
-
-        private Guid CacheUserId( string userName ) {
-            var userId = _MembershipProvider.GetUser( userName ).ProviderUserKey.ToString();
-            if ( string.IsNullOrEmpty( userId ) ) return Guid.Empty;
-
-            HttpRuntime.Cache.Insert( _USER_CACHE_KEY, userId, null, DateTime.Now.AddMinutes( 60 ), System.Web.Caching.Cache.NoSlidingExpiration );
-            return new Guid( userId );
+            return new Guid( user );
         }
 
         public string ValidateSuccess( bool success, string successMessage, string error ) {

@@ -15,9 +15,6 @@ namespace ListenedList.Masters
         }
 
         public void HeadLoginStatus_LoggingOut( object sender, LoginCancelEventArgs e ) {
-            var _base = new Base();
-            _base.ClearCachedUserId();
-
             System.Web.Security.FormsAuthentication.SignOut();
             Response.Redirect( FriendlyUrl.Href( "~/Login" ) );
         }
