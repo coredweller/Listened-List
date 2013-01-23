@@ -1,6 +1,6 @@
 ﻿using Core.DomainObjects;
 using System.Text;
-using Core;
+using Core.Extensions;
 
 namespace Data.DomainObjects
 {

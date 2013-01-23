@@ -73,6 +73,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Controls\Legend.ascx" />
     <Content Include="Controls\Login.ascx" />
+    <Content Include="Controls\MonthBoxes.ascx" />
     <Content Include="Controls\TagControl.ascx" />
     <Content Include="Controls\Templates\ForgotEmail.ascx" />
     <Content Include="Controls\Templates\WelcomeEmail.ascx" />
@@ -157,6 +158,13 @@
     </Compile>
     <Compile Include="Controls\Login.ascx.designer.cs">
       <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonthBoxes.ascx.cs">
+      <DependentUpon>MonthBoxes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MonthBoxes.ascx.designer.cs">
+      <DependentUpon>MonthBoxes.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ShowTextBox.cs" />
     <Compile Include="Controls\TagControl.ascx.cs">

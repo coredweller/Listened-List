@@ -41,7 +41,7 @@ namespace ListenedList
 
             var segment = Request.GetFriendlyUrlSegments().FirstOrDefault();
 
-            if ( segment != null ) {
+            if ( segment != null && segment != "Year" ) {
                 var user = _MembershipProvider.GetUser( segment );
 
                 if ( user == null ) return;
@@ -56,6 +56,83 @@ namespace ListenedList
 
                 userId = new Guid( user.ProviderUserKey.ToString() );
 
+            }
+            else if ( segment != null && segment == "Year" ) {
+                int year = 0;
+
+                if ( !int.TryParse( Request.GetFriendlyUrlSegments()[1], out year ) ) return;
+
+                switch ( year ) {
+                    //case 2014:
+                    //    yearbox14.MonthMode = true;
+                    //    break;
+                    //case 2015:
+                    //    yearbox15.MonthMode = true;
+                    //    break;
+                    //case 2013:
+                    //    yearbox13.MonthMode = true;
+                    //    break;
+                    case 2012:
+                        yearBox12.MonthMode = true;
+                        break;
+                    case 2011:
+                        yearBox11.MonthMode = true;
+                        break;
+                    case 2010:
+                        yearBox10.MonthMode = true;
+                        break;
+                    case 2009:
+                        yearBox09.MonthMode = true;
+                        break;
+                    case 2004:
+                        yearBox04.MonthMode = true;
+                        break;
+                    case 2003:
+                        yearBox03.MonthMode = true;
+                        break;
+                    case 2000:
+                        yearBox00.MonthMode = true;
+                        break;
+                    case 1999:
+                        yearBox99.MonthMode = true;
+                        break;
+                    case 1998:
+                        yearBox98.MonthMode = true;
+                        break;
+                    case 1997:
+                        yearBox97.MonthMode = true;
+                        break;
+                    case 1996:
+                        yearBox96.MonthMode = true;
+                        break;
+                    case 1995:
+                        yearBox95.MonthMode = true;
+                        break;
+                    case 1994:
+                        yearBox94.MonthMode = true;
+                        break;
+                    case 1993:
+                        yearBox93.MonthMode = true;
+                        break;
+                    case 1992:
+                        yearBox92.MonthMode = true;
+                        break;
+                    case 1991:
+                        yearBox91.MonthMode = true;
+                        break;
+                    case 1990:
+                        yearBox90.MonthMode = true;
+                        break;
+                    case 1989:
+                        yearBox89.MonthMode = true;
+                        break;
+                    case 1988:
+                        yearBox88.MonthMode = true;
+                        break;
+                    case 1987:
+                        yearBox87.MonthMode = true;
+                        break;
+                }
             }
 
             var profileService = new ProfileService( User.Identity.Name );

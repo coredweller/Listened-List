@@ -233,28 +233,28 @@
         </div>
         <br />
         <br />
-        <uc:legend id="legend" runat="server" />
+        <uc:Legend ID="legend" runat="server" />
         <br />
-        <uc:yearbox id="yearBox12" runat="server" year="2012" />
-        <uc:yearbox id="yearBox11" runat="server" year="2011" />
-        <uc:yearbox id="yearBox10" runat="server" year="2010" />
-        <uc:yearbox id="yearBox09" runat="server" year="2009" />
-        <uc:yearbox id="yearBox04" runat="server" year="2004" />
-        <uc:yearbox id="yearBox03" runat="server" year="2003" />
-        <uc:yearbox id="yearBox00" runat="server" year="2000" />
-        <uc:yearbox id="yearBox99" runat="server" year="1999" />
-        <uc:yearbox id="yearBox98" runat="server" year="1998" />
-        <uc:yearbox id="yearBox97" runat="server" year="1997" />
-        <uc:yearbox id="yearBox96" runat="server" year="1996" />
-        <uc:yearbox id="yearBox95" runat="server" year="1995" />
-        <uc:yearbox id="yearBox94" runat="server" year="1994" />
-        <uc:yearbox id="yearBox93" runat="server" year="1993" />
-        <uc:yearbox id="yearBox92" runat="server" year="1992" />
-        <uc:yearbox id="yearBox91" runat="server" year="1991" />
-        <uc:yearbox id="yearBox90" runat="server" year="1990" />
-        <uc:yearbox id="yearBox89" runat="server" year="1989" />
-        <uc:yearbox id="yearBox88" runat="server" year="1988" />
-        <uc:yearbox id="yearBox87" runat="server" year="1987" />
+        <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
+        <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
+        <uc:YearBox ID="yearBox10" runat="server" Year="2010" />
+        <uc:YearBox ID="yearBox09" runat="server" Year="2009" />
+        <uc:YearBox ID="yearBox04" runat="server" Year="2004" />
+        <uc:YearBox ID="yearBox03" runat="server" Year="2003" />
+        <uc:YearBox ID="yearBox00" runat="server" Year="2000" />
+        <uc:YearBox ID="yearBox99" runat="server" Year="1999" />
+        <uc:YearBox ID="yearBox98" runat="server" Year="1998" />
+        <uc:YearBox ID="yearBox97" runat="server" Year="1997" />
+        <uc:YearBox ID="yearBox96" runat="server" Year="1996" />
+        <uc:YearBox ID="yearBox95" runat="server" Year="1995" />
+        <uc:YearBox ID="yearBox94" runat="server" Year="1994" />
+        <uc:YearBox ID="yearBox93" runat="server" Year="1993" />
+        <uc:YearBox ID="yearBox92" runat="server" Year="1992" />
+        <uc:YearBox ID="yearBox91" runat="server" Year="1991" />
+        <uc:YearBox ID="yearBox90" runat="server" Year="1990" />
+        <uc:YearBox ID="yearBox89" runat="server" Year="1989" />
+        <uc:YearBox ID="yearBox88" runat="server" Year="1988" />
+        <uc:YearBox ID="yearBox87" runat="server" Year="1987" />
         <br />
         <br />
         <hr />
@@ -270,7 +270,7 @@
     </div>
     <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     <div id="dialog-confirm" title="Choose Listening Status for" style="display: none;">
-        <p id="dialogText" >
+        <p id="dialogText">
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
             <%--What is the listening status for this show?--%></p>
     </div>

@@ -5,16 +5,24 @@ using Core.Infrastructure;
 using Core.Repository;
 using Core.Helpers;
 using System.Drawing;
-using Core.Helpers;
 using Core.Services.Interfaces;
+using System.Linq;
+using Core.Extensions;
 
 namespace ListenedList.Controls
 {
     public partial class YearBoxes : System.Web.UI.UserControl
     {
+        //The year that the control will display
         public int Year { get; set; }
+
+        //puts the control into Tutorial mode. It limits the amount of shows to ShowsToDisplay.
         public bool Tutorial { get; set; }
         public int ShowsToDisplay { get; set; }
+
+        //puts the control into Month mode. Shows the shows vertical by month.
+        public bool MonthMode { get; set; }
+
         public List<ShowStatus> Shows { get; set; }
 
         private const int _DEFAULT_SHOWS_TO_DISPLAY = 5;
@@ -22,6 +30,15 @@ namespace ListenedList.Controls
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
                 Bind();
+            }
+
+            if ( MonthMode ) {
+                phMonthMode.Visible = true;
+                phYearMode.Visible = false;
+            }
+            else {
+                phYearMode.Visible = true;
+                phMonthMode.Visible = false;
             }
         }
 
@@ -32,21 +49,21 @@ namespace ListenedList.Controls
 
         private void Bind() {
             var showService = Ioc.GetInstance<IShowService>();
-            var shows = showService.GetShowStatusByYear( Year );
+            List<ShowStatus> shows = showService.GetShowStatusByYear( Year );
 
             //Shows is populated in Main.aspx with all the ShowStatus's for the ListenedShows
-            if ( Shows != null && Shows.Count > 0) {
-                
+            if ( Shows != null && Shows.Count > 0 ) {
+
                 foreach ( var s in Shows ) {
                     //If the user has a listened status set for this show then its a match
                     var match = shows.Find( x => x.ShowId == s.ShowId );
                     if ( match == null ) continue;
 
                     //The new ShowStatus to use for binding
-                    var copy = new ShowStatus(match.ShowId, s.Status, match.ShowDate, match.ShowName, s.Attended);
-                    
+                    var copy = new ShowStatus( match.ShowId, s.Status, match.ShowDate, match.ShowName, s.Attended );
+
                     //Put the new ShowStatus where the old one was because order is important
-                    var index = shows.IndexOf(match);
+                    var index = shows.IndexOf( match );
                     //Remove the old one
                     shows.Remove( match );
                     //Insert the new one where the old one was
@@ -54,38 +71,80 @@ namespace ListenedList.Controls
                 }
             }
 
+            if ( MonthMode && ( shows != null && shows.Count >= 0 ) ) {
+                SetupMonthMode( shows );
+            }
+
             if ( Tutorial && ( shows != null && shows.Count >= 0 ) ) {
                 var displayCount = ShowsToDisplay > 0 ? ShowsToDisplay : _DEFAULT_SHOWS_TO_DISPLAY;
-                shows = shows.GetRange( 0, displayCount);
+                shows = shows.GetRange( 0, displayCount );
             }
 
-            rptShows.DataSource = shows;
-            rptShows.DataBind();
+            //Set the one year box
+            yearBox.Shows = shows;
+            yearBox.Month = Year.ToString();
         }
 
-        public string GetCssClass( int status, bool attended ) {
-            string cssClass = string.Empty;
+        public void SetupMonthMode( IList<ShowStatus> shows ) {
+            var janShows = shows.GetShowsByMonth( Month.JANUARY );
+            phJan.Visible = ( janShows == null || janShows.Count <= 0 ) ? false : true;
+            janBox.Shows = janShows;
+            janBox.Month = Month.JANUARY.StringValue();
 
-            switch ( status ) {
-                case (int)ListenedStatus.InProgress:
-                    cssClass = "defaultButtonYellow";
-                    break;
-                case (int)ListenedStatus.Finished:
-                    cssClass = "defaultButtonOrange";
-                    break;
-                case (int)ListenedStatus.NeedToListen:
-                    cssClass = "defaultButtonGreen";
-                    break;
-                default:
-                    cssClass = "defaultButtonWhite";
-                        break;
-            }
+            var febShows = shows.GetShowsByMonth( Month.FEBRUARY );
+            phFeb.Visible = ( febShows == null || febShows.Count <= 0 ) ? false : true;
+            febBox.Shows = febShows;
+            febBox.Month = Month.FEBRUARY.StringValue();
 
-            if ( attended ) {
-                cssClass += " attendedButton";
-            }
+            var marchShows = shows.GetShowsByMonth( Month.MARCH );
+            phMarch.Visible = ( marchShows == null || marchShows.Count <= 0 ) ? false : true;
+            marchBox.Shows = marchShows;
+            marchBox.Month = Month.MARCH.StringValue();
 
-            return cssClass;
+            var aprilShows = shows.GetShowsByMonth( Month.APRIL );
+            phApril.Visible = ( aprilShows == null || aprilShows.Count <= 0 ) ? false : true;
+            aprilBox.Shows = aprilShows;
+            aprilBox.Month = Month.APRIL.StringValue();
+
+            var mayShows = shows.GetShowsByMonth( Month.MAY );
+            phMay.Visible = ( mayShows == null || mayShows.Count <= 0 ) ? false : true;
+            mayBox.Shows = mayShows;
+            mayBox.Month = Month.MAY.StringValue();
+
+            var juneShows = shows.GetShowsByMonth( Month.JUNE );
+            phJune.Visible = ( juneShows == null || juneShows.Count <= 0 ) ? false : true;
+            juneBox.Shows = juneShows;
+            juneBox.Month = Month.JUNE.StringValue();
+
+            var julyShows = shows.GetShowsByMonth( Month.JULY );
+            phJuly.Visible = ( julyShows == null || julyShows.Count <= 0 ) ? false : true;
+            julyBox.Shows = julyShows;
+            julyBox.Month = Month.JULY.StringValue();
+
+            var augustShows = shows.GetShowsByMonth( Month.AUGUST );
+            phAug.Visible = ( augustShows == null || augustShows.Count <= 0 ) ? false : true;
+            augBox.Shows = augustShows;
+            augBox.Month = Month.AUGUST.StringValue();
+
+            var septShows = shows.GetShowsByMonth( Month.SEPTEMBER );
+            phSept.Visible = ( septShows == null || septShows.Count <= 0 ) ? false : true;
+            septBox.Shows = septShows;
+            septBox.Month = Month.SEPTEMBER.StringValue();
+
+            var octShows = shows.GetShowsByMonth( Month.OCTOBER );
+            phOct.Visible = ( octShows == null || octShows.Count <= 0 ) ? false : true;
+            octBox.Shows = octShows;
+            octBox.Month = Month.OCTOBER.StringValue();
+
+            var novShows = shows.GetShowsByMonth( Month.NOVEMBER );
+            phNov.Visible = ( novShows == null || novShows.Count <= 0 ) ? false : true;
+            novBox.Shows = novShows;
+            novBox.Month = Month.NOVEMBER.StringValue();
+
+            var decShows = shows.GetShowsByMonth( Month.DECEMBER );
+            phDec.Visible = ( decShows == null || decShows.Count <= 0 ) ? false : true;
+            decBox.Shows = decShows;
+            decBox.Month = Month.DECEMBER.StringValue();
         }
 
         public Color GetStatus( int status ) {

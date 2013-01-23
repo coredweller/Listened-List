@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Core.Helpers;
 
-namespace Core
+namespace Core.Extensions
 {
 
     public static class StringExtension

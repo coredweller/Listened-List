@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Helpers
 {
@@ -43,6 +45,13 @@ namespace Core.Helpers
             ShowDate = showDate;
             ShowName = showName;
             Attended = attended;
+        }
+    }
+
+    public static class ShowStatusExtension
+    {
+        public static IList<ShowStatus> GetShowsByMonth( this IEnumerable<ShowStatus> shows, Month month ) {
+            return shows.Where( x => x.ShowDate.Month == (int)month ).ToList();
         }
     }
 }

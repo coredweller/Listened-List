@@ -5,6 +5,7 @@
     using System.Collections.Specialized;
     using System.Configuration;
     using Core.Helpers;
+    using Core.Extensions;
 
     public class AppConfigManager : IAppConfigManager
     {

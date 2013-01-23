@@ -70,8 +70,12 @@
     <Compile Include="Exceptions\ObjectCreationException.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Helpers\FullEnum.cs" />
     <Compile Include="Helpers\LatestProfile.cs" />
+    <Compile Include="Helpers\Months.cs" />
+    <Compile Include="Helpers\StringValueAttribute.cs" />
     <Compile Include="Helpers\TagColor.cs" />
     <Compile Include="Helpers\JSON\BasicJSONifier.cs" />
     <Compile Include="Helpers\Checks.cs" />
@@ -82,7 +86,6 @@
     <Compile Include="Helpers\JSON\ImageJSONifier.cs" />
     <Compile Include="Helpers\JSON\JSON.cs" />
     <Compile Include="Helpers\JSON\JSONParser.cs" />
-    <Compile Include="Helpers\LinkBuilder.cs" />
     <Compile Include="Helpers\Script\IScriptHelper.cs" />
     <Compile Include="Helpers\Script\JAlertHelper.cs" />
     <Compile Include="Helpers\Script\PromptHelper.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Web.Security;
+using Core.Extensions;
 
 namespace Core.Membership
 {
