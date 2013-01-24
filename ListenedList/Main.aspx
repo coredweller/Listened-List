@@ -113,7 +113,7 @@
                 //If the button's current color is orange meaning the show is already finished
                 if ($(button).hasClass("defaultButtonOrange")) {
                     //Then go to the notes page
-                    window.location.href = notesUrl + showDate;
+                    window.location.href = "/" + notesUrl + showDate;
                     //Dont prompt the user anymore since we are going to the Notes page anyway
                     needToPrompt = false;
                 }
@@ -236,6 +236,9 @@
         <br />
         <br />
         <uc:Legend ID="legend" runat="server" />
+        <br />
+
+
         <br />
         <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
         <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
