@@ -23,6 +23,9 @@ namespace ListenedList.Controls
         //puts the control into Month mode. Shows the shows vertical by month.
         public bool MonthMode { get; set; }
 
+        //Can turn it off
+        public bool Off { get; set; }
+
         public List<ShowStatus> Shows { get; set; }
 
         private const int _DEFAULT_SHOWS_TO_DISPLAY = 5;
@@ -48,6 +51,8 @@ namespace ListenedList.Controls
         }
 
         private void Bind() {
+            if ( Off ) return;
+
             var showService = Ioc.GetInstance<IShowService>();
             List<ShowStatus> shows = showService.GetShowStatusByYear( Year );
 

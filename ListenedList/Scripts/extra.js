@@ -45,6 +45,7 @@ function GetCssClass(status, attended, hasAttended) {
     return cssClass;
 }
 
+//This is just Tutorial hard coded data. Move along, nothing to see here
 function GetPart2ShowText(showDate) {
     var showInfo = {};
 
@@ -76,10 +77,10 @@ function SaveStatus(status, showDate, userId, button) {
     if (status == ListenedStatus.Cancel) { return; }
 
     //If the user clicks EditNotes then go to a page to edit the notes
-    if (status == ListenedStatus.EditNotes) { window.location.href = notesUrl + showDate; }
+    if (status == ListenedStatus.EditNotes) { window.location.href = "/" + notesUrl + showDate; }
 
     //Send show date, user id, and status to the handler to process the update
-    $.getJSON("Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
+    $.getJSON("/Handlers/ShowHandler.ashx", { s: showDate, u: userId, st: status }, function (data) {
 
         //If nothing is returned from the Handler then get out of here
         if (data == null) return;

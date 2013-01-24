@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs"
+﻿<%@ Page Title="Home Page" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" MaintainScrollPositionOnPostback="true"
     Inherits="ListenedList.Main" MasterPageFile="~/Masters/Genius.Master" %>
 
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
@@ -16,9 +16,12 @@
             var userName = pathname[pathname.length - 1];
 
             //If a userName is in the URL then disable the buttons
-            if (userName.toLowerCase() != "main".toLowerCase()) {
-                $(":input").attr('disabled', true);
-                return;
+            if (userName.toLowerCase() != "main") {
+                var year = pathname[pathname.length - 2];
+                if(year.toLowerCase() != "year") { 
+                    $(":input").attr('disabled', true);
+                    return;
+                }
             }
 
             var lastWidth = '<%= ButtonSize %>';
@@ -47,7 +50,6 @@
                     lastWidth = newWidth;
                     lastFontSize = newFontSize;
 
-                    //LEFT OFF HERE
                     $.ajax({
                       type: "GET",
                       url: "Handlers/ButtonSizeHandler.ashx",

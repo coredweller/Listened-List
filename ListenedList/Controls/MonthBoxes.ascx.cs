@@ -43,5 +43,13 @@ namespace ListenedList.Controls
 
             return cssClass;
         }
+
+        public string GetStyle() {
+            int month = 0;
+
+            if (!int.TryParse( Month, out month ) ) return "display : none;";
+
+            return string.Empty;
+        }
     }
 }

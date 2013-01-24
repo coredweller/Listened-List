@@ -72,7 +72,7 @@
                     Tags:
                 </p>
                 <p>
-                    Create New Tag (<%= DEFAULT_MAX_TAG_NAME %>letters max):
+                    Create New Tag (<%= DEFAULT_MAX_TAG_NAME %>&nbsp;letters max):
                     <asp:TextBox ID="txtTagName" runat="server" Width="150px"></asp:TextBox>
                     <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
                         OnClick="btnCreateTag_Click" />
