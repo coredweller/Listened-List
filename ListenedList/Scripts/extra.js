@@ -130,3 +130,18 @@ function SetButtonProperties(width, fontSize) {
     $(":input[id$=btnYearBox]").css("width", width + "px");
     $(":input[id$=btnYearBox]").css("font-size", fontSize + "px");
 }
+
+function SecurityCheck(pathname) {
+    if (pathname.length > 2) {
+        var user = pathname[2].toLowerCase();
+        if (pathname[2].toLowerCase() != "year") {
+            $(":input").attr('disabled', true);
+        }
+    }
+
+    if (pathname.length > 3) {
+        if (pathname[4] == "only") {
+            $('#chkAllYears').attr('checked', false);
+        }
+    }
+}

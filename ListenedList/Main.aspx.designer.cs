@@ -31,6 +31,15 @@ namespace ListenedList {
         protected global::ListenedList.Controls.Legend legend;
         
         /// <summary>
+        /// phYears control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phYears;
+        
+        /// <summary>
         /// yearBox12 control.
         /// </summary>
         /// <remarks>

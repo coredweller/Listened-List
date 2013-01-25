@@ -38,8 +38,9 @@ namespace ListenedList
 
             UserName = User.Identity.Name;
             userId = GetUserId();
+            var urlSegments = Request.GetFriendlyUrlSegments();
 
-            var segment = Request.GetFriendlyUrlSegments().FirstOrDefault();
+            var segment = urlSegments.FirstOrDefault();
 
             if ( segment != null && segment != "Year" ) {
                 var user = _MembershipProvider.GetUser( segment );
@@ -55,12 +56,38 @@ namespace ListenedList
                 }
 
                 userId = new Guid( user.ProviderUserKey.ToString() );
-
             }
             else if ( segment != null && segment == "Year" ) {
                 int year = 0;
+                var segmentCount = urlSegments.Count();
 
-                if ( !int.TryParse( Request.GetFriendlyUrlSegments()[1], out year ) ) return;
+                if ( segmentCount > 1 && int.TryParse( urlSegments[1], out year ) ) {
+
+                    if ( segmentCount > 2 ) {
+                        //turn off all
+                        yearBox12.Off = true;
+                        yearBox11.Off = true;
+                        yearBox10.Off = true;
+                        yearBox09.Off = true;
+                        yearBox04.Off = true;
+                        yearBox03.Off = true;
+                        yearBox00.Off = true;
+                        yearBox99.Off = true;
+                        yearBox98.Off = true;
+                        yearBox97.Off = true;
+                        yearBox96.Off = true;
+                        yearBox95.Off = true;
+                        yearBox94.Off = true;
+                        yearBox93.Off = true;
+                        yearBox92.Off = true;
+                        yearBox91.Off = true;
+                        yearBox90.Off = true;
+                        yearBox89.Off = true;
+                        yearBox88.Off = true;
+                        yearBox87.Off = true;
+                        phYears.Visible = true;
+                    }
+                }
 
                 switch ( year ) {
                     //case 2014:
@@ -73,63 +100,83 @@ namespace ListenedList
                     //    yearbox13.MonthMode = true;
                     //    break;
                     case 2012:
+                        yearBox12.Off = false;
                         yearBox12.MonthMode = true;
                         break;
                     case 2011:
+                        yearBox11.Off = false;
                         yearBox11.MonthMode = true;
                         break;
                     case 2010:
+                        yearBox10.Off = false;
                         yearBox10.MonthMode = true;
                         break;
                     case 2009:
+                        yearBox09.Off = false;
                         yearBox09.MonthMode = true;
                         break;
                     case 2004:
+                        yearBox04.Off = false;
                         yearBox04.MonthMode = true;
                         break;
                     case 2003:
+                        yearBox03.Off = false;
                         yearBox03.MonthMode = true;
                         break;
                     case 2000:
+                        yearBox00.Off = false;
                         yearBox00.MonthMode = true;
                         break;
                     case 1999:
+                        yearBox99.Off = false;
                         yearBox99.MonthMode = true;
                         break;
                     case 1998:
+                        yearBox98.Off = false;
                         yearBox98.MonthMode = true;
                         break;
                     case 1997:
+                        yearBox97.Off = false;
                         yearBox97.MonthMode = true;
                         break;
                     case 1996:
+                        yearBox96.Off = false;
                         yearBox96.MonthMode = true;
                         break;
                     case 1995:
+                        yearBox95.Off = false;
                         yearBox95.MonthMode = true;
                         break;
                     case 1994:
+                        yearBox94.Off = false;
                         yearBox94.MonthMode = true;
                         break;
                     case 1993:
+                        yearBox93.Off = false;
                         yearBox93.MonthMode = true;
                         break;
                     case 1992:
+                        yearBox92.Off = false;
                         yearBox92.MonthMode = true;
                         break;
                     case 1991:
+                        yearBox91.Off = false;
                         yearBox91.MonthMode = true;
                         break;
                     case 1990:
+                        yearBox90.Off = false;
                         yearBox90.MonthMode = true;
                         break;
                     case 1989:
+                        yearBox89.Off = false;
                         yearBox89.MonthMode = true;
                         break;
                     case 1988:
+                        yearBox88.Off = false;
                         yearBox88.MonthMode = true;
                         break;
                     case 1987:
+                        yearBox87.Off = false;
                         yearBox87.MonthMode = true;
                         break;
                 }
