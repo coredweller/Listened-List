@@ -40,8 +40,6 @@ namespace Data.Repository
         {
             Checks.Argument.IsNotNull(entity, "entity");
 
-            entity.CreatedDate = DateTime.Now;
-
             if (GetAll().Any(show => show.Id == entity.Id))
             {
                 writer.WriteLine("A Show with an id={0}".FormatWith(entity.Id));

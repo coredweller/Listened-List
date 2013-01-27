@@ -54,7 +54,7 @@
 
                     $.ajax({
                       type: "GET",
-                      url: "Handlers/ButtonSizeHandler.ashx",
+                      url: "/Handlers/ButtonSizeHandler.ashx",
                       data: { width: lastWidth, fontSize: lastFontSize, uName: userName },
                       success: function(msg) {
                         SetButtonProperties(lastWidth, lastFontSize);

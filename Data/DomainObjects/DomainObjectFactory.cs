@@ -18,8 +18,10 @@ namespace Data.DomainObjects
         }
 
         public IListenedShow CreateListenedShow( Guid showId, Guid userId, DateTime showDate, int status, string notes, bool attended ) {
+            var now = Constants.Now();
+
             ListenedShow show = new ListenedShow {
-                CreatedDate = Constants.Now(),
+                CreatedDate = now,
                 Id = Guid.NewGuid(),
                 Notes = notes,
                 ShowId = showId,
@@ -27,7 +29,7 @@ namespace Data.DomainObjects
                 UserId = userId,
                 ShowDate = showDate,
                 Attended = attended,
-                UpdatedDate = Constants.Now()
+                UpdatedDate = now
             };
 
             return show;

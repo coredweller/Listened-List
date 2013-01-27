@@ -37,8 +37,6 @@ namespace Data.Repository
         {
             Checks.Argument.IsNotNull(entity, "entity");
 
-            entity.CreatedDate = DateTime.Now;
-
             if (GetAll().Any(Subscription => Subscription.Id == entity.Id))
             {
                 writer.WriteLine("A Subscription with an id={0}".FormatWith(entity.Id));

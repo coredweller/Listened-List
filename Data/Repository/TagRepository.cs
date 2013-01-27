@@ -37,8 +37,6 @@ namespace Data.Repository
         {
             Checks.Argument.IsNotNull(entity, "entity");
 
-            entity.CreatedDate = DateTime.Now;
-
             if (GetAll().Any(Tag => Tag.Id == entity.Id))
             {
                 writer.WriteLine("A Tag with an id={0}".FormatWith(entity.Id));
