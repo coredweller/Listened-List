@@ -46,7 +46,7 @@
         <ul style="padding-right: 100px;">
             <%--    <li class="home">Home</li>--%>
             <li><a href="<%: FriendlyUrl.Href("/../") %>">Main</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../AddShows") %>">Multi-Adder</a></li>
+            <li><a href="<%: FriendlyUrl.Href("/../AddShows") %>">Edit Shows</a></li>
             <li><a href="<%: FriendlyUrl.Href("/../Tags") %>">Tags</a></li>
             <li><a href="<%: FriendlyUrl.Href("/../Search") %>">Search</a></li>
             <li><a href="<%: FriendlyUrl.Href("/../Settings") %>">Settings</a></li>
