@@ -9,11 +9,13 @@
     <link href="../Styles/geniusStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Styles/Listened.css" rel="stylesheet" type="text/css" />
     <link href="~/Styles/jquery-ui-1.9.1.css" rel="Stylesheet" type="text/css" />
+    <link href="~/Styles/rateit.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script type="text/javascript" src="/Scripts/impromptuModified.js"></script>
     <script type="text/javascript" src="/Scripts/extra.js"></script>
     <script type="text/javascript" src="/Scripts/date.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.rateit.js"></script>
     <link id="favIcon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link id="favIcon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <link id="favIcon3" runat="server" rel="icon" href="~/favicon.ico" type="image/x-icon" />

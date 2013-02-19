@@ -3,6 +3,13 @@
 
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#rateItDiv").bind('over', function (event, value) { $(this).attr('title', value); });
+        });
+    </script>
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px;">
         <a id="lnkBack" href="<%: FriendlyUrl.Href("~/Main") %>">Back to Show Page</a>
@@ -23,7 +30,6 @@
                 Courtesy of The Mockingbird Foundation.</p>
             <br />
             <br />
-            <br />
         </asp:PlaceHolder>
         <%--<div style="font-size: 1em; font-weight: 400;">
         <br /></div>--%>
@@ -40,21 +46,19 @@
                 Width="120px" OnClick="btnListenStatus_Click" />
             <br />
             <br />
+            Rating:<div class="rateit" id="rateItDiv" data-rateit-max="10">
+            </div>
+            <br />
             <br />
             Notes:
             <br />
-            <span id="divSuccess" style="color: Green; font-size: larger; margin-left: 50px; display:none;
-                width: auto;line-height:200px;">
-                NOTES SAVED!
-            </span>
-            <span id="divFail" style="color: Red; font-size: larger; margin-left: 50px; display:none;
-                width: auto;line-height:200px;">
-                NOTES NOT SAVED! Please try again later.
-            </span>
-            <span style="float:left;">
-                <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
-                    Width="425px" />
-            </span>
+            <span id="divSuccess" style="color: Green; font-size: larger; margin-left: 50px;
+                display: none; width: auto; line-height: 200px;">NOTES SAVED! </span><span id="divFail"
+                    style="color: Red; font-size: larger; margin-left: 50px; display: none; width: auto;
+                    line-height: 200px;">NOTES NOT SAVED! Please try again later. </span><span style="float: left;">
+                        <FTB:FreeTextBox ID="txtNotes" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
+                            Width="425px" />
+                    </span>
             <br />
             <br />
             <p style="font-size: .8em; font-weight: 400; width: 425px;">
