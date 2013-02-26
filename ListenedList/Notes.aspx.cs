@@ -136,6 +136,10 @@ namespace ListenedList
                 hdnAttended.Value = "true";
             }
 
+            if ( listened.Stars != null && listened.Stars.HasValue ) {
+                var script ="<script type=\"text/javascript\"> $('#rateItDiv').attr('data-rateit-value', '" + listened.Stars.Value +"'); </script>";
+                Page.RegisterStartupScript( "RatingSetupScript", script );
+            }
             
             lblCreatedDate.Text = _LocalZone.ToLocalTime( listened.CreatedDate ).ToString();
             lblUpdatedDate.Text = listened.UpdatedDate.HasValue ? _LocalZone.ToLocalTime( listened.UpdatedDate.Value ).ToString() : "";

@@ -231,6 +231,9 @@
     <Compile Include="Handlers\ButtonSizeHandler.ashx.cs">
       <DependentUpon>ButtonSizeHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\RatingHandler.ashx.cs">
+      <DependentUpon>RatingHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\ShowHandler.ashx.cs">
       <DependentUpon>ShowHandler.ashx</DependentUpon>
     </Compile>
@@ -354,6 +357,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\RatingHandler.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

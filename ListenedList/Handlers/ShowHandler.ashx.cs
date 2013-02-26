@@ -15,7 +15,8 @@ using Core.DomainObjects;
 namespace ListenedList.Handlers
 {
     /// <summary>
-    /// Summary description for ShowHandler
+    /// On the Main page when a show button is clicked.
+    ///   the new status must be recorded for that show
     /// </summary>
     public class ShowHandler : BaseHandler
     {

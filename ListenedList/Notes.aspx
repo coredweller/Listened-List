@@ -7,6 +7,27 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#rateItDiv").bind('over', function (event, value) { $(this).attr('title', value); });
+
+            $("#rateItDiv").bind('rated', function (event, value) {
+
+                var listenedId = $('#<%= hdnListenedId.ClientID %>').val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Handlers/RatingHandler.ashx",
+                    data: { l: listenedId, r: value },
+                    success: function (msg) {
+                        alert("SUCCESS");
+                    }
+                });
+
+            });
+
+            $("#rateit5").bind('reset', function () {
+
+                $('#value5').text('Rating reset');
+
+            });
         });
     </script>
 </asp:Content>
@@ -164,7 +185,7 @@
         </div>
     </div>
     <asp:HiddenField ID="hdnShowTitle" runat="server" Visible="false" />
-    <asp:HiddenField ID="hdnListenedId" runat="server" Visible="false" />
+    <asp:HiddenField ID="hdnListenedId" runat="server" Visible="true" />
     <asp:HiddenField ID="hdnShowId" runat="server" Visible="false" />
     <asp:HiddenField ID="hdnSearchTerm" runat="server" Visible="false" />
 </asp:Content>

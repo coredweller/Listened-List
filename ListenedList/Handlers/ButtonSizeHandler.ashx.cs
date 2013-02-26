@@ -9,7 +9,9 @@ using Core.Services;
 namespace ListenedList.Handlers
 {
     /// <summary>
-    /// Summary description for ButtonSizeHandler
+    /// On the Main page when the Plus or Minus button is pressed
+    ///   it alters the size of the show buttons and this handler
+    ///     saves the new button sizes.
     /// </summary>
     public class ButtonSizeHandler : BaseHandler
     {
