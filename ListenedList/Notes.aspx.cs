@@ -28,6 +28,7 @@ namespace ListenedList
         IShowTagService _ShowTagService = Ioc.GetInstance<IShowTagService>();
         protected const int DEFAULT_MAX_TAG_NAME = 30;
         private TimeZone _LocalZone = TimeZone.CurrentTimeZone;
+        public static double CurrentRating { get; set; }
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -137,10 +138,9 @@ namespace ListenedList
             }
 
             if ( listened.Stars != null && listened.Stars.HasValue ) {
-                var script ="<script type=\"text/javascript\"> $('#rateItDiv').attr('data-rateit-value', '" + listened.Stars.Value +"'); </script>";
-                Page.RegisterStartupScript( "RatingSetupScript", script );
+                CurrentRating = listened.Stars.Value;
             }
-            
+
             lblCreatedDate.Text = _LocalZone.ToLocalTime( listened.CreatedDate ).ToString();
             lblUpdatedDate.Text = listened.UpdatedDate.HasValue ? _LocalZone.ToLocalTime( listened.UpdatedDate.Value ).ToString() : "";
 
@@ -278,7 +278,8 @@ namespace ListenedList
                     listenedShow.Notes = txtNotes.Text;
 
                     newDate = DateTime.UtcNow;
-                    listenedShow.UpdatedDate = newDate; 
+                    CurrentRating = listenedShow.Stars.HasValue ? listenedShow.Stars.Value : 0;
+                    listenedShow.UpdatedDate = newDate;
 
                     uow.Commit();
                     success = true;
@@ -296,7 +297,7 @@ namespace ListenedList
             Page.RegisterStartupScript( "SuccessScript", "<script type=\"text/javascript\"> $('#" + div + "').fadeIn().delay(5000).fadeOut(); </script>" );
 
             if ( success && newDate != DateTime.MinValue ) {
-                var localDate = _LocalZone.ToLocalTime(newDate);
+                var localDate = _LocalZone.ToLocalTime( newDate );
                 lblUpdatedDate.Text = localDate.ToString();
             }
 
@@ -392,7 +393,7 @@ namespace ListenedList
 
             try {
                 var tagName = txtTagName.Text;
-                var newTag = _DomainObjectFactory.CreateTag( tagName.Length > DEFAULT_MAX_TAG_NAME ? tagName.Substring(0, DEFAULT_MAX_TAG_NAME) : tagName, userId );
+                var newTag = _DomainObjectFactory.CreateTag( tagName.Length > DEFAULT_MAX_TAG_NAME ? tagName.Substring( 0, DEFAULT_MAX_TAG_NAME ) : tagName, userId );
                 var showTag = _DomainObjectFactory.CreateShowTag( showId, newTag.Id, GetUserId() );
 
                 using ( IUnitOfWork uow = UnitOfWork.Begin() ) {
@@ -454,7 +455,7 @@ namespace ListenedList
             }
         }
 
-        private void DeleteTag( Guid tagId ) {            
+        private void DeleteTag( Guid tagId ) {
 
             var tag = _ShowTagService.GetTag( tagId );
 
@@ -489,7 +490,7 @@ namespace ListenedList
             int pageNumber = 0;
             if ( !int.TryParse( e.CommandArgument.ToString(), out pageNumber ) || string.IsNullOrEmpty( hdnSearchTerm.Value ) ) return;
 
-            var skipAmount = (pageNumber - 1) * DefaultPageSize;
+            var skipAmount = ( pageNumber - 1 ) * DefaultPageSize;
             var notes = _ListenedShowService.GetByUser( GetUserId() )
                                 .Where( x => x.Notes.ToLower().Contains( hdnSearchTerm.Value.ToLower() ) )
                                 .Skip( skipAmount )

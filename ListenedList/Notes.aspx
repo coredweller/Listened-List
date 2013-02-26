@@ -16,9 +16,6 @@
                     type: "GET",
                     url: "/Handlers/RatingHandler.ashx",
                     data: { l: listenedId, r: value },
-                    success: function (msg) {
-                        alert("SUCCESS");
-                    }
                 });
 
             });
@@ -67,7 +64,7 @@
                 Width="120px" OnClick="btnListenStatus_Click" />
             <br />
             <br />
-            Rating:<div class="rateit" id="rateItDiv" data-rateit-max="10">
+            Rating:<div class="rateit" id="rateItDiv" data-rateit-max="10" data-rateit-value='<%= CurrentRating %>'>
             </div>
             <br />
             <br />
