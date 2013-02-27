@@ -29,6 +29,7 @@ namespace ListenedList
         protected const int DEFAULT_MAX_TAG_NAME = 30;
         private TimeZone _LocalZone = TimeZone.CurrentTimeZone;
         public static double CurrentRating { get; set; }
+        protected string PhishShowsUrl = "http://www.phishows.com/mp3t/?cmd=goto&date={0}";
 
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -71,6 +72,8 @@ namespace ListenedList
             if ( show == null ) Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
 
             hdnShowId.Value = show.Id.ToString();
+
+            lnkPhishShows.NavigateUrl = string.Format(PhishShowsUrl, showDate.ToString("yyyy-MM-dd"));
 
             //Get the user Id and Bind the notes and tags
             BindNotes( show );

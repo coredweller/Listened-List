@@ -41,16 +41,19 @@
                 Text="Did Not Attend" OnClick="btnAttended_Click" ToolTip="Click this to change your attended status" />
             <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
         </p>
-        <br />
         <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
-            <asp:Label ID="lblSetlist" runat="server"></asp:Label>
-            <p>
-                Courtesy of The Mockingbird Foundation.</p>
-            <br />
-            <br />
+            <div>
+                <asp:Label ID="lblSetlist" runat="server" CssClass="labelFix"></asp:Label>
+                <span style="font-size: smaller;">
+                    Courtesy of The Mockingbird Foundation.</span>
+                <br />
+                <br />
+            </div>
         </asp:PlaceHolder>
-        <%--<div style="font-size: 1em; font-weight: 400;">
-        <br /></div>--%>
+        <br />
+        <div style="font-size: larger;">
+            <asp:HyperLink ID="lnkPhishShows" runat="server" Target="_blank" Text="Stream/Download Here!"></asp:HyperLink>
+        </div>
         <div style="font-size: 1.5em; font-weight: 600;">
             Listening Status:&nbsp;<%--<asp:DropDownList ID="ddlStatus" runat="server">
             </asp:DropDownList>--%>

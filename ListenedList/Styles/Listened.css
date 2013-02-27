@@ -698,6 +698,10 @@ hr.horizontalRule1
 	margin-bottom:0px;
 }
 
+.labelFix {
+    font-size: small;
+    padding-bottom:0px;
+}
 
 /*-------------impromptu---------- */
 .jqifade
