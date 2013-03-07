@@ -143,6 +143,9 @@ namespace ListenedList
             if ( listened.Stars != null && listened.Stars.HasValue ) {
                 CurrentRating = listened.Stars.Value;
             }
+            else {
+                CurrentRating = 0;
+            }
 
             lblCreatedDate.Text = _LocalZone.ToLocalTime( listened.CreatedDate ).ToString();
             lblUpdatedDate.Text = listened.UpdatedDate.HasValue ? _LocalZone.ToLocalTime( listened.UpdatedDate.Value ).ToString() : "";

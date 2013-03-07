@@ -44,7 +44,8 @@
         <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
             <div>
                 <asp:Label ID="lblSetlist" runat="server" CssClass="labelFix"></asp:Label>
-                <span style="font-size: smaller;">
+                
+                <span style="font-size: smaller;display:block;">
                     Courtesy of The Mockingbird Foundation.</span>
                 <br />
                 <br />
