@@ -127,7 +127,7 @@
                     $("#dialog-confirm").dialog({
                         resizable: true,
                         height: 285,
-                        width: 400,
+                        width: 490,
                         modal: true,
                         buttons: {
                             Finished: {
