@@ -703,6 +703,19 @@ hr.horizontalRule1
     padding-bottom:0px;
 }
 
+.warningMessage {
+    color: Red;
+    border-width:1px;
+    border-color:Black;
+    background-color:Gray;
+    height:40px;
+    width:485px;
+}
+
+
+
+/*  END MISC */
+
 /*-------------impromptu---------- */
 .jqifade
 {

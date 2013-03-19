@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddShows.aspx.cs" Inherits="ListenedList.AddShows"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
@@ -17,9 +17,9 @@
                 OnClick="btnSubmit_Click" />
         </div>
         <br />
-        <h3 style="color: Red;">
-            Please Note: There is no need to save. When you click the buttons its saves automatically.
-            Enjoy!</h3>
+        <h5 class="warningMessage">
+            Please Note: There is no need to save! <br />When you click the buttons its saves automatically.
+            Enjoy!</h5>
         <br />
         <br />
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
@@ -83,9 +83,9 @@
         </asp:UpdatePanel>
         <asp:PlaceHolder ID="phNoSaveMessage" runat="server" Visible="false">
             <br />
-            <h3 style="color: Red;">
+            <h5 class="warningMessage">
                 Please Note: There is no need to save. When you click the buttons its saves automatically.
-                Enjoy!</h3>
+                Enjoy!</h5>
         </asp:PlaceHolder>
     </div>
     <br />

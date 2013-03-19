@@ -40,7 +40,8 @@
         <div id="wrapper">
             <div id="header">
                 <h1>
-                    <a href="http://www.freecsstemplates.in/page/1">Wodden Wall<span>Free CSS Template</span></a></h1>
+                    <%--<a href="http://www.freecsstemplates.in/page/1">Wodden Wall<span>Free CSS Template</span></a></h1>--%>
+                    <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></h1>
             </div>
             <div id="menu">
                 <ul class="navigation">
