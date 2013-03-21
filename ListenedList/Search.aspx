@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="ListenedList.Search"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainDiv">
@@ -17,7 +17,7 @@
         <br />
         <br />
         <br />
-        <p style="font-size: 1.3em; font-weight: 500;">
+        <p style="font-size: 1.7em; font-weight: 500;">
             <asp:Label ID="lblResultsType" runat="server" Text="15 Most Recently Changed Guides"></asp:Label>
             <asp:PlaceHolder ID="phReset" runat="server" Visible="false">&nbsp;---&nbsp;<asp:LinkButton
                 ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
@@ -29,7 +29,7 @@
                 <table>
             </HeaderTemplate>
             <ItemTemplate>
-                <tr style="height: 40px">
+                <tr style="height: 40px;font-size: 1.3em;">
                     <%--<td style="float: right; vertical-align: bottom;">
                         <asp:LinkButton ID="lnkSubscribe" runat="server" CssClass='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Subscribed == true ? "subscribedButton" : "subscribeButton" %>'
                             CommandName="SUBSCRIBE" CommandArgument='<%# ((Core.Helpers.LatestProfile)Container.DataItem).Profile.UserName %>'
