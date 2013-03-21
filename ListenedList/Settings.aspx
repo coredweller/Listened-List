@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="ListenedList.Settings"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainDiv">
@@ -9,17 +9,18 @@
             Settings</p>
         <br />
         <br />
-        <p style="padding-left:2px;">
-            User Name:
-            <asp:Label ID="lblUserName" runat="server"></asp:Label>
-        </p>
-        <p style="padding-left:2px;">
-            Public:
+        <span class="searchTextLarger">
+            <p style="padding-left: 2px;">
+                User Name:
+                <asp:Label ID="lblUserName" runat="server"></asp:Label>
+            </p>
+        </span>
+        <p style="padding-left: 2px;">
+            <span class="searchTextLarger">Public: </span>
             <asp:CheckBox ID="chkPublic" runat="server" />
-            (If you check this than others can see a READONLY version of your Main view, otherwise
-            only you can see it.)
+            (If you check this than others can see a READONLY version of your Main.)
         </p>
-        <table>
+        <table class="searchTextLarger">
             <tr>
                 <td>
                     Name:
@@ -37,6 +38,7 @@
                 </td>
             </tr>
         </table>
+        </span>
         <br />
         <p>
             <asp:Button ID="btnSaveProfile" runat="server" OnClick="btnSaveProfile_Click" CssClass="normalButton"

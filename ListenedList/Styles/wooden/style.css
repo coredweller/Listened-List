@@ -3,8 +3,10 @@
 body {
 	margin: 0px;
 	padding: 0px;
-	/* color: #a29e99;  */
-	color: rgb(247, 247, 247);
+	/* color: #a29e99;          ORIGINAL
+	color: rgb(247, 247, 247);  WHITE
+	*/
+	color: rgb(228, 214, 199);
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 12px;
 	line-height: 1.5em; 
