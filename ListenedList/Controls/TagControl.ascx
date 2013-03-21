@@ -49,16 +49,17 @@
         </div>
     </asp:PlaceHolder>
     <br />
-    <asp:LinkButton ID="lnkSeeAll" runat="server" Text="See All Tags" OnClick="lnkSeeAll_Click"></asp:LinkButton>
+    <span class="tagLinks">
+        <asp:LinkButton ID="lnkSeeAll" runat="server" Text="See All Tags" OnClick="lnkSeeAll_Click"></asp:LinkButton>
+    </span>
     <br />
     <br />
     <asp:PlaceHolder ID="phPart3" runat="server" Visible="false">
         <p>
             <span class="tutorialTagHeader">Part 3: <span style="font-weight: normal;">Viewing Tagged
-                shows by clicking on a Tag. 
+                shows by clicking on a Tag.
                 <br />
-                --Click the Favorite Show Tag to see the shows Tagged
-                for this tutorial.
+                --Click the Favorite Show Tag to see the shows Tagged for this tutorial.
                 <br />
                 --Click the links to the shows to go to the desired Notes page. The tutorial is
                 over. Welcome to Phisherman's Guide!</span></span>
@@ -72,17 +73,20 @@
             <table>
                 <tr>
                     <td>
-                        <a id="HyperLink2" href='<%: FriendlyUrl.Href("/../Notes", "12-31-1995") %>'>12/31/1995 - Madison Square Garden - New York, NY</a>
+                        <a id="HyperLink2" href='<%: FriendlyUrl.Href("/../Notes", "12-31-1995") %>'>12/31/1995
+                            - Madison Square Garden - New York, NY</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a id="A1" href='<%: FriendlyUrl.Href("/../Notes", "05-07-1994") %>'>05/07/1994 - The Bomb Factory - Dallas, TX</a>
+                        <a id="A1" href='<%: FriendlyUrl.Href("/../Notes", "05-07-1994") %>'>05/07/1994 - The
+                            Bomb Factory - Dallas, TX</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a id="A2" href='<%: FriendlyUrl.Href("/../Notes", "12-30-1997") %>'>12/30/1997 - Madison Square Garden - New York, NY</a>
+                        <a id="A2" href='<%: FriendlyUrl.Href("/../Notes", "12-30-1997") %>'>12/30/1997 - Madison
+                            Square Garden - New York, NY</a>
                     </td>
                 </tr>
             </table>
@@ -93,15 +97,17 @@
         <asp:Repeater ID="rptTags" runat="server" OnItemCommand="rptTags_ItemCommand">
             <ItemTemplate>
                 <p>
-                    <asp:LinkButton CssClass='<%# ((Core.DomainObjects.ITag)Container.DataItem).Color %>'
-                        runat="server" CommandName="CLICK" CommandArgument='<%# ((Core.DomainObjects.ITag)Container.DataItem).Id %>'
-                        ID="lnkTag" Text='<%# ((Core.DomainObjects.ITag)Container.DataItem).Name %>'>
-                    </asp:LinkButton>&nbsp;&nbsp;
-                    <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
-                    </asp:LinkButton>&nbsp;&nbsp;
-                    <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
-                        CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
-                    </asp:LinkButton>
+                    <span class="tagControlButtons">
+                        <asp:LinkButton CssClass='<%# ((Core.DomainObjects.ITag)Container.DataItem).Color %>'
+                            runat="server" CommandName="CLICK" CommandArgument='<%# ((Core.DomainObjects.ITag)Container.DataItem).Id %>'
+                            ID="lnkTag" Text='<%# ((Core.DomainObjects.ITag)Container.DataItem).Name %>'>                       
+                        </asp:LinkButton>&nbsp;&nbsp; </span><span class="tagLinks">
+                            <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="EDIT" CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
+                            </asp:LinkButton>&nbsp;&nbsp;
+                            <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="DELETE"
+                                CommandArgument='<%# (((Core.DomainObjects.ITag)Container.DataItem)).Id %>'>
+                            </asp:LinkButton>
+                        </span>
                 </p>
             </ItemTemplate>
         </asp:Repeater>
@@ -115,7 +121,8 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <a id="lnkShow" href="<%# FriendlyUrl.Href("/../Notes", ((Core.DomainObjects.IShow)Container.DataItem).Id ) %>"><%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %></a>
+                            <a id="lnkShow" href="<%# FriendlyUrl.Href("/../Notes", ((Core.DomainObjects.IShow)Container.DataItem).Id ) %>">
+                                <%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %></a>
                         </td>
                     </tr>
                 </ItemTemplate>

@@ -712,7 +712,15 @@ hr.horizontalRule1
     width:485px;
 }
 
+.tagControlButtons a:link {
+    color:White;
+    text-decoration:none;
+}
 
+.tagLinks {
+    font-weight: bold;
+    font-size:20px;
+}
 
 /*  END MISC */
 
