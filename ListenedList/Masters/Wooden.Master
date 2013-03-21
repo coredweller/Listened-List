@@ -42,6 +42,22 @@
                 <h1>
                     <%--<a href="http://www.freecsstemplates.in/page/1">Wodden Wall<span>Free CSS Template</span></a></h1>--%>
                     <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></h1>
+                <div>
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <AnonymousTemplate>
+                            [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">Log In</a>
+                            ]
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            Welcome <span class="bold">
+                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                            </span>! [
+                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
+                                LogoutPageUrl="~/" OnLoggingOut="HeadLoginStatus_LoggingOut" />
+                            ]
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
             </div>
             <div id="menu">
                 <ul class="navigation">

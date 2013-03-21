@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList.Masters
 {
@@ -11,6 +12,11 @@ namespace ListenedList.Masters
     {
         protected void Page_Load( object sender, EventArgs e ) {
 
+        }
+
+        public void HeadLoginStatus_LoggingOut( object sender, LoginCancelEventArgs e ) {
+            System.Web.Security.FormsAuthentication.SignOut();
+            Response.Redirect( FriendlyUrl.Href( "~/Login" ) );
         }
     }
 }

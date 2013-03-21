@@ -1,15 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="ListenedList.Controls.Login" %>
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <br />
+<span style="font-size:1.5em;">
 <a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">New User?</a>&nbsp;&nbsp;OR&nbsp;&nbsp;<a
     href="<%: FriendlyUrl.Href("~/Forgot") %>" id="lnkForgot">Forgot Password?</a>
+    </span>
 <br />
 <br />
 <br />
 <div>
     <%--<span style="margin-left: 50px; width:auto; line-height:100px;">Welcome to Phisherman's Guide where Phish
         phans come to track what shows they have listened to. </span>--%>
-    <span style="float: left;">
+    <span style="float: left; font-size: 1.3em;">
         <asp:LoginView ID="LoginView1" runat="server">
             <AnonymousTemplate>
                 <asp:Login runat="server" ID="loginControl" OnLoggedIn="loginControl_LoggedIn" TextBoxStyle-CssClass="sharpTextBox">

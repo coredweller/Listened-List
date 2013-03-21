@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step1.aspx.cs" Inherits="ListenedList.Step1"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
@@ -61,7 +61,7 @@
 
                                 //Set show name
                                 $('#<%= lblShowName.ClientID %>').html(showInfo.showName);
-                                
+
                                 //Set show notes
                                 if (FTB_API != null) {
                                     objFTBControl = FTB_API["ctl00_MainContent_txtNotes"];
@@ -126,23 +126,27 @@
         </div>
         <h3>
             Where phans come to keep track of listening statuses for Phish shows.
-            <br />
-            <br />
-            Whether you listened to the whole show or haven't finished yet, it helps you keep
-            track with Notes, Tags, and a simple easy to use button format.
-            <br />
-            <br />
-            Step 1 shows how to work the buttons, keeping notes, and searching notes.
-            <br />
-            <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags,
-            alter tags, and how to view your tagged shows.
         </h3>
         <br />
+        <hr />
+        <br />
+        <h5>
+            <%--Whether you listened to the whole show or haven't finished yet, it helps you keep
+            track with Notes, Tags, and a simple easy to use button format.
+            <br />
+            <br />--%>
+            <span style="color: rgb(248, 229, 14);">Step 1 shows how to work the buttons, keeping
+                notes, and searching notes.
+                <br />
+                <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags,
+                alter tags, and how to view your tagged shows. </span>
+        </h5>
         <br />
         <br />
         <br />
-        <div class="tutorialInstructionHeaderTop">
-            Part 1: Button Status</div>
+        <br />
+        <h2>
+            Part 1: Button Status</h2>
         <ul class="localListItems">
             <li>Click a button and choose your listening status for the show.</li>
             <li>A show can have a listening status and be attended at the same time.</li>
@@ -155,9 +159,9 @@
         <div>
             <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" ShowsToDisplay="4" />
         </div>
-        <div class="tutorialInstructionHeader">
+        <h2 class="tutorialInstructionHeader">
             Part 2: Notes
-        </div>
+        </h2>
         <ul class="localListItems">
             <li>Leave notes about where you left off.</li>
             <li>Or how great the show is and the parts that need to be remembered.</li>
@@ -178,8 +182,8 @@
         <asp:Button ID="btnSubmit" runat="server" CssClass="normalButton" Text="Save" />
         <br />
         <br />
-        <div class="tutorialInstructionHeader" style="padding-bottom:5px;">
-            Part 3: Searching Notes</div>
+        <h2 class="tutorialInstructionHeader" style="padding-bottom: 5px;">
+            Part 3: Searching Notes</h2>
         <span style="color: Red; font-size: 1.15em;">(Please note: "must listen" is just an
             example provided for you for the purposes of the tutorial.) </span>
         <ul class="localListItems">

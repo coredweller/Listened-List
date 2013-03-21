@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="ListenedList.CreateUser"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainDiv">
@@ -12,7 +12,7 @@
                     <ContentTemplate>
                         <table>
                             <tr>
-                                <td>
+                                <td colspan="2">
                                     Sign Up for Your New Account!
                                 </td>
                             </tr>

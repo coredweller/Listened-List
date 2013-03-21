@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Forgot.aspx.cs" Inherits="ListenedList.Forgot"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -7,6 +7,7 @@
     <br />
     <div class="mainDiv">
         <a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">Create User</a>
+        <br />
         <div>
             <h2>
                 Forgot User Name or Password?
