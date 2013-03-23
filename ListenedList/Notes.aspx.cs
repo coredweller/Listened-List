@@ -83,21 +83,29 @@ namespace ListenedList
         }
 
         private void BindSetlist( DateTime showDate ) {
-            var appConfigManager = Ioc.GetInstance<IAppConfigManager>();
-            var apiKey = appConfigManager.AppSettings["PhishNetApiKey"];
-            var url = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey=" + apiKey + "&showdate=";
 
-            var finalUrl = url + showDate.ToString( "yyyy-MM-dd" );
+            string setlist;
+            try {
+                var appConfigManager = Ioc.GetInstance<IAppConfigManager>();
+                var apiKey = appConfigManager.AppSettings["PhishNetApiKey"];
+                var url = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey=" + apiKey + "&showdate=";
 
-            var request = (HttpWebRequest)WebRequest.Create( finalUrl );
+                var finalUrl = url + showDate.ToString( "yyyy-MM-dd" );
 
-            var response = (HttpWebResponse)request.GetResponse();
+                var request = (HttpWebRequest)WebRequest.Create( finalUrl );
 
-            var reader = new StreamReader( response.GetResponseStream() );
+                var response = (HttpWebResponse)request.GetResponse();
 
-            var resp = reader.ReadToEnd();
+                var reader = new StreamReader( response.GetResponseStream() );
 
-            var setlist = ParseJson( resp, showDate );
+                var resp = reader.ReadToEnd();
+
+                setlist = ParseJson( resp, showDate );
+            }
+            catch ( Exception ex ) {
+                _Log.WriteFatal( "There was an exception getting the setlist from Phish.net.  exception info here: " + ex.Message );
+                setlist = string.Empty;
+            }
 
             if ( string.IsNullOrEmpty( setlist ) ) {
                 phSetlist.Visible = false;
