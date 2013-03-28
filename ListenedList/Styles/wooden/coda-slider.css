@@ -11,9 +11,12 @@
 }
 
 #header {
-	width: 960px;
+	width: 650px;
+	height: 100px;
+	margin-left: 235px;
+	/* width: 960px;
 	height: 101px;
-	background: url(/images/wooden/header.png) no-repeat
+	 background: url(/images/wooden/header.png) no-repeat   */
 }
 
 #header h1 { margin: 0; padding: 0 }

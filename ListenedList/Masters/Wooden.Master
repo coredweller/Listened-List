@@ -39,10 +39,11 @@
     <div id="slider">
         <div id="wrapper">
             <div id="header">
-                <h1>
+                
                     <%--<a href="http://www.freecsstemplates.in/page/1">Wodden Wall<span>Free CSS Template</span></a></h1>--%>
-                    <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></h1>
-                <div>
+                    <span class="largeCustomText" style="color:White;text-decoration:none;line-height:2em;">
+                    <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></span>
+                <div style="width:185px;float:right;">
                     <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                         <AnonymousTemplate>
                             [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">Log In</a>

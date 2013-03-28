@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step2.aspx.cs" Inherits="ListenedList.Step2"
-    MasterPageFile="~/Masters/Genius.Master" %>
+    MasterPageFile="~/Masters/Wooden.Master" %>
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <%@ Register TagPrefix="uc" TagName="TagControl" Src="~/Controls/TagControl.ascx" %>

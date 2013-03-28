@@ -212,11 +212,6 @@
     <div class="mainDiv">
         <br />
         <br />
-        <div style="font-size: 3em; font-weight: 700; padding-bottom: 20px;">
-            Phish&nbsp;<span style="font-size: small; font-weight: 200;">Need Help? Tutorial <a
-                href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
-        </div>
-        <br />
         <asp:PlaceHolder ID="phPrivate" runat="server" Visible="false">
             <br />
             <br />
@@ -234,6 +229,8 @@
             <input id="txtSearch" type="text" style="width: 100px; height: 32px; font-size: 18px;
                 padding-top: 1px;" />
             <input type="button" class="normalButton" id="btnSearch" value="Search" style="height: 38px;" />
+            &nbsp;&nbsp;&nbsp; <span style="font-size: small; font-weight: 200;">Need Help? Tutorial
+                <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
         </div>
         <br />
         <br />
@@ -241,15 +238,15 @@
         <br />
         <input id="chkAllYears" type="checkbox" checked="checked" />All Years
         <asp:PlaceHolder ID="phYears" runat="server" Visible="false">&nbsp;&nbsp;&nbsp; <span
-            style="font-weight:bolder;font-size:24px;"><a href="/Main/Year/2012/only">12</a> <a href="/Main/Year/2011/only">11</a>
-            <a href="/Main/Year/2010/only">10</a> <a href="/Main/Year/2009/only">09</a> <a href="/Main/Year/2004/only">
-                04</a> <a href="/Main/Year/2003/only">03</a> <a href="/Main/Year/2000/only">00</a>
-            <a href="/Main/Year/1999/only">99</a> <a href="/Main/Year/1998/only">98</a> <a href="/Main/Year/1997/only">
-                97</a> <a href="/Main/Year/1996/only">96</a> <a href="/Main/Year/1995/only">95</a>
-            <a href="/Main/Year/1994/only">94</a> <a href="/Main/Year/1993/only">93</a> <a href="/Main/Year/1992/only">
-                92</a> <a href="/Main/Year/1991/only">91</a> <a href="/Main/Year/1990/only">90</a>
-            <a href="/Main/Year/1989/only">89</a> <a href="/Main/Year/1988/only">88</a> <a href="/Main/Year/1987/only">
-                87</a> </span></asp:PlaceHolder>
+            style="font-weight: bolder; font-size: 24px;"><a href="/Main/Year/2012/only">12</a>
+            <a href="/Main/Year/2011/only">11</a> <a href="/Main/Year/2010/only">10</a> <a href="/Main/Year/2009/only">
+                09</a> <a href="/Main/Year/2004/only">04</a> <a href="/Main/Year/2003/only">03</a>
+            <a href="/Main/Year/2000/only">00</a> <a href="/Main/Year/1999/only">99</a> <a href="/Main/Year/1998/only">
+                98</a> <a href="/Main/Year/1997/only">97</a> <a href="/Main/Year/1996/only">96</a>
+            <a href="/Main/Year/1995/only">95</a> <a href="/Main/Year/1994/only">94</a> <a href="/Main/Year/1993/only">
+                93</a> <a href="/Main/Year/1992/only">92</a> <a href="/Main/Year/1991/only">91</a>
+            <a href="/Main/Year/1990/only">90</a> <a href="/Main/Year/1989/only">89</a> <a href="/Main/Year/1988/only">
+                88</a> <a href="/Main/Year/1987/only">87</a> </span></asp:PlaceHolder>
         <br />
         <br />
         <span id="spanYear12">
