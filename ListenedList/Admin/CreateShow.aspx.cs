@@ -14,8 +14,7 @@ namespace ListenedList.Admin
     public partial class CreateShow : ListenedBasePage
     {
         protected void Page_Load( object sender, EventArgs e ) {
-            if ( !_RoleProvider.IsUserInRole( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR ) ) 
-                Response.Redirect( FriendlyUrl.Href( "/../Main" ) );
+            UserInRoleRedirect( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR );
         }
 
         public void btnSubmit_Click( object sender, EventArgs e ) {

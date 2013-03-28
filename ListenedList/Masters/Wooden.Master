@@ -39,11 +39,9 @@
     <div id="slider">
         <div id="wrapper">
             <div id="header">
-                
-                    <%--<a href="http://www.freecsstemplates.in/page/1">Wodden Wall<span>Free CSS Template</span></a></h1>--%>
-                    <span class="largeCustomText" style="color:White;text-decoration:none;line-height:2em;">
+                <span class="largeCustomText" style="color: White; text-decoration: none; line-height: 2em;">
                     <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></span>
-                <div style="width:185px;float:right;">
+                <div style="width: 185px; float: right;">
                     <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                         <AnonymousTemplate>
                             [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">Log In</a>
@@ -69,8 +67,6 @@
                     <li><a href="<%: FriendlyUrl.Href("/../Settings") %>">Settings</a></li>
                     <li><a href="<%: FriendlyUrl.Href("/../Contact") %>">Contact Us</a></li>
                     <%-- <li><a href="#home" class="selected">Home<span class="ui_icon home"></span></a></li>
-                    <li><a href="#aboutus">About Us<span class="ui_icon aboutus"></span></a></li>
-                    <li><a href="#services">Services<span class="ui_icon services"></span></a></li>
                     <li><a href="#gallery">Gallery<span class="ui_icon gallery"></span></a></li>
                     <li><a href="#contactus">Contact Us<span class="ui_icon contactus"></span></a></li>--%>
                 </ul>

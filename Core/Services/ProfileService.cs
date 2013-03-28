@@ -17,11 +17,19 @@ namespace Core.Services
         }
 
         /// <summary>
+        /// Gets all profiles infos
+        /// </summary>
+        /// <returns></returns>
+        private static ProfileInfoCollection GetAllProfileInfos() {
+            return ProfileManager.GetAllProfiles( ProfileAuthenticationOption.All );
+        }
+
+        /// <summary>
         /// Gets all profiles
         /// </summary>
         /// <returns></returns>
-        private static ProfileInfoCollection GetAllProfiles() {
-            return ProfileManager.GetAllProfiles( ProfileAuthenticationOption.All );
+        private static IEnumerable<UserProfile> GetProfiles() {
+            return GetAllProfileInfos().Cast<ProfileInfo>().Select( x => UserProfile.GetUserProfile( x.UserName ) );
         }
 
         /// <summary>
@@ -29,7 +37,15 @@ namespace Core.Services
         /// </summary>
         /// <returns></returns>
         public static IList<UserProfile> GetPublicProfiles() {
-            return GetPublicProfiles(string.Empty);
+            return GetPublicProfiles( string.Empty );
+        }
+
+        /// <summary>
+        /// Gets all profiles for the public
+        /// </summary>
+        /// <returns></returns>
+        public static IList<UserProfile> GetAllProfiles() {
+            return GetProfiles().ToList();
         }
 
         /// <summary>
@@ -37,31 +53,13 @@ namespace Core.Services
         /// </summary>
         /// <returns></returns>
         public static IList<UserProfile> GetPublicProfiles( string you ) {
-            var publicProfiles = new List<UserProfile>();
-
-            foreach ( ProfileInfo profile in GetAllProfiles() ) {
-                UserProfile p = UserProfile.GetUserProfile( profile.UserName );
-
-                if ( p.Public.HasValue && p.Public.Value && p.UserName != you ) publicProfiles.Add( p );
-            }
-
-            return publicProfiles;
+            if ( string.IsNullOrWhiteSpace( you ) ) return null;
+            return GetProfiles().Where( y => y.Public.HasValue && y.Public.Value && y.UserName != you ).ToList();
         }
 
         public static IList<UserProfile> GetProfilesLikeUserName( string userName ) {
-
-            if ( string.IsNullOrEmpty( userName ) || string.IsNullOrWhiteSpace( userName ) ) return null;
-
-            var profiles = new List<UserProfile>();
-
-            foreach ( ProfileInfo profile in GetAllProfiles() ) {
-                if ( profile.UserName == userName || profile.UserName.Contains( userName ) ) {
-                    UserProfile p = UserProfile.GetUserProfile( profile.UserName );
-                    profiles.Add( p );
-                }
-            }
-
-            return profiles;
+            if ( string.IsNullOrWhiteSpace( userName ) ) return null;
+            return GetProfiles().Where( x => x.UserName.Contains( userName ) ).ToList();
         }
 
         /// <summary>

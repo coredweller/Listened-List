@@ -67,8 +67,7 @@ namespace ListenedList.Admin
         }
 
         protected void CheckPermissions() {
-            if ( !_RoleProvider.IsUserInRole( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR ) )
-                Response.Redirect( FriendlyUrl.Href( "/../Main" ) );
+            UserInRoleRedirect( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR );
         }
     }
 }

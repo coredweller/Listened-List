@@ -9,6 +9,7 @@ using Core.Helpers.Script;
 using Core.Services;
 using Core.Infrastructure;
 using System.Text.RegularExpressions;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList
 {
@@ -17,7 +18,7 @@ namespace ListenedList
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
         protected readonly string DefaultTitle = "Phisherman's Guide";
         protected readonly float DefaultButtonSize = 70;
-        protected readonly float DefaultFontSize = 11;
+        protected readonly float DefaultFontSize = 13;
 
         protected IRoleProvider _RoleProvider = Ioc.GetInstance<IRoleProvider>();
         protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
@@ -132,6 +133,11 @@ namespace ListenedList
             Response.Cache.SetExpires( DateTime.Now - new TimeSpan( 1, 0, 0 ) );
             Response.Cache.SetLastModified( DateTime.Now );
             Response.Cache.SetAllowResponseInBrowserHistory( false );
+        }
+
+        protected void UserInRoleRedirect( string userName, string roleName ) {
+            if ( !_RoleProvider.IsUserInRole( userName, roleName ) )
+                Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
         }
     }
 }
