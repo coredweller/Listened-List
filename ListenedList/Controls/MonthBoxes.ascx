@@ -19,7 +19,8 @@
         <td>
             <input type="button" class='<%# GetCssClass(((Core.Helpers.ShowStatus)Container.DataItem).Status, (((Core.Helpers.ShowStatus)Container.DataItem).Attended)) %>'
                 id="btnYearBox" style="padding: 5px 0px 5px 0px;font-family:Arial;" value='<%# ((Core.Helpers.ShowStatus)Container.DataItem).ShowDate.ToShortDateString() %>'
-                title='<%# ((Core.Helpers.ShowStatus)Container.DataItem).ShowName %>' />
+                title='<%# Server.HtmlEncode( ((Core.Helpers.ShowStatus)Container.DataItem).ShowName ) %>' />
+
         </td>
     </ItemTemplate>
     <FooterTemplate>
