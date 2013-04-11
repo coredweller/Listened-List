@@ -14,6 +14,7 @@ namespace ListenedList.Controls
 {
     public partial class TagControl : ListenedBaseControl
     {
+        IShowTagService _ShowTagService = Ioc.GetInstance<IShowTagService>();
         ITagService _tagService = Ioc.GetInstance<ITagService>();
         public bool Tutorial { get; set; }
 
@@ -35,7 +36,7 @@ namespace ListenedList.Controls
 
         public void lnkSeeAll_Click( object sender, EventArgs e ) {
             HideShowList();
-            BindTags(Guid.Empty);
+            BindTags( Guid.Empty );
         }
 
         private void HideShowList() {
@@ -63,10 +64,10 @@ namespace ListenedList.Controls
                 ddlColor.Items.Add( item );
             }
 
-            BindTags(Guid.Empty);
+            BindTags( Guid.Empty );
         }
 
-        private void BindTags(Guid tagId) {
+        private void BindTags( Guid tagId ) {
 
             IList<ITag> tags = new List<ITag>();
             if ( tagId == Guid.Empty ) {
@@ -74,7 +75,7 @@ namespace ListenedList.Controls
                 tags = _tagService.GetTags( GetUserId() );
             }
             else {
-                tags = new List<ITag>{_tagService.GetTag( tagId ) };
+                tags = new List<ITag> { _tagService.GetTag( tagId ) };
             }
 
             rptTags.DataSource = tags.OrderBy( x => x.Name );
@@ -140,7 +141,7 @@ namespace ListenedList.Controls
 
             var tag = _tagService.GetTag( tagId );
 
-            if(tag == null) return;
+            if ( tag == null ) return;
 
             BindTags( tag.Id );
 
@@ -198,6 +199,10 @@ namespace ListenedList.Controls
 
                 if ( tag == null ) return;
 
+                //if the tag exists then delete all the shows its associated with first
+                _ShowTagService.Delete( tagId );
+
+                //then delete the tag itself
                 _tagService.Delete( tag );
                 success = true;
             }

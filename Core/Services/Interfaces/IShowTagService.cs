@@ -12,6 +12,10 @@ namespace Core.Services.Interfaces
 
         IShowTag GetTag( Guid id );
         IList<IShowTag> GetTagsByShow( Guid showId );
+        IList<IShowTag> GetTagsByShowAndUser( Guid showId, Guid userId );
         IQueryable<IShowTag> GetTagsByTagAndUser( Guid tagId, Guid userId );
+        IList<IShowTag> GetShowTagsByTagId( Guid tagId );
+
+        void Delete( Guid tagId );
     }
 }

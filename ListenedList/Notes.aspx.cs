@@ -249,7 +249,7 @@ namespace ListenedList
 
             //Bind the tag drop down list
             var allTags = tagService.GetTags( userId );
-            var showTags = _ShowTagService.GetTagsByShow( showId );
+            var showTags = _ShowTagService.GetTagsByShowAndUser( showId, userId );
 
             var tags = ( from aT in allTags
                          join sT in showTags on aT.Id equals sT.TagId into temp
