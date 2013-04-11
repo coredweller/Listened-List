@@ -32,6 +32,14 @@ namespace Core.Services
             return GetAllTags().Where( x => x.ShowId == showId ).ToList();
         }
 
+        public IList<IShowTag> GetTagsByShowAndUser( Guid showId, Guid userId ) {
+            return GetAllTags().Where( x => x.ShowId == showId && x.UserId == userId ).ToList();
+        }
+
+        public IList<IShowTag> GetShowTagsByTagId( Guid tagId ) {
+            return GetAllTags().Where( x => x.TagId == tagId ).ToList();
+        }
+
         public IQueryable<IShowTag> GetTagsByTagAndUser( Guid tagId, Guid userId ) {
             return GetAllTags().Where( x => x.TagId == tagId && x.UserId == userId );
         }
@@ -57,6 +65,23 @@ namespace Core.Services
                 catch ( Exception ex ) {
                     success = false;
                 }
+            }
+        }
+
+        //Delete all ShowTags associated with that Tag
+        public void Delete( Guid tagId ) {
+            Checks.Argument.IsNotNull( tagId, "tagId" );
+
+            var tags = GetShowTagsByTagId( tagId );
+
+            if ( tags == null || tags.Count <= 0 ) return;
+
+            using ( IUnitOfWork u = UnitOfWork.Begin() ) {
+                foreach ( IShowTag tag in tags ) {
+                    _repo.Remove( tag );
+                }
+
+                u.Commit();
             }
         }
 
