@@ -108,6 +108,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\wooden\coda-slider.css" />
+    <Content Include="Styles\wooden\style.css" />
     <Content Include="Tags.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config">

@@ -30,7 +30,8 @@ namespace ListenedList
         private TimeZone _LocalZone = TimeZone.CurrentTimeZone;
         public static double CurrentRating { get; set; }
         protected string PhishShowsUrl = "http://www.phishows.com/mp3t/?cmd=goto&date={0}";
-
+        protected string PhishTracksUrl = "http://www.phishtracks.com/shows/{0}";
+        
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
                 Bind();
@@ -73,7 +74,9 @@ namespace ListenedList
 
             hdnShowId.Value = show.Id.ToString();
 
-            lnkPhishShows.NavigateUrl = string.Format(PhishShowsUrl, showDate.ToString("yyyy-MM-dd"));
+            var showDateLink = showDate.ToString("yyyy-MM-dd");
+            lnkPhishShows.NavigateUrl = string.Format(PhishShowsUrl, showDateLink);
+            lnkPhishTracks.NavigateUrl = string.Format(PhishTracksUrl, showDateLink);
 
             //Get the user Id and Bind the notes and tags
             BindNotes( show );

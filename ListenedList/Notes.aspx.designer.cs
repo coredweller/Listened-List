@@ -22,6 +22,24 @@ namespace ListenedList {
         protected global::System.Web.UI.WebControls.Button btnAttended;
         
         /// <summary>
+        /// lnkPhishShows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkPhishShows;
+        
+        /// <summary>
+        /// lnkPhishTracks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkPhishTracks;
+        
+        /// <summary>
         /// hdnAttended control.
         /// </summary>
         /// <remarks>
@@ -47,15 +65,6 @@ namespace ListenedList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSetlist;
-        
-        /// <summary>
-        /// lnkPhishShows control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPhishShows;
         
         /// <summary>
         /// btnNeverHeard control.

@@ -29,32 +29,29 @@
     </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left: 25px;">
-        <a id="lnkBack" href="<%: FriendlyUrl.Href("~/Main") %>">Back to Show Page</a>
-    </div>
-    <br />
-    <br />
-    <br />
-    <div class="mainDiv">
+    <div id="content">
         <p style="font-size: 2em; font-weight: 700;">
-            <%= ShowTitle %>&nbsp;<asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend"
-                Text="Did Not Attend" OnClick="btnAttended_Click" ToolTip="Click this to change your attended status" />
+            <%= ShowTitle %><br />
+            <br />
+            <asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend" Text="Did Not Attend"
+                OnClick="btnAttended_Click" ToolTip="Click this to change your attended status" /><span
+                    style="font-size: 14px;margin-left:200px;"><asp:HyperLink ID="lnkPhishShows" runat="server" Target="_blank"
+                        Text="Phishows"></asp:HyperLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:HyperLink ID="lnkPhishTracks"
+                            runat="server" Target="_blank" Text="PhishTracks"></asp:HyperLink></span>
             <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
         </p>
         <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
+        <br />
             <div>
                 <asp:Label ID="lblSetlist" runat="server" CssClass="labelFix"></asp:Label>
-                
-                <span style="font-size: smaller;display:block;">
-                    Courtesy of The Mockingbird Foundation.</span>
+                <span style="font-size: smaller; display: block;">Courtesy of The Mockingbird Foundation.</span>
                 <br />
                 <br />
             </div>
         </asp:PlaceHolder>
-        <br />
-        <div style="font-size: larger;">
-            <asp:HyperLink ID="lnkPhishShows" runat="server" Target="_blank" Text="Stream/Download Here!"></asp:HyperLink>
-        </div>
+    </div>
+    <div class="mainDiv">
+        <br /><br />
         <div style="font-size: 1.5em; font-weight: 600;">
             Listening Status:&nbsp;<%--<asp:DropDownList ID="ddlStatus" runat="server">
             </asp:DropDownList>--%>
