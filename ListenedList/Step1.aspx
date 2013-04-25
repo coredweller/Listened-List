@@ -118,9 +118,8 @@
     </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <br />
-    <br />
-    <div class="mainDiv" style="padding-right: 200px;">
+    
+        <div id="content">
         <div style="font-size: 35px; font-weight: bolder; padding-bottom: 25px;">
             Welcome to Phisherman's Guide!
         </div>
@@ -152,13 +151,16 @@
             <li>A show can have a listening status and be attended at the same time.</li>
             <li>Click "Edit Notes" to go to Part 2.</li>
         </ul>
-        <br />
+        </div>
+        <div class="mainDiv">
+        <br /><br /><br /><br />
         <uc:Legend ID="legend" runat="server" />
         <br />
         <br />
         <div>
             <uc:YearBox ID="yearBox11" runat="server" Year="1998" Tutorial="true" ShowsToDisplay="4" />
         </div>
+        
         <h2 class="tutorialInstructionHeader">
             Part 2: Notes
         </h2>
