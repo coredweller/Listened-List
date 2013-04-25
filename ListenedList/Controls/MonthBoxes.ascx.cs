@@ -11,10 +11,13 @@ namespace ListenedList.Controls
 {
     public partial class MonthBoxes : System.Web.UI.UserControl
     {
+        public bool Tutorial { get; set; }
         public string Month { get; set; }
         public IList<ShowStatus> Shows { get; set; }
-
+        
         protected void Page_Load( object sender, EventArgs e ) {
+            phPlus.Visible = !Tutorial;
+
             rptMonth.DataSource = Shows;
             rptMonth.DataBind();
         }

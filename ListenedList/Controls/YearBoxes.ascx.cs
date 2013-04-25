@@ -88,6 +88,7 @@ namespace ListenedList.Controls
             //Set the one year box
             yearBox.Shows = shows;
             yearBox.Month = Year.ToString();
+            yearBox.Tutorial = Tutorial;
         }
 
         public void SetupMonthMode( IList<ShowStatus> shows ) {
