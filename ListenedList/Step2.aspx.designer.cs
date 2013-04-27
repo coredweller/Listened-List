@@ -13,6 +13,24 @@ namespace ListenedList {
     public partial class Step2 {
         
         /// <summary>
+        /// lnkTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTag;
+        
+        /// <summary>
+        /// lnkTag2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTag2;
+        
+        /// <summary>
         /// tagControl control.
         /// </summary>
         /// <remarks>
