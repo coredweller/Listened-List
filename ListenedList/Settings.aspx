@@ -2,7 +2,7 @@
     MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div class="mainDiv">
+    <div id="content" class="mainDiv">
         <br />
         <br />
         <p style="font-size: 2em; font-weight: 700;">
