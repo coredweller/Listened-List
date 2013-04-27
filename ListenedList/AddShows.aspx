@@ -2,26 +2,47 @@
     MasterPageFile="~/Masters/Wooden.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <br />
-    <div class="mainDiv">
-        <br />
-        <br />
-        <p style="font-size: 1.2em; font-weight: 500;">
+    <div id="content">
+        <p style="font-size: 1.4em; font-weight: 500;">
+            Use this page to help you add a status to many shows at once.
+            <br />
+            <br />
+            If you have seen or listened to a whole year or tour, this tool will help you get
+            that set quickly.
+            <br />
+            <br />
+            Make sure to use the Notes page to keep track of in depth notes and assign tags
+            to shows!
+            <br />
+            <br />
+            <br />
+            <br />
             Choose a year to display shows from that year.
-        </p>
-        <br />
-        <div>
+            <br />
+            <br />
             Year:<asp:DropDownList ID="ddlYears" runat="server">
             </asp:DropDownList>
             <asp:Button ID="btnSubmit" runat="server" Text="Choose Year" CssClass="normalButton"
                 OnClick="btnSubmit_Click" />
-        </div>
-        <br />
-        <h5 class="warningMessage">
-            Please Note: There is no need to save! <br />When you click the buttons its saves automatically.
-            Enjoy!</h5>
+        </p>
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h5 style="color: Red;">
+            Please Note: There is no need to save!
+            <br />
+            When you click the buttons its saves automatically. Enjoy!</h5>
+        <br />
+        <br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="mainDiv">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div>
@@ -83,7 +104,7 @@
         </asp:UpdatePanel>
         <asp:PlaceHolder ID="phNoSaveMessage" runat="server" Visible="false">
             <br />
-            <h5 class="warningMessage">
+            <h5 style="color: Red;">
                 Please Note: There is no need to save. When you click the buttons its saves automatically.
                 Enjoy!</h5>
         </asp:PlaceHolder>
