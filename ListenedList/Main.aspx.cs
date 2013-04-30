@@ -65,6 +65,7 @@ namespace ListenedList
 
                     if ( segmentCount > 2 ) {
                         //turn off all
+                        yearBox13.Off = true;
                         yearBox12.Off = true;
                         yearBox11.Off = true;
                         yearBox10.Off = true;
@@ -96,9 +97,10 @@ namespace ListenedList
                     //case 2015:
                     //    yearbox15.MonthMode = true;
                     //    break;
-                    //case 2013:
-                    //    yearbox13.MonthMode = true;
-                    //    break;
+                    case 2013:
+                        yearBox13.Off = false;
+                        yearBox13.MonthMode = true;
+                        break;
                     case 2012:
                         yearBox12.Off = false;
                         yearBox12.MonthMode = true;
@@ -202,6 +204,7 @@ namespace ListenedList
             yearBox10.Shows = shows;
             yearBox11.Shows = shows;
             yearBox12.Shows = shows;
+            yearBox13.Shows = shows;
             yearBox87.Shows = shows;
             yearBox88.Shows = shows;
             yearBox89.Shows = shows;

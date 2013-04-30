@@ -234,11 +234,11 @@
         </div>
         <br />
         <br />
-        <uc:Legend ID="legend" runat="server" />
+        <uc:legend id="legend" runat="server" />
         <br />
         <input id="chkAllYears" type="checkbox" checked="checked" />All Years
         <asp:PlaceHolder ID="phYears" runat="server" Visible="false">&nbsp;&nbsp;&nbsp; <span
-            style="font-weight: bolder; font-size: 24px;"><a href="/Main/Year/2012/only">12</a>
+            style="font-weight: bolder; font-size: 24px;"><a href="/Main/Year/2013/only">13</a><a href="/Main/Year/2012/only">12</a>
             <a href="/Main/Year/2011/only">11</a> <a href="/Main/Year/2010/only">10</a> <a href="/Main/Year/2009/only">
                 09</a> <a href="/Main/Year/2004/only">04</a> <a href="/Main/Year/2003/only">03</a>
             <a href="/Main/Year/2000/only">00</a> <a href="/Main/Year/1999/only">99</a> <a href="/Main/Year/1998/only">
@@ -249,46 +249,48 @@
                 88</a> <a href="/Main/Year/1987/only">87</a> </span></asp:PlaceHolder>
         <br />
         <br />
-        <span id="spanYear12">
-            <uc:YearBox ID="yearBox12" runat="server" Year="2012" />
+        <span id="spanYear13">
+            <uc:yearbox id="yearBox13" runat="server" year="2013" />
+        </span><span id="spanYear12">
+            <uc:yearbox id="yearBox12" runat="server" year="2012" />
         </span><span id="spanYear11">
-            <uc:YearBox ID="yearBox11" runat="server" Year="2011" />
+            <uc:yearbox id="yearBox11" runat="server" year="2011" />
         </span><span id="spanYear10">
-            <uc:YearBox ID="yearBox10" runat="server" Year="2010" />
+            <uc:yearbox id="yearBox10" runat="server" year="2010" />
         </span><span id="spanYear09">
-            <uc:YearBox ID="yearBox09" runat="server" Year="2009" />
+            <uc:yearbox id="yearBox09" runat="server" year="2009" />
         </span><span id="spanYear04">
-            <uc:YearBox ID="yearBox04" runat="server" Year="2004" />
+            <uc:yearbox id="yearBox04" runat="server" year="2004" />
         </span><span id="spanYear03">
-            <uc:YearBox ID="yearBox03" runat="server" Year="2003" />
+            <uc:yearbox id="yearBox03" runat="server" year="2003" />
         </span><span id="spanYear00">
-            <uc:YearBox ID="yearBox00" runat="server" Year="2000" />
+            <uc:yearbox id="yearBox00" runat="server" year="2000" />
         </span><span id="spanYear99">
-            <uc:YearBox ID="yearBox99" runat="server" Year="1999" />
+            <uc:yearbox id="yearBox99" runat="server" year="1999" />
         </span><span id="spanYear98">
-            <uc:YearBox ID="yearBox98" runat="server" Year="1998" />
+            <uc:yearbox id="yearBox98" runat="server" year="1998" />
         </span><span id="spanYear97">
-            <uc:YearBox ID="yearBox97" runat="server" Year="1997" />
+            <uc:yearbox id="yearBox97" runat="server" year="1997" />
         </span><span id="spanYear96">
-            <uc:YearBox ID="yearBox96" runat="server" Year="1996" />
+            <uc:yearbox id="yearBox96" runat="server" year="1996" />
         </span><span id="spanYear95">
-            <uc:YearBox ID="yearBox95" runat="server" Year="1995" />
+            <uc:yearbox id="yearBox95" runat="server" year="1995" />
         </span><span id="spanYear94">
-            <uc:YearBox ID="yearBox94" runat="server" Year="1994" />
+            <uc:yearbox id="yearBox94" runat="server" year="1994" />
         </span><span id="spanYear93">
-            <uc:YearBox ID="yearBox93" runat="server" Year="1993" />
+            <uc:yearbox id="yearBox93" runat="server" year="1993" />
         </span><span id="spanYear92">
-            <uc:YearBox ID="yearBox92" runat="server" Year="1992" />
+            <uc:yearbox id="yearBox92" runat="server" year="1992" />
         </span><span id="spanYear91">
-            <uc:YearBox ID="yearBox91" runat="server" Year="1991" />
+            <uc:yearbox id="yearBox91" runat="server" year="1991" />
         </span><span id="spanYear90">
-            <uc:YearBox ID="yearBox90" runat="server" Year="1990" />
+            <uc:yearbox id="yearBox90" runat="server" year="1990" />
         </span><span id="spanYear89">
-            <uc:YearBox ID="yearBox89" runat="server" Year="1989" />
+            <uc:yearbox id="yearBox89" runat="server" year="1989" />
         </span><span id="spanYear88">
-            <uc:YearBox ID="yearBox88" runat="server" Year="1988" />
+            <uc:yearbox id="yearBox88" runat="server" year="1988" />
         </span><span id="spanYear87">
-            <uc:YearBox ID="yearBox87" runat="server" Year="1987" />
+            <uc:yearbox id="yearBox87" runat="server" year="1987" />
         </span>
         <br />
         <br />
