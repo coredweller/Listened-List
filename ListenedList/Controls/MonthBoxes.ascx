@@ -22,6 +22,6 @@
                         title='<%# Server.HtmlEncode( ((Core.Helpers.ShowStatus)Container.DataItem).ShowName ) %>' />
                 </td>
             </ItemTemplate>
-            <FooterTemplate>
-                </tr> </table></FooterTemplate>
         </asp:Repeater>
+    </tr>
+</table>
