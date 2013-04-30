@@ -14,16 +14,16 @@
 <br />
 <br />
 <div class="mainDiv">
-    <div style="font-size: 2em; font-weight: 700;">
+    <div style="font-size: 2.3em; font-weight: 800;">
         Tags
     </div>
     <br />
     <br />
     <br />
     <asp:PlaceHolder ID="phPart1" runat="server" Visible='false'><span class="tutorialTagHeader">
-        Part 1: <span style="font-weight: normal;">Create new Tags simply by giving them a name.<br />
+        Part 1: <span style="font-size: 1.4em;">Create new Tags simply by giving them a name.<br />
             --Create a tag and then Click Edit for Part 2.</span></span> </asp:PlaceHolder>
-    <p>
+    <p style="font-size:1.5em;">
         Create New Tag (30 letters max):
         <asp:TextBox ID="txtNewTagName" runat="server" Width="150px"></asp:TextBox>
         <asp:Button ID="btnCreateTag" runat="server" Text="Create Tag" CssClass="normalButton"
@@ -33,7 +33,7 @@
     <br />
     <asp:PlaceHolder ID="phEditTag" runat="server" Visible="false">
         <asp:PlaceHolder ID="phPart2" runat="server" Visible="false"><span class="tutorialTagHeader">
-            Part 2: <span style="font-weight: normal;">Edit a tag by changing its name and/or color.
+            Part 2: <span style="font-size: 1.4em;">Edit a tag by changing its name and/or color.
                 <br />
                 --Change tha name and/or color and click Save for Part 3.</span></span>
         </asp:PlaceHolder>
@@ -56,7 +56,7 @@
     <br />
     <asp:PlaceHolder ID="phPart3" runat="server" Visible="false">
         <p>
-            <span class="tutorialTagHeader">Part 3: <span style="font-weight: normal;">Viewing Tagged
+            <span class="tutorialTagHeader">Part 3: <span style="font-size: 1.4em;">Viewing Tagged
                 shows by clicking on a Tag.
                 <br />
                 --Click the Favorite Show Tag to see the shows Tagged for this tutorial.
@@ -119,7 +119,7 @@
                     <table>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <tr>
+                    <tr style="font-size:1.5em;">
                         <td>
                             <a id="lnkShow" href="<%# FriendlyUrl.Href("/../Notes", ((Core.DomainObjects.IShow)Container.DataItem).Id ) %>">
                                 <%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %></a>

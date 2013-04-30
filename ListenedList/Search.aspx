@@ -9,7 +9,7 @@
             Search for Public lists</p>
         <br />
         <br />
-        <div>
+        <div style="font-size:1.5em;">
             User Name:
             <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnSearchUser" runat="server" Text="Search" CssClass="normalButton" OnClick="btnSearchUser_Click" />
