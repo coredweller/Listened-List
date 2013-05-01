@@ -8,6 +8,7 @@
     <script type="text/javascript">
         //The URL to the notes page
         var notesUrl = "Notes/";
+        var latestYear = "2013";
 
         $(document).ready(function () {
             
@@ -17,7 +18,7 @@
                 if(!stateBeforeClick)
                     window.location.href = "/Main";
                 else
-                    window.location.href = "/Main/Year/2012/only";
+                    window.location.href = "/Main/Year/" + latestYear + "/only";
 
                 return;
             });
