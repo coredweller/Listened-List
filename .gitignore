@@ -5,3 +5,4 @@ Core/obj
 ListenedList/bin
 ListenedList/obj
 Logs
+*.suo
