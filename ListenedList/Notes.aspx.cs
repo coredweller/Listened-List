@@ -114,7 +114,7 @@ namespace ListenedList
                 phSetlist.Visible = false;
             }
             else {
-                lblSetlist.Text = setlist;
+                lblSetlist.InnerHtml = setlist;
                 phSetlist.Visible = true;
             }
         }
