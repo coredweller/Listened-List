@@ -45,9 +45,13 @@
 #content {
 	clear: both;
 	width: 700px;
-	height: 360px;
+	/* height: 360px;  */
+    height: 490px;
+    max-height: 490px;
 	padding: 80px 130px 52px 130px;
-	background: url(/images/wooden/body.png) no-repeat
+	background: url(/images/wooden/body.png) no-repeat;
+    overflow: auto;
+    line-height: 1.1em;
 }
 
 #footer {

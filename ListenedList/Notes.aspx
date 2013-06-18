@@ -6,6 +6,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#content').jScrollPane();
+
             $("#rateItDiv").bind('over', function (event, value) { $(this).attr('title', value); });
 
             $("#rateItDiv").bind('rated', function (event, value) {
@@ -25,12 +27,14 @@
                 $('#value5').text('Rating reset');
 
             });
+
+            
         });
     </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div id="content">
-        <p style="font-size: 2em; font-weight: 700;">
+        <p style="font-size: 1.9em; font-weight: 700;">
             <%= ShowTitle %><br />
             <br />
             <asp:Button ID="btnAttended" runat="server" CssClass="notesDidNotAttend" Text="Did Not Attend"
@@ -41,13 +45,10 @@
             <asp:HiddenField ID="hdnAttended" runat="server" Value="false" />
         </p>
         <asp:PlaceHolder ID="phSetlist" runat="server" Visible="false">
-        <br />
             <div id="divSetlist">
                 <p id="lblSetlist" runat="server"></p>
                 <%--<asp:Label ID="lblSetlist" runat="server" CssClass="labelFix"></asp:Label>--%>
                 <span style="font-size: smaller; display: block;">Courtesy of The Mockingbird Foundation.</span>
-                <br />
-                <br />
             </div>
         </asp:PlaceHolder>
     </div>
