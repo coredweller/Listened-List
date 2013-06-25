@@ -11,7 +11,9 @@ namespace ListenedList.Code
         public const string CURRENT_DIRECTORY = "~/";
         public const string PARENT_DIRECTORY = "/../";
 
-        public static string MAIN = "Main";
+        public static string MAIN = "Main/Year/2013/only";
+        public static string MAIN_WITH = "Main";
+
         public static string CREATE_USER = "CreateUser";
         public static string ADD_SHOWS = "AddShows";
         public static string FORGOT = "Forgot";
@@ -38,7 +40,7 @@ namespace ListenedList.Code
         }
 
         public static string DefaultMainLink( params object[] args ) {
-            return GetLink( CURRENT_DIRECTORY, MAIN, args );
+            return GetLink( CURRENT_DIRECTORY, MAIN_WITH, args );
         }
 
         public static string ParentMainLink() {
