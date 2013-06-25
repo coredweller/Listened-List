@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNet.FriendlyUrls;
 using ListenedList.Code;
 
 namespace ListenedList

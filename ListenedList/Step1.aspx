@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step1.aspx.cs" Inherits="ListenedList.Step1"
     MasterPageFile="~/Masters/Wooden.Master" %>
 
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>

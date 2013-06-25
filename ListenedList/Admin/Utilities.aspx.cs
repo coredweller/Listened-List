@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.FriendlyUrls;
 using Core.Services;
 
 namespace ListenedList.Admin

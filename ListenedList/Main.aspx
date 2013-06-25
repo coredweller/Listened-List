@@ -3,7 +3,6 @@
 
 <%@ Register TagPrefix="uc" TagName="YearBox" Src="~/Controls/YearBoxes.ascx" %>
 <%@ Register TagPrefix="uc" TagName="Legend" Src="~/Controls/Legend.ascx" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">
         //The URL to the notes page

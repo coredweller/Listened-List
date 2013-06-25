@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TagControl.ascx.cs"
     Inherits="ListenedList.Controls.TagControl" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <script type="text/javascript">
     $(document).ready(function () {
 

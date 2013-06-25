@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MonthBoxes.ascx.cs"
     Inherits="ListenedList.Controls.MonthBoxes" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <table style="padding: 2px 0px 2px 0px;">
     <tr>
         <asp:PlaceHolder ID="phPlus" runat="server" Visible="true">

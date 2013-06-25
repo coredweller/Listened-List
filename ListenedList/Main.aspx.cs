@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Web.UI.WebControls;
 using Core.Services;
 using Core.Infrastructure;
-using Core.Repository;
-using ListenedList.Controls;
-using Core.DomainObjects;
 using System.Collections.Generic;
 using Core.Helpers;
 using Core.Services.Interfaces;
 using Microsoft.AspNet.FriendlyUrls;
-using System.Web.Services;
 
 namespace ListenedList
 {

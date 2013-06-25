@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step2.aspx.cs" Inherits="ListenedList.Step2"
     MasterPageFile="~/Masters/Wooden.Master" %>
 
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="uc" TagName="TagControl" Src="~/Controls/TagControl.ascx" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div id="content" style="font-size: 14px;">

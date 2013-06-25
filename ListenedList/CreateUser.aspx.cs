@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Membership;
 using Core.Services;
-using Microsoft.AspNet.FriendlyUrls;
 using Core.Configuration;
 using Core.Infrastructure;
 using System.Text;

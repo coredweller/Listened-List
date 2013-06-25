@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Notes.aspx.cs"
     MaintainScrollPositionOnPostback="true" Inherits="ListenedList.Notes" MasterPageFile="~/Masters/Wooden.Master" %>
 
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
     <script type="text/javascript">

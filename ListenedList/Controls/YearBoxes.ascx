@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="YearBoxes.ascx.cs" Inherits="ListenedList.Controls.YearBoxes" %>
 <%@ Register TagPrefix="uc" TagName="MonthBox" Src="~/Controls/MonthBoxes.ascx" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:PlaceHolder ID="phYearMode" runat="server">
     <uc:MonthBox ID="yearBox" runat="server" />
 </asp:PlaceHolder>

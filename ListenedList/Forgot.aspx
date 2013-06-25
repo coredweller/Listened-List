@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Forgot.aspx.cs" Inherits="ListenedList.Forgot"
     MasterPageFile="~/Masters/Wooden.Master" %>
 
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />

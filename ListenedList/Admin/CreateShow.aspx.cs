@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using Core.Infrastructure;
 using Core.Services.Interfaces;
 using Core.Helpers.Script;
-using Microsoft.AspNet.FriendlyUrls;
 
 namespace ListenedList.Admin
 {

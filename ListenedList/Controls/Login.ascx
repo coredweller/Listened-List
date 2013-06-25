@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="ListenedList.Controls.Login" %>
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <br />
 <span style="font-size:1.5em;">
 <a href='<%= CreateUserLink %>' id="lnkCreateUser">New User?</a>&nbsp;&nbsp;OR&nbsp;&nbsp;<a

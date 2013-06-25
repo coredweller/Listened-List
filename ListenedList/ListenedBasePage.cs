@@ -9,7 +9,6 @@ using Core.Helpers.Script;
 using Core.Services;
 using Core.Infrastructure;
 using System.Text.RegularExpressions;
-using Microsoft.AspNet.FriendlyUrls;
 using ListenedList.Code;
 
 namespace ListenedList
