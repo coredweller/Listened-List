@@ -30,8 +30,6 @@ namespace ListenedList
         protected const int DEFAULT_MAX_TAG_NAME = 30;
         private TimeZone _LocalZone = TimeZone.CurrentTimeZone;
         public static double CurrentRating { get; set; }
-        protected string PhishShowsUrl = "http://www.phishows.com/mp3t/?cmd=goto&date={0}";
-        protected string PhishTracksUrl = "http://www.phishtracks.com/shows/{0}";
         
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !IsPostBack ) {
@@ -75,9 +73,8 @@ namespace ListenedList
 
             hdnShowId.Value = show.Id.ToString();
 
-            var showDateLink = showDate.ToString("yyyy-MM-dd");
-            lnkPhishShows.NavigateUrl = string.Format(PhishShowsUrl, showDateLink);
-            lnkPhishTracks.NavigateUrl = string.Format(PhishTracksUrl, showDateLink);
+            lnkPhishShows.NavigateUrl = GetPhishowsLink( showDate );
+            lnkPhishTracks.NavigateUrl = GetPhishTracksLink( showDate );
 
             //Get the user Id and Bind the notes and tags
             BindNotes( show );
@@ -88,23 +85,24 @@ namespace ListenedList
 
         private void BindSetlist( DateTime showDate ) {
 
-            string setlist;
+            string setlist = string.Empty;
             try {
                 var appConfigManager = Ioc.GetInstance<IAppConfigManager>();
                 var apiKey = appConfigManager.AppSettings["PhishNetApiKey"];
-                var url = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey=" + apiKey + "&showdate=";
 
-                var finalUrl = url + showDate.ToString( "yyyy-MM-dd" );
+                if ( !string.IsNullOrEmpty( apiKey ) ) {
+                    var url = GetPhishNetLink(showDate, apiKey);
 
-                var request = (HttpWebRequest)WebRequest.Create( finalUrl );
+                    var request = (HttpWebRequest)WebRequest.Create( url );
 
-                var response = (HttpWebResponse)request.GetResponse();
+                    var response = (HttpWebResponse)request.GetResponse();
 
-                var reader = new StreamReader( response.GetResponseStream() );
+                    var reader = new StreamReader( response.GetResponseStream() );
 
-                var resp = reader.ReadToEnd();
+                    var resp = reader.ReadToEnd();
 
-                setlist = ParseJson( resp, showDate );
+                    setlist = ParseJson( resp, showDate );
+                }
             }
             catch ( Exception ex ) {
                 _Log.WriteFatal( "There was an exception getting the setlist from Phish.net.  exception info here: " + ex.Message );

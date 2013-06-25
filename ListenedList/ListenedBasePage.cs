@@ -19,6 +19,10 @@ namespace ListenedList
         protected readonly string DefaultTitle = "Phisherman's Guide";
         protected readonly float DefaultButtonSize = 70;
         protected readonly float DefaultFontSize = 13;
+        protected readonly string DefaultYearFormat = "yyyy-MM-dd";
+        protected string PhishShowsUrl = "http://www.phishows.com/mp3t/?cmd=goto&date={0}";
+        protected string PhishTracksUrl = "http://www.phishtracks.com/shows/{0}";
+        protected string PhishNetUrl = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey={0}&showdate={1}";
 
         protected IRoleProvider _RoleProvider = Ioc.GetInstance<IRoleProvider>();
         protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
@@ -138,6 +142,22 @@ namespace ListenedList
         protected void UserInRoleRedirect( string userName, string roleName ) {
             if ( !_RoleProvider.IsUserInRole( userName, roleName ) )
                 Response.Redirect( LinkBuilder.DefaultMainLink() );
+        }
+
+        protected string GetPhishTracksLink( DateTime date ) {
+            return GetLink(PhishTracksUrl, new object[] { date.ToString(DefaultYearFormat) } );
+        }
+
+        protected string GetPhishowsLink( DateTime date ) {
+            return GetLink(PhishShowsUrl, new object[] { date.ToString(DefaultYearFormat) } );
+        }
+
+        protected string GetPhishNetLink( DateTime date, string apiKey ) {
+            return GetLink( PhishNetUrl, new object[] { apiKey, date.ToString( DefaultYearFormat ) } );
+        }
+
+        private string GetLink( string url, params object[] args ) {
+            return string.Format( url, args );
         }
     }
 }
