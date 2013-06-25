@@ -24,7 +24,7 @@ namespace ListenedList
         }
 
         public void createControl_ContinueButtonClick( object sender, EventArgs e ) {
-            Response.Redirect( FriendlyUrl.Href( "~/Logout" ) );
+            Response.Redirect( LinkBuilder.DefaultLogoutLink() );
         }
 
         public void createControl_CreatedUser( object sender, EventArgs e ) {
@@ -56,7 +56,7 @@ namespace ListenedList
                 emailManager.SendWelcomeEmail( cont.UserName, cont.Password, cont.Email );
 
                 System.Web.Security.FormsAuthentication.RedirectFromLoginPage( cont.UserName, true );
-                Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
+                Response.Redirect( LinkBuilder.DefaultMainLink() );
             }
         }
     }

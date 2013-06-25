@@ -47,11 +47,11 @@
         <div id="wrapper">
             <div id="header">
                 <span class="largeCustomText" style="color: White; text-decoration: none; line-height: 2em;">
-                    <a href="<%: FriendlyUrl.Href("/../") %>">Phisherman's Guide</a></span>
+                    <a href='<%= LinkBuilder.ParentMainLink() %>'>Phisherman's Guide</a></span>
                 <div style="width: 185px; float: right;">
                     <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                         <AnonymousTemplate>
-                            [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">Log In</a>
+                            [ <a href='<%= LinkBuilder.ParentLoginLink() %>' id="HeadLoginStatus">Log In</a>
                             ]
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -67,12 +67,12 @@
             </div>
             <div id="menu">
                 <ul class="navigation">
-                    <li><a href="<%: FriendlyUrl.Href("/../") %>">Main</a></li>
-                    <li><a href="<%: FriendlyUrl.Href("/../AddShows") %>">Edit Shows</a></li>
-                    <li><a href="<%: FriendlyUrl.Href("/../Tags") %>">Tags</a></li>
-                    <li><a href="<%: FriendlyUrl.Href("/../Search") %>">Search</a></li>
-                    <li><a href="<%: FriendlyUrl.Href("/../Settings") %>">Settings</a></li>
-                    <li><a href="<%: FriendlyUrl.Href("/../Contact") %>">Contact Us</a></li>
+                    <li><a href='<%= LinkBuilder.ParentMainLink() %>'>Main</a></li>
+                    <li><a href='<%= LinkBuilder.ParentAddShowsLink() %>'>Edit Shows</a></li>
+                    <li><a href='<%= LinkBuilder.ParentTagsLink() %>'>Tags</a></li>
+                    <li><a href='<%= LinkBuilder.ParentSearchLink() %>'>Search</a></li>
+                    <li><a href='<%= LinkBuilder.ParentSettingsLink() %>'>Settings</a></li>
+                    <li><a href='<%= LinkBuilder.ParentContactLink() %>'>Contact Us</a></li>
                     <%-- <li><a href="#home" class="selected">Home<span class="ui_icon home"></span></a></li>
                     <li><a href="#gallery">Gallery<span class="ui_icon gallery"></span></a></li>
                     <li><a href="#contactus">Contact Us<span class="ui_icon contactus"></span></a></li>--%>

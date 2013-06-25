@@ -6,7 +6,7 @@
     <br />
     <br />
     <div class="mainDiv">
-        <a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">Create User</a>
+        <a href='<%= CreateUserLink %>' id="lnkCreateUser">Create User</a>
         <br />
         <div>
             <h2>

@@ -23,7 +23,7 @@
             <div class="loginDisplay">
                 <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                     <AnonymousTemplate>
-                        [ <a href="<%: FriendlyUrl.Href("/../Login") %>" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                        [ <a href='<%= LinkBuilder.ParentLoginLink() %>' ID="HeadLoginStatus" runat="server">Log In</a> ]
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!

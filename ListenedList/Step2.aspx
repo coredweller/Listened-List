@@ -29,7 +29,7 @@
         <br />
         <br />
         This is the tutorial Tags page. Create and do whatever you like. To use this page
-        without the tutorial text go <a href="<%: FriendlyUrl.Href("/Tags") %>">HERE</a>
+        without the tutorial text go <a href='<%= LinkBuilder.DefaultTagsLink() %>'>HERE</a>
     </div>
     <br />
     <br />

@@ -73,19 +73,19 @@
             <table>
                 <tr>
                     <td>
-                        <a id="HyperLink2" href='<%: FriendlyUrl.Href("/../Notes", "12-31-1995") %>'>12/31/1995
+                        <a id="HyperLink2" href='<%= LinkBuilder.ParentNotesLink( "12-31-1995" ) %>'>12/31/1995
                             - Madison Square Garden - New York, NY</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a id="A1" href='<%: FriendlyUrl.Href("/../Notes", "05-07-1994") %>'>05/07/1994 - The
+                        <a id="A1" href='<%= LinkBuilder.ParentNotesLink( "05-07-1994" ) %>'>05/07/1994 - The
                             Bomb Factory - Dallas, TX</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a id="A2" href='<%: FriendlyUrl.Href("/../Notes", "12-30-1997") %>'>12/30/1997 - Madison
+                        <a id="A2" href='<%= LinkBuilder.ParentNotesLink( "12-30-1997" ) %>'>12/30/1997 - Madison
                             Square Garden - New York, NY</a>
                     </td>
                 </tr>
@@ -121,7 +121,7 @@
                 <ItemTemplate>
                     <tr style="font-size:1.5em;">
                         <td>
-                            <a id="lnkShow" href="<%# FriendlyUrl.Href("/../Notes", ((Core.DomainObjects.IShow)Container.DataItem).Id ) %>">
+                            <a id="lnkShow" href='<%# LinkBuilder.ParentNotesLink(((Core.DomainObjects.IShow)Container.DataItem).Id.ToString() ) %>'>
                                 <%# ( (Core.DomainObjects.IShow)Container.DataItem ).GetShowName() %></a>
                         </td>
                     </tr>

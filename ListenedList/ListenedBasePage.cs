@@ -10,6 +10,7 @@ using Core.Services;
 using Core.Infrastructure;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.FriendlyUrls;
+using ListenedList.Code;
 
 namespace ListenedList
 {
@@ -137,7 +138,7 @@ namespace ListenedList
 
         protected void UserInRoleRedirect( string userName, string roleName ) {
             if ( !_RoleProvider.IsUserInRole( userName, roleName ) )
-                Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
+                Response.Redirect( LinkBuilder.DefaultMainLink() );
         }
     }
 }

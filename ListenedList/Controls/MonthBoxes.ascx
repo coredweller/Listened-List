@@ -5,7 +5,7 @@
     <tr>
         <asp:PlaceHolder ID="phPlus" runat="server" Visible="true">
             <td>
-                <a href="<%: FriendlyUrl.Href("~/Main", "Year", Month ) %>" id="lnkMonthMode" class="lnkMonth"
+                <a href='<%= LinkBuilder.DefaultMainLink(new object[] { "Year", Month } ) %>' id="lnkMonthMode" class="lnkMonth"
                     style='<%= GetStyle() %>'>
                     <img src="/images/plus_icon.gif" alt="" /></a>
             </td>

@@ -16,6 +16,7 @@ using System.Collections;
 using System.IO;
 using Procurios.Public;
 using System.Collections.Generic;
+using ListenedList.Code;
 
 namespace ListenedList
 {
@@ -70,7 +71,7 @@ namespace ListenedList
             }
 
             //If it is not a valid show then get out of here
-            if ( show == null ) Response.Redirect( FriendlyUrl.Href( "~/Main" ) );
+            if ( show == null ) Response.Redirect( LinkBuilder.DefaultMainLink() );
 
             hdnShowId.Value = show.Id.ToString();
 
@@ -488,7 +489,7 @@ namespace ListenedList
         #region Utilities
 
         public string GetUrl( Guid id ) {
-            return FriendlyUrl.Href( "~/Notes", id.ToString() );
+            return LinkBuilder.DefaultNotesLink( id.ToString() );
         }
 
         private void ValidateTags( bool success, string error, Guid showId ) {

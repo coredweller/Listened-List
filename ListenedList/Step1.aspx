@@ -137,7 +137,7 @@
             <span style="color: rgb(248, 229, 14);">Step 1 shows how to work the buttons, keeping
                 notes, and searching notes.
                 <br />
-                <a href="<%: FriendlyUrl.Href("/Step2") %>">Step 2</a> shows how to create tags,
+                <a href='<%= LinkBuilder.DefaultStep2Link() %>'>Step 2</a> shows how to create tags,
                 alter tags, and how to view your tagged shows. </span>
         </h5>
         <br />

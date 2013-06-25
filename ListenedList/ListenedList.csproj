@@ -153,6 +153,7 @@
     </Compile>
     <Compile Include="Base.cs" />
     <Compile Include="Code\EmailManager.cs" />
+    <Compile Include="Code\LinkBuilder.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

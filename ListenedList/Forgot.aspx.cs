@@ -18,6 +18,8 @@ namespace ListenedList
 {
     public partial class Forgot : ListenedBasePage
     {
+        public string CreateUserLink { get { return LinkBuilder.DefaultCreateUserLink(); } }
+
         protected void Page_Load( object sender, EventArgs e ) {
 
         }

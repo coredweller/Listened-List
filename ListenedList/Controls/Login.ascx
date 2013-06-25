@@ -2,8 +2,8 @@
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <br />
 <span style="font-size:1.5em;">
-<a href="<%: FriendlyUrl.Href("~/CreateUser") %>" id="lnkCreateUser">New User?</a>&nbsp;&nbsp;OR&nbsp;&nbsp;<a
-    href="<%: FriendlyUrl.Href("~/Forgot") %>" id="lnkForgot">Forgot Password?</a>
+<a href='<%= CreateUserLink %>' id="lnkCreateUser">New User?</a>&nbsp;&nbsp;OR&nbsp;&nbsp;<a
+    href='<%= ForgotPasswordLink %>' id="lnkForgot">Forgot Password?</a>
     </span>
 <br />
 <br />

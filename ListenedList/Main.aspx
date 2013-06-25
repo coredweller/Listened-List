@@ -231,7 +231,7 @@
                 padding-top: 1px;" />
             <input type="button" class="normalButton" id="btnSearch" value="Search" style="height: 38px;" />
             &nbsp;&nbsp;&nbsp; <span style="font-size: small; font-weight: 200;">Need Help? Tutorial
-                <a href="<%: FriendlyUrl.Href("~/Step1") %>">HERE</a></span>
+                <a href='<%= LinkBuilder.DefaultStep1Link() %>'>HERE</a></span>
         </div>
         <br />
         <br />
@@ -297,7 +297,7 @@
         <br />
         <hr />
         <br />
-        <a href='<%: FriendlyUrl.Href("~/Contact") %>'>Contact Us</a>
+        <a href='<%= LinkBuilder.DefaultContactLink() %>'>Contact Us</a>
         <br />
         <br />
         <br />

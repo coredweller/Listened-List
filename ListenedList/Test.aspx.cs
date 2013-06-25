@@ -17,7 +17,7 @@ namespace ListenedList
     {
         protected void Page_Load( object sender, EventArgs e ) {
             if ( !_RoleProvider.IsUserInRole( User.Identity.Name, Core.Membership.Roles.ADMINISTRATOR ) ) 
-                Response.Redirect( Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href( "~/Main" ) );
+                Response.Redirect( LinkBuilder.DefaultMainLink() );
         }
 
         protected void btnTestForgot_Click( object sender, EventArgs e ) {

@@ -31,7 +31,7 @@
         <div style="float: right; color: Black; padding-right: 100px;">
             <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                 <AnonymousTemplate>
-                    [ <a href="<%: FriendlyUrl.Href("/../Login") %>" id="HeadLoginStatus">
+                    [ <a href='<%= LinkBuilder.ParentLoginLink() %>' id="HeadLoginStatus">
                         Log In</a> ]
                 </AnonymousTemplate>
                 <LoggedInTemplate>
@@ -47,12 +47,12 @@
         </div>
         <ul style="padding-right: 100px;">
             <%--    <li class="home">Home</li>--%>
-            <li><a href="<%: FriendlyUrl.Href("/../") %>">Main</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../AddShows") %>">Edit Shows</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../Tags") %>">Tags</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../Search") %>">Search</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../Settings") %>">Settings</a></li>
-            <li><a href="<%: FriendlyUrl.Href("/../Contact") %>">Contact Us</a></li>
+            <li><a href='<%= LinkBuilder.ParentMainLink() %>'>Main</a></li>
+            <li><a href='<%= LinkBuilder.ParentAddShowsLink() %>'>Edit Shows</a></li>
+            <li><a href='<%= LinkBuilder.ParentTagsLink() %>'>Tags</a></li>
+            <li><a href='<%= LinkBuilder.ParentSearchLink() %>'>Search</a></li>
+            <li><a href='<%= LinkBuilder.ParentSettingsLink() %>'>Settings</a></li>
+            <li><a href='<%= LinkBuilder.ParentContactLink() %>'>Contact Us</a></li>
         </ul>
         <%-- <ul class="dropdown">
     <li><a href="http://www.free-css.com/">internal</a></li>
