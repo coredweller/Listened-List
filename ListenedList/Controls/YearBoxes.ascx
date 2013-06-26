@@ -6,7 +6,7 @@
 <asp:PlaceHolder ID="phMonthMode" runat="server">
     <div>
         <br />
-        <b style="font-size: large; padding-left: 4px;"><a href='<%= LinkBuilder.DefaultMainLink() %>'
+        <b style="font-size: large; padding-left: 4px;"><a href='<%= LinkBuilder.BaseMainLink() %>'
             id="A1" class="lnkMonth">
             <img src="/images/minus_icon.jpg" /></a>
             <%= Year %>

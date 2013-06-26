@@ -35,6 +35,10 @@ namespace ListenedList.Code
             return FriendlyUrl.Href( location + link, args );
         }
 
+        public static string BaseMainLink() {
+            return GetLink( CURRENT_DIRECTORY, MAIN_WITH );
+        }
+
         public static string DefaultMainLink() {
             return GetLink( CURRENT_DIRECTORY, MAIN );
         }
