@@ -29,6 +29,8 @@
             var lastWidth = '<%= ButtonSize %>';
             var lastFontSize = '<%= FontSize %>';
             var userName = '<%= UserName %>';
+            var phishowsUrl = '<%= PhishShowsUrl %>';
+            var phishTracksUrl = '<%= PhishTracksUrl %>';
 
             SetButtonProperties(lastWidth, lastFontSize);
 
@@ -37,6 +39,9 @@
 
                 //grab the showdate from the button that was clicked and replace both slashes with dashes to be more url friendly
                 var showDate = $(this).val().replace('/', '-').replace('/', '-');
+                var parts = showDate.split('-');
+                var actualShowDate = new Date(parts[2], parts[0]-1, parts[1]);
+                var phishowsDate = actualShowDate.getFullYear() + '-' + ('0' + (actualShowDate.getMonth()+1)).slice(-2) + '-' + ('0' + actualShowDate.getDate()).slice(-2);
 
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
@@ -121,8 +126,12 @@
                 }
 
                 if (needToPrompt) {
+                    
+                    //Bind prompt
                     var modifiedShowName = button.attr("title").replace("-", "<br />").replace("-", "<br />");
                     $("#dialogText").html(modifiedShowName);
+                    $("#phishowsLink").attr("href", phishowsUrl.replace("{0}", phishowsDate));
+                    $("#phishTracksLink").attr("href", phishTracksUrl.replace("{0}", showDate));
 
                     $("#dialog-confirm").dialog({
                         resizable: true,
@@ -310,5 +319,8 @@
         <p id="dialogText">
             <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
             <%--What is the listening status for this show?--%></p>
+            <p>
+                <a href='' id="phishowsLink" target="_blank">Phishows</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='' id="phishTracksLink" target="_blank">PhishTracks</a>
+            </p>
     </div>
 </asp:Content>
