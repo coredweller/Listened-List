@@ -40,8 +40,7 @@
                 //grab the showdate from the button that was clicked and replace both slashes with dashes to be more url friendly
                 var showDate = $(this).val().replace('/', '-').replace('/', '-');
                 var parts = showDate.split('-');
-                var actualShowDate = new Date(parts[2], parts[0]-1, parts[1]);
-                var phishowsDate = actualShowDate.getFullYear() + '-' + ('0' + (actualShowDate.getMonth()+1)).slice(-2) + '-' + ('0' + actualShowDate.getDate()).slice(-2);
+                var phishowsDate = parts[2] + '-' + ('0' + parts[0]).slice(-2) + '-' + ('0' + parts[1]).slice(-2);
 
                 //Save the button that was clicked for later to set the new status
                 var button = $(this);
