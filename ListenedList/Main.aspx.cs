@@ -66,19 +66,9 @@ namespace ListenedList
                     //If "only" is in the url then turn all yearboxes off
                     if ( segmentCount > 2 ) {
 
-                        var loopYear = LOWEST_YEAR;
-                        while ( loopYear <= DateTime.Now.Year ) {
-                            var yearStr = GetLastTwoDigits(loopYear);
-                            var yearBoxId = YearBoxBaseId + yearStr;
-                            var foundBox = FindControlRecursive( divAllYearBoxes, yearBoxId );
-
-                            if ( foundBox != null ) {
-                                YearBoxes boxToTurnOff = (YearBoxes)foundBox;
-                                boxToTurnOff.Off = true;
-                            }
-
-                            loopYear++;
-                        }
+                        PerformActionOnAllYearBoxes( new Action<YearBoxes>( ( yearBox ) => {
+                            yearBox.Off = true;
+                        } ) );
 
                         phYears.Visible = true;
                     }
@@ -115,27 +105,26 @@ namespace ListenedList
                 shows.Add( new ShowStatus( show.ShowId, show.Status, show.Attended ) );
             }
 
-            yearBox00.Shows = shows;
-            yearBox03.Shows = shows;
-            yearBox04.Shows = shows;
-            yearBox09.Shows = shows;
-            yearBox10.Shows = shows;
-            yearBox11.Shows = shows;
-            yearBox12.Shows = shows;
-            yearBox13.Shows = shows;
-            yearBox87.Shows = shows;
-            yearBox88.Shows = shows;
-            yearBox89.Shows = shows;
-            yearBox90.Shows = shows;
-            yearBox91.Shows = shows;
-            yearBox92.Shows = shows;
-            yearBox93.Shows = shows;
-            yearBox94.Shows = shows;
-            yearBox95.Shows = shows;
-            yearBox96.Shows = shows;
-            yearBox97.Shows = shows;
-            yearBox98.Shows = shows;
-            yearBox99.Shows = shows;
+            //Set the shows on all Year Boxes.
+            PerformActionOnAllYearBoxes( new Action<YearBoxes>( ( yearBox ) => {
+                yearBox.Shows = shows;
+            } ) );
+        }
+
+        private void PerformActionOnAllYearBoxes( Action<YearBoxes> actionToPerform ) {
+            var loopYear = LOWEST_YEAR;
+            while ( loopYear <= DateTime.Now.Year ) {
+                var yearStr = GetLastTwoDigits( loopYear );
+                var yearBoxId = YearBoxBaseId + yearStr;
+                var foundBox = FindControlRecursive( divAllYearBoxes, yearBoxId );
+
+                if ( foundBox != null ) {
+                    YearBoxes yearBox = (YearBoxes)foundBox;
+                    actionToPerform.Invoke( yearBox );
+                }
+
+                loopYear++;
+            }
         }
 
         private string GetLastTwoDigits( int number ) {
