@@ -10,6 +10,7 @@ using Core.Services;
 using Core.Infrastructure;
 using System.Text.RegularExpressions;
 using ListenedList.Code;
+using System.Web.UI;
 
 namespace ListenedList
 {
@@ -23,6 +24,7 @@ namespace ListenedList
         protected string PhishShowsUrl = "http://www.phishows.com/mp3t/?cmd=goto&date={0}";
         protected string PhishTracksUrl = "http://www.phishtracks.com/shows/{0}";
         protected string PhishNetUrl = "https://api.phish.net/api.js?api=2.0&method=pnet.shows.setlists.get&format=json&apikey={0}&showdate={1}";
+        protected const int LOWEST_YEAR = 1987;
 
         protected IRoleProvider _RoleProvider = Ioc.GetInstance<IRoleProvider>();
         protected IMembershipProvider _MembershipProvider = Ioc.GetInstance<IMembershipProvider>();
@@ -158,6 +160,21 @@ namespace ListenedList
 
         private string GetLink( string url, params object[] args ) {
             return string.Format( url, args );
+        }
+
+        protected Control FindControlRecursive( Control root, string id ) {
+            if ( root.ID == id ) {
+                return root;
+            }
+
+            foreach ( Control c in root.Controls ) {
+                Control t = FindControlRecursive( c, id );
+                if ( t != null ) {
+                    return t;
+                }
+            }
+
+            return null;
         }
     }
 }

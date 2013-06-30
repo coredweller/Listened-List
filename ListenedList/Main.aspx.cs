@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Core.Helpers;
 using Core.Services.Interfaces;
 using Microsoft.AspNet.FriendlyUrls;
+using ListenedList.Controls;
+using System.Web.UI;
 
 namespace ListenedList
 {
@@ -14,6 +16,8 @@ namespace ListenedList
         protected float ButtonSize { get; set; }
         protected float FontSize { get; set; }
         protected string UserName { get; set; }
+
+        private const string YearBoxBaseId = "yearBox";
 
         protected void Page_Load( object sender, EventArgs e ) {
 
@@ -56,128 +60,42 @@ namespace ListenedList
                 int year = 0;
                 var segmentCount = urlSegments.Count();
 
+                //Parse Year out
                 if ( segmentCount > 1 && int.TryParse( urlSegments[1], out year ) ) {
 
+                    //If "only" is in the url then turn all yearboxes off
                     if ( segmentCount > 2 ) {
-                        //turn off all
-                        yearBox13.Off = true;
-                        yearBox12.Off = true;
-                        yearBox11.Off = true;
-                        yearBox10.Off = true;
-                        yearBox09.Off = true;
-                        yearBox04.Off = true;
-                        yearBox03.Off = true;
-                        yearBox00.Off = true;
-                        yearBox99.Off = true;
-                        yearBox98.Off = true;
-                        yearBox97.Off = true;
-                        yearBox96.Off = true;
-                        yearBox95.Off = true;
-                        yearBox94.Off = true;
-                        yearBox93.Off = true;
-                        yearBox92.Off = true;
-                        yearBox91.Off = true;
-                        yearBox90.Off = true;
-                        yearBox89.Off = true;
-                        yearBox88.Off = true;
-                        yearBox87.Off = true;
+
+                        var loopYear = LOWEST_YEAR;
+                        while ( loopYear <= DateTime.Now.Year ) {
+                            var yearStr = GetLastTwoDigits(loopYear);
+                            var yearBoxId = YearBoxBaseId + yearStr;
+                            var foundBox = FindControlRecursive( divAllYearBoxes, yearBoxId );
+
+                            if ( foundBox != null ) {
+                                YearBoxes boxToTurnOff = (YearBoxes)foundBox;
+                                boxToTurnOff.Off = true;
+                            }
+
+                            loopYear++;
+                        }
+
                         phYears.Visible = true;
                     }
                 }
 
-                switch ( year ) {
-                    //case 2014:
-                    //    yearbox14.MonthMode = true;
-                    //    break;
-                    //case 2015:
-                    //    yearbox15.MonthMode = true;
-                    //    break;
-                    case 2013:
-                        yearBox13.Off = false;
-                        yearBox13.MonthMode = true;
-                        break;
-                    case 2012:
-                        yearBox12.Off = false;
-                        yearBox12.MonthMode = true;
-                        break;
-                    case 2011:
-                        yearBox11.Off = false;
-                        yearBox11.MonthMode = true;
-                        break;
-                    case 2010:
-                        yearBox10.Off = false;
-                        yearBox10.MonthMode = true;
-                        break;
-                    case 2009:
-                        yearBox09.Off = false;
-                        yearBox09.MonthMode = true;
-                        break;
-                    case 2004:
-                        yearBox04.Off = false;
-                        yearBox04.MonthMode = true;
-                        break;
-                    case 2003:
-                        yearBox03.Off = false;
-                        yearBox03.MonthMode = true;
-                        break;
-                    case 2000:
-                        yearBox00.Off = false;
-                        yearBox00.MonthMode = true;
-                        break;
-                    case 1999:
-                        yearBox99.Off = false;
-                        yearBox99.MonthMode = true;
-                        break;
-                    case 1998:
-                        yearBox98.Off = false;
-                        yearBox98.MonthMode = true;
-                        break;
-                    case 1997:
-                        yearBox97.Off = false;
-                        yearBox97.MonthMode = true;
-                        break;
-                    case 1996:
-                        yearBox96.Off = false;
-                        yearBox96.MonthMode = true;
-                        break;
-                    case 1995:
-                        yearBox95.Off = false;
-                        yearBox95.MonthMode = true;
-                        break;
-                    case 1994:
-                        yearBox94.Off = false;
-                        yearBox94.MonthMode = true;
-                        break;
-                    case 1993:
-                        yearBox93.Off = false;
-                        yearBox93.MonthMode = true;
-                        break;
-                    case 1992:
-                        yearBox92.Off = false;
-                        yearBox92.MonthMode = true;
-                        break;
-                    case 1991:
-                        yearBox91.Off = false;
-                        yearBox91.MonthMode = true;
-                        break;
-                    case 1990:
-                        yearBox90.Off = false;
-                        yearBox90.MonthMode = true;
-                        break;
-                    case 1989:
-                        yearBox89.Off = false;
-                        yearBox89.MonthMode = true;
-                        break;
-                    case 1988:
-                        yearBox88.Off = false;
-                        yearBox88.MonthMode = true;
-                        break;
-                    case 1987:
-                        yearBox87.Off = false;
-                        yearBox87.MonthMode = true;
-                        break;
+                var lastTwoDigits = GetLastTwoDigits( year );
+                var yearBoxIdToFind = YearBoxBaseId + lastTwoDigits;
+
+                var box = FindControlRecursive( divAllYearBoxes, yearBoxIdToFind );
+
+                //Turns the chosen year box on and into month mode
+                if ( box != null ) {
+                    YearBoxes chosenBox = (YearBoxes)box;
+                    chosenBox.Off = false;
+                    chosenBox.MonthMode = true;
                 }
-                var lastTwoDigits = (year % 100).ToString().PadLeft(2, '0');
+
                 var spanToMove = "#spanYear" + lastTwoDigits;
                 //This script moves the year box up to right under the year list.
                 //  This is so they are all even on the page after postback
@@ -218,6 +136,10 @@ namespace ListenedList
             yearBox97.Shows = shows;
             yearBox98.Shows = shows;
             yearBox99.Shows = shows;
+        }
+
+        private string GetLastTwoDigits( int number ) {
+            return ( number % 100 ).ToString().PadLeft( 2, '0' );
         }
 
         private void ResetPanels() {
