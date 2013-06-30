@@ -245,18 +245,21 @@
         <uc:legend id="legend" runat="server" />
         <br />
         <input id="chkAllYears" type="checkbox" checked="checked" />All Years
-        <asp:PlaceHolder ID="phYears" runat="server" Visible="false">&nbsp;&nbsp;&nbsp; <span
-            style="font-weight: bolder; font-size: 24px;"><a href="/Main/Year/2013/only">13</a> <a href="/Main/Year/2012/only">12</a>
-            <a href="/Main/Year/2011/only">11</a> <a href="/Main/Year/2010/only">10</a> <a href="/Main/Year/2009/only">
-                09</a> <a href="/Main/Year/2004/only">04</a> <a href="/Main/Year/2003/only">03</a>
-            <a href="/Main/Year/2000/only">00</a> <a href="/Main/Year/1999/only">99</a> <a href="/Main/Year/1998/only">
-                98</a> <a href="/Main/Year/1997/only">97</a> <a href="/Main/Year/1996/only">96</a>
-            <a href="/Main/Year/1995/only">95</a> <a href="/Main/Year/1994/only">94</a> <a href="/Main/Year/1993/only">
-                93</a> <a href="/Main/Year/1992/only">92</a> <a href="/Main/Year/1991/only">91</a>
-            <a href="/Main/Year/1990/only">90</a> <a href="/Main/Year/1989/only">89</a> <a href="/Main/Year/1988/only">
-                88</a> <a href="/Main/Year/1987/only">87</a> </span></asp:PlaceHolder>
+        <asp:PlaceHolder ID="phYears" runat="server" Visible="false">&nbsp;&nbsp;&nbsp; <span style="font-weight: bolder; font-size: 24px;">
+            <a href="/Main/Year/2013/only" class="yearLink">13</a>&nbsp;<a href="/Main/Year/2012/only" class="yearLink">12</a>
+            <a href="/Main/Year/2011/only" class="yearLink">11</a>&nbsp;<a href="/Main/Year/2010/only" class="yearLink">10</a>
+            <a href="/Main/Year/2009/only" class="yearLink">09</a>&nbsp;<a href="/Main/Year/2004/only" class="yearLink">04</a>
+            <a href="/Main/Year/2003/only" class="yearLink">03</a>&nbsp;<a href="/Main/Year/2000/only" class="yearLink">00</a> 
+            <a href="/Main/Year/1999/only" class="yearLink">99</a>&nbsp;<a href="/Main/Year/1998/only" class="yearLink">98</a>
+            <a href="/Main/Year/1997/only" class="yearLink">97</a>&nbsp;<a href="/Main/Year/1996/only" class="yearLink">96</a>
+            <a href="/Main/Year/1995/only" class="yearLink">95</a>&nbsp;<a href="/Main/Year/1994/only" class="yearLink">94</a>
+            <a href="/Main/Year/1993/only" class="yearLink">93</a>&nbsp;<a href="/Main/Year/1992/only" class="yearLink">92</a>
+            <a href="/Main/Year/1991/only" class="yearLink">91</a>&nbsp;<a href="/Main/Year/1990/only" class="yearLink">90</a>
+            <a href="/Main/Year/1989/only" class="yearLink">89</a>&nbsp;<a href="/Main/Year/1988/only" class="yearLink">88</a> 
+            <a href="/Main/Year/1987/only" class="yearLink">87</a> </span></asp:PlaceHolder>
+                    <br />
         <br />
-        <br />
+        <div id="divUnderYearList"></div>
         <span id="spanYear13">
             <uc:yearbox id="yearBox13" runat="server" year="2013" />
         </span><span id="spanYear12">

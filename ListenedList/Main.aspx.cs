@@ -177,6 +177,11 @@ namespace ListenedList
                         yearBox87.MonthMode = true;
                         break;
                 }
+                var lastTwoDigits = (year % 100).ToString().PadLeft(2, '0');
+                var spanToMove = "#spanYear" + lastTwoDigits;
+                //This script moves the year box up to right under the year list.
+                //  This is so they are all even on the page after postback
+                Page.RegisterStartupScript( "MoveScript", "<script type=\"text/javascript\">  $('#divUnderYearList').append($('" + spanToMove + "') ); </script>" );
             }
 
             var profileService = new ProfileService( User.Identity.Name );
